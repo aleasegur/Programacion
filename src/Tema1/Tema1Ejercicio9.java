@@ -1,5 +1,5 @@
-//Alejandro Asencio Gurau
-/*Implementa en Java una clase llamada Tema1Ejercicio9 que pida por
+package Tema1;//Alejandro Asencio Gurau
+/*Implementa en Java una clase llamada Tema1.Tema1Ejercicio9 que pida por
 teclado 2 números enteros y muestre el resultado por pantalla de su
 suma, producto, resta, división y resto.*/
 

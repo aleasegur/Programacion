@@ -1,6 +1,8 @@
+package Tema1;
+
 import java.util.Scanner;
 /*Realiza una nueva clase en Java en el proyecto Programacion llamada
-Tema1Ejercicio6 que calcule el área de un círculo. Debe seguir el
+Tema1.Tema1Ejercicio6 que calcule el área de un círculo. Debe seguir el
 esquema del siguiente ordinograma.*/
 public class Tema1Ejercicio6 {
     public static void main(String[] args) {

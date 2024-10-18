@@ -1,6 +1,8 @@
+package Tema1;
+
 //ALEJANDRO ASENCIO GURAU
 /* Realiza un proyecto en Java llamado Programacion con una clase
-llamada Tema1Ejercicio5 que muestre por pantalla las siguientes
+llamada Tema1.Tema1Ejercicio5 que muestre por pantalla las siguientes
 operaciones y su resultado.
 1. 24 % 5
 2. 7 / 2 + 2.5

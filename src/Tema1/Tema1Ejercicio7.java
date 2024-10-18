@@ -1,6 +1,6 @@
-//ALEJANDRO ASENCIO GURAU
+package Tema1;//ALEJANDRO ASENCIO GURAU
 /*7. Implementa en Java el ejercicio 3. Estará dentro del proyecto
-Programacion y deberá llamarse Tema1Ejercicio7:
+Programacion y deberá llamarse Tema1.Tema1Ejercicio7:
 Se lee una cara de un dado (de 1 a 6), muestra que no es un número
 correcto si el número es mayor a 6 o menor que 1 y si el número es
 válido escribe por pantalla la cara opuesta del dado*/
