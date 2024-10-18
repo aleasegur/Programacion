@@ -21,5 +21,6 @@ public class Tema1Ejercicio8 {
         }else {
             System.out.println("El numero mayor es "+num2);
         }
+        sc.close();
     }
 }

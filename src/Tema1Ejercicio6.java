@@ -10,5 +10,6 @@ public class Tema1Ejercicio6 {
         radio = sc.nextDouble();
         area = Math.PI * radio * radio;
         System.out.println("El area del circulo es " + area);
+        sc.close();
     }
 }

@@ -23,6 +23,6 @@ public class Tema1Ejercicio7 {
         }
 
         System.out.println("La cara opuesta de " + caraDado + " es " + caraOpuesta);
-
+        sc.close();
     }
 }

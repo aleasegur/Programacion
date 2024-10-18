@@ -14,5 +14,6 @@ public class Tema1Ejercicio12 {
         }else {
             System.out.println("El año "+year+" no es bisiesto");
         }
+        sc.close();
     }
 }

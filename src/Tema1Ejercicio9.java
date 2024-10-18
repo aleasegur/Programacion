@@ -31,6 +31,6 @@ public class Tema1Ejercicio9 {
                 "\nProducto: "+producto+
                 "\nDivision: "+div+
                 "\nResiduo: "+resto);
-
+        sc.close();
     }
 }
