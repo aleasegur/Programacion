@@ -9,14 +9,14 @@ positivo, negativo o zero.
 public class Tema2Ejercicio6 {
     public static void main(String[] args) {
         int num;
-        Scanner sc=new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.println("Introduce un valor: ");
-        num=sc.nextInt();
-        if (num==0){
+        num = sc.nextInt();
+        if (num == 0) {
             System.out.println("El numero es zero");
-        } else if (num>0) {
+        } else if (num > 0) {
             System.out.println("El numero es positivo");
-        }else {
+        } else {
             System.out.println("El numero es negativo");
         }
 

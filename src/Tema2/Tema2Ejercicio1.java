@@ -13,9 +13,7 @@ public class Tema2Ejercicio1 {
         lado = sc.nextInt();
         sup = lado * lado;
         peri = lado * 4;
-        System.out.println("----CUADRADO---- " + "\n" +
-                "Superficie = " + sup + "\n" +
-                "Perimetro = " + peri);
+        System.out.println("----CUADRADO---- " + "\n" + "Superficie = " + sup + "\n" + "Perimetro = " + peri);
         sc.close();
     }
 }
