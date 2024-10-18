@@ -23,5 +23,6 @@ public class Tema2Ejercicio4 {
         }else {
             System.out.println("El mayor es "+num3);
         }
+        sc.close();
     }
 }

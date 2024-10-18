@@ -16,5 +16,6 @@ public class Tema2Ejercicio3 {
         sup=base*alt/2;
         System.out.println("---TRIANGULO--- "+"\n"+
                 "Superficie = "+sup);
+        sc.close();
     }
 }

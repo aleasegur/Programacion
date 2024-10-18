@@ -18,5 +18,6 @@ public class Tema2Ejercicio2 {
         System.out.println("---RECTANGULO--- "+"\n"+
                 "Superficie = "+sup+"\n"+
                 "Perimetro = "+per);
+        sc.close();
     }
 }

@@ -16,5 +16,6 @@ public class Tema2Ejercicio1 {
         System.out.println("----CUADRADO---- " + "\n" +
                 "Superficie = " + sup + "\n" +
                 "Perimetro = " + peri);
+        sc.close();
     }
 }

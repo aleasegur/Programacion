@@ -20,6 +20,6 @@ public class Tema2Ejercicio5 {
         mediaSinDecimales=(int)(num1+num2+num3)/3;
         System.out.println("Media con decimales "+media+"\n"+
                 "Media sin decimales "+mediaSinDecimales);
-
+        sc.close();
     }
 }
