@@ -35,6 +35,5 @@ public class Tema2Ejercicio13 {
 
         System.out.println("La hora con un segundo más es "+horas+":"+min+":"+seg);
         sc.close();
-
     }
 }
