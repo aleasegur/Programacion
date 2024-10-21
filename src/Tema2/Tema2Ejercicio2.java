@@ -7,7 +7,7 @@ Realiza un programa que lea por consola la base y la altura de un
 rectángulo y mostrará por consola la superficie y el perímetro.*/
 public class  Tema2Ejercicio2 {
     public static void main(String[] args) {
-        double base, alt, per = 0.0, sup = 0.0;
+        double base, alt, per, sup;
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce el valor de la base: ");
         base = sc.nextDouble();
