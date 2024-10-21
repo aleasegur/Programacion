@@ -35,6 +35,6 @@ public class Tema2Ejercicio12 {
         }
 
         System.out.println("Los numeros ordenados son "+num1+" , "+num2+" , "+num3);
-
+        sc.close();
     }
 }

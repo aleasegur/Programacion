@@ -19,6 +19,6 @@ public class Tema2Ejercicio6 {
         } else {
             System.out.println("El numero es negativo");
         }
-
+        sc.close();
     }
 }
