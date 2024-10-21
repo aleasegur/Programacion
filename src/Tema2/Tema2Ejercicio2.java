@@ -5,7 +5,7 @@ import java.util.Scanner;
 /*ALEJANDRO ASENCIO GURAU
 Realiza un programa que lea por consola la base y la altura de un
 rectángulo y mostrará por consola la superficie y el perímetro.*/
-public class Tema2Ejercicio2 {
+public class  Tema2Ejercicio2 {
     public static void main(String[] args) {
         double base, alt, per = 0.0, sup = 0.0;
         Scanner sc = new Scanner(System.in);
