@@ -6,7 +6,7 @@ import java.util.Scanner;
 * Realiza un conversor de dólares a euros.*/
 public class Tema2Ejercicio9 {
     public static void main(String[] args) {
-        double euros=0.94, dolar;
+        double euros=0.92, dolar;
         Scanner sc=new Scanner(System.in);
         System.out.println("Introduce la cantidad de dolares que quieres convertir a euros: ");
         dolar=sc.nextDouble();
