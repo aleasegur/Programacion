@@ -22,7 +22,7 @@ public class Tema2Ejercicio16 {
                 break;
             case 'E':
                 num*=euros;
-                System.out.println("EUros = "+num);
+                System.out.println("Euros = "+num);
                 break;
             default:
                 System.err.println("ERROR: VALOR ERRONEO");
