@@ -16,5 +16,6 @@ public class Tema2Ejercicio22 {
             digitos++;
         }
         System.out.println("La cantidad de cifras es "+digitos);
+        sc.close();
     }
 }

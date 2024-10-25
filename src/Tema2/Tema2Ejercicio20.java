@@ -20,5 +20,6 @@ public class Tema2Ejercicio20 {
                 }
             }
         }
+        sc.close();
     }
 }

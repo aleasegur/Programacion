@@ -19,6 +19,7 @@ public class Tema2Ejercicio23 {
             }
         }while (num>0);
         media=suma/cant;
-        System.out.println(media);
+        System.out.println("La media de los numeros introducidos es "+media);
+        sc.close();
     }
 }
