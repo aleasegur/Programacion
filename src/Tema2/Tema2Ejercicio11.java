@@ -15,7 +15,7 @@ public class Tema2Ejercicio11 {
         System.out.println("Introduce el tercer numero: ");
         num3=sc.nextInt();
 
-        if (num1<num2 && num2<num3){
+        if ((num1==num2+1 && num2==num3+1)||(num1==num2-1 && num2==num3-1)){
             System.out.println("Los numeros son consecutivos");
         }else {
             System.out.println("Los numeros no son consecutivos");
