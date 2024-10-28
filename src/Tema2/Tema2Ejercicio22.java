@@ -9,9 +9,9 @@ public class Tema2Ejercicio22 {
     public static void main(String[] args) {
         int num,digitos=0;
         Scanner sc=new Scanner(System.in);
-        System.out.println("INtroduce un numero: ");
+        System.out.println("Introduce un numero: ");
         num=sc.nextInt();
-        while (num!=0){
+        while (num>0){
             num/=10;
             digitos++;
         }
