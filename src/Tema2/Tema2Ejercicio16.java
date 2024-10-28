@@ -14,7 +14,7 @@ public class Tema2Ejercicio16 {
         System.out.println("Introduce la cantidad de dinero: ");
         num= sc.nextDouble();
         System.out.println("---CONVERSOR---"+"\nIntroduce una letra para la conversion: "+"\n-D.Euros a Dolares "+"\n-E.Dolares a euros");
-        letra=sc.next().charAt(0);
+        letra=sc.next().toUpperCase().charAt(0);
         switch (letra){
             case 'D':
                 num*=dolar;
