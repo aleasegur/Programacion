@@ -58,7 +58,7 @@ public class Tema2Ejercicio30 {
                     System.err.println("ERROR: DATO INTRODUCIDO NO VALIDO");
             }
             System.out.println("SALIENDO DE LA CALCULADORA");
-            sc.close();
         }
+        sc.close();
     }
 }

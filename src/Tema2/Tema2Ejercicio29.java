@@ -26,11 +26,11 @@ public class Tema2Ejercicio29 {
 
             switch (numUser) {
                 case 1:
-                    numMax = num - 1;
+                    numMax = num + 1;
                     intentos++;
                     break;
                 case 2:
-                    numMin = num + 1;
+                    numMin = num - 1;
                     intentos++;
                     break;
                 case 3:
