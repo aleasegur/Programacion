@@ -11,7 +11,7 @@ pueda salir de la calculadora en cualquier momento.*/
 public class Tema2Ejercicio30 {
     public static void main(String[] args) {
         boolean salir=true;
-        int op;
+        char op;
         double num1,num2,suma,resta,prod,div,resto;
         Scanner sc=new Scanner(System.in);
         while (salir){
@@ -20,25 +20,25 @@ public class Tema2Ejercicio30 {
             System.out.println("Introduce el segundo numero real: ");
             num2=sc.nextDouble();
             System.out.println("---CALCULADORA---"+"\n"+
-                    "0.SALIR"+"\n1.SUMA"+"\n2.RESTA"+"\n3.PRODUCTO"+"\n4.DIVISION"+"\n5.RESIDUO");
-            op=sc.nextInt();
+                    "S.SALIR"+"\n+.SUMA"+"\n-.RESTA"+"\n*.PRODUCTO"+"\n/.DIVISION"+"\n%.RESIDUO");
+            op=sc.next().toUpperCase().charAt(0);
             switch (op){
-                case 0:
+                case 'S':
                     salir=false;
                     break;
-                case 1:
+                case '+':
                     suma=num1+num2;
                     System.out.println(num1+" + "+num2+" = "+suma);
                     break;
-                case 2:
+                case '-':
                     resta=num1-num2;
                     System.out.println(num1+" - "+num2+" = "+resta);
                     break;
-                case 3:
+                case '*':
                     prod=num1*num2;
                     System.out.println(num1+" * "+num2+" = "+prod);
                     break;
-                case 4:
+                case '/':
                     if (num2!=0) {
                         div = num1 / num2;
                         System.out.println(num1+" / "+num2+" = "+div);
@@ -46,7 +46,7 @@ public class Tema2Ejercicio30 {
                         System.err.println("ERROR: NO SE PUEDE DIVIDIR ENTRE CERO");
                     }
                     break;
-                case 5:
+                case '%':
                     if (num2!=0) {
                         resto = num1 % num2;
                         System.out.println(num1+" / "+num2+" = "+resto);
@@ -57,8 +57,8 @@ public class Tema2Ejercicio30 {
                 default:
                     System.err.println("ERROR: DATO INTRODUCIDO NO VALIDO");
             }
-            System.out.println("SALIENDO DE LA CALCULADORA");
         }
+        System.out.println("SALIENDO DE LA CALCULADORA");
         sc.close();
     }
 }
