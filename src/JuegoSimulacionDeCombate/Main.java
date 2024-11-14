@@ -363,7 +363,7 @@ public class Main {
                         } else {
                             hitBase = ataqueBase - defensaBase2 / 2;  // Caso estándar, el ataque es mayor que la defensa
                         }
-                        hit = Math.max(0, hitBase + rand.nextInt(10));
+                        hit = Math.max(0, hitBase + rand.nextInt(3));
                         // Verificar si es un ataque crítico
                         if (esCritico < probabilidadCritico) {
                             hit = (int) (hit * 1.3); // Aplica el multiplicador de daño crítico
@@ -384,7 +384,7 @@ public class Main {
                                     } else {
                                         hitBase2 = ataqueBase2 - defensaBase / 2;  // Caso estándar, el ataque es mayor que la defensa
                                     }
-                                    hit2 = Math.max(0, hitBase2 + rand.nextInt(10));
+                                    hit2 = Math.max(0, hitBase2 + rand.nextInt(3));
                                     // Verificar si es un ataque crítico
                                     if (esCritico2 < probabilidadCritico) {
                                         hit2 = (int) (hit2 * 1.3); // Aplica el multiplicador de daño crítico
@@ -426,7 +426,7 @@ public class Main {
                         } else {
                             hitBase2 = ataqueBase2 - defensaBase / 2;  // Caso estándar, el ataque es mayor que la defensa
                         }
-                        hit2 = Math.max(0, hitBase2 + rand.nextInt(10));
+                        hit2 = Math.max(0, hitBase2 + rand.nextInt(3));
 
                         if (esCritico2 < probabilidadCritico) {
                             hit2 = (int) (hit2 * 1.3);
@@ -448,7 +448,7 @@ public class Main {
                                     } else {
                                         hitBase = ataqueBase - defensaBase2 / 2;  // Caso estándar, el ataque es mayor que la defensa
                                     }
-                                    hit = Math.max(0, hitBase + rand.nextInt(10));
+                                    hit = Math.max(0, hitBase + rand.nextInt(3));
                                     // Verificar si es un ataque crítico
                                     if (esCritico < probabilidadCritico) {
                                         hit = (int) (hit * 1.5); // Aplica el multiplicador de daño crítico
