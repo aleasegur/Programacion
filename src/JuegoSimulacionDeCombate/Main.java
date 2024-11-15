@@ -122,7 +122,7 @@ public class Main {
                 /*cada clase cierta habilidad  especial que en combate puede por ejemplo estratega previene el ataque del enemigo, asalto golpea dos veces,
                 vanguardia bloquea el ataque del enemigo, bastion reduce el atque del enemigo pero da 1 golpe por 3,
                 francontirador se vuelve invisible y de lo pueden atacar y pesado refuerza la defensa pero puede matar de un golpe */
-                System.out.println(faccion1+"\nELIGE UNA CLASE "+"\n1.Estratega"+"\n2.Asalto"+"\n3.Vanguardia"+"\n4.Bastion"+"\n5.Francotirador"+"\n6.Pesado");
+                System.out.println(faccion1+"\nELIGE UNA CLASE "+"\n1.Estratega"+"\n2.Asalto"+"\n3.Vanguardia"+"\n4.Francotirador");
                 opcionClase1=sc.nextInt();
                 switch (opcionClase1){
                     case 1:
@@ -178,7 +178,7 @@ public class Main {
                         break;
                 }
 
-                System.out.println(faccion1+"\nELIGE UNA CLASE "+"\n1.Estratega"+"\n2.Asalto"+"\n3.Vanguardia"+"\n4.Bastion"+"\n5.Francotirador"+"\n6.Pesado");
+                System.out.println(faccion1+"\nELIGE UNA CLASE "+"\n1.Estratega"+"\n2.Asalto"+"\n3.Vanguardia"+"\n4.Francotirador");;
                 opcionClase2=sc.nextInt();
                 switch (opcionClase2){
                     case 1:
@@ -263,7 +263,7 @@ public class Main {
             }
 
             System.out.println("HEREJES DEL CAOS");
-            System.out.println("1.MIL HIJOS -> CLASE: BASTION "+"\n2.LEGION NEGRA -> CLASE: FRANCOTIRADOR"+"\n3.LEGION ALFA -> CLASE:PESADO");
+            System.out.println("1.MIL HIJOS -> CLASE: FRANCOTIRADOR "+"\n2.LEGION NEGRA -> CLASE: ESTRATEGA"+"\n3.LEGION ALFA -> CLASE:VANGUARDIA");
             System.out.println("Selecione un hereje del caos: ");
             opcionJug2=sc.nextInt();
             switch (opcionJug2){
