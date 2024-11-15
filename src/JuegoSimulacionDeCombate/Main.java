@@ -89,7 +89,7 @@ public class Main {
                 "GUERREROS SOBREHUMANOS CREADOS MEDIANTE BIOINGENIERIA\n" +
                 "SON EL ÚLTIMO BASTIÓN DE LA HUMANIDAD ANTE EL HORROR.\n" +
                 "EN LA SOMBRÍA OSCURIDAD DEL FUTURO LEJANO, SÓLO HAY GUERRA ");
-        System.out.println("Deseas crear los personajes con sus facciones, clases y atributos(Y/N ): ");
+        System.out.println("Deseas crear los personajes con sus facciones, clases y atributos(Ibtroduce Y(SI)/N(NO)): ");
         crearPer=sc.next().toUpperCase().charAt(0);
         if (crearPer=='Y') {
 
