@@ -1,6 +1,8 @@
 package JuegoSimulacionDeCombate;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 //ALEJANDRO ASENCIO GURAU
 /*IMPLEMENTACION FUTURA un nuevo atributo que se llame regenerar, dos nuevas variables que seria las acciones de cada turno tanto para el jugador 1
@@ -14,141 +16,172 @@ public class Main {
         Random rand = new Random();
         //Scanner declarado como sc
         Scanner sc = new Scanner(System.in);
-        //Variable final que pone un limite de daño
-        //final int limiteDamage=40;
-        //las variables acabadas en 2 son para el jugador2
-        int velocidad1=0,
-                velocidad2=0,
-                ataqueBase1=0,
-                ataqueBase2=0,
-                defensaBase1=0,
-                defensaBase2=0,
-                vida1=0,
-                vida2=0,
-                sumaAtributos1,
-                sumaAtributos2,
-                hit1,//El daño del ataque
-                hitBase1,//El daño base para atacar
-                hit2,
-                hitBase2,
-                regenerar1=0,
-                regenerar2=0,
-                //variable que cuenta las rondas;
-                rondas = 1;
+        //Las variables terminado en 2 son para el jugador2
+        //las variables del jugador1 cuenta las rondas,daño del ataque,el daño base para atacar
+        int velocidad1=0, ataqueBase1=0, defensaBase1=0, vida1=0, sumaAtributos1, hit1, regenerar1=25, rondas = 1,estimulantes1=0;
+
+        //las variables del jugador2
+        int velocidad2=0,ataqueBase2=0,defensaBase2=0,vida2=0,sumaAtributos2,hit2,regenerar2=25,estimulantes2=0;
+
         //opciones para que el usurio introduzca
-        int opcionFaccion1,
-                opcionFaccion2,
-                opcionClase1,
-                opcionClase2,
-                opcionJug1,
-                opcionJug2;
+        int opcionFaccion1, opcionFaccion2, opcionClase1, opcionClase2, opcionJug1, opcionJug2;
+
+        //Variables que afectan al daño
+        int aleatorio;
+
+        //Variable final que pone un limite de daño
+        final int limiteDamage=5;
+
         //acciones para que el usurio introduzca
-        char accion1,accion2;
+        char accion1,accion2,crearPersonaje,confirmarFaccion1,confirmarFaccion2,confirmarClase1,confirmarClase2;
+
         //cadenas de texto en el que pone nombre a los jugadores
-        String faccion1 = "",
-                faccion2 = "",
-                clase1 = "",
-                clase2 = "";
-        char crearPersonaje;
+        String faccion1 = "", faccion2 = "", clase1 = "", clase2 = "",nombre1="",nombre2="",genero1="",genero2="";
+
         //Variables para multiplicar el daño en caso de critico(20%)
-        int esCritico1 = rand.nextInt(100),
-                esCritico2 = rand.nextInt(100),
-                probabilidadCritico = 8;
+        int esCritico1 = rand.nextInt(100), esCritico2 = rand.nextInt(100), probabilidadCritico = 8;
+
         //condicion para entrar en el combate entre los dos jugadores, y si quiere crear al personaje o no
         boolean combate = true, crearFac1=true,crearClase1=true,crearFac2=true,crearClase2=true;
 
-        System.out.println("%*+***************+++***********++***********+++++++*++*******#%********   ********#*************+++++*+********++++++*+*+**+**+++++*****+*++++++* \n" +
-                "  *################%%######%###%%##%%%%##%%%%%################## **#*####*####*#**#####%%%##############%####%%%%#%%####################**#**#***  \n" +
-                "   #####%##%%####%#%%#########%%##%%%%%#%%%%####################%##############%%%%%##%%%###################%%%%%################%##########*#**   \n" +
-                "     *###%%%##%##%#####################%#%########################%##%###%%%####%%%%%%%###########***#######################*#########*####***     \n" +
-                "      #**#%#%#%#####%==+#%+==+%#*==*###===*####*=======*##==+###*==##%##+===####%+==####%+==*#+==*####+==+%#=======*%+=======#############**#      \n" +
-                "        #%%##%######%+==%#====#%+==%#%+====###%*==%%%+==##==+###*==#####====+###%+===%#%+===*#+===*###===*%#==*%%%%#%+==%%#==+#############        \n" +
-                "         #%%%#%#%%%%#*==##====+%==*#%*==%==+%#%*==%%%+==##==+###*==###%+=*#==###%+====%*====*#+====%#====*%#==*#####%+==%%%==+############         \n" +
-                "          ####%%%%%%%%==*==*#=+*==%#%+=*%#==#%%*=======*%#=========##%*==#%+==%#%+==========#%+=======+==*%#======+%%+=======##%%####*#*%          \n" +
-                "            **#%%%%%%%*+=++%%+=+++%%+++====++%%*==%*=+#%%%=++%%%*==#%%++++===+*%%+=+%=+=*#==#%+==%+=++%++*%#++#%%%%%%+++%+++%#%%#%%#***            \n" +
-                "             #%%%%%#%%%+++*%%#+++#%#++*%%%#++*%*++%%*++#%%++*%%%#++#%+++%%%%*++%%+++%%**%#++#%*++#%**%%++*%#+++****#%*++%%+++#%#%%%%##             \n" +
-                "               #%%%%#%%*++%%%%+++%%+++%%%%%*++%*++%%%*++#%++*%%%#++##++*%%%%%++*%+++%%%%%#++#%*++%%%%%%++*%%+++++++*%*++%%%+++%%%%%*               \n" +
-                "                #%@@%######%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%######%%%@%#                \n" +
-                "                  ***%%%%%%%#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%=+%%+++=%%%%%=++=@%=+*=%%=++=#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%**#                  \n" +
-                "                   #%%%%%%%%%#%%%%%%%%%%@%@@@@@@@@%%%%%%%%*+**%%+#%+#%%%%=%%=%#=%#=%#=%%=#%%%%%%%%%%%%%%%%%%%%@@@%@%%#%%%%%%%%%#                   \n" +
-                "                    %#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#%%%#++++#%+#@+#@#%%+@%+%#+%%+%#+%%+#%%%#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#                     \n" +
-                "                      #******************************##%%%%%@@%%@%@@%%%%%@%%@%%@%%@%%@%%@%%%##******************************#                      \n" +
-                "                                                      #*************************************#");
 
-        System.out.println("EN EL CUADRAGÉSIMO PRIMER MILENIO, LA HUMANIDAD SE ENCUENTRA AL BORDE DE LA ANIQUILACION.\n" +
-                "EL IMPERIO DE LA HUMANIDAD SE EXTIENDE A LO LARGO DE LA GALAXIA Y ESTÁ BAJO LA AMENAZA DE ALIENÍGENAS HOSTILES\n" +
-                "EN SUS FRONTERAS Y TRAIDORES Y HEREJES EN SU INTERIOR.\n" +
-                "SE TRATA DE UNA ERA DE GUERRA CONSTANTE, UNA NUEVA ERA OSCURA \n" +
-                "EN LA CUAL LA ILUMINACION SE VE SUSTITUIDA\n" +
-                "POR LAS SUPERSTICIONES, LA RETÓRICA Y LOS REZOS CIEGOS.\n" +
-                "VIVIR EN ESTOS TIEMPOS SUPONE SER UNO ENTRE INCONTABLES MILES DE BILLONES \n" +
-                "QUE EXISTEN EN EL RÉGIMEN MÁS CRUEL Y SANGUINARIO JAMÁS IMAGINABLE\n" +
-                "LOS MÁS PODEROSOS Y TEMIBLES DEFENSORES DEL IMPERIO SON LOS MARINES ESPACIALES: \n" +
-                "GUERREROS SOBREHUMANOS CREADOS MEDIANTE BIOINGENIERIA\n" +
-                "SON EL ÚLTIMO BASTIÓN DE LA HUMANIDAD ANTE EL HORROR.\n" +
-                "EN LA SOMBRÍA OSCURIDAD DEL FUTURO LEJANO, SÓLO HAY GUERRA ");
-        System.out.println("Deseas crear los personajes con sus facciones, clases y atributos(Ibtroduce Y(SI)/N(NO)): ");
+        System.out.println(
+                "....................................................................................................\n" +
+                "................;###########S,............,SSSS?.*###S,...............................,:+%:.........\n" +
+                "................S@@@@@@@@@@@%.............*@@@@;,@@@@%..............................:%#@@#,.........\n" +
+                "...............;@@@@%*******:............,#@@@S.*@@@@:.........,,...................%@@@@+..........\n" +
+                "...............S@@@#,....................+@@@@;,#@@@%.......,.:+...................:@@@@S...........\n" +
+                "..............;@@@@*........;*?SSSS%*:..,#@@@S.*@@@@;.,;?%SS;,S?,..:++++:..;+++;.;+%@@@@%*:.........\n" +
+                "..............%@@@#,......:S@@@#%#@@@@;.+@@@@;,#@@@S.;#@@@S;,S@@#:.%@@@@:.;@@@@*,S@@@@@@@@:.........\n" +
+                ".............:@@@@#?????:.S@@@#,.*@@@@+.S@@@S.+@@@@;,#@@@*..%@@@@::@@@@?..%@@@#,.,%@@@@+,,..........\n" +
+                ".............%@@@@@@@@@@,:SSSS+..#@@@#,;@@@@+,#@@@S.*@@%:.,%@@@@%.?@@@@,.:@@@@*..:@@@@#,............\n" +
+                "............:@@@@#SSSSS*...,,:::+@@@@*.S@@@#.+@@@@;,##+...*#####::@@@@?..%@@@@,..?@@@@+.............\n" +
+                "............?@@@@:.......;%#@@@@@@@@#,;@@@@+.#@@@S.+%,....,,,.,;.?@@@@:.:@@@@*..:@@@@#,.............\n" +
+                "...........:@@@@?.......?@@@@?;?@@@@*.S@@@#,+@@@@+,*;;;;;....:S;,@@@@?..?@@@@,..?@@@@+..............\n" +
+                "...........?@@@@:......;@@@@?..S@@@@,;@@@@*.S@@@#.+@@@@@*...+@S.?@@@@:.:@@@@?..,@@@@#,..............\n" +
+                "..........,@@@@?.......S@@@@,.;@@@@?.%@@@#,;@@@@+,#@@@@S..,?@@;,@@@@%..?@@@@:..?@@@@+...............\n" +
+                "..........?@@@@:......;@@@@@++#@@@@,:@@@@*.S@@@#,+@@@@@:.:S@@%.*@@@@S;*@@@@?..,#@@@@*;,.............\n" +
+                ".........:@@@@%.......+@@@@@@#@@@@?.%@@@@,;@@@@*.:#@@@+.*@@@%,.*@@@@@#@@@@@:..:@@@@@@#,.............\n" +
+                ".........:????:.......,+?%?+:;????,,*???+.+???*,..,+**,?%*+:...,+%%?;,*???+....:*?%%?;..............\n" +
+                "....................................................................................................");
+        System.out.println("Guerra. La guerra nunca cambia.\n" +
+                "Los Romanos la declaraban para conseguir esclavos y riqueza.\n" +
+                "España construyó un imperio para saciar su ansia de oro y territorios.\n" +
+                "Hitler transformó la desvencijada Alemania en una superpotencia económica.\n" +
+                "\n" +
+                "Pero la guerra nunca cambia.\n" +
+                "\n" +
+                "En el siglo XXI, la adquisición de recursos seguía motivando la guerra. En esta ocasión, las armas y el botín eran una misma cosa. Petróleo y uranio. Por estos recursos, China invadiría Alaska, EE.UU. se anexionaría Canadá y la Comunidad Europea se disolvería en reñidos estados-nación, volcados en conseguir el control de los últimos recursos de la Tierra.\n" +
+                "\n" +
+                "En 2077, volvió la tormenta de la guerra mundial. En menos de dos horas, la mayoría del planeta quedó reducido a cenizas. De los residuos de la devastación nuclear, una nueva civilización intentaría resurgir.\n" +
+                "\n" +
+                "Unos pocos pudieron alcanzar a tiempo la seguridad relativa de los Refugios subterráneos. Tu familia formaba parte del grupo que ocupó el Refugio 7. A salvo, encerrada tras la gran puerta del refugio, bajo una montaña de piedra, una generación ha vivido sin conocimiento del mundo exterior.\n" +
+                "\n" +
+                "Pero la vida en el Refugio está a punto de cambiar.");
+        System.out.println("Desea crear un personaje o no(Y/N): ");
         crearPersonaje=sc.next().toUpperCase().charAt(0);
         if (crearPersonaje=='Y') {
-
             //Realizo un do while para comprobar que la suma de los atributos no supere 500(JUAGDOR1)
             do {
+                sc.nextLine();
+                System.out.println("Introduce un nombre para tu personaje 1: ");
+                nombre1=sc.nextLine();
+                System.out.println("Introduce tu sexo: ");
+                genero1=sc.nextLine();
                 while (crearFac1) {
-                    System.out.println("CAPITULOS DE LOS MARINES ESPACIALES: " + "\n1.Lobos Espaciales(VI LEGION)" + "\n2.Angeles Sangrientos(IX LEGION) " + "\n3.Ultramarines(XIII LEGION)");
+                    System.out.println("HOLA, "+nombre1);
+                    System.out.println("Que faccion quieres pertenecer: ");
+                    System.out.println("1.PALADIN DE LA HERMANDAD DEL ACERO "+"\n2.SOLDADO DE LA RCN(REPUBLICA DE NUEVA CALIFORNIA)"+"\n3.LEGIONARIO DE LA LEGION DE CESAR"+"\n4.NINGUNA(LLANERO SOLITARIO)");
                     opcionFaccion1 = sc.nextInt();
                     switch (opcionFaccion1) {
                         case 1:
-                            faccion1 = "LOBOS ESPACIALES";
-                            System.out.println("Los Lobos Espaciales fueron una de las 20 Legiones, en concreto la VI Legión, de Marines Espaciales creadas por el Emperador para su Gran Cruzada. " +
-                                    "Su Primarca era Leman Russ, el Rey Lobo de Fenris. Los Vlka Fenryka (Lobos de Fenris) se mantuvieron ferozmente leales al Imperio durante la Herejía de Horus, " +
-                                    "castigando a los Mil Hijos por su abuso de los poderes psíquicos y enfrentándose a las Legiones Traidoras");
-                            crearFac1 = false;
+                            faccion1 = "HERMANDAD DEL ACERO";
+                            System.out.println("La Hermandad del Acero es una organización tecno-religiosa, " +
+                                    "formada por desertores del Ejército de los Estados Unidos durante los últimos momentos de la gran guerra. " +
+                                    "Su objetivo es la recopilación del conocimiento y de la tecnología para poder reconstruir el mundo.");
+                            System.out.println("Desea esta faccion(Y/N): ");
+                            confirmarFaccion1=sc.next().toUpperCase().charAt(0);
+                            if (confirmarFaccion1=='Y') {
+                                crearFac1 = false;
+                            }
                             break;
                         case 2:
-                            faccion1 = "ANGELES SANGRIENTOS";
-                            System.out.println("Los Ángeles Sangrientos fueron la IX Legión de Marines Espaciales que el Emperador creó para su Gran Cruzada. Su Primarca era Sanguinius, y su mundo natal es Baal.\n" +
-                                    "En combate, la Legión de los Ángeles Sangrientos era la encarnación de la ira del Emperador hacia aquellos que rechazaban el regalo de la Unidad. Liderados por su angelical Primarca Sanguinius, " +
-                                    "su venida no era nada menos que un juicio apocalíptico descargado sobre los culpables desde las alturas, y descendiendo de los cielos sobre alas de fuego, la Legión conquistó mundos humanos perdidos tanto por su furia sobrenatural como por el terror y el pasmo que engendraba. " +
-                                    "Naciones enteras cayeron de rodillas, acobardadas por la furia y el esplendor de estos \"ángeles rojos\", por temor a perecer bajo las brillantes espadas de los Marines Espaciales. " +
-                                    "A los xenos no se les daba este cuartel, y la ira de la Legión se manifestaba como una marea de carnicería implacable que solo amainaba tras lograr el exterminio absoluto.");
-                            crearFac1 = false;
+                            faccion1 = "RCN";
+                            System.out.println("La República de Nueva California (RNC) es una república federal fundada en Nueva California en 2189. Está compuesta por 5 estados contiguos en el sur de California, " +
+                                    "con algunos territorios en el norte de California, Oregón y Nevada.\n" +
+                                    "La RNC centra su existencia en conservar los valores del antiguo mundo, como la democracia, libertad personal, y las leyes al mismo tiempo que los promueve. " +
+                                    "También apunta a restaurar el orden a todo el yermo, la mejora e instalación de infraestructura y sistemas monetarios, y paz incondicional entre la gente.");
+                            System.out.println("Desea esta faccion(Y/N): ");
+                            confirmarFaccion1=sc.next().toUpperCase().charAt(0);
+                            if (confirmarFaccion1=='Y') {
+                                crearFac1 = false;
+                            }
                             break;
                         case 3:
-                            faccion1 = "Ultramarines";
-                            System.out.println("Los Ultramarines fueron la XIII Legión de Marines Espaciales creada por el Emperador para su Gran Cruzada. Su Primarca era Roboute Guilliman. La Legión se mantuvo en el bando leal durante la Herejía de Horus, y tras esta, se reorganizó según el Codex Astartes y se dividió en Capítulos.\n" +
-                                    "Desde los antiguos días de la Gran Cruzada, los Ultramarines han combatido en la vanguardia de los ejércitos del Emperador. Son guerreros altamente disciplinados y " +
-                                    "valientes que han permanecido fieles durante diez mil años a las enseñanzas del sagrado Codex Astartes, la mayor obra de su Primarca." +
-                                    " Sus victorias se relatan desde su mundo natal, Macragge, hasta en las cámaras sagradas de Terra. " +
-                                    "Donde los enemigos de la Humanidad amenacen al Imperio, allí estarán los Ultramarines para combatirlos.");
-                            crearFac1 = false;
+                            faccion1 = "LEGION DE CESAR";
+                            System.out.println("La Legión de César (en latín: Legio Caesaris) es una dictadura imperialista y totalitaria de gran escala basada en la esclavitud. " +
+                                    "Fue fundada en 2247 por Edward Sallow, que luego se nombró César él mismo, y Joshua Graham (también conocido como Legado Malpais). " +
+                                    "Toda su militarización está inspirada por el Imperio Romano, dándole un nuevo uso a su lenguaje y estéticas en el mundo posnuclear.");
+                            System.out.println("Desea esta faccion(Y/N): ");
+                            confirmarFaccion1=sc.next().toUpperCase().charAt(0);
+                            if (confirmarFaccion1=='Y') {
+                                crearFac1 = false;
+                            }
+                            break;
+                        case 4:
+                            faccion1="LLANERO SOLITARIO";
+                            System.out.println("Estas seguro de esta eleccion?: ");
+                            System.out.println("Desea esta faccion(Y/N): ");
+                            confirmarFaccion1=sc.next().toUpperCase().charAt(0);
+                            if (confirmarFaccion1=='Y') {
+                                crearFac1 = false;
+                            }
                             break;
                         default:
                             System.err.println("ERROR: LA FACCION NO RECONOCIDA.¡VUELVA A INTRODUCIRLO!");
                             crearFac1=true;
                     }
                 }
-                /*cada clase cierta habilidad  especial que en combate puede por ejemplo estratega previene el ataque del enemigo, asalto golpea dos veces,
-                vanguardia bloquea el ataque del enemigo, bastion reduce el atque del enemigo pero da 1 golpe por 3,
-                francontirador se vuelve invisible y de lo pueden atacar y pesado refuerza la defensa pero puede matar de un golpe */
+
                 while (crearClase1) {
-                    System.out.println(faccion1 + "\nELIGE UNA CLASE " + "\n1.Estratega" + "\n2.Asalto" + "\n3.Vanguardia" + "\n4.Francotirador");
+                    System.out.println(nombre1 + "\nELIGE UNA CLASE " + "\n1.Cientifico" + "\n2.Lider Carismatico" + "\n3.Mercenario" + "\n4.Saqueador");
                     opcionClase1 = sc.nextInt();
                     switch (opcionClase1) {
                         case 1:
-                            clase1 = "ESTRATEGA";
-                            crearClase1 = false;
+                            clase1 = "Cientifico";
+                            System.out.println("Habilidad especial: utilizar armas de energia(Daño*2)");
+                            System.out.println("Desea esta eleccion de clase(Y/N): ");
+                            confirmarClase1=sc.next().toUpperCase().charAt(0);
+                            if (confirmarClase1=='Y') {
+                                crearClase1 = false;
+                            }
                             break;
                         case 2:
-                            clase1 = "ASALTO";
-                            crearClase1 = false;
+                            clase1 = "Lider Carismatico";
+                            System.out.println("Habilidad especial: Convencer al rival que pierda");
+                            System.out.println("Desea esta eleccion de clase(Y/N): ");
+                            confirmarClase1=sc.next().toUpperCase().charAt(0);
+                            if (confirmarClase1=='Y') {
+                                crearClase1 = false;
+                            }
                             break;
                         case 3:
-                            clase1 = "VANGUARDIA";
-                            crearClase1 = false;
+                            clase1 = "Mercenario";
+                            System.out.println("Habilidad especial:Atacara tres veces al contraio");
+                            System.out.println("Desea esta eleccion de clase(Y/N): ");
+                            confirmarClase1=sc.next().toUpperCase().charAt(0);
+                            if (confirmarClase1=='Y') {
+                                crearClase1 = false;
+                            }
                             break;
                         case 4:
-                            clase1 = "FRANCOTIRADOR";
-                            crearClase1 = false;
+                            clase1 = "Saqueador";
+                            System.out.println("Habilidad especial le robas su inventario haciendo que no te pueda atacar en ese turno");
+                            System.out.println("Desea esta eleccion de clase(Y/N): ");
+                            confirmarClase1=sc.next().toUpperCase().charAt(0);
+                            if (confirmarClase1=='Y') {
+                                crearClase1 = false;
+                            }
                             break;
                         default:
                             System.err.println("ERROR: EN LA SELECCION DE CLASE.¡VUELVE A INTRODUCIR LA CLASE!");
@@ -167,73 +200,164 @@ public class Main {
                 defensaBase1 = sc.nextInt();
                 System.out.println("Ataque: ");
                 ataqueBase1 = sc.nextInt();
-                System.out.println("Regenerar: ");
-                regenerar1 = sc.nextInt();
-                sumaAtributos1 = velocidad1 + vida1 + defensaBase1 + ataqueBase1 + regenerar1;
+                sumaAtributos1 = velocidad1 + vida1 + defensaBase1 + ataqueBase1;
                 if ((sumaAtributos1 > 500) && (velocidad1 >= 1 && velocidad1 <= 200 && ataqueBase1 >= 1 && ataqueBase1 <= 200 &&
                         vida1 >= 1 && vida1 <= 200 && defensaBase1 >= 1 && defensaBase1 <= 200)){
                     System.err.println("ERROR: LA SUMA DE LOS ATRIBUTOS O LOS VALORES INTRODUCIDOS NO CUMPLEN EL REQUISITO.¡VUELVA A CREAR LOS PERSONAJES!");
                 }
-                System.out.println(faccion1+" \n"+clase1+"\nVelocidad " + velocidad1 + "\nVida " + vida1 + "\nDefensa " + defensaBase1 + "\nAtaque " + ataqueBase1+"\nRegenerar "+regenerar1);
+                System.out.println(" _______________________________\n" +
+                        "|"+nombre1+"[HP]"+vida1+"[AB]"+ataqueBase1+"[DF]"+defensaBase1+"[VL]"+velocidad1+"\n" +
+                        "|-----------------------------------|\n" +
+                        "| SEX: "+genero1+"                  |\n"+
+                        "| FACCION:"+faccion1+"              |\n"+
+                        "| CLASE: "+clase1+"                 |\n"+
+                        "| RAD:         (r)                 |\n" +
+                        "| SLP: <<<<<<<<(s)                 |\n" +
+                        "| H2O: <<<<<<<<(h)                 |\n" +
+                        "| FOD: <<<<<<<<(f)                 |\n" +
+                        "|                                 |\n" +
+                        "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⠿⣷⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣤⣤⣴⣿⠟⠁⠀⠈⠛⠿⣿⣿⣶⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⢀⣴⣶⣇⠀⢀⣴⣿⠟⠉⠉⠙⠛⠁⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⢀⣿⡟⠙⢿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠸⣿⡇⠀⠀⠀⠀⠀⢀⡴⠶⢦⣄⣀⣤⠾⠛⠛⣧⡀⠀⠀⠀⠀⠀⠀⠈⠛⢿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⢠⣿⣇⠀⠀⠀⠀⣴⠋⠀⠀⠀⠈⠉⠁⠀⠀⠀⠈⠻⣦⣤⡤⠶⠻⢿⣦⠀⠀⢻⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⢸⣿⠉⢳⣶⢶⡿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⣿⠁⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠘⣿⣄⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠄⠀⠀⠀⠀⢠⡼⠋⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⢹⡿⠁⠀⢀⣾⡇⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡀⠀⠀⠀⠀⠀⠠⣝⢦⡀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⢀⣿⠇⠀⠀⠘⣿⠇⠀⠀⢀⠎⠀⠀⠀⠘⠛⠛⠿⠆⠀⠀⠀⠀⠠⣝⢧⡳⡄⣸⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⢸⣿⠀⠀⠀⠀⠀⠀⢠⡾⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢢⣜⢷⣽⣷⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⢸⡏⠀⠀⠀⠀⠀⠀⢿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠆⣹⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⢸⣇⠀⠀⠀⠀⠀⠀⠈⠛⠂⠀⠀⠀⠀⢠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⢸⣿⠀⠀⣾⣤⣀⣀⣀⢀⣀⣀⣀⡤⠔⠚⢿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⣿⣇⠀⠻⠳⢤⣈⣉⠉⠉⠀⣀⣀⣤⠖⠋⠟⠀⠀⠀⠀⠀⠀⢀⣀⣠⣾⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⠘⣿⣆⠀⠀⠀⠈⠙⣛⣛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⠿⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⠀⠘⢿⣧⡀⠀⠀⠈⠛⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⠀⠀⠈⠻⣿⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⠀⠀⠀⠀⠈⠙⠿⣿⣶⣦⣤⣤⣤⣤⣶⣶⣿⠿⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "| LEVEL 1                         |\n" +
+                        "|---------------------------------|\n" +
+                        "| Stimpak (a)                     |\n" +
+                        "| Bag (d)                |\n" +
+                        "| EFF:                            |\n" +
+                        "|---------------------------------|\n" +
+                        "| [Status] (4)SPECIAL (5)Skills   |\n" +
+                        "| (6)Perks (7)General             |\n" +
+                        "|---------------------------------|\n" +
+                        "| STATS ITEMS DATA                |\n" +
+                        "| (1)   (2)   (3)                 |\n" +
+                        "|_________________________________|\n");
             }while ((sumaAtributos1 > 500) && (velocidad1 >= 1 && velocidad1 <= 200 && ataqueBase1 >= 1 && ataqueBase1 <= 200 &&
                     vida1 >= 1 && vida1 <= 200 && defensaBase1 >= 1 && defensaBase1 <= 200));
 
             //BUCLE PARA EL JUGADOR 2
             do {
+                sc.nextLine();
+                System.out.println("Introduce un nombre para tu personaje 2: ");
+                nombre2=sc.nextLine();
+                System.out.println("Introduce tu sexo: ");
+                genero2=sc.nextLine();
                 while (crearFac2) {
-                System.out.println("CAPITULOS DE LOS ASTARTES HEREJES DEL CAOS: "+"\n1.Mil Hijos"+"\n2.Legion Negra"+"\n3Legion Alfa");
-                opcionFaccion2=sc.nextInt();
+                    System.out.println("HOLA, "+nombre1);
+                    System.out.println("Que faccion quieres pertenecer: ");
+                    System.out.println("1.PALADIN DE LA HERMANDAD DEL ACERO "+"\n2.SOLDADO DE LA RCN(REPUBLICA DE NUEVA CALIFORNIA)"+"\n3.LEGIONARIO DE LA LEGION DE CESAR"+"\n4.NINGUNA(LLANERO SOLITARIO)");
+                    opcionFaccion2 = sc.nextInt();
                     switch (opcionFaccion2) {
                         case 1:
-                            faccion2 = "MIL HIJOS";
-                            System.out.println("Los Mil Hijos fueron la XV Legión de Marines Espaciales que el Emperador creó para su Gran Cruzada. Su Primarca era Magnus el Rojo, y su mundo natal, Prospero. " +
-                                    "Durante la Herejía de Horus, fueron acusados de hechicería y atacados por los Lobos Espaciales, " +
-                                    "de modo que se entregaron al Caos y lucharon contra el Imperio. Han jurado lealtad a Tzeentch, el Dios del Caos del cambio, la intriga y la hechicería.");
-                            crearFac2=false;
+                            faccion2 = "HERMANDAD DEL ACERO";
+                            System.out.println("La Hermandad del Acero es una organización tecno-religiosa, " +
+                                    "formada por desertores del Ejército de los Estados Unidos durante los últimos momentos de la gran guerra. " +
+                                    "Su objetivo es la recopilación del conocimiento y de la tecnología para poder reconstruir el mundo.");
+                            System.out.println("Desea esta faccion(Y/N): ");
+                            confirmarFaccion2=sc.next().toUpperCase().charAt(0);
+                            if (confirmarFaccion2=='Y') {
+                                crearFac2 = false;
+                            }
                             break;
                         case 2:
-                            faccion2 = "LEGION NEGRA";
-                            System.out.println("La Legión Negra, originalmente conocida como los Lobos Lunares (Luna Wolves en inglés), y luego renombrada Hijos de Horus, fue la XVI Legión de Marines Espaciales creada por el Emperador para la Gran Cruzada. " +
-                                    "Durante la Herejía de Horus, siguieron a su Primarca Horus, Señor de la Guerra, en la rebelión contra el Imperio, convirtiéndose en Marines Espaciales del Caos. " +
-                                    "Siempre se reúnen en gran número cuando su actual Señor de la Guerra, Ezekyle Abaddon el Saqueador, lo desea.");
-                            crearFac2=false;
+                            faccion2 = "RCN";
+                            System.out.println("La República de Nueva California (RNC) es una república federal fundada en Nueva California en 2189. Está compuesta por 5 estados contiguos en el sur de California, " +
+                                    "con algunos territorios en el norte de California, Oregón y Nevada.\n" +
+                                    "La RNC centra su existencia en conservar los valores del antiguo mundo, como la democracia, libertad personal, y las leyes al mismo tiempo que los promueve. " +
+                                    "También apunta a restaurar el orden a todo el yermo, la mejora e instalación de infraestructura y sistemas monetarios, y paz incondicional entre la gente.");
+                            System.out.println("Desea esta faccion(Y/N): ");
+                            confirmarFaccion2=sc.next().toUpperCase().charAt(0);
+                            if (confirmarFaccion2=='Y') {
+                                crearFac2 = false;
+                            }
                             break;
                         case 3:
-                            faccion2 = "LEGION ALFA";
-                            System.out.println("La Legión Alfa es la Legión Traidora de la que menos se sabe. Antaño fue la XX Legión Astartes, creada durante la Primera Fundación por el Emperador de la Humanidad para llevar a cabo su Gran Cruzada " +
-                                    "y reunir a toda la raza humana bajo la égida de su Imperio. Son expertos en la infiltración y sus ejércitos contienen a muchos cultistas del Caos además de sus propios Marines Traidores." +
-                                    " La Legión Alfa tenía dos Primarcas gemelos, Alpharius y Omegon, el segundo de los cuales era mantenido en secreto para todos excepto los miembros de la XX Legión. Al final de la Herejía de Horus, Roboute Guilliman de los Ultramarines mató supuestamente a uno de los dos, o quizá solo a un doble. " +
-                                    "A pesar de su aparente adoración al Caos Absoluto, un estudio más a fondo de la historia de la Legión Alfa indica que podría ser la mayor mentira que jamás han difundido en el Imperio y quizá entre las propias fuerzas del Caos.");
-                            crearFac2=false;
+                            faccion2 = "LEGION DE CESAR";
+                            System.out.println("La Legión de César (en latín: Legio Caesaris) es una dictadura imperialista y totalitaria de gran escala basada en la esclavitud. " +
+                                    "Fue fundada en 2247 por Edward Sallow, que luego se nombró César él mismo, y Joshua Graham (también conocido como Legado Malpais). " +
+                                    "Toda su militarización está inspirada por el Imperio Romano, dándole un nuevo uso a su lenguaje y estéticas en el mundo posnuclear.");
+                            System.out.println("Desea esta faccion(Y/N): ");
+                            confirmarFaccion2=sc.next().toUpperCase().charAt(0);
+                            if (confirmarFaccion2=='Y') {
+                                crearFac2 = false;
+                            }
+                            break;
+                        case 4:
+                            faccion2="LLANERO SOLITARIO";
+                            System.out.println("Estas seguro de esta eleccion?: ");
+                            System.out.println("Desea esta faccion(Y/N): ");
+                            confirmarFaccion2=sc.next().toUpperCase().charAt(0);
+                            if (confirmarFaccion2=='Y') {
+                                crearFac2 = false;
+                            }
                             break;
                         default:
                             System.err.println("ERROR: LA FACCION NO RECONOCIDA.¡VUELVA A INTRODUCIRLO!");
                             crearFac2=true;
                     }
                 }
+
                 while (crearClase2) {
-                    System.out.println(faccion1 + "\nELIGE UNA CLASE " + "\n1.Estratega" + "\n2.Asalto" + "\n3.Vanguardia" + "\n4.Francotirador");
+                    System.out.println(nombre1 + "\nELIGE UNA CLASE " + "\n1.Cientifico" + "\n2.Lider Carismatico" + "\n3.Mercenario" + "\n4.Saqueador");
                     opcionClase2 = sc.nextInt();
                     switch (opcionClase2) {
                         case 1:
-                            clase2 = "ESTRATEGA";
-                            crearClase2=false;
+                            clase2 = "Cientifico";
+                            System.out.println("Habilidad especial: utilizar armas de energia(Daño*2)");
+                            System.out.println("Desea esta eleccion de clase(Y/N): ");
+                            confirmarClase2=sc.next().toUpperCase().charAt(0);
+                            if (confirmarClase2=='Y') {
+                                crearClase2 = false;
+
+                            }
                             break;
                         case 2:
-                            clase2 = "ASALTO";
-                            crearClase2=false;
+                            clase2 = "Lider Carismatico";
+                            System.out.println("Habilidad especial: Convencer al rival que pierda");
+                            System.out.println("Desea esta eleccion de clase(Y/N): ");
+                            confirmarClase2=sc.next().toUpperCase().charAt(0);
+                            if (confirmarClase2=='Y') {
+                                crearClase2 = false;
+                            }
                             break;
                         case 3:
-                            clase2 = "VANGUARDIA";
-                            crearClase2=false;
+                            clase1 = "Mercenario";
+                            System.out.println("Habilidad especial:Atacara tres veces al contraio");
+                            System.out.println("Desea esta eleccion de clase(Y/N): ");
+                            confirmarClase2=sc.next().toUpperCase().charAt(0);
+                            if (confirmarClase2=='Y') {
+                                crearClase2 = false;
+                            }
                             break;
                         case 4:
-                            clase2 = "FRANCOTIRADOR";
-                            crearClase2=false;
+                            clase2 = "Saqueador";
+                            System.out.println("Habilidad especial le robas su inventario haciendo que no te pueda atacar en ese turno");
+                            System.out.println("Desea esta eleccion de clase(Y/N): ");
+                            confirmarClase2=sc.next().toUpperCase().charAt(0);
+                            if (confirmarClase2=='Y') {
+                                crearClase2 = false;
+                            }
                             break;
                         default:
-                            System.err.println("ERROR: LA CLASE NO RECONOCIDA.¡VUELVA A INTRODUCIRLO!");
-                            crearClase2=true;
+                            System.err.println("ERROR: EN LA SELECCION DE CLASE.¡VUELVE A INTRODUCIR LA CLASE!");
+                            crearClase2 = true;
                     }
                 }
 
@@ -248,123 +372,229 @@ public class Main {
                 defensaBase2 = sc.nextInt();
                 System.out.println("Ataque: ");
                 ataqueBase2 = sc.nextInt();
-                System.out.println("Regenerar: ");
-                regenerar2 = sc.nextInt();
-                sumaAtributos2 = velocidad2 + vida2 + defensaBase2 + ataqueBase2 + regenerar2;
+                sumaAtributos2 = velocidad2 + vida2 + defensaBase2 + ataqueBase2;
                 if ((sumaAtributos2 > 500) && (velocidad2 >= 1 && velocidad2 <= 200 && ataqueBase2 >= 1 && ataqueBase2 <= 200 &&
                         vida2 >= 1 && vida2 <= 200 && defensaBase2 >= 1 && defensaBase2 <= 200)){
                     System.err.println("ERROR: LA SUMA DE LOS ATRIBUTOS O LOS VALORES INTRODUCIDOS NO CUMPLEN EL REQUISITO.¡VUELVA A CREAR LOS PERSONAJES!");
-                }
-                System.out.println("\n"+faccion2 +"\n "+clase2+"\nVelocidad " + velocidad2 + "\nVida " + vida2 + "\nDefensa " + defensaBase2 + "\nAtaque " + ataqueBase2+"\nRegenerar "+regenerar1);
-                //Cumple la condicion si supera 500 o los valores introducidos son menores a 1 o mayor a 200 PD: SE PUEDE REDUCIR CON UN METODO BOOLEAN
+                }//Cumple la condicion si supera 500 o los valores introducidos son menores a 1 o mayor a 200 PD: SE PUEDE REDUCIR CON UN METODO BOOLEAN
+                System.out.println(" _______________________________\n" +
+                        "|"+nombre2+"[HP]"+vida2+"[AB]"+ataqueBase2+"[DF]"+defensaBase2+"[VL]"+velocidad2+"\n" +
+                        "|-----------------------------------|\n" +
+                        "| SEX: "+genero2+"                  |\n"+
+                        "| FACCION:"+faccion2+"              |\n"+
+                        "| CLASE: "+clase2+"                 |\n"+
+                        "| RAD:         (r)                 |\n" +
+                        "| SLP: <<<<<<<<(s)                 |\n" +
+                        "| H2O: <<<<<<<<(h)                 |\n" +
+                        "| FOD: <<<<<<<<(f)                 |\n" +
+                        "|                                 |\n" +
+                        "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⠿⣷⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣤⣤⣴⣿⠟⠁⠀⠈⠛⠿⣿⣿⣶⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⢀⣴⣶⣇⠀⢀⣴⣿⠟⠉⠉⠙⠛⠁⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⢀⣿⡟⠙⢿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠸⣿⡇⠀⠀⠀⠀⠀⢀⡴⠶⢦⣄⣀⣤⠾⠛⠛⣧⡀⠀⠀⠀⠀⠀⠀⠈⠛⢿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⢠⣿⣇⠀⠀⠀⠀⣴⠋⠀⠀⠀⠈⠉⠁⠀⠀⠀⠈⠻⣦⣤⡤⠶⠻⢿⣦⠀⠀⢻⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⢸⣿⠉⢳⣶⢶⡿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⣿⠁⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠘⣿⣄⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠄⠀⠀⠀⠀⢠⡼⠋⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⢹⡿⠁⠀⢀⣾⡇⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡀⠀⠀⠀⠀⠀⠠⣝⢦⡀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⢀⣿⠇⠀⠀⠘⣿⠇⠀⠀⢀⠎⠀⠀⠀⠘⠛⠛⠿⠆⠀⠀⠀⠀⠠⣝⢧⡳⡄⣸⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⢸⣿⠀⠀⠀⠀⠀⠀⢠⡾⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢢⣜⢷⣽⣷⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⢸⡏⠀⠀⠀⠀⠀⠀⢿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠆⣹⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⢸⣇⠀⠀⠀⠀⠀⠀⠈⠛⠂⠀⠀⠀⠀⢠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⢸⣿⠀⠀⣾⣤⣀⣀⣀⢀⣀⣀⣀⡤⠔⠚⢿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⣿⣇⠀⠻⠳⢤⣈⣉⠉⠉⠀⣀⣀⣤⠖⠋⠟⠀⠀⠀⠀⠀⠀⢀⣀⣠⣾⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⠘⣿⣆⠀⠀⠀⠈⠙⣛⣛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⠿⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⠀⠘⢿⣧⡀⠀⠀⠈⠛⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⠀⠀⠈⠻⣿⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⠀⠀⠀⠀⠈⠙⠿⣿⣶⣦⣤⣤⣤⣤⣶⣶⣿⠿⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                        "| LEVEL 1                         |\n" +
+                        "|---------------------------------|\n" +
+                        "| Stimpak (a)                     |\n" +
+                        "| Bag (d)                |\n" +
+                        "| EFF:                            |\n" +
+                        "|---------------------------------|\n" +
+                        "| [Status] (4)SPECIAL (5)Skills   |\n" +
+                        "| (6)Perks (7)General             |\n" +
+                        "|---------------------------------|\n" +
+                        "| STATS ITEMS DATA                |\n" +
+                        "| (1)   (2)   (3)                 |\n" +
+                        "|_________________________________|\n");
             } while ((sumaAtributos2 > 500) && (velocidad2 >= 1 && velocidad2 <= 200 && ataqueBase2 >= 1 && ataqueBase2 <= 200 &&
                     vida2 >= 1 && vida2 <= 200 && defensaBase2 >= 1 && defensaBase2 <= 200));
         }else {
             //PLANTILLA DEFINIDA PARA LOS JUGADORES(REALIZAR PRUEBAS)
             //Plantilla de jugador 1, para realizar pruebas
-            System.out.println("IMPERIO DE LA HUMANIDAD:");
-            System.out.println("1.LOBO ESPACIAL -> CLASE: ESTRATEGA"+"\n2.ANGEL SANGRIENTO -> CLASE: ASALTO"+"\n3.ULTRAMARINE -> CLASE: VANGUARDIA");
-            System.out.println("Selecciona un marine espacial: ");
+            System.out.println(":");
+            System.out.println("1.MARCUS->FACCION LEGION DE CESAR ->CLASE:MERCENARIO"+"\n2.VAL->FACCION: RCN-> CLASE:SAQUEADOR "+"\n3.JACQUIE->FACCION: HERMANDAD DEL ACERO -> CLASE: LIDER CARISMATICO");
+            System.out.println("Selecciona : ");
             opcionJug1=sc.nextInt();
             switch (opcionJug1){
                 case 1:
-                    faccion1="LOBO ESPACIAL";
-                    clase1="ESTRATEGA";
+                    nombre1="MARCUS";
+                    genero1="HOMBRE";
+                    faccion1="LEGION DE CESAR";
+                    clase1="MERCENARIO";
                     velocidad1=150;
                     vida1=100;
                     defensaBase1=100;
                     ataqueBase1=100;
-                    regenerar1=50;
                     break;
                 case 2:
-                    faccion1="ANGEL SANGRIENTO";
-                    clase1="ASALTO";
+                    nombre1="VAL";
+                    genero1="MUJER";
+                    faccion1="RCN";
+                    clase1="SAQUEADOR";
                     velocidad1=100;
                     vida1=100;
                     defensaBase1=150;
                     ataqueBase1=50;
-                    regenerar1=50;
                     break;
                 case 3:
-                    faccion1="ULTRAMARINE";
-                    clase1="VANGUARDIA";
+                    nombre1="JACQUIE";
+                    genero1="EPSILON";
+                    faccion1="HERMANDAD DEL ACERO";
+                    clase1="LIDER CARISMATICO";
                     velocidad1=150;
                     vida1=100;
                     defensaBase1=120;
                     ataqueBase1=50;
-                    regenerar1=50;
                     break;
 
             }
 
-            System.out.println("HEREJES DEL CAOS");
-            System.out.println("1.MIL HIJOS -> CLASE: FRANCOTIRADOR "+"\n2.LEGION NEGRA -> CLASE: ESTRATEGA"+"\n3.LEGION ALFA -> CLASE:VANGUARDIA");
-            System.out.println("Selecione un hereje del caos: ");
+            System.out.println("");
+            System.out.println("1.HERNAN->FACCION: LLANERO SOLITARIO -> CLASE: LIDER CARISMATICO "+"\n2.JOHN->FACCION:HERMANDAD DEL ACERO -> CLASE: CIENTIFICO "+"\n3.DIEGO->FACCION: LEGION DEL CESAR -> CLASE: SAQUEADOR");
+            System.out.println("Selecione : ");
             opcionJug2=sc.nextInt();
             switch (opcionJug2){
                 case 1:
-                    faccion2="MIL HIJOS";
-                    clase2="FRANCOTIRADOR";
+                    nombre2="HERNAN";
+                    genero2="HOMBRE";
+                    faccion2="LLANERO SOLITARIO";
+                    clase2="LIDER CARISMATICO";
                     velocidad2=100;
                     vida2=100;
                     defensaBase2=100;
                     ataqueBase2=150;
-                    regenerar2=50;
                     break;
                 case 2:
-                    faccion2="LEGION NEGRA";
-                    clase2="ESTRATEGA";
+                    nombre2="JOHN";
+                    genero2="MUJER";
+                    faccion2="HERMANDAD DEL ACERO";
+                    clase2="CIENTIFICO";
                     velocidad2=200;
                     vida2=100;
                     defensaBase2=100;
                     ataqueBase2=50;
-                    regenerar2=50;
                     break;
                 case 3:
-                    faccion2="LEGION ALFA";
-                    clase2="VANGUARDIA";
+                    nombre2="DIEGO";
+                    genero2="CIERVO";
+                    faccion2="LEGION DEL CESAR";
+                    clase2="SAQUEADOR";
                     velocidad2=50;
                     vida2=50;
                     defensaBase2=300;
                     ataqueBase2=50;
-                    regenerar2=50;
                     break;
+                default:
+                    System.out.println("ELECCION INCORRECTA:¡VUELVA A ELEGIR!");
             }
 
+            System.out.println(" _______________________________\n" +
+                    "|"+nombre1+"[HP]"+vida1+"[AB]"+ataqueBase1+"[DF]"+defensaBase1+"[VL]"+velocidad1+"\n" +
+                    "|-----------------------------------|\n" +
+                    "| SEX: "+genero1+"                  |\n"+
+                    "| FACCION:"+faccion1+"              |\n"+
+                    "| CLASE: "+clase1+"                 |\n"+
+                    "| RAD:         (r)                 |\n" +
+                    "| SLP: <<<<<<<<(s)                 |\n" +
+                    "| H2O: <<<<<<<<(h)                 |\n" +
+                    "| FOD: <<<<<<<<(f)                 |\n" +
+                    "|                                 |\n" +
+                    "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⠿⣷⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣤⣤⣴⣿⠟⠁⠀⠈⠛⠿⣿⣿⣶⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⢀⣴⣶⣇⠀⢀⣴⣿⠟⠉⠉⠙⠛⠁⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⢀⣿⡟⠙⢿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠸⣿⡇⠀⠀⠀⠀⠀⢀⡴⠶⢦⣄⣀⣤⠾⠛⠛⣧⡀⠀⠀⠀⠀⠀⠀⠈⠛⢿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⢠⣿⣇⠀⠀⠀⠀⣴⠋⠀⠀⠀⠈⠉⠁⠀⠀⠀⠈⠻⣦⣤⡤⠶⠻⢿⣦⠀⠀⢻⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⢸⣿⠉⢳⣶⢶⡿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⣿⠁⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠘⣿⣄⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠄⠀⠀⠀⠀⢠⡼⠋⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⢹⡿⠁⠀⢀⣾⡇⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡀⠀⠀⠀⠀⠀⠠⣝⢦⡀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⢀⣿⠇⠀⠀⠘⣿⠇⠀⠀⢀⠎⠀⠀⠀⠘⠛⠛⠿⠆⠀⠀⠀⠀⠠⣝⢧⡳⡄⣸⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⢸⣿⠀⠀⠀⠀⠀⠀⢠⡾⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢢⣜⢷⣽⣷⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⢸⡏⠀⠀⠀⠀⠀⠀⢿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠆⣹⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⢸⣇⠀⠀⠀⠀⠀⠀⠈⠛⠂⠀⠀⠀⠀⢠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⢸⣿⠀⠀⣾⣤⣀⣀⣀⢀⣀⣀⣀⡤⠔⠚⢿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⣿⣇⠀⠻⠳⢤⣈⣉⠉⠉⠀⣀⣀⣤⠖⠋⠟⠀⠀⠀⠀⠀⠀⢀⣀⣠⣾⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⠘⣿⣆⠀⠀⠀⠈⠙⣛⣛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⠿⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⠀⠘⢿⣧⡀⠀⠀⠈⠛⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⠀⠀⠈⠻⣿⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⠀⠀⠀⠀⠈⠙⠿⣿⣶⣦⣤⣤⣤⣤⣶⣶⣿⠿⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "| LEVEL 1                         |\n" +
+                    "|---------------------------------|\n" +
+                    "| Stimpak (a)                     |\n" +
+                    "| Bag (d)                |\n" +
+                    "| EFF:                            |\n" +
+                    "|---------------------------------|\n" +
+                    "| [Status] (4)SPECIAL (5)Skills   |\n" +
+                    "| (6)Perks (7)General             |\n" +
+                    "|---------------------------------|\n" +
+                    "| STATS ITEMS DATA                |\n" +
+                    "| (1)   (2)   (3)                 |\n" +
+                    "|_________________________________|\n");
+
+            System.out.println(" _______________________________\n" +
+                    "|"+nombre2+"[HP]"+vida2+"[AB]"+ataqueBase2+"[DF]"+defensaBase2+"[VL]"+velocidad2+"\n" +
+                    "|-----------------------------------|\n" +
+                    "| SEX: "+genero2+"                  |\n"+
+                    "| FACCION:"+faccion2+"              |\n"+
+                    "| CLASE: "+clase2+"                 |\n"+
+                    "| RAD:         (r)                 |\n" +
+                    "| SLP: <<<<<<<<(s)                 |\n" +
+                    "| H2O: <<<<<<<<(h)                 |\n" +
+                    "| FOD: <<<<<<<<(f)                 |\n" +
+                    "|                                 |\n" +
+                    "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⠿⣷⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣤⣤⣴⣿⠟⠁⠀⠈⠛⠿⣿⣿⣶⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⢀⣴⣶⣇⠀⢀⣴⣿⠟⠉⠉⠙⠛⠁⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⢀⣿⡟⠙⢿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠸⣿⡇⠀⠀⠀⠀⠀⢀⡴⠶⢦⣄⣀⣤⠾⠛⠛⣧⡀⠀⠀⠀⠀⠀⠀⠈⠛⢿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⢠⣿⣇⠀⠀⠀⠀⣴⠋⠀⠀⠀⠈⠉⠁⠀⠀⠀⠈⠻⣦⣤⡤⠶⠻⢿⣦⠀⠀⢻⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⢸⣿⠉⢳⣶⢶⡿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⣿⠁⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠘⣿⣄⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠄⠀⠀⠀⠀⢠⡼⠋⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⢹⡿⠁⠀⢀⣾⡇⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡀⠀⠀⠀⠀⠀⠠⣝⢦⡀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⢀⣿⠇⠀⠀⠘⣿⠇⠀⠀⢀⠎⠀⠀⠀⠘⠛⠛⠿⠆⠀⠀⠀⠀⠠⣝⢧⡳⡄⣸⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⢸⣿⠀⠀⠀⠀⠀⠀⢠⡾⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢢⣜⢷⣽⣷⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⢸⡏⠀⠀⠀⠀⠀⠀⢿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠆⣹⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⢸⣇⠀⠀⠀⠀⠀⠀⠈⠛⠂⠀⠀⠀⠀⢠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⢸⣿⠀⠀⣾⣤⣀⣀⣀⢀⣀⣀⣀⡤⠔⠚⢿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⣿⣇⠀⠻⠳⢤⣈⣉⠉⠉⠀⣀⣀⣤⠖⠋⠟⠀⠀⠀⠀⠀⠀⢀⣀⣠⣾⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⠘⣿⣆⠀⠀⠀⠈⠙⣛⣛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⠿⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⠀⠘⢿⣧⡀⠀⠀⠈⠛⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⠀⠀⠈⠻⣿⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⠀⠀⠀⠀⠈⠙⠿⣿⣶⣦⣤⣤⣤⣤⣶⣶⣿⠿⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                    "| LEVEL 1                         |\n" +
+                    "|---------------------------------|\n" +
+                    "| Stimpak (a)                     |\n" +
+                    "| Bag (d)                |\n" +
+                    "| EFF:                            |\n" +
+                    "|---------------------------------|\n" +
+                    "| [Status] (4)SPECIAL (5)Skills   |\n" +
+                    "| (6)Perks (7)General             |\n" +
+                    "|---------------------------------|\n" +
+                    "| STATS ITEMS DATA                |\n" +
+                    "| (1)   (2)   (3)                 |\n" +
+                    "|_________________________________|\n");
+
+
         }
-
-        System.out.println("PLANETA ENER-ILIM ETERIUM \n" +
-                "\n" +
-                "SECTOR IX/44320/X/IM \n" +
-                "\n" +
-                "SANTUARIO IMPERIAL \n" +
-                "\n" +
-                "++INICIALIZANDO MENSAJE ENCRYPTADO++ \n" +
-                "\n" +
-                "POR LA AUTORIDAD DEL ARCHIMAGOS AOZICK 224 \n" +
-                "\n" +
-                "PLANETA ENER-ILIM – SISTEMA RECIBIDO ESTA BAJO ATAQUE \n" +
-                "\n" +
-                "AMENZA: ASTARTES HEREJES DEL CAOS – FACCION "+faccion2+"\n" +
-                "\n" +
-                "CESAR CUALQUIER PREPARACIÓN DE BOMBARDERO \n" +
-                "\n" +
-                "SANTUARIO NOVA SANTA EN PELIGRO \n" +
-                "\n" +
-                "NOVA SANTA VALOR ESTRATEGICO: \n" +
-                "\n" +
-                "ABSOLUTO \n" +
-                "\n" +
-                "ASISTENCIA URGENTE REQUERIDA POR LAS FUERZAS "+faccion1+"\n" +
-                "\n" +
-                "MENSAJE ENCRIPTADO ENVIADO \n" +
-                "\n" +
-                "ENVIADO AL RELE ASTROPATHIC \n" +
-                "\n" +
-                "HAIL THE OMNISSIAH, HAIL EL DIOS MAQUINA ");
-
-        System.out.println(faccion1+" \n"+clase1+"\nVelocidad " + velocidad1 + "\nVida " + vida1 + "\nDefensa " + defensaBase1 + "\nAtaque " + ataqueBase1+"\nRegenerar "+regenerar1);
-        System.out.println("\n"+faccion2 +"\n "+clase2+"\nVelocidad " + velocidad2 + "\nVida " + vida2 + "\nDefensa " + defensaBase2 + "\nAtaque " + ataqueBase2+"\nRegenerar "+regenerar1);
 
         while (combate) {
             //ESTO SE PODRIA REDUCIR CON UN METODO String
@@ -382,9 +612,8 @@ public class Main {
 
             System.out.println("\n**********************************************");
             System.out.println("RONDA " + rondas);
-            System.out.println(faccion1 + " CLASE: "+ clase1+ " VIDA: " + vida1 + " " + barra);
-            System.out.println(faccion2 + " CLASE: "+ clase2+ " VIDA: " + vida2 + " " + barra2);
-
+            System.out.println(nombre1+" FACCION: "+faccion1 + " CLASE: "+ clase1+" VIDA: " + vida1 + " " + barra);
+            System.out.println(nombre2+" FACCION: "+faccion2 + " CLASE: "+ clase2+ " VIDA: " + vida2 + " " + barra2);
 
             //determinar quien ataca primero PD: SE PUEDE REDUCIR CON UN METODO INT
             if (velocidad1 >= velocidad2) {
@@ -393,48 +622,109 @@ public class Main {
                 //Ataque jugador 1 a jugador 2
                 switch (accion1){
                     case 'A':
-                        if (defensaBase2 > ataqueBase1) {
-                            hitBase1 = defensaBase2 - ataqueBase1;  // La defensa bloquea el daño, incluso "inflige" daño negativo
-                        } else {
-                            hitBase1 = ataqueBase1 - defensaBase2 / 2;  // Caso estándar, el ataque es mayor que la defensa
-                        }
-                        hit1 = Math.max(0, hitBase1 + rand.nextInt(3));
+                        //Genera cada vez que se da una vuelta al bucle un numero aleatorio entre 0 y 10
+                        aleatorio= rand.nextInt(11);
+                        hit1 = Math.max(limiteDamage, (ataqueBase1-defensaBase2/2) + aleatorio);
                         // Verificar si es un ataque crítico
                         if (esCritico1 < probabilidadCritico) {
                             hit1 = (int) (hit1 * 1.3); // Aplica el multiplicador de daño crítico
-                            System.out.println(faccion1 + " realiza un ataque CRÍTICO!");
+                            System.out.println(nombre1 + " realiza un ataque CRÍTICO!");
+                            System.out.println("                      @%@                                         \n" +
+                                    "                      @%@@#*@@                                    \n" +
+                                    "                      @@*=..::=%@@@                               \n" +
+                                    "                    @%-%#:+-==--.:%                               \n" +
+                                    "                    @:-*#=....:-++%  @@@%#%%%*+#%@                \n" +
+                                    "                    @-+##=-*-:-+.=@@%*@%+*::=+-:=%@               \n" +
+                                    "                    @@%+*+-+:.=-..#+*%%*% @@@ @@@                 \n" +
+                                    "                     @*-=+.   -+:=**%%=+%                         \n" +
+                                    "                    @@**+=:  ..-#*@@%-:*@                         \n" +
+                                    "                    @%#-#*. ..::#@ @%-:@@@                        \n" +
+                                    "                    @@:=+*+:-++=##@@*.+%=*#@                      \n" +
+                                    "                   @%#..:***...=:..=%:.*@%@@      @@              \n" +
+                                    "                  @*-*..+*=-=..:-...+:++#@     @%-..*@  @         \n" +
+                                    "                 @+:=.=+*:..=...+.:.+...=@@@@@@=..  .=@@=@        \n" +
+                                    "                 #:.. ..=.  -: .+.-:+. .--....=#-... .=#.%@       \n" +
+                                    "                 %-.  .-:. .:: .=:--.. .+..   ..+=:=.. =:#@       \n" +
+                                    "               @@%*...:+....-: .=-+@-.:+=:=+-.. .*#@*:.=*@        \n" +
+                                    "             @%+*:+%#%@=:::::.  ..:%::::+:::=-. ..%@@@@@%@        \n" +
+                                    "             @:.:+#::.#-...   ....:#.. -*:..:+-=..=@--.==%@       \n" +
+                                    "       @@@   @. .-:..=#::-=+++==-:.#..-=.*%*:-@*. :=.=*=.=@       \n" +
+                                    "       @+*@  @-:.:..:#..    ...   .*::*.:+-*::@=. :*=-...:%@      \n" +
+                                    "       @*-=#=*%#-*:++=..    =-.    -=-=..=...=@:..:-..=*==%@      \n" +
+                                    "       @%:+-::*##+*:#*.  ..+=*.. .-:+.***=-=@@%. .=+==-=+:@       \n" +
+                                    "       @@:+:=*:...-#+:.  .+-.-*...-.+.-@@+%@*....=-...--=-@       \n" +
+                                    "        @@@%*+::++.+-:+..-#%+++:..+###+#%%#:....+.....=-*+@       \n" +
+                                    "        @#-...%=...#=#:..*:.:+*+.=:=+:*+--=-.=+::::-=+%##%@       \n" +
+                                    "      @@+%==-*@#:..%==:.*=..  .*-*=:++***#*=.....-+*#@@           \n" +
+                                    "       @@%%@*@@@*..**++#@@*:...:+*+****%%@%=. .:-+%@              \n" +
+                                    "            @%#%%*=%-:+@@**@@@@+:......#@ @=::*@                  \n" +
+                                    "                    @@        @%+::*@@@@  @@@@                    \n" +
+                                    "                                                            ");
                         }
                         //hit1=Math.min(hit1,limiteDamage);//Utilizo Math.min para que tenga un rango de atque aceptable
                         vida2 -= hit1;
                         vida2 = Math.max(0, vida2); // Evitar que vida2 sea negativa
-                        System.out.println(faccion1+" golpea primero con "+hit1+" de daño");
+                        System.out.println(nombre1+" golpea primero con "+hit1+" de daño");
                         //Ataque jugador 2 a jugador 1
                         if (vida2>0){
-                            System.out.println(faccion2+ " Reailza una accion: "+"\nA.Atacar"+"\nC.Curar");
+                            //Genera cada vez que se da una vuelta al bucle un numero aleatorio entre 0 y 10
+                            aleatorio= rand.nextInt(11);
+                            System.out.println(nombre2+ " Reailza una accion: "+"\nA.Atacar"+"\nC.Curar");
                             accion2=sc.next().toUpperCase().charAt(0);
                             switch (accion2) {
                                 case 'A':
-                                    if (defensaBase1 > ataqueBase2) {
-                                        hitBase2 = defensaBase1 - ataqueBase2;  // La defensa bloquea el daño, incluso "inflige" daño negativo
-                                    } else {
-                                        hitBase2 = ataqueBase2 - defensaBase1 / 2;  // Caso estándar, el ataque es mayor que la defensa
-                                    }
-                                    hit2 = Math.max(0, hitBase2 + rand.nextInt(3));
+                                    hit2 = Math.max(limiteDamage, (ataqueBase2-defensaBase1/2) + aleatorio);
                                     // Verificar si es un ataque crítico
                                     if (esCritico2 < probabilidadCritico) {
                                         hit2 = (int) (hit2 * 1.3); // Aplica el multiplicador de daño crítico
-                                        System.out.println(faccion2 + " realiza un ataque CRÍTICO!");
+                                        System.out.println(nombre2 + " realiza un ataque CRÍTICO!");
+                                        System.out.println("                      @%@                                         \n" +
+                                                "                      @%@@#*@@                                    \n" +
+                                                "                      @@*=..::=%@@@                               \n" +
+                                                "                    @%-%#:+-==--.:%                               \n" +
+                                                "                    @:-*#=....:-++%  @@@%#%%%*+#%@                \n" +
+                                                "                    @-+##=-*-:-+.=@@%*@%+*::=+-:=%@               \n" +
+                                                "                    @@%+*+-+:.=-..#+*%%*% @@@ @@@                 \n" +
+                                                "                     @*-=+.   -+:=**%%=+%                         \n" +
+                                                "                    @@**+=:  ..-#*@@%-:*@                         \n" +
+                                                "                    @%#-#*. ..::#@ @%-:@@@                        \n" +
+                                                "                    @@:=+*+:-++=##@@*.+%=*#@                      \n" +
+                                                "                   @%#..:***...=:..=%:.*@%@@      @@              \n" +
+                                                "                  @*-*..+*=-=..:-...+:++#@     @%-..*@  @         \n" +
+                                                "                 @+:=.=+*:..=...+.:.+...=@@@@@@=..  .=@@=@        \n" +
+                                                "                 #:.. ..=.  -: .+.-:+. .--....=#-... .=#.%@       \n" +
+                                                "                 %-.  .-:. .:: .=:--.. .+..   ..+=:=.. =:#@       \n" +
+                                                "               @@%*...:+....-: .=-+@-.:+=:=+-.. .*#@*:.=*@        \n" +
+                                                "             @%+*:+%#%@=:::::.  ..:%::::+:::=-. ..%@@@@@%@        \n" +
+                                                "             @:.:+#::.#-...   ....:#.. -*:..:+-=..=@--.==%@       \n" +
+                                                "       @@@   @. .-:..=#::-=+++==-:.#..-=.*%*:-@*. :=.=*=.=@       \n" +
+                                                "       @+*@  @-:.:..:#..    ...   .*::*.:+-*::@=. :*=-...:%@      \n" +
+                                                "       @*-=#=*%#-*:++=..    =-.    -=-=..=...=@:..:-..=*==%@      \n" +
+                                                "       @%:+-::*##+*:#*.  ..+=*.. .-:+.***=-=@@%. .=+==-=+:@       \n" +
+                                                "       @@:+:=*:...-#+:.  .+-.-*...-.+.-@@+%@*....=-...--=-@       \n" +
+                                                "        @@@%*+::++.+-:+..-#%+++:..+###+#%%#:....+.....=-*+@       \n" +
+                                                "        @#-...%=...#=#:..*:.:+*+.=:=+:*+--=-.=+::::-=+%##%@       \n" +
+                                                "      @@+%==-*@#:..%==:.*=..  .*-*=:++***#*=.....-+*#@@           \n" +
+                                                "       @@%%@*@@@*..**++#@@*:...:+*+****%%@%=. .:-+%@              \n" +
+                                                "            @%#%%*=%-:+@@**@@@@+:......#@ @=::*@                  \n" +
+                                                "                    @@        @%+::*@@@@  @@@@                    \n" +
+                                                "                                                            ");
                                     }
                                     //hit2 = Math.min(hit2, limiteDamage);
                                     vida1 -= hit2;
                                     vida1 = Math.max(0, vida1); // Evitar que vida2 sea negativa
-                                    System.out.println(faccion2 + " golpea primero con " + hit1 + " de daño");
+                                    System.out.println(nombre2 + " golpea primero con " + hit1 + " de daño");
                                     break;
 
                                 case 'C':
-                                    vida2 += regenerar2;
-                                    vida2 = Math.min(vida2, 200); // Evitar que vida1 supere 200
-                                    System.out.println(faccion2 + " se cura, + ");
+                                    if (estimulantes2<=5) {
+                                        vida2 += regenerar2;
+                                        vida2 = Math.min(vida2, 200); // Evitar que vida1 supere 200
+                                        estimulantes2++;
+                                        System.out.println(nombre2 + " se cura, "+vida2);
+                                    }else {
+                                        System.out.println(nombre2+" no puedes usar mas estimulantes. Limite: 5");
+                                    }
                                     break;
                                 default:
                                     System.out.println("Accion no reconocida");
@@ -442,35 +732,70 @@ public class Main {
                         }
                         break;
                     case 'C':
-                        vida1 += regenerar1;
-                        vida1 = Math.min(vida1, 200); // Evitar que vida1 supere 200
-                        System.out.println(faccion1 + " se cura, + ");
+                        if (estimulantes1<=5) {
+                            vida1 += regenerar1;
+                            vida1 = Math.min(vida1, 200); // Evitar que vida1 supere 200
+                            estimulantes1++;
+                            System.out.println(nombre1 + " se cura, "+vida1);
+                        }else {
+                            System.out.println(nombre1+" no puedes usar mas estimulantes. Limite: 5");
+                        }
+                        break;
+                    case 'H':
+
                         break;
                     default:
                         System.out.println("Caracter no valido, turno no valido");
                 }
 
             } else {
-                System.out.println(faccion2 + " Realiza una accion: " + "\nA.Atacar" + "\nC.Curar: ");
+                System.out.println(nombre2 + " Realiza una accion: " + "\nA.Atacar" + "\nC.Curar: ");
                 accion2=sc.next().toUpperCase().charAt(0);
                 switch (accion2){
                     case 'A':
+                        //Genera cada vez que se da una vuelta al bucle un numero aleatorio entre 0 y 10
+                        aleatorio= rand.nextInt(11);
                         //Ataque del segundo jugador al jugador 1
-                        if (defensaBase1 > ataqueBase2) {
-                            hitBase2 = defensaBase1 - ataqueBase2;  // La defensa bloquea el daño, incluso "inflige" daño negativo
-                        } else {
-                            hitBase2 = ataqueBase2 - defensaBase1 / 2;  // Caso estándar, el ataque es mayor que la defensa
-                        }
-                        hit2 = Math.max(0, hitBase2 + rand.nextInt(3));
-
+                        hit2 = Math.max(limiteDamage, (ataqueBase2-defensaBase1/2) + aleatorio);
                         if (esCritico2 < probabilidadCritico) {
                             hit2 = (int) (hit2 * 1.3);
-                            System.out.println(faccion2 + " realiza un ataque CRÍTICO!");
+                            System.out.println(nombre2 + " realiza un ataque CRÍTICO!");
+                            System.out.println("                      @%@                                         \n" +
+                                    "                      @%@@#*@@                                    \n" +
+                                    "                      @@*=..::=%@@@                               \n" +
+                                    "                    @%-%#:+-==--.:%                               \n" +
+                                    "                    @:-*#=....:-++%  @@@%#%%%*+#%@                \n" +
+                                    "                    @-+##=-*-:-+.=@@%*@%+*::=+-:=%@               \n" +
+                                    "                    @@%+*+-+:.=-..#+*%%*% @@@ @@@                 \n" +
+                                    "                     @*-=+.   -+:=**%%=+%                         \n" +
+                                    "                    @@**+=:  ..-#*@@%-:*@                         \n" +
+                                    "                    @%#-#*. ..::#@ @%-:@@@                        \n" +
+                                    "                    @@:=+*+:-++=##@@*.+%=*#@                      \n" +
+                                    "                   @%#..:***...=:..=%:.*@%@@      @@              \n" +
+                                    "                  @*-*..+*=-=..:-...+:++#@     @%-..*@  @         \n" +
+                                    "                 @+:=.=+*:..=...+.:.+...=@@@@@@=..  .=@@=@        \n" +
+                                    "                 #:.. ..=.  -: .+.-:+. .--....=#-... .=#.%@       \n" +
+                                    "                 %-.  .-:. .:: .=:--.. .+..   ..+=:=.. =:#@       \n" +
+                                    "               @@%*...:+....-: .=-+@-.:+=:=+-.. .*#@*:.=*@        \n" +
+                                    "             @%+*:+%#%@=:::::.  ..:%::::+:::=-. ..%@@@@@%@        \n" +
+                                    "             @:.:+#::.#-...   ....:#.. -*:..:+-=..=@--.==%@       \n" +
+                                    "       @@@   @. .-:..=#::-=+++==-:.#..-=.*%*:-@*. :=.=*=.=@       \n" +
+                                    "       @+*@  @-:.:..:#..    ...   .*::*.:+-*::@=. :*=-...:%@      \n" +
+                                    "       @*-=#=*%#-*:++=..    =-.    -=-=..=...=@:..:-..=*==%@      \n" +
+                                    "       @%:+-::*##+*:#*.  ..+=*.. .-:+.***=-=@@%. .=+==-=+:@       \n" +
+                                    "       @@:+:=*:...-#+:.  .+-.-*...-.+.-@@+%@*....=-...--=-@       \n" +
+                                    "        @@@%*+::++.+-:+..-#%+++:..+###+#%%#:....+.....=-*+@       \n" +
+                                    "        @#-...%=...#=#:..*:.:+*+.=:=+:*+--=-.=+::::-=+%##%@       \n" +
+                                    "      @@+%==-*@#:..%==:.*=..  .*-*=:++***#*=.....-+*#@@           \n" +
+                                    "       @@%%@*@@@*..**++#@@*:...:+*+****%%@%=. .:-+%@              \n" +
+                                    "            @%#%%*=%-:+@@**@@@@+:......#@ @=::*@                  \n" +
+                                    "                    @@        @%+::*@@@@  @@@@                    \n" +
+                                    "                                                            ");
                         }
                         //hit2=Math.min(hit2,limiteDamage);
                         vida1 -= hit2;
                         vida1 = Math.max(0, vida1);
-                        System.out.println(faccion2+" golpea primero con "+hit2+" de daño");
+                        System.out.println(nombre2+" golpea primero con "+hit2+" de daño");
 
                         //Ataque del primer jugador al segundo
                         if (vida1>0){
@@ -478,26 +803,59 @@ public class Main {
                             accion1=sc.next().toUpperCase().charAt(0);
                             switch (accion1) {
                                 case 'A':
-                                    if (defensaBase2 > ataqueBase1) {
-                                        hitBase1 = defensaBase2 - ataqueBase1;  // La defensa bloquea el daño, incluso "inflige" daño negativo
-                                    } else {
-                                        hitBase1 = ataqueBase1 - defensaBase2 / 2;  // Caso estándar, el ataque es mayor que la defensa
-                                    }
-                                    hit1 = Math.max(0, hitBase1 + rand.nextInt(3));
+                                    //Genera cada vez que se da una vuelta al bucle un numero aleatorio entre 0 y 10
+                                    aleatorio= rand.nextInt(11);
+                                    hit1 = Math.max(limiteDamage, (ataqueBase1-defensaBase2/2) + aleatorio);
                                     // Verificar si es un ataque crítico
                                     if (esCritico1 < probabilidadCritico) {
                                         hit1 = (int) (hit1 * 1.5); // Aplica el multiplicador de daño crítico
-                                        System.out.println(faccion1 + " realiza un ataque CRÍTICO!");
+                                        System.out.println(nombre1 + " realiza un ataque CRÍTICO!");
+                                        System.out.println("                      @%@                                         \n" +
+                                                "                      @%@@#*@@                                    \n" +
+                                                "                      @@*=..::=%@@@                               \n" +
+                                                "                    @%-%#:+-==--.:%                               \n" +
+                                                "                    @:-*#=....:-++%  @@@%#%%%*+#%@                \n" +
+                                                "                    @-+##=-*-:-+.=@@%*@%+*::=+-:=%@               \n" +
+                                                "                    @@%+*+-+:.=-..#+*%%*% @@@ @@@                 \n" +
+                                                "                     @*-=+.   -+:=**%%=+%                         \n" +
+                                                "                    @@**+=:  ..-#*@@%-:*@                         \n" +
+                                                "                    @%#-#*. ..::#@ @%-:@@@                        \n" +
+                                                "                    @@:=+*+:-++=##@@*.+%=*#@                      \n" +
+                                                "                   @%#..:***...=:..=%:.*@%@@      @@              \n" +
+                                                "                  @*-*..+*=-=..:-...+:++#@     @%-..*@  @         \n" +
+                                                "                 @+:=.=+*:..=...+.:.+...=@@@@@@=..  .=@@=@        \n" +
+                                                "                 #:.. ..=.  -: .+.-:+. .--....=#-... .=#.%@       \n" +
+                                                "                 %-.  .-:. .:: .=:--.. .+..   ..+=:=.. =:#@       \n" +
+                                                "               @@%*...:+....-: .=-+@-.:+=:=+-.. .*#@*:.=*@        \n" +
+                                                "             @%+*:+%#%@=:::::.  ..:%::::+:::=-. ..%@@@@@%@        \n" +
+                                                "             @:.:+#::.#-...   ....:#.. -*:..:+-=..=@--.==%@       \n" +
+                                                "       @@@   @. .-:..=#::-=+++==-:.#..-=.*%*:-@*. :=.=*=.=@       \n" +
+                                                "       @+*@  @-:.:..:#..    ...   .*::*.:+-*::@=. :*=-...:%@      \n" +
+                                                "       @*-=#=*%#-*:++=..    =-.    -=-=..=...=@:..:-..=*==%@      \n" +
+                                                "       @%:+-::*##+*:#*.  ..+=*.. .-:+.***=-=@@%. .=+==-=+:@       \n" +
+                                                "       @@:+:=*:...-#+:.  .+-.-*...-.+.-@@+%@*....=-...--=-@       \n" +
+                                                "        @@@%*+::++.+-:+..-#%+++:..+###+#%%#:....+.....=-*+@       \n" +
+                                                "        @#-...%=...#=#:..*:.:+*+.=:=+:*+--=-.=+::::-=+%##%@       \n" +
+                                                "      @@+%==-*@#:..%==:.*=..  .*-*=:++***#*=.....-+*#@@           \n" +
+                                                "       @@%%@*@@@*..**++#@@*:...:+*+****%%@%=. .:-+%@              \n" +
+                                                "            @%#%%*=%-:+@@**@@@@+:......#@ @=::*@                  \n" +
+                                                "                    @@        @%+::*@@@@  @@@@                    \n" +
+                                                "                                                            ");
                                     }
                                     //hit1 = Math.min(hit1, limiteDamage);
                                     vida2 -= hit1;
                                     vida2 = Math.max(0, vida2); // Evitar que vida2 sea negativa
-                                    System.out.println(faccion1 + " golpea primero con " + hit1 + " de daño");
+                                    System.out.println(nombre1 + " golpea primero con " + hit1 + " de daño");
                                     break;
                                 case 'C':
-                                    vida1 += regenerar1;
-                                    vida1 = Math.min(vida1, 200); // Evitar que vida1 supere 200
-                                    System.out.println(faccion1 + " se cura, + " + vida1);
+                                    if (estimulantes1<=5) {
+                                        vida1 += regenerar1;
+                                        vida1 = Math.min(vida1, 200); // Evitar que vida1 supere 200
+                                        estimulantes1++;
+                                        System.out.println(nombre1 + " se cura, + " + vida1);
+                                    }else {
+                                        System.out.println(nombre1+" no puedes usar mas estimulantes. Limite: 5");
+                                    }
                                     break;
                                 default:
                                     System.out.println("Accion no reconocida");
@@ -505,9 +863,12 @@ public class Main {
                         }
                         break;
                     case 'C':
-                        vida2 += regenerar1;
-                        vida2 = Math.min(vida2, 200); // Evitar que vida1 supere 200
-                        System.out.println(faccion2 + " se cura, + " + vida2);
+                        if (estimulantes2<=5) {
+                            vida2 += regenerar1;
+                            vida2 = Math.min(vida2, 200); // Evitar que vida1 supere 200
+                            estimulantes2++;
+                            System.out.println(nombre2 + " se cura, + " + vida2);
+                        }
                         break;
                     default:
                         System.err.println("Caracter no valido, turno perdido");
@@ -520,21 +881,39 @@ public class Main {
 
         }
         if (vida2 <= 0) {
-            System.out.println(faccion1+" ¡VICTORIA!");
-            System.out.println("______ ___________   _____ _       ________  _________ ___________  ___ ______ ___________ \n" +
-                    "| ___ \\  _  | ___ \\ |  ___| |     |  ___|  \\/  || ___ \\  ___| ___ \\/ _ \\|  _  \\  _  | ___ \\\n" +
-                    "| |_/ / | | | |_/ / | |__ | |     | |__ | .  . || |_/ / |__ | |_/ / /_\\ \\ | | | | | | |_/ /\n" +
-                    "|  __/| | | |    /  |  __|| |     |  __|| |\\/| ||  __/|  __||    /|  _  | | | | | | |    / \n" +
-                    "| |   \\ \\_/ / |\\ \\  | |___| |____ | |___| |  | || |   | |___| |\\ \\| | | | |/ /\\ \\_/ / |\\ \\ \n" +
-                    "\\_|    \\___/\\_| \\_| \\____/\\_____/ \\____/\\_|  |_/\\_|   \\____/\\_| \\_\\_| |_/___/  \\___/\\_| \\_");
+            System.out.println(nombre1+" ¡VICTORIA!");
+            System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡤⢦⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣼⢫⠁⡞⡗⡟⢩⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                    "⠀⠀⠀⠀⠀⠀⠀⢀⠴⡶⡻⢋⣑⣿⠟⠋⣉⢻⢿⣿⡻⡿⣳⣄⡀⠀⠀⠀⠀⠀⠀⠀\n" +
+                    "⠀⠀⠀⠀⠀⡴⠚⣉⡾⠷⠛⡟⠁⠐⠀⣀⠀⡾⡋⡘⢿⣷⣾⢿⣿⣶⣆⡀⠀⠀⠀⠀\n" +
+                    "⠀⠀⠀⢠⢶⣎⠉⡽⠁⢬⡸⣷⢰⠴⠀⠀⢉⣼⠒⣳⢺⣷⡜⠛⢻⣿⣿⣶⡄⠀⠀⠀\n" +
+                    "⠀⠀⠀⢐⣫⣇⡤⡟⠰⣏⠀⡹⢿⡀⣂⣶⠚⠿⣿⣿⣽⠿⢃⠆⣿⣿⣿⣿⡅⠀⠀⠀\n" +
+                    "⠀⠀⠰⡿⠋⣀⠙⣿⣷⣿⣾⣾⣻⣿⣿⣿⣶⣾⣿⣿⣿⣷⣷⣿⣿⣿⣿⣿⡟⠁⠀⠀\n" +
+                    "⠀⠀⠀⢱⣈⣿⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀\n" +
+                    "⠀⠀⠀⠀⠙⠛⠛⢿⣿⡿⠿⠿⠿⣛⣤⣏⣿⣿⢿⣿⣿⡿⢟⠋⠉⠉⠀⠀⠀⠀⠀⠀\n" +
+                    "⠀⠐⠋⠛⠂⠀⠀⠀⠀⠀⠂⠘⠋⡙⡿⣿⣿⣿⡖⣂⡀⠀⠀⠀⠀⠀⠀⠈⠉⠀⠂⠀\n" +
+                    "⠀⠀⠀⠀⠀⠀⠒⠄⠀⠀⠀⠀⣩⣼⢷⡷⣿⣿⢐⠀⠀⠀⠀⠀⠀⠶⠆⠀⠀⠀⠀⠀\n" +
+                    "⠀⠀⠀⠀⣤⣤⣤⠀⠀⠀⠀⠀⢲⣾⣷⣻⢿⣿⣾⣧⠠⠤⠄⢀⣀⣠⣤⣤⣄⣀⠀⠀\n" +
+                    "⠀⠀⠀⠀⠀⠀⠀⡀⠀⢸⡄⣴⣋⣿⣼⣽⣿⣷⣿⣿⣤⣰⣰⣀⡆⠀⠀⠀⠀⠀⠀⠀\n" +
+                    "⣤⣤⣤⣤⣤⡤⢤⢿⣿⣟⣛⡛⢻⠻⠿⠿⠿⠿⠿⠿⣿⡿⣿⣼⣿⣤⣤⣤⣤⣤⣤⡄\n" +
+                    "⠀⠚⠛⢛⣛⣿⣿⣿⣿⣿⣿⣯⣭⣀⣠⣤⣤⣵⣶⣶⣷⣾⣿⣿⣾⣿⡟⠛⠋⠗⠂");
         } else {
-            System.out.println(faccion2+ "¡VICTORIA!");
-            System.out.println("___  ____   _ ___________ _____ _____    ___   _      ______ ___   _      _____  _____   ________  _________ ___________  ___ ______ ___________ \n" +
-                    "|  \\/  | | | |  ___| ___ \\_   _|  ___|  / _ \\ | |     |  ___/ _ \\ | |    /  ___||  _  | |  ___|  \\/  || ___ \\  ___| ___ \\/ _ \\|  _  \\  _  | ___ \\\n" +
-                    "| .  . | | | | |__ | |_/ / | | | |__   / /_\\ \\| |     | |_ / /_\\ \\| |    \\ `--. | | | | | |__ | .  . || |_/ / |__ | |_/ / /_\\ \\ | | | | | | |_/ /\n" +
-                    "| |\\/| | | | |  __||    /  | | |  __|  |  _  || |     |  _||  _  || |     `--. \\| | | | |  __|| |\\/| ||  __/|  __||    /|  _  | | | | | | |    / \n" +
-                    "| |  | | |_| | |___| |\\ \\  | | | |___  | | | || |____ | |  | | | || |____/\\__/ /\\ \\_/ / | |___| |  | || |   | |___| |\\ \\| | | | |/ /\\ \\_/ / |\\ \\ \n" +
-                    "\\_|  |_/\\___/\\____/\\_| \\_| \\_/ \\____/  \\_| |_/\\_____/ \\_|  \\_| |_/\\_____/\\____/  \\___/  \\____/\\_|  |_/\\_|   \\____/\\_| \\_\\_| |_/___/  \\___/\\_| \\_|");
+            System.out.println(nombre2+ "¡VICTORIA!");
+            System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡤⢦⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣼⢫⠁⡞⡗⡟⢩⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                    "⠀⠀⠀⠀⠀⠀⠀⢀⠴⡶⡻⢋⣑⣿⠟⠋⣉⢻⢿⣿⡻⡿⣳⣄⡀⠀⠀⠀⠀⠀⠀⠀\n" +
+                    "⠀⠀⠀⠀⠀⡴⠚⣉⡾⠷⠛⡟⠁⠐⠀⣀⠀⡾⡋⡘⢿⣷⣾⢿⣿⣶⣆⡀⠀⠀⠀⠀\n" +
+                    "⠀⠀⠀⢠⢶⣎⠉⡽⠁⢬⡸⣷⢰⠴⠀⠀⢉⣼⠒⣳⢺⣷⡜⠛⢻⣿⣿⣶⡄⠀⠀⠀\n" +
+                    "⠀⠀⠀⢐⣫⣇⡤⡟⠰⣏⠀⡹⢿⡀⣂⣶⠚⠿⣿⣿⣽⠿⢃⠆⣿⣿⣿⣿⡅⠀⠀⠀\n" +
+                    "⠀⠀⠰⡿⠋⣀⠙⣿⣷⣿⣾⣾⣻⣿⣿⣿⣶⣾⣿⣿⣿⣷⣷⣿⣿⣿⣿⣿⡟⠁⠀⠀\n" +
+                    "⠀⠀⠀⢱⣈⣿⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀\n" +
+                    "⠀⠀⠀⠀⠙⠛⠛⢿⣿⡿⠿⠿⠿⣛⣤⣏⣿⣿⢿⣿⣿⡿⢟⠋⠉⠉⠀⠀⠀⠀⠀⠀\n" +
+                    "⠀⠐⠋⠛⠂⠀⠀⠀⠀⠀⠂⠘⠋⡙⡿⣿⣿⣿⡖⣂⡀⠀⠀⠀⠀⠀⠀⠈⠉⠀⠂⠀\n" +
+                    "⠀⠀⠀⠀⠀⠀⠒⠄⠀⠀⠀⠀⣩⣼⢷⡷⣿⣿⢐⠀⠀⠀⠀⠀⠀⠶⠆⠀⠀⠀⠀⠀\n" +
+                    "⠀⠀⠀⠀⣤⣤⣤⠀⠀⠀⠀⠀⢲⣾⣷⣻⢿⣿⣾⣧⠠⠤⠄⢀⣀⣠⣤⣤⣄⣀⠀⠀\n" +
+                    "⠀⠀⠀⠀⠀⠀⠀⡀⠀⢸⡄⣴⣋⣿⣼⣽⣿⣷⣿⣿⣤⣰⣰⣀⡆⠀⠀⠀⠀⠀⠀⠀\n" +
+                    "⣤⣤⣤⣤⣤⡤⢤⢿⣿⣟⣛⡛⢻⠻⠿⠿⠿⠿⠿⠿⣿⡿⣿⣼⣿⣤⣤⣤⣤⣤⣤⡄\n" +
+                    "⠀⠚⠛⢛⣛⣿⣿⣿⣿⣿⣿⣯⣭⣀⣠⣤⣤⣵⣶⣶⣷⣾⣿⣿⣾⣿⡟⠛⠋⠗");
         }
         sc.close();
     }
