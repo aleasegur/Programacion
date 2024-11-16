@@ -205,7 +205,7 @@ public class Main {
                         vida1 >= 1 && vida1 <= 200 && defensaBase1 >= 1 && defensaBase1 <= 200)){
                     System.err.println("ERROR: LA SUMA DE LOS ATRIBUTOS O LOS VALORES INTRODUCIDOS NO CUMPLEN EL REQUISITO.¡VUELVA A CREAR LOS PERSONAJES!");
                 }
-                System.out.println(" _______________________________\n" +
+                System.out.println(" ____________JUGADOR 1_______________\n" +
                         "|"+nombre1+"[HP]"+vida1+"[AB]"+ataqueBase1+"[DF]"+defensaBase1+"[VL]"+velocidad1+"\n" +
                         "|-----------------------------------|\n" +
                         "| SEX: "+genero1+"                  |\n"+
@@ -377,7 +377,7 @@ public class Main {
                         vida2 >= 1 && vida2 <= 200 && defensaBase2 >= 1 && defensaBase2 <= 200)){
                     System.err.println("ERROR: LA SUMA DE LOS ATRIBUTOS O LOS VALORES INTRODUCIDOS NO CUMPLEN EL REQUISITO.¡VUELVA A CREAR LOS PERSONAJES!");
                 }//Cumple la condicion si supera 500 o los valores introducidos son menores a 1 o mayor a 200 PD: SE PUEDE REDUCIR CON UN METODO BOOLEAN
-                System.out.println(" _______________________________\n" +
+                System.out.println(" ____________JUGADOR 2______________\n" +
                         "|"+nombre2+"[HP]"+vida2+"[AB]"+ataqueBase2+"[DF]"+defensaBase2+"[VL]"+velocidad2+"\n" +
                         "|-----------------------------------|\n" +
                         "| SEX: "+genero2+"                  |\n"+
@@ -426,9 +426,9 @@ public class Main {
         }else {
             //PLANTILLA DEFINIDA PARA LOS JUGADORES(REALIZAR PRUEBAS)
             //Plantilla de jugador 1, para realizar pruebas
-            System.out.println(":");
+            System.out.println("JUGADOR 1");
             System.out.println("1.MARCUS->FACCION LEGION DE CESAR ->CLASE:MERCENARIO"+"\n2.VAL->FACCION: RCN-> CLASE:SAQUEADOR "+"\n3.JACQUIE->FACCION: HERMANDAD DEL ACERO -> CLASE: LIDER CARISMATICO");
-            System.out.println("Selecciona : ");
+            System.out.println("Selecciona un jugador: ");
             opcionJug1=sc.nextInt();
             switch (opcionJug1){
                 case 1:
@@ -446,10 +446,10 @@ public class Main {
                     genero1="MUJER";
                     faccion1="RCN";
                     clase1="SAQUEADOR";
-                    velocidad1=100;
+                    velocidad1=150;
                     vida1=100;
-                    defensaBase1=150;
-                    ataqueBase1=50;
+                    defensaBase1=100;
+                    ataqueBase1=150;
                     break;
                 case 3:
                     nombre1="JACQUIE";
@@ -459,14 +459,14 @@ public class Main {
                     velocidad1=150;
                     vida1=100;
                     defensaBase1=120;
-                    ataqueBase1=50;
+                    ataqueBase1=130;
                     break;
 
             }
 
-            System.out.println("");
+            System.out.println("JUGADOR 2");
             System.out.println("1.HERNAN->FACCION: LLANERO SOLITARIO -> CLASE: LIDER CARISMATICO "+"\n2.JOHN->FACCION:HERMANDAD DEL ACERO -> CLASE: CIENTIFICO "+"\n3.DIEGO->FACCION: LEGION DEL CESAR -> CLASE: SAQUEADOR");
-            System.out.println("Selecione : ");
+            System.out.println("Seleciona un jugador : ");
             opcionJug2=sc.nextInt();
             switch (opcionJug2){
                 case 1:
@@ -494,16 +494,16 @@ public class Main {
                     genero2="CIERVO";
                     faccion2="LEGION DEL CESAR";
                     clase2="SAQUEADOR";
-                    velocidad2=50;
-                    vida2=50;
-                    defensaBase2=300;
-                    ataqueBase2=50;
+                    velocidad2=150;
+                    vida2=150;
+                    defensaBase2=100;
+                    ataqueBase2=100;
                     break;
                 default:
                     System.out.println("ELECCION INCORRECTA:¡VUELVA A ELEGIR!");
             }
 
-            System.out.println(" _______________________________\n" +
+            System.out.println(" _____________JUGADOR1_______________\n" +
                     "|"+nombre1+"[HP]"+vida1+"[AB]"+ataqueBase1+"[DF]"+defensaBase1+"[VL]"+velocidad1+"\n" +
                     "|-----------------------------------|\n" +
                     "| SEX: "+genero1+"                  |\n"+
@@ -548,7 +548,7 @@ public class Main {
                     "| (1)   (2)   (3)                 |\n" +
                     "|_________________________________|\n");
 
-            System.out.println(" _______________________________\n" +
+            System.out.println(" ____________JUGADOR2________________\n" +
                     "|"+nombre2+"[HP]"+vida2+"[AB]"+ataqueBase2+"[DF]"+defensaBase2+"[VL]"+velocidad2+"\n" +
                     "|-----------------------------------|\n" +
                     "| SEX: "+genero2+"                  |\n"+
@@ -612,12 +612,12 @@ public class Main {
 
             System.out.println("\n**********************************************");
             System.out.println("RONDA " + rondas);
-            System.out.println(nombre1+" FACCION: "+faccion1 + " CLASE: "+ clase1+" VIDA: " + vida1 + " " + barra);
-            System.out.println(nombre2+" FACCION: "+faccion2 + " CLASE: "+ clase2+ " VIDA: " + vida2 + " " + barra2);
+            System.out.println(nombre1+" FACCION: "+faccion1 + ", CLASE: "+ clase1+", VIDA: " + vida1 + " " + barra);
+            System.out.println(nombre2+" FACCION: "+faccion2 + ", CLASE: "+ clase2+ ", VIDA: " + vida2 + " " + barra2);
 
             //determinar quien ataca primero PD: SE PUEDE REDUCIR CON UN METODO INT
             if (velocidad1 >= velocidad2) {
-                System.out.println(faccion1 + " Realiza una accion: "+"\nA.Atacar" + "\nC.Curar: ");
+                System.out.println(nombre1+ " Realiza una accion: "+"\nA.Atacar" + "\nC.Curar: ");
                 accion1=sc.next().toUpperCase().charAt(0);
                 //Ataque jugador 1 a jugador 2
                 switch (accion1){
