@@ -621,8 +621,8 @@ public class Main {
                 switch (accion1){
                     case 'A':
                         //Genera cada vez que se da una vuelta al bucle un numero aleatorio entre 0 y 10
-                        aleatorio= rand.nextInt(11);
-                        hit1 = Math.max(limiteDamage, (ataqueBase1-defensaBase2/2) + aleatorio);
+                        aleatorio= rand.nextInt(10)+limiteDamage;
+                        hit1 = Math.max(limiteDamage, (ataqueBase1-(defensaBase2/2)) + aleatorio);
                         // Verificar si es un ataque crítico
                         if (esCritico1 < probabilidadCritico) {
                             hit1 = (int) (hit1 * 1.3); // Aplica el multiplicador de daño crítico
@@ -666,12 +666,12 @@ public class Main {
                         //Ataque jugador 2 a jugador 1
                         if (vida2>0){
                             //Genera cada vez que se da una vuelta al bucle un numero aleatorio entre 0 y 10
-                            aleatorio= rand.nextInt(11);
+                            aleatorio= rand.nextInt(10)+limiteDamage;
                             System.out.println(nombre2+ " Reailza una accion: "+"\nA.Atacar"+"\nC.Curar");
                             accion2=sc.next().toUpperCase().charAt(0);
                             switch (accion2) {
                                 case 'A':
-                                    hit2 = Math.max(limiteDamage, (ataqueBase2-defensaBase1/2) + aleatorio);
+                                    hit2 = Math.max(limiteDamage, (ataqueBase2-(defensaBase1/2)) + aleatorio);
                                     // Verificar si es un ataque crítico
                                     if (esCritico2 < probabilidadCritico) {
                                         hit2 = (int) (hit2 * 1.3); // Aplica el multiplicador de daño crítico
@@ -751,9 +751,9 @@ public class Main {
                 switch (accion2){
                     case 'A':
                         //Genera cada vez que se da una vuelta al bucle un numero aleatorio entre 0 y 10
-                        aleatorio= rand.nextInt(11);
+                        aleatorio= rand.nextInt(10)+limiteDamage;
                         //Ataque del segundo jugador al jugador 1
-                        hit2 = Math.max(limiteDamage, (ataqueBase2-defensaBase1/2) + aleatorio);
+                        hit2 = Math.max(limiteDamage, (ataqueBase2-(defensaBase1/2)) + aleatorio);
                         if (esCritico2 < probabilidadCritico) {
                             hit2 = (int) (hit2 * 1.3);
                             System.out.println(nombre2 + " realiza un ataque CRÍTICO!");
@@ -801,8 +801,8 @@ public class Main {
                             switch (accion1) {
                                 case 'A':
                                     //Genera cada vez que se da una vuelta al bucle un numero aleatorio entre 0 y 10
-                                    aleatorio= rand.nextInt(11);
-                                    hit1 = Math.max(limiteDamage, (ataqueBase1-defensaBase2/2) + aleatorio);
+                                    aleatorio= rand.nextInt(10)+limiteDamage;
+                                    hit1 = Math.max(limiteDamage, (ataqueBase1-(defensaBase2/2)) + aleatorio);
                                     // Verificar si es un ataque crítico
                                     if (esCritico1 < probabilidadCritico) {
                                         hit1 = (int) (hit1 * 1.5); // Aplica el multiplicador de daño crítico
