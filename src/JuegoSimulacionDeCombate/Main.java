@@ -187,7 +187,7 @@ public class Main {
                             crearClase1 = true;
                     }
                 }
-
+                System.out.println(nombre1);
                 System.out.println(faccion1);
                 System.out.println(clase1);
                 System.out.println("Introduce los valores para velocidad1,vida1,defensa,ataque(La suma de los atributos no debe ser mayor a 500): " + "\nCada uno de los atributos debe ser entre (1-200) ");
@@ -359,7 +359,7 @@ public class Main {
                             crearClase2 = true;
                     }
                 }
-
+                System.out.println(nombre2);
                 System.out.println(faccion2);
                 System.out.println(clase2);
                 System.out.println("Introduce los valores para velocidad1,vida1,defensa,ataque(La suma de los atributos no debe ser mayor a 500): ");
