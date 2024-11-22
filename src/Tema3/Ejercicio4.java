@@ -74,7 +74,7 @@ public class Ejercicio4 {
             }
 
         }
-
+        sc.close();
     }
 
     public static void main(String[] args) {
