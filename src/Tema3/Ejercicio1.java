@@ -19,12 +19,18 @@ public class Ejercicio1 {
         }
     }
 
-    public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
+    public static void mostrarPositivo0Negativo(Scanner sc) {
         int num;
         System.out.println("---COMPROBACION DE NUMERO POSITIVO,NEGATIVO O 0---");
         System.out.println("Introduce un numero: ");
-        num=sc.nextInt();
+        num = sc.nextInt();
         numberSign(num);
+        //sc.close();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        mostrarPositivo0Negativo(sc);
+        sc.close();
     }
 }

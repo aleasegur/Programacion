@@ -21,8 +21,7 @@ public class Ejercicio7 {
         return res;
     }
 
-    public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
+    public static void mostrarNumPrimos(Scanner sc){
         int num=0;
         do {
             System.out.println("Introduce un numero mayor a 1(Para salir introduzca 0)");
@@ -35,5 +34,11 @@ public class Ejercicio7 {
                 System.out.println(num+" no es primo");
             }
         }while (num!=0);
+        //sc.close();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        mostrarNumPrimos(sc);
     }
 }

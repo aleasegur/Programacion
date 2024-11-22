@@ -21,12 +21,18 @@ public class Ejercicio2 {
         return res;
     }
 
-    public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
+    public static void mostrarEdadMayor(Scanner sc){
         int edad;
         System.out.println("Introduce tu edad: ");
         edad=sc.nextInt();
         isAdult(edad);
         Ejercicio1.numberSign(edad);
+        //sc.close();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        mostrarEdadMayor(sc);
+        sc.close();
     }
 }

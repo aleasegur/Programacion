@@ -19,8 +19,7 @@ public class Ejercicio4 {
         return res;
     }
 
-    public static void showMenu() {
-        Scanner sc = new Scanner(System.in);
+    public static void showMenu(Scanner sc) {
         double dinero = 0;
         char opcion, opcionConversion;
         boolean condConversion = true, condAccionConversor;
@@ -74,10 +73,11 @@ public class Ejercicio4 {
             }
 
         }
-        sc.close();
+        //sc.close();
     }
 
     public static void main(String[] args) {
-        showMenu();
+        Scanner sc=new Scanner(System.in);
+        showMenu(sc);
     }
 }

@@ -20,9 +20,7 @@ public class Ejercicio5 {
         return  res;
     }
 
-
-    public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
+    public static void mostrarTablaMultiplicacion(Scanner sc){
         int num;
         char opcion;
         boolean condicion=true;
@@ -52,6 +50,12 @@ public class Ejercicio5 {
             }while (opcion!='s' && opcion!='n');
 
         }
-        sc.close();
+        //sc.close();
+    }
+
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        mostrarTablaMultiplicacion(sc);
     }
 }

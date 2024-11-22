@@ -28,8 +28,7 @@ public class Ejercicio3 {
         return res;
     }
 
-    public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
+    public static void mostrarCalculoCirculo(Scanner sc){
         double radius;
         double resultArea=0,resultPerim=0;
         System.out.println("Ingrese el radio del circulo: ");
@@ -42,6 +41,12 @@ public class Ejercicio3 {
         }else {
             System.err.println("El radio es negativo.Debe ser positivo");
         }
+        //sc.close();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        mostrarCalculoCirculo(sc);
         sc.close();
     }
 }
