@@ -12,27 +12,37 @@ public class Ejercicio2 {
 
     public static boolean isAdult(int edad){
         boolean res=false;
-        if (edad>=18){
-            System.out.println("Es mayor de edad");
-            res=true;
-        }else {
-            System.out.println("No eres mayor de edad");
+        if (edad>=18) {
+            res = true;
         }
         return res;
     }
 
+    /*
     public static void mostrarEdadMayor(Scanner sc){
         int edad;
         System.out.println("Introduce tu edad: ");
         edad=sc.nextInt();
-        isAdult(edad);
-        Ejercicio1.numberSign(edad);
+        if(isAdult(edad)){
+            System.out.println("Es mayor de edad");
+        }else {
+            System.out.println("Es menor edad");
+        }
+        System.out.println("Numero asignado es "+Ejercicio1.numberSign(edad));
         //sc.close();
-    }
+    }*/
 
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
-        mostrarEdadMayor(sc);
+        int edad;
+        System.out.println("Introduce tu edad: ");
+        edad=sc.nextInt();
+        if(isAdult(edad)){
+            System.out.println("Es mayor de edad");
+        }else {
+            System.out.println("Es menor edad");
+        }
+        System.out.println("Numero asignado es "+Ejercicio1.numberSign(edad));
         sc.close();
     }
 }

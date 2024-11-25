@@ -21,7 +21,7 @@ public class Ejercicio9 {
         }
     }
 
-    public static void mostrarPirmaide(Scanner sc){
+    /*public static void mostrarPirmaide(Scanner sc){
         int num;
         char car;
         System.out.println("Introduce las lineas que quieres: ");
@@ -30,11 +30,17 @@ public class Ejercicio9 {
         car = sc.next().charAt(0);
         imprimirPiramide(num, car);
        // sc.close();
-    }
+    }*/
 
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
-        mostrarPirmaide(sc);
+        int num;
+        char car;
+        System.out.println("Introduce las lineas que quieres: ");
+        num = sc.nextInt();
+        System.out.println("Introduce el caracter que deseas: ");
+        car = sc.next().charAt(0);
+        imprimirPiramide(num, car);
         sc.close();
     }
 }

@@ -19,7 +19,7 @@ public class Ejercicio4 {
         return res;
     }
 
-    public static void showMenu(Scanner sc) {
+  /*  public static void showMenu(Scanner sc) {
         double dinero = 0;
         char opcion, opcionConversion;
         boolean condConversion = true, condAccionConversor;
@@ -74,10 +74,62 @@ public class Ejercicio4 {
 
         }
         //sc.close();
-    }
+    }*/
 
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
-        showMenu(sc);
+        double dinero = 0;
+        char opcion, opcionConversion;
+        boolean condConversion = true, condAccionConversor;
+        double dolarAeuro = 0, euroAdolar = 0;
+        while (condConversion) {
+            System.out.println("---CONVERSOR DE DINERO(€/$)---");
+            System.out.println("u.Utilizar");
+            System.out.println("s.Salir");
+            System.out.println("--------------------------------");
+            System.out.println("Elige una opcion: ");
+            opcion = sc.next().toLowerCase().charAt(0);
+            switch (opcion) {
+                case 'u':
+                    do {
+                        System.out.println("Introduce la cantidad de dinero que quieres conversar: ");
+                        dinero = sc.nextDouble();
+                        if (dinero <= 0) {
+                            System.out.println("Error el saldo no debe ser negativo o 0");
+                        } else {
+                            dolarAeuro = dollar2euro(dinero);
+                            euroAdolar = euro2dollar(dinero);
+                        }
+                    } while (dinero <= 0);
+                    condAccionConversor=true;
+                    while (condAccionConversor) {
+                        System.out.println("d.Dolar");
+                        System.out.println("e.Euro");
+                        System.out.println("--------");
+                        System.out.println("Elige una opcion: ");
+                        opcionConversion = sc.next().toLowerCase().charAt(0);
+                        switch (opcionConversion) {
+                            case 'd':
+                                System.out.println("Tu dinero en euros: " + dinero + " €" + " a dolares es " + dolarAeuro + " $");
+                                condAccionConversor = false;
+                                break;
+                            case 'e':
+                                System.out.println("Tu dinero en dolares: " + dinero + " $" + " a euros es " + euroAdolar + " €");
+                                condAccionConversor = false;
+                                break;
+                            default:
+                                System.out.println("ERROR: VUELVA A INTRODUCIR LA ACCION");
+                        }
+                    }
+                    break;
+                case 's':
+                    System.out.println("Saliendo del programa...");
+                    condConversion = false;
+                    break;
+                default:
+                    System.err.println("Eleccion no reconocida.Vuelva a introducir la opcion correcta");
+            }
+        }
+        sc.close();
     }
 }

@@ -10,32 +10,46 @@ parámetro es 0, positivo o negativo.
 */
 public class Ejercicio1 {
     public static int numberSign(int num){
-        int res=num;
+        int res;
         if (num==0){
             res=0;
-            System.out.println("El numero es "+res);
         }else if (num>=1){
             res=1;
-            System.out.println("El numero es positivo "+res);
         }else {
             res=-1;
-            System.out.println("El numero es negativo "+res);
         }
         return res;
     }
-
+/*
     public static void mostrarPositivo0Negativo(Scanner sc) {
         int num;
         System.out.println("---COMPROBACION DE NUMERO POSITIVO,NEGATIVO O 0---");
         System.out.println("Introduce un numero: ");
         num = sc.nextInt();
-        numberSign(num);
+        if (numberSign(num)==0){
+            System.out.println("El numero es 0.");
+        }else if (numberSign(num)>=1){
+            System.out.println("El numero es positivo. ");
+        }else {
+            System.out.println("El numero negativo.");
+        }
         //sc.close();
     }
+    */
 
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
-        mostrarPositivo0Negativo(sc);
+        int num;
+        System.out.println("---COMPROBACION DE NUMERO POSITIVO,NEGATIVO O 0---");
+        System.out.println("Introduce un numero: ");
+        num = sc.nextInt();
+        if (numberSign(num)==0){
+            System.out.println("El numero es 0.");
+        }else if (numberSign(num)>=1){
+            System.out.println("El numero es positivo. ");
+        }else {
+            System.out.println("El numero negativo.");
+        }
         sc.close();
     }
 }
