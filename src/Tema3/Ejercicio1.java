@@ -9,14 +9,19 @@ devuelve 0, 1 o -1 dependiendo de si el número que recibe como
 parámetro es 0, positivo o negativo.
 */
 public class Ejercicio1 {
-    public static void numberSign(int num){
+    public static int numberSign(int num){
+        int res=num;
         if (num==0){
-            System.out.println("El numero introducido es "+num);
+            res=0;
+            System.out.println("El numero es "+res);
         }else if (num>=1){
-            System.out.println("El numero introducido es positivo");
+            res=1;
+            System.out.println("El numero es positivo "+res);
         }else {
-            System.out.println("El numero introducido es negativo");
+            res=-1;
+            System.out.println("El numero es negativo "+res);
         }
+        return res;
     }
 
     public static void mostrarPositivo0Negativo(Scanner sc) {
