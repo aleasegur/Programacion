@@ -34,7 +34,7 @@ public class Ejercicio2 {
 
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
-        int edad;
+        int edad,num;
         System.out.println("Introduce tu edad: ");
         edad=sc.nextInt();
         if(isAdult(edad)){
@@ -42,7 +42,16 @@ public class Ejercicio2 {
         }else {
             System.out.println("Es menor edad");
         }
-        System.out.println("Numero asignado es "+Ejercicio1.numberSign(edad));
+
+        System.out.println("Introduce un numero: ");
+        num = sc.nextInt();
+        if (Ejercicio1.numberSign(num)==0){
+            System.out.println("El numero es 0.");
+        }else if (Ejercicio1.numberSign(num)>=1){
+            System.out.println("El numero es positivo. ");
+        }else {
+            System.out.println("El numero negativo.");
+        }
         sc.close();
     }
 }
