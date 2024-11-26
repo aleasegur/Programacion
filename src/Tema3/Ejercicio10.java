@@ -37,28 +37,37 @@ public class Ejercicio10 {
             opcion = sc.next().toLowerCase().charAt(0);
             switch (opcion) {
                 case 'a':
-                    int num;
+                    int numA;
                     System.out.println("---COMPROBACION DE NUMERO POSITIVO,NEGATIVO O 0---");
                     System.out.println("Introduce un numero: ");
-                    num = sc.nextInt();
-                    if (Ejercicio1.numberSign(num)==0){
+                    numA = sc.nextInt();
+                    if (Ejercicio1.numberSign(numA) == 0) {
                         System.out.println("El numero es 0.");
-                    }else if (Ejercicio1.numberSign(num)>=1){
+                    } else if (Ejercicio1.numberSign(numA) >= 1) {
                         System.out.println("El numero es positivo. ");
                     }else {
                         System.out.println("El numero negativo.");
                     }
                     break;
                 case 'b':
-                    int edad;
+                    int edadB, numB;
                     System.out.println("Introduce tu edad: ");
-                    edad=sc.nextInt();
-                    if(Ejercicio2.isAdult(edad)){
+                    edadB = sc.nextInt();
+                    if (Ejercicio2.isAdult(edadB)){
                         System.out.println("Es mayor de edad");
                     }else {
                         System.out.println("Es menor edad");
                     }
-                    System.out.println("Numero asignado es "+Ejercicio1.numberSign(edad));
+                    System.out.println("---COMPROBACION DE NUMERO POSITIVO,NEGATIVO O 0---");
+                    System.out.println("Introduce un numero: ");
+                    numB = sc.nextInt();
+                    if (Ejercicio1.numberSign(numB) == 0) {
+                        System.out.println("El numero es 0.");
+                    }else if (Ejercicio1.numberSign(numB) >= 1) {
+                        System.out.println("El numero es positivo. ");
+                    } else {
+                        System.out.println("El numero negativo.");
+                    }
                     break;
                 case 'c':
                     double radius;
@@ -85,8 +94,8 @@ public class Ejercicio10 {
                         System.out.println("s.Salir");
                         System.out.println("--------------------------------");
                         System.out.println("Elige una opcion: ");
-                        opcion = sc.next().toLowerCase().charAt(0);
-                        switch (opcion) {
+                        opcionD = sc.next().toLowerCase().charAt(0);
+                        switch (opcionD) {
                             case 'u':
                                 do {
                                     System.out.println("Introduce la cantidad de dinero que quieres conversar: ");
@@ -144,8 +153,8 @@ public class Ejercicio10 {
                         }while (!Ejercicio5.comprobarNumeroMultiplicacion(numE));
                         do {
                             System.out.println("Desea volver a realizar una tabla de multiplicacion(s/n)");
-                            opcion=sc.next().toLowerCase().charAt(0);
-                            switch (opcion){
+                            opcionE=sc.next().toLowerCase().charAt(0);
+                            switch (opcionE){
                                 case 's':
                                     break;
                                 case 'n':
@@ -155,7 +164,7 @@ public class Ejercicio10 {
                                 default:
                                     System.out.println("ERROR: CARACTER NO RECONOCIDO.VUELVA A INTRODUCIR");
                             }
-                        }while (opcion!='s' && opcion!='n');
+                        }while (opcionE!='s' && opcionE!='n');
                     }
                     break;
                 case 'f':
@@ -196,10 +205,10 @@ public class Ejercicio10 {
                     int numI;
                     char car;
                     System.out.println("Introduce las lineas que quieres: ");
-                    num = sc.nextInt();
+                    numI = sc.nextInt();
                     System.out.println("Introduce el caracter que deseas: ");
                     car = sc.next().charAt(0);
-                    Ejercicio9.imprimirPiramide(num, car);
+                    Ejercicio9.imprimirPiramide(numI, car);
                     break;
                 case 's':
                     System.out.println("Saliendo...");
