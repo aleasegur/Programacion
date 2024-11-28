@@ -71,7 +71,7 @@ public class MyMath {
         return res;
     }
 
-    public static boolean esPrimo(int num){
+    public static boolean noEsPrimo(int num){
         boolean res=true;
         if (num>1){
             for (int i = 2; i <=Math.sqrt(num) ; i++) {
@@ -83,13 +83,11 @@ public class MyMath {
         return res;
     }
 
-    public static boolean noEsPrimo(int num){
+    public static boolean esPrimo(int num){
         boolean res=false;
         if (num>1){
             for (int i = 2; i <=Math.sqrt(num) ; i++) {
-                if (num%i==0){
-
-                }else {
+                if (num%i!=0){
                     res=true;
                 }
             }
@@ -98,5 +96,52 @@ public class MyMath {
     }
 
 
+    public static boolean esPar(int num){
+        boolean res=false;
+        if (num%2==0){
+            res=true;
+        }
+        return res;
+    }
+
+
+    public static boolean esImpar(int num){
+        boolean res=false;
+        if (num%2!=0){
+            res=true;
+        }
+        return res;
+    }
+
+    public static int factorialNumero(int num){
+        int res=0;
+        for (int i = 1; i <=num ; i++) {
+            res+=i;
+        }
+        return res;
+    }
+
+    public static int factorialNumeroRecursivo(int num){
+        int res=0;
+        if (num==0){
+            res=1;
+        }else {
+            res=num*factorialNumeroRecursivo(num-1);
+        }
+        return res;
+    }
+
+    public static int ecuacionDeSegundoGrado(int num1,int num2,int num3){
+        int res=0;
+        return res;
+    }
+
+    public static int numeroDeDigitos(int num){
+        int res=0;
+        for (int i = num; i!=0; i/=10) {
+            res++;
+        }
+        return res;
+    }
 
 }
