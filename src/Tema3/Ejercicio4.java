@@ -7,6 +7,15 @@ import java.util.Scanner;
 a euros. Necesitarás implementar el procedimiento showMenu() y las
 funciones euro2dollar y dollar2euro.*/
 public class Ejercicio4 {
+
+    public static void showMenu(){
+        System.out.println("---CONVERSOR DE DINERO(€/$)---");
+        System.out.println("u.Utilizar");
+        System.out.println("s.Salir");
+        System.out.println("--------------------------------");
+        System.out.println("Elige una opcion: ");
+    }
+
     public static double euro2dollar(double dinero) {
         double res = 0;
         res = dinero * 1.04;
@@ -27,11 +36,7 @@ public class Ejercicio4 {
         boolean condConversion = true, condAccionConversor;
         double dolarAeuro = 0, euroAdolar = 0;
         while (condConversion) {
-            System.out.println("---CONVERSOR DE DINERO(€/$)---");
-            System.out.println("u.Utilizar");
-            System.out.println("s.Salir");
-            System.out.println("--------------------------------");
-            System.out.println("Elige una opcion: ");
+            showMenu();
             opcion = sc.next().toLowerCase().charAt(0);
             switch (opcion) {
                 case 'u':

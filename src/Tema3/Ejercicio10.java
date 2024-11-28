@@ -92,11 +92,7 @@ public class Ejercicio10 {
                     boolean condConversion = true, condAccionConversor;
                     double dolarAeuro = 0, euroAdolar = 0;
                     while (condConversion) {
-                        System.out.println("---CONVERSOR DE DINERO(€/$)---");
-                        System.out.println("u.Utilizar");
-                        System.out.println("s.Salir");
-                        System.out.println("--------------------------------");
-                        System.out.println("Elige una opcion: ");
+                        Ejercicio4.showMenu();
                         opcionD = sc.next().toLowerCase().charAt(0);
                         switch (opcionD) {
                             case 'u':
