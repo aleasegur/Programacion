@@ -259,7 +259,7 @@ public class Main {
                 System.out.println("Introduce tu sexo: ");
                 genero2=sc.nextLine();
                 while (crearFac2) {
-                    System.out.println("HOLA, "+nombre1);
+                    System.out.println("HOLA, "+nombre2);
                     System.out.println("Que faccion quieres pertenecer: ");
                     System.out.println("1.PALADIN DE LA HERMANDAD DEL ACERO "+"\n2.SOLDADO DE LA RCN(REPUBLICA DE NUEVA CALIFORNIA)"+"\n3.LEGIONARIO DE LA LEGION DE CESAR"+"\n4.NINGUNA(LLANERO SOLITARIO)");
                     opcionFaccion2 = sc.nextInt();
@@ -314,7 +314,7 @@ public class Main {
                 }
 
                 while (crearClase2) {
-                    System.out.println(nombre1 + "\nELIGE UNA CLASE " + "\n1.Cientifico" + "\n2.Lider Carismatico" + "\n3.Mercenario" + "\n4.Saqueador");
+                    System.out.println(nombre2 + "\nELIGE UNA CLASE " + "\n1.Cientifico" + "\n2.Lider Carismatico" + "\n3.Mercenario" + "\n4.Saqueador");
                     opcionClase2 = sc.nextInt();
                     switch (opcionClase2) {
                         case 1:
@@ -711,7 +711,7 @@ public class Main {
                                     //hit2 = Math.min(hit2, limiteDamage);
                                     vida1 -= hit2;
                                     vida1 = Math.max(0, vida1); // Evitar que vida2 sea negativa
-                                    System.out.println(nombre2 + " golpea primero con " + hit1 + " de daño");
+                                    System.out.println(nombre2 + " golpea primero con " + hit2 + " de daño");
                                     break;
 
                                 case 'C':
