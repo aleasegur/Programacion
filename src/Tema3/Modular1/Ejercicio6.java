@@ -1,4 +1,4 @@
-package Tema3;
+package Tema3.Modular1;
 /*ALEJANDRO ASENCIO GURAU
 * Escribe un programa que muestre las tablas de multiplicar del 1 al 10.*/
 public class Ejercicio6 {
