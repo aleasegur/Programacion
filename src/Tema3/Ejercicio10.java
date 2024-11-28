@@ -16,24 +16,27 @@ h) Comprobador de fechas.
 i) Dibujar triángulos.
 */
 public class Ejercicio10 {
+    public static void showMenu(){
+        System.out.println("---MENU INTERACTIVO---");
+        System.out.println("a) Muestra el signo de un número introducido por el usuario.\n" +
+                "b) Indica si el usuario es mayor de edad o no.\n" +
+                "c) Calcula el área y perímetro de un círculo.\n" +
+                "d) Conversor de euros a dólares y de dólares a euros.\n" +
+                "e) Mostrar tabla de multiplicar de un número.\n" +
+                "f) Mostrar tablas de multiplicar del 1 al 10.\n" +
+                "g) Comprobador de números primos.\n" +
+                "h) Comprobador de fechas.\n" +
+                "i) Dibujar triángulos. \n" +
+                "s) Salir. ");
+        System.out.println("---------------");
+        System.out.println("Elige una opcion: ");
+    }
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         char opcion;
         boolean condicionMenu = true;
         while (condicionMenu) {
-            System.out.println("---MENU INTERACTIVO---");
-            System.out.println("a) Muestra el signo de un número introducido por el usuario.\n" +
-                    "b) Indica si el usuario es mayor de edad o no.\n" +
-                    "c) Calcula el área y perímetro de un círculo.\n" +
-                    "d) Conversor de euros a dólares y de dólares a euros.\n" +
-                    "e) Mostrar tabla de multiplicar de un número.\n" +
-                    "f) Mostrar tablas de multiplicar del 1 al 10.\n" +
-                    "g) Comprobador de números primos.\n" +
-                    "h) Comprobador de fechas.\n" +
-                    "i) Dibujar triángulos. \n" +
-                    "s) Salir. ");
-            System.out.println("---------------");
-            System.out.println("Elige una opcion: ");
+            showMenu();
             opcion = sc.next().toLowerCase().charAt(0);
             switch (opcion) {
                 case 'a':
@@ -42,7 +45,7 @@ public class Ejercicio10 {
                     System.out.println("Introduce un numero: ");
                     numA = sc.nextInt();
                     if (Ejercicio1.numberSign(numA) == 0) {
-                        System.out.println("El numero es 0.");
+                        System.out.println("El numero es 0 "+Ejercicio1.numberSign(numA));
                     } else if (Ejercicio1.numberSign(numA) >= 1) {
                         System.out.println("El numero es positivo. ");
                     }else {
@@ -62,7 +65,7 @@ public class Ejercicio10 {
                     System.out.println("Introduce un numero: ");
                     numB = sc.nextInt();
                     if (Ejercicio1.numberSign(numB) == 0) {
-                        System.out.println("El numero es 0.");
+                        System.out.println("El numero "+Ejercicio1.numberSign(numB));
                     }else if (Ejercicio1.numberSign(numB) >= 1) {
                         System.out.println("El numero es positivo. ");
                     } else {

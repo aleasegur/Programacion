@@ -27,11 +27,11 @@ public class Ejercicio1 {
         System.out.println("Introduce un numero: ");
         num = sc.nextInt();
         if (numberSign(num)==0){
-            System.out.println("El numero es 0.");
+            System.out.println("El numero es "+numberSign(num));
         }else if (numberSign(num)>=1){
-            System.out.println("El numero es positivo. ");
+            System.out.println("El numero "+numberSign(num)+" es positivo. ");
         }else {
-            System.out.println("El numero negativo.");
+            System.out.println("El numero "+numberSign(num)+" negativo.");
         }
         //sc.close();
     }
@@ -44,7 +44,7 @@ public class Ejercicio1 {
         System.out.println("Introduce un numero: ");
         num = sc.nextInt();
         if (numberSign(num)==0){
-            System.out.println("El numero es 0.");
+            System.out.println("El numero es "+numberSign(num));
         }else if (numberSign(num)>=1){
             System.out.println("El numero es positivo. ");
         }else {

@@ -46,11 +46,11 @@ public class Ejercicio2 {
         System.out.println("Introduce un numero: ");
         num = sc.nextInt();
         if (Ejercicio1.numberSign(num)==0){
-            System.out.println("El numero es 0.");
+            System.out.println("El numero es "+Ejercicio1.numberSign(num));
         }else if (Ejercicio1.numberSign(num)>=1){
             System.out.println("El numero es positivo. ");
         }else {
-            System.out.println("El numero negativo.");
+            System.out.println("El numero es negativo.");
         }
         sc.close();
     }
