@@ -55,7 +55,7 @@ public class MyMath {
 
     public static double squareArea(double lado){
         double res=0;
-        res=2*lado;
+        res=lado*lado;
         return res;
     }
 
@@ -71,7 +71,7 @@ public class MyMath {
         return res;
     }
 
-    public static boolean noEsPrimo(int num){
+    public static boolean esPrimo(int num){
         boolean res=true;
         if (num>1){
             for (int i = 2; i <=Math.sqrt(num) ; i++) {
@@ -79,44 +79,57 @@ public class MyMath {
                     res=false;
                 }
             }
+        }else {
+            res=false;
         }
         return res;
     }
 
-    public static boolean esPrimo(int num){
-        boolean res=false;
-        if (num>1){
-            for (int i = 2; i <=Math.sqrt(num) ; i++) {
-                if (num%i!=0){
-                    res=true;
-                }
+    public static boolean noEsPrimo(int num){
+        boolean res=!esPrimo(num);
+        return res;
+    }
+
+    public static int numeroDeDigitos(int num){
+        int res=0;
+        for (int i = num; i!=0; i/=10) {
+            res++;
+        }
+        return res;
+    }
+
+    public static int contarDigitosPares(int num){
+        int res=0;
+        num=Math.abs(num);
+        while (num > 0) {
+            int digito = num % 10;
+            if (digito % 2 == 0) {
+                res++;
             }
+            num /= 10;
         }
         return res;
     }
 
 
-    public static boolean esPar(int num){
-        boolean res=false;
-        if (num%2==0){
-            res=true;
-        }
-        return res;
-    }
-
-
-    public static boolean esImpar(int num){
-        boolean res=false;
-        if (num%2!=0){
-            res=true;
+    public static int contarDigitosImpares(int num){
+        int res=0;
+        num=Math.abs(num);
+        while (num > 0) {
+            int digito = num % 10;
+            if (digito % 2 != 0) {
+                res++;
+            }
+            num /= 10;
         }
         return res;
     }
 
     public static int factorialNumero(int num){
-        int res=0;
+        int res=1;
         for (int i = 1; i <=num ; i++) {
-            res+=i;
+            res*=i;
+
         }
         return res;
     }
@@ -133,13 +146,28 @@ public class MyMath {
 
     public static int ecuacionDeSegundoGrado(int num1,int num2,int num3){
         int res=0;
+        int discriminante=num2*num2-4*num1*num3;
+        if (discriminante>0){
+            res=2;
+            System.out.println("Numero de soluciones es "+res+" :");
+            System.out.println("Primera solucion es "+(-num2 - Math.sqrt(discriminante)) / (2.0 * num1));
+            System.out.println("Segunda solucion es "+(-num2 + Math.sqrt(discriminante)) / (2.0 * num1));
+        }else if (discriminante==0){
+            res=1;
+            System.out.println("Numero de soluciones es "+res+" :");
+            System.out.println("La solucion es "+-num2/(2.0*num1));
+        }else {
+            System.out.println("No hay solucion");
+        }
         return res;
     }
 
-    public static int numeroDeDigitos(int num){
-        int res=0;
-        for (int i = num; i!=0; i/=10) {
-            res++;
+    public static int sumarrNumeroDeDigitos(int num){
+        int res = 0;
+        num = Math.abs(num);
+        while (num > 0) {
+            res += num % 10; // Extraer el último dígito
+            num /= 10;       // Eliminar el último dígito
         }
         return res;
     }

@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../EjerPruebas/EjerPruebas.iml" filepath="$PROJECT_DIR$/../EjerPruebas/EjerPruebas.iml" />
       <module fileurl="file://$PROJECT_DIR$/Programacion.iml" filepath="$PROJECT_DIR$/Programacion.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../StarWarsCode/StarWarsCode.iml" filepath="$PROJECT_DIR$/../StarWarsCode/StarWarsCode.iml" />
     </modules>
   </component>
 </project>
