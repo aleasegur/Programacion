@@ -20,22 +20,7 @@ public class Ejercicio1 {
         }
         return res;
     }
-/*
-    public static void mostrarPositivo0Negativo(Scanner sc) {
-        int num;
-        System.out.println("---COMPROBACION DE NUMERO POSITIVO,NEGATIVO O 0---");
-        System.out.println("Introduce un numero: ");
-        num = sc.nextInt();
-        if (numberSign(num)==0){
-            System.out.println("El numero es "+numberSign(num));
-        }else if (numberSign(num)>=1){
-            System.out.println("El numero "+numberSign(num)+" es positivo. ");
-        }else {
-            System.out.println("El numero "+numberSign(num)+" negativo.");
-        }
-        //sc.close();
-    }
-    */
+
 
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);

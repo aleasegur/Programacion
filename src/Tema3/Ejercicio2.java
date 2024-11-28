@@ -18,20 +18,6 @@ public class Ejercicio2 {
         return res;
     }
 
-    /*
-    public static void mostrarEdadMayor(Scanner sc){
-        int edad;
-        System.out.println("Introduce tu edad: ");
-        edad=sc.nextInt();
-        if(isAdult(edad)){
-            System.out.println("Es mayor de edad");
-        }else {
-            System.out.println("Es menor edad");
-        }
-        System.out.println("Numero asignado es "+Ejercicio1.numberSign(edad));
-        //sc.close();
-    }*/
-
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         int edad,num;

@@ -28,22 +28,6 @@ public class Ejercicio3 {
         return res;
     }
 
- /*   public static void mostrarCalculoCirculo(Scanner sc){
-        double radius;
-        double resultArea=0,resultPerim=0;
-        System.out.println("Ingrese el radio del circulo: ");
-        radius=sc.nextDouble();
-        if (validRadius(radius)){
-            resultArea=calculateCircleArea(radius);
-            resultPerim=calculateCirclePerimeter(radius);
-            System.out.println("Perimetro: "+resultPerim);
-            System.out.println("Area: "+resultArea);
-        }else {
-            System.err.println("El radio es negativo.Debe ser positivo");
-        }
-        //sc.close();
-    }*/
-
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         double radius;

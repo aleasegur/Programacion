@@ -63,25 +63,6 @@ public class Ejercicio8 {
         return res;
     }
 
-    /*public static void mostrarFechaCorrecta(Scanner sc){
-        int dia,mes,age;
-        System.out.println("Introduce el numero de un dia: ");
-        dia=sc.nextInt();
-        System.out.println("Introduce el numero del mes: ");
-        mes=sc.nextInt();
-        System.out.println("Introduce un año: ");
-        age=sc.nextInt();
-
-        if (comprobarFecha(mes,age,dia)){
-            System.out.println("La fecha introducida es correcta");
-            System.out.println(dia+"/"+mes+"/"+age);
-        }else {
-            System.out.println("La fecha introducida es incorrecta");
-            System.out.println(dia+"/"+mes+"/"+age);
-        }
-        //sc.close();
-    }*/
-
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         int dia,mes,age;
