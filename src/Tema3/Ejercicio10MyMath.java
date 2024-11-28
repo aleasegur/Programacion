@@ -22,6 +22,27 @@ public class Ejercicio10MyMath {
         System.out.println("Elige una opcion: ");
     }
 
+    //Metodo que en caso que la opcion selecciona es s o n. Sale o no sale del bucle de cada caso
+    public static boolean pedirOtraVez(Scanner sc) {
+        char opcion;
+        boolean res = false;
+        do {
+            System.out.println("¿Desea volver a introducir un número (s/n)? ");
+            opcion = sc.next().toLowerCase().charAt(0);
+            switch (opcion) {
+                case 's':
+                    res = true;
+                    break;
+                case 'n':
+                    res = false;
+                    break;
+                default:
+                    System.err.println("CARACTER NO RECONOCIDO. VUELVA A INTRODUCIR");
+            }
+        } while (opcion != 's' && opcion != 'n');
+        return res;
+    }
+
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         char opcion;
@@ -86,7 +107,6 @@ public class Ejercicio10MyMath {
                 case 'b':
                     int numB;
                     boolean condicionCaseB=true;
-                    char opcionB;
                     while (condicionCaseB) {
                         do {
                             System.out.println("Introduce el valor de un numero: ");
@@ -102,45 +122,120 @@ public class Ejercicio10MyMath {
                         } else if (result2B) {
                             System.out.println("El numero " + numB + " no es primo");
                         }
-                        do {
-                            System.out.println("Desea volver a introducir un numero(s/n): ");
-                            opcionB = sc.next().toLowerCase().charAt(0);
-                            switch (opcionB) {
-                                case 's':
-                                    break;
-                                case 'n':
-                                    System.out.println("Saliendo de la opcion B...");
-                                    condicionCaseB = false;
-                                    break;
-                                default:
-                                    System.err.println("CARACTER NO RECONOCIDO. VUELVA A INTRODUCIR");
-                            }
-                        }while (opcionB!='s' && opcionB!='n');
+                        if (!pedirOtraVez(sc)) {
+                            System.out.println("Saliendo del caso B...");
+                            condicionCaseB = false;
+                        }
                     }
                     break;
                 case 'c':
                     int numC,resultC;
-                    char opcionC;
                     boolean condicionCaseC=true;
                     while (condicionCaseC){
                             System.out.println("Introduce un numero: ");
                             numC=sc.nextInt();
                             resultC=MyMath.numeroDeDigitos(numC);
                         System.out.println("El numero de digitos de "+numC+" es "+resultC);
+                        if (!pedirOtraVez(sc)) {
+                            System.out.println("Saliendo del caso C...");
+                            condicionCaseC = false;
+                        }
+                    }
+                    break;
+                case 'd':
+                    int numD, resultD;
+                    boolean condicionCaseD = true;
+                    while (condicionCaseD) {
+                        System.out.println("Introduce un numero: ");
+                        numD = sc.nextInt();
+                        resultD = MyMath.contarDigitosPares(numD);
+                        System.out.println("Los digitos pares que hay en el numero " + numD + " son " + resultD);
+                        if (!pedirOtraVez(sc)) {
+                            System.out.println("Saliendo del caso D...");
+                            condicionCaseD = false;
+                        }
+                    }
+                    break;
+                case 'e':
+                    int numE, resultE;
+                    boolean condicionCaseE = true;
+                    while (condicionCaseE) {
+                        System.out.println("Introduce un numero: ");
+                        numE = sc.nextInt();
+                        resultE = MyMath.contarDigitosImpares(numE);
+                        System.out.println("Los digitos impares que hay en el numero " + numE + " son " + resultE);
+                        if (!pedirOtraVez(sc)) {
+                            System.out.println("Saliendo del caso D...");
+                            condicionCaseE = false;
+                        }
+                    }
+                    break;
+                case 'f':
+                    int numF = 0, resultF;
+                    boolean condicionCaseF = true;
+                    char opcionF;
+                    while (condicionCaseF) {
+                        System.out.println("--TIPOS DE FACTORIAL(SEGUN EL METODO EMPLEADO)--");
+                        System.out.println("a)Iterativo. " + "\nb)Recursivo." + "\nc)Salir.");
+                        opcionF = sc.next().toLowerCase().charAt(0);
+                        if (opcionF != 'c') {
+                            System.out.println("Introduce un numero: ");
+                            numF = sc.nextInt();
+                        }
+                        switch (opcionF) {
+                            case 'a':
+                                resultF = MyMath.factorialNumero(numF);
+                                System.out.println("El factorial iterativo de " + numF + " es " + resultF);
+                                break;
+                            case 'b':
+                                resultF = MyMath.factorialNumeroRecursivo(numF);
+                                System.out.println("El factorial iterativo de " + numF + " es " + resultF);
+                                break;
+                            case 'c':
+                                System.out.println("Saliendo del caso F...");
+                                condicionCaseF = false;
+                                break;
+                            default:
+                                System.err.println("Carcter no reconocido. Vuelva a introducirlo");
+                        }
+                    }
+                    break;
+                case 'g':
+                    //Para comprobar 2 soluciones(1,2,-3) y para una solucion(1,2,1)
+                    int num1G,num2G,num3G,resultG;
+                    boolean condicionCaseG=true;
+                    while (condicionCaseG) {
+                        System.out.println("Introduce un valor al primer numero: ");
+                        num1G = sc.nextInt();
+                        System.out.println("Introduce un valor al segundo numero: ");
+                        num2G = sc.nextInt();
+                        System.out.println("Introduce un valor al tercer numero: ");
+                        num3G = sc.nextInt();
+                        resultG = MyMath.ecuacionDeSegundoGrado(num1G, num2G, num3G);
+                        System.out.println(resultG);
+                        if (!pedirOtraVez(sc)){
+                            System.out.println("Saliendo del caso G...");
+                            condicionCaseG=false;
+                        }
+                    }
+                    break;
+                case 'h':
+                    int numH,resultH;
+                    boolean condicionCaseH=true;
+                    while (condicionCaseH) {
                         do {
-                            System.out.println("Desea volver a introducir un numero(s/n): ");
-                            opcionC = sc.next().toLowerCase().charAt(0);
-                            switch (opcionC) {
-                                case 's':
-                                    break;
-                                case 'n':
-                                    System.out.println("Saliendo de la opcion C...");
-                                    condicionCaseC = false;
-                                    break;
-                                default:
-                                    System.err.println("CARACTER NO RECONOCIDO. VUELVA A INTRODUCIR");
+                            System.out.println("Introduce un numero: ");
+                            numH = sc.nextInt();
+                            if (numH <= 0) {
+                                System.err.println("Error el numero introducido es menor o igual a 0. VUELVAS A INTRODUCIR");
                             }
-                        }while (opcionC!='s' && opcionC!='n');
+                        } while (numH <= 0);
+                        resultH = MyMath.sumarrNumeroDeDigitos(numH);
+                        System.out.println("La suma de los digitos de " + numH + " es " + resultH);
+                        if (!pedirOtraVez(sc)){
+                            System.out.println("Saliendo del caso H...");
+                            condicionCaseH=false;
+                        }
                     }
                     break;
                 case 's':
