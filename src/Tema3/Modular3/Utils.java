@@ -48,8 +48,8 @@ A partir de 300.000 euros
 public class Utils {
     public static double miles2kilometers(double miles){
         double res=0;
-        double conversion= 0.62137;
-        res=miles/conversion;
+        double conversion= 1.609;
+        res=miles*conversion;
         return res;
     }
 
