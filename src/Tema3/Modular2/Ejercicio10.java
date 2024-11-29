@@ -1,11 +1,11 @@
-package Tema3;
+package Tema3.Modular2;
 
 import java.util.Scanner;
 
 /*ALEJANDRO ASENCIO GURAU
 * Crea un programa principal llamado Ejercicio10(Lo he cambiado por Ejercicio10MyMath) donde utilices todas las
 funciones creadas anteriormente dentro de MyMath.*/
-public class Ejercicio10MyMath {
+public class Ejercicio10 {
     public static void showMenu(){
         System.out.println("---MENU INTERACTIVO---");
         System.out.println("Menú de opciones:");
@@ -100,7 +100,7 @@ public class Ejercicio10MyMath {
                                 condicionCaseA=false;
                                 break;
                             default:
-                                System.out.println("Error valor no reconocido. VUELVA A INTRODUCIRLO");
+                                System.err.println("Error valor no reconocido. VUELVA A INTRODUCIRLO");
                         }
                     }
                     break;

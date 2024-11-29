@@ -1,4 +1,4 @@
-package Tema3;
+package Tema3.Modular2;
 /*ALEJANDRO ASENCIO GURAU
 * 1. Crea una clase MyMath que tendrá funciones para calcular el perímetro y
 el área de un círculo, cuadrado y rectángulo. Los nombres de las
@@ -166,8 +166,10 @@ public class MyMath {
         int res = 0;
         num = Math.abs(num);
         while (num > 0) {
-            res += num % 10; // Extraer el último dígito
-            num /= 10;       // Eliminar el último dígito
+            // Extraigo el último dígito
+            res += num % 10;
+            // Elimino último dígito
+            num /= 10;
         }
         return res;
     }
