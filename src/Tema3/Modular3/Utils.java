@@ -46,6 +46,7 @@ A partir de 300.000 euros
 45,0%
 47,0%*/
 public class Utils {
+
     public static double miles2kilometers(double miles){
         double res=0;
         double conversion= 1.609;
@@ -53,5 +54,128 @@ public class Utils {
         return res;
     }
 
+    public static double getTaxes(double precio,double porcentaje){
+       double res=0;
+       double impuesto=precio*(porcentaje/100);
+       res=Math.round(impuesto*100)/100.0;
+       return res;
+    }
 
+    public static double getNetPrice(double precio,double porcentaje){
+        double res;
+        double valorImpuesto=porcentaje/100;
+        res=precio*(1+valorImpuesto);
+        return res;
+    }
+
+    public static int getCoins(double cantEuros){
+        int res=0;
+        //Convertir euros a centimos
+        int cantCent=(int)Math.round(cantEuros*100);
+        int tipMoneda=1;
+        while (cantCent>0 || tipMoneda<=8){
+            int cantMonedas=0;
+            switch (tipMoneda){
+                case 1://2€
+                    cantMonedas=cantCent/200;
+                    cantCent%=200;
+                    break;
+                case 2://1€
+                    cantMonedas=cantCent/100;
+                    cantCent%=100;
+                    break;
+                case 3://50 cent
+                    cantMonedas=cantCent/50;
+                    cantCent%=50;
+                    break;
+                case 4://20 cent
+                    cantMonedas=cantCent/20;
+                    cantCent%=20;
+                    break;//10 cent
+                case 5:
+                    cantMonedas=cantCent/10;
+                    cantCent%=10;
+                    break;
+                case 6://5 cent
+                    cantMonedas=cantCent/5;
+                    cantCent%=5;
+                    break;
+                case 7://2 cent
+                    cantMonedas=cantCent/2;
+                    cantCent%=2;
+                    break;
+                case 8://1 cent
+                    cantMonedas=cantCent;
+                    cantCent=0;
+                    break;
+            }
+            res*=10+cantMonedas;
+        }
+        return res;
+    }
+
+    public static char getNIF(int dni){
+        String letrasDni="TRWAGMYFPDXBNJZSQVHLCKE";
+        char res=0;
+        int indice=dni%23;
+        res=letrasDni.charAt(indice);
+        return res;
+    }
+
+    public static Boolean isValidNIF(String dni){
+        boolean res=false;
+        if (dni.length()==9) {
+            String letrasDni = "TRWAGMYFPDXBNJZSQVHLCKE";
+            //Extraer los primeros 9 caracteres
+            String numDni = dni.substring(0, 8);
+            //Extraer los primeros 8 caracteres
+            char letraIntroducida = dni.charAt(8);
+
+            //Convertir los primeros 8 caracteres en numeros entero
+            int valDni = Integer.parseInt(numDni);
+            //calcular la letra correspondiente
+            char letraVal = letrasDni.charAt(valDni % 23);
+
+            res = letraVal == letraIntroducida;
+        }
+        return res;
+    }
+
+    public static double calculateIRPF(double salario){
+        double res = 0;
+
+        if (salario <= 12450) {
+            res = salario * 0.19;
+        } else {
+            res = 12450 * 0.19;
+            salario -= 12450;
+        }
+
+        if (salario <= 7750) {
+            res += salario * 0.24;
+        } else {
+            res += 7750 * 0.24;
+            salario -= 7750;
+        }
+
+        if (salario <= 15000) {
+            res += salario * 0.30;
+        } else {
+            res += 15000 * 0.30;
+            salario -= 15000;
+        }
+
+        if (salario <= 14800) {
+            res += salario * 0.37;
+        } else {
+            res += 14800 * 0.37;
+            salario -= 14800;
+        }
+
+        if (salario > 0) {
+            res += salario * 0.45;
+        }
+
+        return res;
+    }
 }
