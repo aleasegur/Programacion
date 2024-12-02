@@ -1,7 +1,6 @@
 package Tema3.Modular3;
 
 import java.util.Scanner;
-import Tema3.Modular2.*;
 public class EjerciciosUtils {
     public static void showMneuUtils(){
         System.out.println("---MENU INTERACTIVO---");
@@ -28,9 +27,12 @@ public class EjerciciosUtils {
                 case 'a':
                     double numMillas;
                     do {
-                        System.out.println("Introduce el valor de millas para convertirlo a km: ");
+                            System.out.println("Introduce el valor de millas para convertirlo a km: ");
+                            numMillas = sc.nextDouble();
+                        if (numMillas<0){
 
-                    }while ()
+                        }
+                    } while (numMillas < 0);
                     break;
                 case 'b':
                     break;
