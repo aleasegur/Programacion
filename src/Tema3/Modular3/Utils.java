@@ -70,61 +70,56 @@ public class Utils {
 
     public static int getCoins(double cantEuros){
         int res=0;
-        //Convertir euros a centimos
-        int cantCent=(int)Math.round(cantEuros*100);
-        int tipMoneda=1;
-        while (cantCent>0 || tipMoneda<=8){
-            int cantMonedas=0;
-            switch (tipMoneda){
-                case 1://2€
-                    cantMonedas=cantCent/200;
-                    cantCent%=200;
-                    break;
-                case 2://1€
-                    cantMonedas=cantCent/100;
-                    cantCent%=100;
-                    break;
-                case 3://50 cent
-                    cantMonedas=cantCent/50;
-                    cantCent%=50;
-                    break;
-                case 4://20 cent
-                    cantMonedas=cantCent/20;
-                    cantCent%=20;
-                    break;//10 cent
-                case 5:
-                    cantMonedas=cantCent/10;
-                    cantCent%=10;
-                    break;
-                case 6://5 cent
-                    cantMonedas=cantCent/5;
-                    cantCent%=5;
-                    break;
-                case 7://2 cent
-                    cantMonedas=cantCent/2;
-                    cantCent%=2;
-                    break;
-                case 8://1 cent
-                    cantMonedas=cantCent;
-                    cantCent=0;
-                    break;
-            }
-            res*=10+cantMonedas;
-        }
+        // Convertimos la cantidad a centimos para evitar problemas del tipo de variables
+        int cantCent = (int) Math.round(cantEuros * 100);
+
+        int monedasDe2Euros = 0;
+        int monedasDe1Euro = 0;
+        int monedasDe50Cent = 0;
+        int monedasDe20Cent = 0;
+        int monedasDe10Cent = 0;
+        int monedasDe5Cent = 0;
+        int monedasDe2Cent = 0;
+        int monedasDe1Cent = 0;
+
+        monedasDe2Euros = cantCent / 200;
+        cantCent %= 200;
+
+        monedasDe1Euro = cantCent / 100;
+        cantCent %= 100;
+
+        monedasDe50Cent = cantCent / 50;
+        cantCent %= 50;
+
+        monedasDe20Cent = cantCent / 20;
+        cantCent %= 20;
+
+        monedasDe10Cent = cantCent / 10;
+        cantCent %= 10;
+
+        monedasDe5Cent = cantCent / 5;
+        cantCent %= 5;
+
+        monedasDe2Cent = cantCent / 2;
+        cantCent %= 2;
+
+        monedasDe1Cent = cantCent;
+
+        res= Integer.parseInt(String.format("%d%d%d%d%d%d%d%d", monedasDe2Euros,monedasDe1Euro,monedasDe50Cent, monedasDe20Cent,monedasDe10Cent, monedasDe5Cent,monedasDe2Cent,monedasDe1Cent));
         return res;
     }
 
-    public static char getNIF(int dni){
+    public static char getNIF(String dni){
         String letrasDni="TRWAGMYFPDXBNJZSQVHLCKE";
         char res=0;
-        int indice=dni%23;
+        int dniNumerico=Integer.parseInt(dni);
+        int indice=dniNumerico%23;
         res=letrasDni.charAt(indice);
         return res;
     }
 
     public static Boolean isValidNIF(String dni){
         boolean res=false;
-        if (dni.length()==9) {
             String letrasDni = "TRWAGMYFPDXBNJZSQVHLCKE";
             //Extraer los primeros 9 caracteres
             String numDni = dni.substring(0, 8);
@@ -137,7 +132,6 @@ public class Utils {
             char letraVal = letrasDni.charAt(valDni % 23);
 
             res = letraVal == letraIntroducida;
-        }
         return res;
     }
 
