@@ -73,14 +73,8 @@ public class Utils {
         // Convertimos la cantidad a centimos para evitar problemas del tipo de variables
         int cantCent = (int) Math.round(cantEuros * 100);
 
-        int monedasDe2Euros = 0;
-        int monedasDe1Euro = 0;
-        int monedasDe50Cent = 0;
-        int monedasDe20Cent = 0;
-        int monedasDe10Cent = 0;
-        int monedasDe5Cent = 0;
-        int monedasDe2Cent = 0;
-        int monedasDe1Cent = 0;
+        int monedasDe2Euros = 0, monedasDe1Euro = 0,monedasDe50Cent = 0,monedasDe20Cent = 0,
+                monedasDe10Cent = 0,monedasDe5Cent = 0,monedasDe2Cent = 0, monedasDe1Cent = 0;
 
         monedasDe2Euros = cantCent / 200;
         cantCent %= 200;
