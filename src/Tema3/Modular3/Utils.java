@@ -41,10 +41,8 @@ Hasta 12.450 euros 19,0%
 De 12.450 euros a 20.199 euros 24,0%
 De 20.200 euros a 35.199 euros 30,0%
 De 35.200 euros a 59.999 euros 37,0%
-De 60.000 euros a 299.999 euros
-A partir de 300.000 euros
-45,0%
-47,0%*/
+De 60.000 euros a 299.999 euros 45,0%
+A partir de 300.000 euros 47,0%*/
 public class Utils {
 
     public static double miles2kilometers(double miles){
