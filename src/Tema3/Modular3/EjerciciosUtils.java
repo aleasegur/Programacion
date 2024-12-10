@@ -173,7 +173,7 @@ public class EjerciciosUtils {
                             }
                         }while (salario<=0);
                         resultG=Utils.calculateIRPF(salario);
-                        System.out.println("El IRPF totoal es "+resultG);
+                        System.out.println("El IRP F totoal es "+resultG);
                         if (!Ejercicio10.pedirOtraVez(sc)){
                             System.out.println("Saliendo del caso G...");
                             condicionCaseG=false;
