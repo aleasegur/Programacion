@@ -188,5 +188,6 @@ public class EjerciciosUtils {
                     System.err.println("ERROR AL INTODUCIR.VUELVA A INTRODUCIR");
             }
         }
+        sc.close();
     }
 }
