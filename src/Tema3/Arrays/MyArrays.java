@@ -18,7 +18,25 @@ import java.util.Arrays;
  l) Haz un programa con un menú que te permita introducir uno o
  dos vectores y hacer todas las operaciones anteriores.*/
 public class MyArrays {
-    public static void printArray(Object[] array){
+    public static void printArray(String[] array){
+        for (int i = 0; i < array.length ; i++) {
+            System.out.println(array[i]);
+        }
+    }
+
+    public static void printArray(int[] array){
+        for (int i = 0; i < array.length ; i++) {
+            System.out.println(array[i]);
+        }
+    }
+
+    public static void printArray(double[] array){
+        for (int i = 0; i < array.length ; i++) {
+            System.out.println(array[i]);
+        }
+    }
+
+    public static void printArray(char[] array){
         for (int i = 0; i < array.length ; i++) {
             System.out.println(array[i]);
         }
