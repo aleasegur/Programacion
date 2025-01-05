@@ -43,9 +43,9 @@ public class MyArrays {
     }
 
     public static int obtenerMax(int[] array){
-        int res=0;
+        int res=array[0];
         for (int i = 0; i < array.length ; i++) {
-            if (array[i]>array[0]){
+            if (array[i]>res){
                 res=array[i];
             }
         }
@@ -53,9 +53,9 @@ public class MyArrays {
     }
 
     public static int obtenerMin(int[] array){
-        int res=0;
+        int res=array[0];
         for (int i = 0; i < array.length ; i++) {
-            if (array[i]<array[0]){
+            if (array[i]<res){
                 res=array[i];
             }
         }

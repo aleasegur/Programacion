@@ -1,5 +1,6 @@
 package Tema3.Arrays;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class menuMyArrays {
@@ -13,6 +14,7 @@ public class menuMyArrays {
         return res;
     }
 
+    //Metodo que compruebo si el numero para la longitud que introduce el usuario es correcto(Que no sea menor a 0)
     public static int obtenerLongitudValida(Scanner sc) {
         int res;
         do {
@@ -120,10 +122,33 @@ public class menuMyArrays {
                     }
                     break;
                 case 'b':
+                    int longitudB,resultB,userInputB;
+                    int[] vectorIntB;
+                    longitudB=obtenerLongitudValida(sc);
+                    vectorIntB=new int[longitudB];
+                    for (int i = 0; i < vectorIntB.length; i++) {
+                        System.out.println("Introduce un numero entero en el modulo "+i+" :");
+                        userInputB=sc.nextInt();
+                        vectorIntB[i]=userInputB;
+                    }
+                    resultB=MyArrays.obtenerMax(vectorIntB);
+                    System.out.println("El maximo es "+resultB);
                     break;
                 case 'c':
+                    int longitudC,resultC,userInputC;
+                    int[] vectorIntC;
+                    longitudC=obtenerLongitudValida(sc);
+                    vectorIntC=new int[longitudC];
+                    for (int i = 0; i < vectorIntC.length; i++) {
+                        System.out.println("Introduce un numero entero en el modulo "+i+" :");
+                        userInputC=sc.nextInt();
+                        vectorIntC[i]=userInputC;
+                    }
+                    resultC=MyArrays.obtenerMin(vectorIntC);
+                    System.out.println("El minimo es "+resultC);
                     break;
                 case 'd':
+
                     break;
                 case 'e':
                     break;
@@ -149,5 +174,6 @@ public class menuMyArrays {
 
             }
         }
+        sc.close();
     }
 }
