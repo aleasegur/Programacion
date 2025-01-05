@@ -112,7 +112,7 @@ public class menuMyArrays {
                                 MyArrays.printArray(vectorCharA);
                                 break;
                             case 'e':
-                                System.out.println("Saliendo...");
+                                System.out.println("Saliendo del caso A...");
                                 bucleCaseA=false;
                                 break;
                             default:
@@ -162,6 +162,46 @@ public class menuMyArrays {
                     System.out.println("La media es "+resultD);
                     break;
                 case 'e':
+                    boolean bucleCaseE=true,resultE;
+                    int longitudE = 0;
+                    int[] vectorIntE;
+                    String[] vectorStrE;
+                    char opcionE;
+                    while (bucleCaseE){
+                        System.out.println("a.Cadena caracteres");
+                        System.out.println("b.Numeros Enteros");
+                        System.out.println("c.Salir");
+                        opcionE=sc.next().toLowerCase().charAt(0);
+                        if (opcionE!='c'){
+                            longitudE=obtenerLongitudValida(sc);
+                        }
+                        switch (opcionE){
+                            case 'a':
+                                String userResEa,elementoStrEa;
+                                vectorStrE=new String[longitudE];
+                                for (int i = 0; i < vectorStrE.length; i++) {
+                                    System.out.println("Introduce en el modulo "+i+" una cadena de carcteres:");
+                                    userResEa=sc.next();
+                                    vectorStrE[i]=userResEa;
+                                }
+                                System.out.println("Que elemento quiere comprobar si existe: ");
+                                elementoStrEa= sc.next();
+                                resultE=MyArrays.existeElemento(vectorStrE,elementoStrEa);
+                                if (resultE){
+                                    System.out.println("El elemento "+elementoStrEa+" existe en el vector");
+                                }else{
+                                    System.out.println("El elemento "+elementoStrEa+" no existe en el vector");
+                                }
+                                break;
+                            case 'c':
+                                System.out.println("Saliendo del caso E...");
+                                bucleCaseE=false;
+                                break;
+                            default:
+                                System.err.println("Opción no válida. Intenta de nuevo.");
+                                break;
+                        }
+                    }
                     break;
                 case 'f':
                     break;

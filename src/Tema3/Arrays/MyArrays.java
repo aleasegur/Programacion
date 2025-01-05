@@ -80,6 +80,15 @@ public class MyArrays {
         }
         return res;
     }
+    public static boolean existeElemento(String[] array,String elemento){
+        boolean res=false;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].equals(elemento)){
+                res=true;
+            }
+        }
+        return res;
+    }
 
     public static double[] sumaDosVectores(double[] array1,double[] array2){
         double[] res=new double[array1.length];
