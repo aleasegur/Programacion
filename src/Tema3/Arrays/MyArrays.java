@@ -63,10 +63,11 @@ public class MyArrays {
     }
 
     public static double obtenerMedia(double[] array){
-        double res=0;
+        double res=0,suma=0;
         for (int i = 0; i < array.length; i++) {
-            res+=array[i];
+            suma+=array[i];
         }
+        res=suma/ array.length;
         return res;
     }
 

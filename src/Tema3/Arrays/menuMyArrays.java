@@ -148,7 +148,18 @@ public class menuMyArrays {
                     System.out.println("El minimo es "+resultC);
                     break;
                 case 'd':
-
+                    int longitudD;
+                    double resultD,userInputD;
+                    double[] vectorDblD;
+                    longitudD=obtenerLongitudValida(sc);
+                    vectorDblD=new double[longitudD];
+                    for (int i = 0; i < vectorDblD.length; i++) {
+                        System.out.println("Introduce un numero real en el modulo "+i+" :");
+                        userInputD=sc.nextInt();
+                        vectorDblD[i]=userInputD;
+                    }
+                    resultD=MyArrays.obtenerMedia(vectorDblD);
+                    System.out.println("La media es "+resultD);
                     break;
                 case 'e':
                     break;
