@@ -27,16 +27,13 @@ public class Ejercicio5 {
     }
 
     // Método que valida las posiciones
-    public static boolean validarPosiciones(int posicion1, int posicion2, boolean[] visible) {
+    public static boolean validarPosiciones(int posicion1, int posicion2) {
         boolean res=true;
         if (posicion1 < 0 || posicion1 >= 20 || posicion2 < 0 || posicion2 >= 20) {
             System.out.println("Una o ambas posiciones están fuera de rango. Intenta nuevamente.");
             res= false;
         }
-        if (visible[posicion1] || visible[posicion2]) {
-            System.out.println("Una o ambas posiciones ya están descubiertas. Intenta nuevamente.");
-            res= false;
-        }
+
         if (posicion1 == posicion2) {
             System.out.println("No puedes seleccionar la misma posición dos veces. Intenta de nuevo.");
             res= false;
@@ -44,6 +41,14 @@ public class Ejercicio5 {
         return res;
     }
 
+    public static boolean validarLenghtArray(boolean[] visible,int posicion1,int posicion2){
+        boolean res=true;
+        if (visible[posicion1] || visible[posicion2]) {
+            System.out.println("Una o ambas posiciones ya están descubiertas. Intenta nuevamente.");
+            res= false;
+        }
+        return res;
+    }
         public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Random random = new Random();
@@ -78,7 +83,7 @@ public class Ejercicio5 {
                 posicion1 = sc.nextInt() - 1;
                 System.out.println("Selecciona la segunda posición (1-20): ");
                 posicion2 = sc.nextInt() - 1;
-            } while (!validarPosiciones(posicion1, posicion2, visible));
+            } while (!validarPosiciones(posicion1, posicion2));
 
             System.out.println("Has seleccionado:");
             System.out.println("Posición " + (posicion1 + 1) + ": " + tablero[posicion1]);
