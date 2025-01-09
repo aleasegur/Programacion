@@ -10,6 +10,90 @@ import java.util.Scanner;
  * Luego añdir un ataque critico en el booleano con un random.nextDouble()
  * si es menor a esCritico se multiplica por dos el daño */
 public class Main {
+    public static void printPrologue(){
+        System.out.println(
+                "....................................................................................................\n" +
+                        "................;###########S,............,SSSS?.*###S,...............................,:+%:.........\n" +
+                        "................S@@@@@@@@@@@%.............*@@@@;,@@@@%..............................:%#@@#,.........\n" +
+                        "...............;@@@@%*******:............,#@@@S.*@@@@:.........,,...................%@@@@+..........\n" +
+                        "...............S@@@#,....................+@@@@;,#@@@%.......,.:+...................:@@@@S...........\n" +
+                        "..............;@@@@*........;*?SSSS%*:..,#@@@S.*@@@@;.,;?%SS;,S?,..:++++:..;+++;.;+%@@@@%*:.........\n" +
+                        "..............%@@@#,......:S@@@#%#@@@@;.+@@@@;,#@@@S.;#@@@S;,S@@#:.%@@@@:.;@@@@*,S@@@@@@@@:.........\n" +
+                        ".............:@@@@#?????:.S@@@#,.*@@@@+.S@@@S.+@@@@;,#@@@*..%@@@@::@@@@?..%@@@#,.,%@@@@+,,..........\n" +
+                        ".............%@@@@@@@@@@,:SSSS+..#@@@#,;@@@@+,#@@@S.*@@%:.,%@@@@%.?@@@@,.:@@@@*..:@@@@#,............\n" +
+                        "............:@@@@#SSSSS*...,,:::+@@@@*.S@@@#.+@@@@;,##+...*#####::@@@@?..%@@@@,..?@@@@+.............\n" +
+                        "............?@@@@:.......;%#@@@@@@@@#,;@@@@+.#@@@S.+%,....,,,.,;.?@@@@:.:@@@@*..:@@@@#,.............\n" +
+                        "...........:@@@@?.......?@@@@?;?@@@@*.S@@@#,+@@@@+,*;;;;;....:S;,@@@@?..?@@@@,..?@@@@+..............\n" +
+                        "...........?@@@@:......;@@@@?..S@@@@,;@@@@*.S@@@#.+@@@@@*...+@S.?@@@@:.:@@@@?..,@@@@#,..............\n" +
+                        "..........,@@@@?.......S@@@@,.;@@@@?.%@@@#,;@@@@+,#@@@@S..,?@@;,@@@@%..?@@@@:..?@@@@+...............\n" +
+                        "..........?@@@@:......;@@@@@++#@@@@,:@@@@*.S@@@#,+@@@@@:.:S@@%.*@@@@S;*@@@@?..,#@@@@*;,.............\n" +
+                        ".........:@@@@%.......+@@@@@@#@@@@?.%@@@@,;@@@@*.:#@@@+.*@@@%,.*@@@@@#@@@@@:..:@@@@@@#,.............\n" +
+                        ".........:????:.......,+?%?+:;????,,*???+.+???*,..,+**,?%*+:...,+%%?;,*???+....:*?%%?;..............\n" +
+                        "....................................................................................................");
+        System.out.println("Guerra. La guerra nunca cambia.\n" +
+                "Los Romanos la declaraban para conseguir esclavos y riqueza.\n" +
+                "España construyó un imperio para saciar su ansia de oro y territorios.\n" +
+                "Hitler transformó la desvencijada Alemania en una superpotencia económica.\n" +
+                "\n" +
+                "Pero la guerra nunca cambia.\n" +
+                "\n" +
+                "En el siglo XXI, la adquisición de recursos seguía motivando la guerra. En esta ocasión, las armas y el botín eran una misma cosa. Petróleo y uranio. Por estos recursos, China invadiría Alaska, EE.UU. se anexionaría Canadá y la Comunidad Europea se disolvería en reñidos estados-nación, volcados en conseguir el control de los últimos recursos de la Tierra.\n" +
+                "\n" +
+                "En 2077, volvió la tormenta de la guerra mundial. En menos de dos horas, la mayoría del planeta quedó reducido a cenizas. De los residuos de la devastación nuclear, una nueva civilización intentaría resurgir.\n" +
+                "\n" +
+                "Unos pocos pudieron alcanzar a tiempo la seguridad relativa de los Refugios subterráneos. Tu familia formaba parte del grupo que ocupó el Refugio 7. A salvo, encerrada tras la gran puerta del refugio, bajo una montaña de piedra, una generación ha vivido sin conocimiento del mundo exterior.\n" +
+                "\n" +
+                "Pero la vida en el Refugio está a punto de cambiar.");
+        System.out.println("Desea crear un personaje o no(Y/N): ");
+    }
+
+    public static void printStats(int velocidad,int ataque,int defensa,int vida,String genero,String faccion,String nombre,String clase){
+        System.out.println(" ____________JUGADOR1________________\n" +
+                "|"+nombre+"[HP]"+vida+"[AB]"+ataque+"[DF]"+defensa+"[VL]"+velocidad+"\n" +
+                "|--------------------------------------------|\n" +
+                "| SEX: " + genero + "                                 |\n" +
+                "| FACCION:" + faccion + "                                |\n" +
+                "| CLASE: " + clase + "                           |\n" +
+                "| RAD:         (r)                           |\n" +
+                "| SLP: <<<<<<<<(s)                           |\n" +
+                "| H2O: <<<<<<<<(h)                           |\n" +
+                "| FOD: <<<<<<<<(f)                           |\n" +
+                "|                                            |\n" +
+                "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀           |\n" +
+                "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⠿⣷⣦⣀⠀⠀⠀⠀⠀⠀⠀          |\n" +
+                "|⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣤⣤⣴⣿⠟⠁⠀⠈⠛⠿⣿⣿⣶⣶⣄         |\n" +
+                "|⠀⢀⣴⣶⣇⠀⢀⣴⣿⠟⠉⠉⠙⠛⠁⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⣿⣆       |\n" +
+                "|⢀⣿⡟⠙⢿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣷⣄     |\n" +
+                "|⠸⣿⡇⠀⠀⠀⠀⠀⢀⡴⠶⢦⣄⣀⣤⠾⠛⠛⣧⡀⠀⠀⠀⠀⠀⠀⠈⠛⢿⣿⣄ |\n" +
+                "|⢠⣿⣇⠀⠀⠀⠀⣴⠋⠀⠀⠀⠈⠉⠁⠀⠀⠀⠈⠻⣦⣤⡤⠶⠻⢿⣦⠀⠀⢻⣿⣆ |\n" +
+                "|⢸⣿⠉⢳⣶⢶⡿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⣿⠁⠀⠀⣿⣿   |\n" +
+                "|⠘⣿⣄⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠄⠀⠀⠀⠀⢠⡼⠋⠀⠀⠀⣿⣿⠀⠀ |\n" +
+                "|⠀⢹⡿⠁⠀⢀⣾⡇⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡀⠀⠀⠀⠀⠀⠠⣝⢦⡀⠀⠀⣿⣿⠀  |\n" +
+                "|⢀⣿⠇⠀⠀⠘⣿⠇⠀⠀⢀⠎⠀⠀⠀⠘⠛⠛⠿⠆⠀⠀⠀⠀⠠⣝⢧⡳⡄⣸⣿⡟⠀ |\n" +
+                "|⢸⣿⠀⠀⠀⠀⠀⠀⢠⡾⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢢⣜⢷⣽⣷⣿⣿⠃⠀⠀⠀ |\n" +
+                "|⢸⡏⠀⠀⠀⠀⠀⠀⢿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠆⣹⣿⣿⠃⠀⠀⠀⠀⠀ |\n" +
+                "|⢸⣇⠀⠀⠀⠀⠀⠀⠈⠛⠂⠀⠀⠀⠀⢠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣷⠀⠀⠀⠀⠀⠀ |\n" +
+                "|⢸⣿⠀⠀⣾⣤⣀⣀⣀⢀⣀⣀⣀⡤⠔⠚⢿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⠀⠀⠀⠀ |\n" +
+                "|⠀⣿⣇⠀⠻⠳⢤⣈⣉⠉⠉⠀⣀⣀⣤⠖⠋⠟⠀⠀⠀⠀⠀⠀⢀⣀⣠⣾⣿⠃⠀⠀⠀⠀ |\n" +
+                "|⠀⠘⣿⣆⠀⠀⠀⠈⠙⣛⣛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⠿⠛⠋⠀⠀⠀⠀⠀⠀⠀ |\n" +
+                "|⠀⠀⠘⢿⣧⡀⠀⠀⠈⠛⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ |\n" +
+                "|⠀⠀⠀⠈⠻⣿⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  |\n" +
+                "|⠀⠀⠀⠀⠀⠈⠙⠿⣿⣶⣦⣤⣤⣤⣤⣶⣶⣿⠿⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
+                "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ |\n" +
+                "| LEVEL 1                                    |\n" +
+                "|--------------------------------------------|\n" +
+                "| Stimpak (a)                                |\n" +
+                "| Bag (d)                                    |\n" +
+                "| EFF:                                       |\n" +
+                "|--------------------------------------------|\n" +
+                "| [Status] (4)SPECIAL (5)Skills              |\n" +
+                "| (6)Perks (7)General                        |\n" +
+                "|--------------------------------------------|\n" +
+                "| STATS ITEMS DATA                           |\n" +
+                "| (1)   (2)   (3)                            |\n" +
+                "|____________________________________________|\n");
+    }
+
     public static void main(String[] args) {
         //Random declarado como rand
         Random rand = new Random();
