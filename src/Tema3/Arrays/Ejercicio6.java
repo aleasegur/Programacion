@@ -95,6 +95,7 @@ public class Ejercicio6 {
                 System.out.println("¡Has pisado una mina!");
                 bucleJuego=false;
             }else {
+                System.out.println("No hay mina");
                 visible[posicion]=true;
                 casillaDescubierta++;
             }
