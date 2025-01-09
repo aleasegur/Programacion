@@ -17,6 +17,11 @@ public class Ejercicio3AtrapaLaMosca {
             vector[i]=0;
         }
     }
+
+    public static boolean comprobarUserInput(int userInput){
+        return userInput < 0 || userInput >= 15;
+    }
+
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         Random random=new Random();
@@ -35,10 +40,10 @@ public class Ejercicio3AtrapaLaMosca {
             do {
                 System.out.println("Selecciona una posicion entre 1-15: ");
                 userInput = sc.nextInt() - 1;// Cuando el usuario ingresa 1 para la primera fila, se refiere al índice 0 del array.
-                if (userInput < 0 || userInput >= 15) {
+                if (!comprobarUserInput(userInput)) {
                     System.err.println("Selecciona un numero valido entre 1 y 15");
                 }
-            }while (userInput < 0 || userInput >= 15);
+            }while (!comprobarUserInput(userInput));
 
             if (posicionMosca==userInput){
                 System.out.println("Felicidades has atrapado la mosca en la poscion "+(userInput+1)+" !");
