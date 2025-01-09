@@ -83,7 +83,7 @@ public class Ejercicio5 {
                 posicion1 = sc.nextInt() - 1;
                 System.out.println("Selecciona la segunda posición (1-20): ");
                 posicion2 = sc.nextInt() - 1;
-            } while (!validarPosiciones(posicion1, posicion2));
+            } while (!validarPosiciones(posicion1, posicion2) || !validarLenghtArray(visible,posicion1,posicion2));
 
             System.out.println("Has seleccionado:");
             System.out.println("Posición " + (posicion1 + 1) + ": " + tablero[posicion1]);
