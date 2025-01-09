@@ -38,7 +38,7 @@ public class Ejercicio3AtrapaLaMosca {
                 if (userInput < 0 || userInput >= 15) {
                     System.err.println("Selecciona un numero valido entre 1 y 15");
                 }
-            }while (userInput < 0 || userInput > 15);
+            }while (userInput < 0 || userInput >= 15);
 
             if (posicionMosca==userInput){
                 System.out.println("Felicidades has atrapado la mosca en la poscion "+(userInput+1)+" !");
