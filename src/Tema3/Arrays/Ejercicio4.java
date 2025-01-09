@@ -50,5 +50,6 @@ public class Ejercicio4 {
 
         System.out.println("Distribucion de la señal WIFI: ");
         mostrarVector(vectorHabitaciones);
+        sc.close();
     }
 }
