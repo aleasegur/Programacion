@@ -174,10 +174,9 @@ public class menuMyArrays {
                     char opcionE;
                     while (bucleCaseE){
                         System.out.println("a.Cadena caracteres");
-                        System.out.println("b.Numeros Enteros");
                         System.out.println("c.Salir");
                         opcionE=sc.next().toLowerCase().charAt(0);
-                        if (opcionE!='c'){
+                        if (opcionE=='a'){
                             longitudE=obtenerLongitudValida(sc);
                         }
                         switch (opcionE){
