@@ -4,6 +4,39 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class menuMyArrays {
+
+    public static void addModArray(String[] vector,String user,Scanner sc){
+        for (int i = 0; i < vector.length; i++) {
+            System.out.println("Introduce en el modulo " + i + " una cadena de carcteres:");
+            user = sc.next();
+            vector[i] = user;
+        }
+    }
+
+    public static void addModArray(int[] vector,int user,Scanner sc){
+        for (int i = 0; i < vector.length; i++) {
+            System.out.println("Introduce en el modulo " + i + " un numero entero:");
+            user = sc.nextInt();
+            vector[i] = user;
+        }
+    }
+
+    public static void addModArray(double[] vector,double user,Scanner sc){
+        for (int i = 0; i < vector.length; i++) {
+            System.out.println("Introduce en el modulo " + i + " una cadena de carcteres:");
+            user = sc.nextDouble();
+            vector[i] = user;
+        }
+    }
+
+    public static void addModArray(char[] vector,char user,Scanner sc){
+        for (int i = 0; i < vector.length; i++) {
+            System.out.println("Introduce en el modulo " + i + " una cadena de carcteres:");
+            user = sc.next().toLowerCase().charAt(0);
+            vector[i] = user;
+        }
+    }
+
     public static boolean comprobarArraysLenght(double[] array1,double[] array2){
         boolean res=array1.length!=array2.length;
         return res;
@@ -72,43 +105,27 @@ public class menuMyArrays {
                         }
                         switch (opcionA) {
                             case 'a':
-                                String userResA;
+                                String userResA="";
                                 vectorStrA = new String[longitudA];
-                                for (int i = 0; i < vectorStrA.length; i++) {
-                                    System.out.println("Introduce en el modulo " + i + " una cadena de carcteres:");
-                                    userResA = sc.next();
-                                    vectorStrA[i] = userResA;
-                                }
+                                addModArray(vectorStrA,userResA,sc);
                                 MyArrays.printArray(vectorStrA);
                                 break;
                             case 'b':
-                                int userResB;
+                                int userResB=0;
                                 vectorIntA=new int[longitudA];
-                                for (int i = 0; i < vectorIntA.length; i++) {
-                                    System.out.println("Introduce en el modulo "+i+" un numero:");
-                                    userResB=sc.nextInt();
-                                    vectorIntA[i]=userResB;
-                                }
+                                addModArray(vectorIntA,userResB,sc);
                                 MyArrays.printArray(vectorIntA);
                                 break;
                             case 'c': // Manejar números reales
-                                double userResC;
+                                double userResC=0.0;
                                 vectorDblA = new double[longitudA];
-                                for (int i = 0; i < vectorDblA.length; i++) {
-                                    System.out.print("Introduce en el modulo " + i + " un número real:");
-                                    userResC = sc.nextDouble();
-                                    vectorDblA[i] = userResC;
-                                }
+                                addModArray(vectorDblA,userResC,sc);
                                 MyArrays.printArray(vectorDblA);
                                 break;
                             case 'd': // Manejar caracteres
-                                char userResD;
+                                char userResD=0;
                                 vectorCharA = new char[longitudA];
-                                for (int i = 0; i < vectorCharA.length; i++) {
-                                    System.out.print("Introduce en el modulo " + i + " un carácter:");
-                                    userResD = sc.next().charAt(0);
-                                    vectorCharA[i] = userResD;
-                                }
+                                addModArray(vectorCharA,userResD,sc);
                                 MyArrays.printArray(vectorCharA);
                                 break;
                             case 'e':
@@ -122,42 +139,30 @@ public class menuMyArrays {
                     }
                     break;
                 case 'b':
-                    int longitudB,resultB,userInputB;
+                    int longitudB,resultB,userInputB=0;
                     int[] vectorIntB;
                     longitudB=obtenerLongitudValida(sc);
                     vectorIntB=new int[longitudB];
-                    for (int i = 0; i < vectorIntB.length; i++) {
-                        System.out.println("Introduce un numero entero en el modulo "+i+" :");
-                        userInputB=sc.nextInt();
-                        vectorIntB[i]=userInputB;
-                    }
+                    addModArray(vectorIntB,userInputB,sc);
                     resultB=MyArrays.obtenerMax(vectorIntB);
                     System.out.println("El maximo es "+resultB);
                     break;
                 case 'c':
-                    int longitudC,resultC,userInputC;
+                    int longitudC,resultC,userInputC=0;
                     int[] vectorIntC;
                     longitudC=obtenerLongitudValida(sc);
                     vectorIntC=new int[longitudC];
-                    for (int i = 0; i < vectorIntC.length; i++) {
-                        System.out.println("Introduce un numero entero en el modulo "+i+" :");
-                        userInputC=sc.nextInt();
-                        vectorIntC[i]=userInputC;
-                    }
+                    addModArray(vectorIntC,userInputC,sc);
                     resultC=MyArrays.obtenerMin(vectorIntC);
                     System.out.println("El minimo es "+resultC);
                     break;
                 case 'd':
                     int longitudD;
-                    double resultD,userInputD;
+                    double resultD,userInputD=0;
                     double[] vectorDblD;
                     longitudD=obtenerLongitudValida(sc);
                     vectorDblD=new double[longitudD];
-                    for (int i = 0; i < vectorDblD.length; i++) {
-                        System.out.println("Introduce un numero real en el modulo "+i+" :");
-                        userInputD=sc.nextInt();
-                        vectorDblD[i]=userInputD;
-                    }
+                    addModArray(vectorDblD,userInputD,sc);
                     resultD=MyArrays.obtenerMedia(vectorDblD);
                     System.out.println("La media es "+resultD);
                     break;
@@ -177,13 +182,9 @@ public class menuMyArrays {
                         }
                         switch (opcionE){
                             case 'a':
-                                String userResEa,elementoStrEa;
+                                String userResEa="",elementoStrEa;
                                 vectorStrE=new String[longitudE];
-                                for (int i = 0; i < vectorStrE.length; i++) {
-                                    System.out.println("Introduce en el modulo "+i+" una cadena de carcteres:");
-                                    userResEa=sc.next();
-                                    vectorStrE[i]=userResEa;
-                                }
+                                addModArray(vectorStrE,userResEa,sc);
                                 System.out.println("Que elemento quiere comprobar si existe: ");
                                 elementoStrEa= sc.next();
                                 resultE=MyArrays.existeElemento(vectorStrE,elementoStrEa);
@@ -206,7 +207,7 @@ public class menuMyArrays {
                 case 'f':
                     int longitudF1,longitudF2;
                     double[] vectorDblF1,vectorDblF2,resultF;
-                    double userInputF1,userInputF2;
+                    double userInputF1=0,userInputF2=0;
                     boolean longitudVectorEq;
                     do {
                         longitudF1 = obtenerLongitudValida(sc);
@@ -221,26 +222,18 @@ public class menuMyArrays {
                     //vectorDblH1, el usuario introduce dentro de cada modulo el numero que desea
                     System.out.println("Vector1");
                     System.out.println("--------");
-                    for (int i = 0; i <vectorDblF1.length ; i++) {
-                        System.out.print("Introduce en el modulo " + i + " un número real:");
-                        userInputF1=sc.nextDouble();
-                        vectorDblF1[i]=userInputF1;
-                    }
+                    addModArray(vectorDblF1,userInputF1,sc);
                     //vectorDblH2
                     System.out.println("Vector2");
                     System.out.println("--------");
-                    for (int i = 0; i < vectorDblF2.length; i++) {
-                        System.out.print("Introduce en el modulo " + i + " un número real:");
-                        userInputF2=sc.nextDouble();
-                        vectorDblF2[i]=userInputF2;
-                    }
+                    addModArray(vectorDblF2,userInputF2,sc);
                     resultF=MyArrays.sumaDosVectores(vectorDblF1,vectorDblF2);
                     System.out.println("La suma de los dos vectores es "+Arrays.toString(resultF));
                     break;
                 case 'g':
                     int longitudG1,longitudG2;
                     double[] vectorDblG1,vectorDblG2,resultG;
-                    double userInputG1,userInputG2;
+                    double userInputG1=0,userInputG2=0;
                     boolean longitudVectorEqG;
                     do {
                         longitudG1 = obtenerLongitudValida(sc);
@@ -255,19 +248,11 @@ public class menuMyArrays {
                     //vectorDblH1, el usuario introduce dentro de cada modulo el numero que desea
                     System.out.println("Vector1");
                     System.out.println("--------");
-                    for (int i = 0; i <vectorDblG1.length ; i++) {
-                        System.out.print("Introduce en el modulo " + i + " un número real:");
-                        userInputG1=sc.nextDouble();
-                        vectorDblG1[i]=userInputG1;
-                    }
+                    addModArray(vectorDblG1,userInputG1,sc);
                     //vectorDblH2
                     System.out.println("Vector2");
                     System.out.println("--------");
-                    for (int i = 0; i < vectorDblG2.length; i++) {
-                        System.out.print("Introduce en el modulo " + i + " un número real:");
-                        userInputG2=sc.nextDouble();
-                        vectorDblG2[i]=userInputG2;
-                    }
+                    addModArray(vectorDblG2,userInputG2,sc);
                     resultG=MyArrays.restarDosVectores(vectorDblG1,vectorDblG2);
                     System.out.println("La resta de los dos vectores es "+Arrays.toString(resultG));
                     break;
@@ -275,7 +260,7 @@ public class menuMyArrays {
                     int longitudH1,longitudH2;
                     double[] vectorDblH1,vectorDblH2;
                     double resultH;
-                    double userInputH1,userInputH2;
+                    double userInputH1=0,userInputH2=0;
                     boolean longitudVectorEqH;
                     do {
                         longitudH1 = obtenerLongitudValida(sc);
@@ -290,61 +275,41 @@ public class menuMyArrays {
                     //vectorDblH1, el usuario introduce dentro de cada modulo el numero que desea
                     System.out.println("Vector1");
                     System.out.println("--------");
-                    for (int i = 0; i <vectorDblH1.length ; i++) {
-                        System.out.print("Introduce en el modulo " + i + " un número real:");
-                        userInputH1=sc.nextDouble();
-                        vectorDblH1[i]=userInputH1;
-                    }
+                    addModArray(vectorDblH1,userInputH1,sc);
                     //vectorDblH2
                     System.out.println("Vector2");
                     System.out.println("--------");
-                    for (int i = 0; i < vectorDblH2.length; i++) {
-                        System.out.print("Introduce en el modulo " + i + " un número real:");
-                        userInputH2=sc.nextDouble();
-                        vectorDblH2[i]=userInputH2;
-                    }
+                    addModArray(vectorDblH2,userInputH2,sc);
                     resultH=MyArrays.productoEscalar(vectorDblH1,vectorDblH2);
                     System.out.println("El producto a escalar es "+resultH);
                     break;
                 case 'i':
-                    int longitudI,userInputI;
+                    int longitudI,userInputI=0;
                     int[] vectorIntI,resultI;
                     longitudI=obtenerLongitudValida(sc);
                     vectorIntI=new int[longitudI];
-                    for (int i = 0; i < vectorIntI.length; i++) {
-                        System.out.println("Introduce un numero entero en el modulo "+i+" :");
-                        userInputI=sc.nextInt();
-                        vectorIntI[i]=userInputI;
-                    }
+                    addModArray(vectorIntI,userInputI,sc);
                     resultI=MyArrays.invertirArray(vectorIntI);
                     System.out.println("Orden sin invertir "+Arrays.toString(vectorIntI));
                     System.out.println("Orden invertido "+Arrays.toString(resultI));
                     break;
                 case 'j':
-                    int longitudJ,userInputJ;
+                    int longitudJ,userInputJ=0;
                     int[] vectorIntJ;
                     longitudJ=obtenerLongitudValida(sc);
                     vectorIntJ=new int[longitudJ];
-                    for (int i = 0; i < vectorIntJ.length; i++) {
-                        System.out.println("Introduce un numero entero en el modulo "+i+" :");
-                        userInputJ=sc.nextInt();
-                        vectorIntJ[i]=userInputJ;
-                    }
+                    addModArray(vectorIntJ,userInputJ,sc);
                     System.out.println("Orden sin invertor "+Arrays.toString(vectorIntJ));
                     MyArrays.invertirUnArray(vectorIntJ);
                     System.out.println("Orden invertido "+Arrays.toString(vectorIntJ));
                     break;
                 case 'k':
-                    int longitudK,userInputK;
+                    int longitudK,userInputK=0;
                     int[] vectorIntK;
                     boolean resultK;
                     longitudK=obtenerLongitudValida(sc);
                     vectorIntK=new int[longitudK];
-                    for (int i = 0; i < vectorIntK.length; i++) {
-                        System.out.println("Introduce un numero entero en el modulo "+i+" :");
-                        userInputK=sc.nextInt();
-                        vectorIntK[i]=userInputK;
-                    }
+                    addModArray(vectorIntK,userInputK,sc);
                     resultK=MyArrays.capicuaArray(vectorIntK);
                     if (resultK){
                         System.out.println("El vector introducido es capicua");
