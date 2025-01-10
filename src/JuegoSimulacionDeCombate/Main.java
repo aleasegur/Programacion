@@ -6,7 +6,7 @@ import java.util.Scanner;
 // ALEJANDRO ASENCIO GURAU
 public class Main {
 
-    public static void starCombat(Scanner sc, Random rand, int vida1, int ataque1, int defensa1, int velocidad1, int vida2, int ataque2, int defensa2, int velocidad2) {
+    public static void startCombat(Scanner sc, Random rand, int vida1, int ataque1, int defensa1, int velocidad1, int vida2, int ataque2, int defensa2, int velocidad2) {
         int ronda = 1;
         while (vida1 > 0 && vida2 > 0) {
             System.out.println("\n************************************");
@@ -89,7 +89,7 @@ public class Main {
         }while (accionJugador!='Y' && accionJugador!='N');
 
         // Iniciar combate
-        starCombat(sc, rand, vida1, ataque1, defensa1, velocidad1, vida2, ataque2, defensa2, velocidad2);
+        startCombat(sc, rand, vida1, ataque1, defensa1, velocidad1, vida2, ataque2, defensa2, velocidad2);
         sc.close();
     }
 }
