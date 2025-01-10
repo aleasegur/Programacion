@@ -19,7 +19,7 @@ public class MyMatrix {
     public static void printMatrix(int[][] vector){
         for (int i = 0; i < vector.length; i++) {;
             for (int j = 0; j < vector[i].length; j++) {
-                System.out.println(vector[i][j]);
+                System.out.print(vector[i][j]);
             }
             System.out.println();
         }
@@ -28,29 +28,33 @@ public class MyMatrix {
     public static void printMatrix(double[][] vector){
         for (int i = 0; i < vector.length; i++) {
             for (int j = 0; j < vector[i].length; j++) {
-                System.out.println(vector[i][j]);
+                System.out.print(vector[i][j]);
             }
+            System.out.println();
         }
     }
 
     public static void printMatrix(String[][] vector){
         for (int i = 0; i < vector.length; i++) {
             for (int j = 0; j < vector[i].length; j++) {
-                System.out.println(vector[i][j]);
+                System.out.print(vector[i][j]);
             }
+            System.out.println();
         }
     }
 
     public static void printMatrix(char[][] vector){
         for (int i = 0; i < vector.length; i++) {
             for (int j = 0; j < vector[i].length; j++) {
-                System.out.println(vector[i][j]);
+                System.out.print(vector[i][j]);
             }
+            System.out.println();
         }
     }
 
     public static void main(String[] args) {
-        //int[][]
+        int[][] prueba=new int[5][5];
+        printMatrix(prueba);
     }
 
 }
