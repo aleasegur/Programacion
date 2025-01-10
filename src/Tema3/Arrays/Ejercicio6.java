@@ -44,12 +44,11 @@ public class Ejercicio6 {
         int minasColocadas = 0;
         int index,minasAlrededor;
         // Coloca las minas aleatoriamente
-        while (minasColocadas < 6) {
+        for (int i = minasColocadas; i < 6; i++) {
             index = random.nextInt(20);
             if (!minas[index]) {
                 minas[index] = true;
                 tablero[index] = "*";
-                minasColocadas++;
             }
         }
 
@@ -85,7 +84,7 @@ public class Ejercicio6 {
 
         while (bucleJuego){
             //Comprobar en forma de depuracion
-            //mostrarTableroConMinas(tablero,visible);
+            mostrarTableroConMinas(tablero,visible);
             do {
                 System.out.println("Selecciona una poscion entre(1-20): ");
                 posicion=sc.nextInt()-1;
@@ -95,7 +94,7 @@ public class Ejercicio6 {
                 System.out.println("¡Has pisado una mina!");
                 bucleJuego=false;
             }else {
-                System.out.println("No hay mina");
+                System.out.println("No hay mina, "+tablero[posicion]);
                 visible[posicion]=true;
                 casillaDescubierta++;
             }
