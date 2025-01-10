@@ -29,9 +29,9 @@ public class Main {
             ronda++;
         }
         if (vida1 > 0) {
-            System.out.println("\n¡Jugador 1 GANA!");
+            System.out.println("¡Jugador 1 GANA!");
         } else {
-            System.out.println("\n¡Jugador 2 GANA!");
+            System.out.println("¡Jugador 2 GANA!");
         }
     }
 
@@ -55,6 +55,7 @@ public class Main {
             System.out.println("¿Desea usar personajes predefinidos? (Y/N):");
             accionJugador = sc.next().toUpperCase().charAt(0);
             if (accionJugador == 'Y') {
+
                 vida1 = 100;
                 ataque1 = 100;
                 defensa1 = 50;
@@ -63,7 +64,9 @@ public class Main {
                 ataque2 = 90;
                 defensa2 = 60;
                 velocidad2 = 110;
+
             } else if (accionJugador == 'N') {
+
                 do {
                     System.out.println("Configuración Jugador 1:");
                     vida1 = MethodsCombats.readPlayerStats(sc, "Vida", min, max);
@@ -81,6 +84,7 @@ public class Main {
                     velocidad2 = MethodsCombats.readPlayerStats(sc, "Velocidad", min, max);
                     comprobarStats2 = MethodsCombats.areValidPLayerStats(vida2, ataque2, defensa2, velocidad2, sumMaxStats);
                 } while (!comprobarStats2);
+
             } else {
                 System.out.println("Accion no reconozida, Vuelva a introducirlo");
             }
