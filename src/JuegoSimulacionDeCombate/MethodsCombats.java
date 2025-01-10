@@ -17,9 +17,9 @@ public class MethodsCombats {
         return valor;
     }
     //Valida si la suma de los atributos no es mayor a 500
-    public static boolean areValidPLayerStats(int vida, int ataque, int defensa, int velocidad) {
+    public static boolean areValidPLayerStats(int vida, int ataque, int defensa, int velocidad,int sumMaxStats) {
         boolean res=true;
-        if (vida + ataque + defensa + velocidad > 500) {
+        if (vida + ataque + defensa + velocidad > sumMaxStats) {
             System.out.println("La suma de los atributos no puede exceder 500. Reinicie el programa.");
             res=false;
         }
