@@ -10,89 +10,6 @@ import java.util.Scanner;
  * Luego añdir un ataque critico en el booleano con un random.nextDouble()
  * si es menor a esCritico se multiplica por dos el daño */
 public class Main {
-    public static void printPrologue(){
-        System.out.println(
-                "....................................................................................................\n" +
-                        "................;###########S,............,SSSS?.*###S,...............................,:+%:.........\n" +
-                        "................S@@@@@@@@@@@%.............*@@@@;,@@@@%..............................:%#@@#,.........\n" +
-                        "...............;@@@@%*******:............,#@@@S.*@@@@:.........,,...................%@@@@+..........\n" +
-                        "...............S@@@#,....................+@@@@;,#@@@%.......,.:+...................:@@@@S...........\n" +
-                        "..............;@@@@*........;*?SSSS%*:..,#@@@S.*@@@@;.,;?%SS;,S?,..:++++:..;+++;.;+%@@@@%*:.........\n" +
-                        "..............%@@@#,......:S@@@#%#@@@@;.+@@@@;,#@@@S.;#@@@S;,S@@#:.%@@@@:.;@@@@*,S@@@@@@@@:.........\n" +
-                        ".............:@@@@#?????:.S@@@#,.*@@@@+.S@@@S.+@@@@;,#@@@*..%@@@@::@@@@?..%@@@#,.,%@@@@+,,..........\n" +
-                        ".............%@@@@@@@@@@,:SSSS+..#@@@#,;@@@@+,#@@@S.*@@%:.,%@@@@%.?@@@@,.:@@@@*..:@@@@#,............\n" +
-                        "............:@@@@#SSSSS*...,,:::+@@@@*.S@@@#.+@@@@;,##+...*#####::@@@@?..%@@@@,..?@@@@+.............\n" +
-                        "............?@@@@:.......;%#@@@@@@@@#,;@@@@+.#@@@S.+%,....,,,.,;.?@@@@:.:@@@@*..:@@@@#,.............\n" +
-                        "...........:@@@@?.......?@@@@?;?@@@@*.S@@@#,+@@@@+,*;;;;;....:S;,@@@@?..?@@@@,..?@@@@+..............\n" +
-                        "...........?@@@@:......;@@@@?..S@@@@,;@@@@*.S@@@#.+@@@@@*...+@S.?@@@@:.:@@@@?..,@@@@#,..............\n" +
-                        "..........,@@@@?.......S@@@@,.;@@@@?.%@@@#,;@@@@+,#@@@@S..,?@@;,@@@@%..?@@@@:..?@@@@+...............\n" +
-                        "..........?@@@@:......;@@@@@++#@@@@,:@@@@*.S@@@#,+@@@@@:.:S@@%.*@@@@S;*@@@@?..,#@@@@*;,.............\n" +
-                        ".........:@@@@%.......+@@@@@@#@@@@?.%@@@@,;@@@@*.:#@@@+.*@@@%,.*@@@@@#@@@@@:..:@@@@@@#,.............\n" +
-                        ".........:????:.......,+?%?+:;????,,*???+.+???*,..,+**,?%*+:...,+%%?;,*???+....:*?%%?;..............\n" +
-                        "....................................................................................................");
-        System.out.println("Guerra. La guerra nunca cambia.\n" +
-                "Los Romanos la declaraban para conseguir esclavos y riqueza.\n" +
-                "España construyó un imperio para saciar su ansia de oro y territorios.\n" +
-                "Hitler transformó la desvencijada Alemania en una superpotencia económica.\n" +
-                "\n" +
-                "Pero la guerra nunca cambia.\n" +
-                "\n" +
-                "En el siglo XXI, la adquisición de recursos seguía motivando la guerra. En esta ocasión, las armas y el botín eran una misma cosa. Petróleo y uranio. Por estos recursos, China invadiría Alaska, EE.UU. se anexionaría Canadá y la Comunidad Europea se disolvería en reñidos estados-nación, volcados en conseguir el control de los últimos recursos de la Tierra.\n" +
-                "\n" +
-                "En 2077, volvió la tormenta de la guerra mundial. En menos de dos horas, la mayoría del planeta quedó reducido a cenizas. De los residuos de la devastación nuclear, una nueva civilización intentaría resurgir.\n" +
-                "\n" +
-                "Unos pocos pudieron alcanzar a tiempo la seguridad relativa de los Refugios subterráneos. Tu familia formaba parte del grupo que ocupó el Refugio 7. A salvo, encerrada tras la gran puerta del refugio, bajo una montaña de piedra, una generación ha vivido sin conocimiento del mundo exterior.\n" +
-                "\n" +
-                "Pero la vida en el Refugio está a punto de cambiar.");
-        System.out.println("Desea crear un personaje o no(Y/N): ");
-    }
-
-    public static void printStats(int velocidad,int ataque,int defensa,int vida,String genero,String faccion,String nombre,String clase){
-        System.out.println(" ____________JUGADOR1________________\n" +
-                "|"+nombre+"[HP]"+vida+"[AB]"+ataque+"[DF]"+defensa+"[VL]"+velocidad+"\n" +
-                "|--------------------------------------------|\n" +
-                "| SEX: " + genero + "                                 |\n" +
-                "| FACCION:" + faccion + "                                |\n" +
-                "| CLASE: " + clase + "                           |\n" +
-                "| RAD:         (r)                           |\n" +
-                "| SLP: <<<<<<<<(s)                           |\n" +
-                "| H2O: <<<<<<<<(h)                           |\n" +
-                "| FOD: <<<<<<<<(f)                           |\n" +
-                "|                                            |\n" +
-                "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀           |\n" +
-                "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⠿⣷⣦⣀⠀⠀⠀⠀⠀⠀⠀          |\n" +
-                "|⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣤⣤⣴⣿⠟⠁⠀⠈⠛⠿⣿⣿⣶⣶⣄         |\n" +
-                "|⠀⢀⣴⣶⣇⠀⢀⣴⣿⠟⠉⠉⠙⠛⠁⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⣿⣆       |\n" +
-                "|⢀⣿⡟⠙⢿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣷⣄     |\n" +
-                "|⠸⣿⡇⠀⠀⠀⠀⠀⢀⡴⠶⢦⣄⣀⣤⠾⠛⠛⣧⡀⠀⠀⠀⠀⠀⠀⠈⠛⢿⣿⣄ |\n" +
-                "|⢠⣿⣇⠀⠀⠀⠀⣴⠋⠀⠀⠀⠈⠉⠁⠀⠀⠀⠈⠻⣦⣤⡤⠶⠻⢿⣦⠀⠀⢻⣿⣆ |\n" +
-                "|⢸⣿⠉⢳⣶⢶⡿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⣿⠁⠀⠀⣿⣿   |\n" +
-                "|⠘⣿⣄⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠄⠀⠀⠀⠀⢠⡼⠋⠀⠀⠀⣿⣿⠀⠀ |\n" +
-                "|⠀⢹⡿⠁⠀⢀⣾⡇⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡀⠀⠀⠀⠀⠀⠠⣝⢦⡀⠀⠀⣿⣿⠀  |\n" +
-                "|⢀⣿⠇⠀⠀⠘⣿⠇⠀⠀⢀⠎⠀⠀⠀⠘⠛⠛⠿⠆⠀⠀⠀⠀⠠⣝⢧⡳⡄⣸⣿⡟⠀ |\n" +
-                "|⢸⣿⠀⠀⠀⠀⠀⠀⢠⡾⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢢⣜⢷⣽⣷⣿⣿⠃⠀⠀⠀ |\n" +
-                "|⢸⡏⠀⠀⠀⠀⠀⠀⢿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠆⣹⣿⣿⠃⠀⠀⠀⠀⠀ |\n" +
-                "|⢸⣇⠀⠀⠀⠀⠀⠀⠈⠛⠂⠀⠀⠀⠀⢠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣷⠀⠀⠀⠀⠀⠀ |\n" +
-                "|⢸⣿⠀⠀⣾⣤⣀⣀⣀⢀⣀⣀⣀⡤⠔⠚⢿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⠀⠀⠀⠀ |\n" +
-                "|⠀⣿⣇⠀⠻⠳⢤⣈⣉⠉⠉⠀⣀⣀⣤⠖⠋⠟⠀⠀⠀⠀⠀⠀⢀⣀⣠⣾⣿⠃⠀⠀⠀⠀ |\n" +
-                "|⠀⠘⣿⣆⠀⠀⠀⠈⠙⣛⣛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⠿⠛⠋⠀⠀⠀⠀⠀⠀⠀ |\n" +
-                "|⠀⠀⠘⢿⣧⡀⠀⠀⠈⠛⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ |\n" +
-                "|⠀⠀⠀⠈⠻⣿⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  |\n" +
-                "|⠀⠀⠀⠀⠀⠈⠙⠿⣿⣶⣦⣤⣤⣤⣤⣶⣶⣿⠿⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀|\n" +
-                "|⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ |\n" +
-                "| LEVEL 1                                    |\n" +
-                "|--------------------------------------------|\n" +
-                "| Stimpak (a)                                |\n" +
-                "| Bag (d)                                    |\n" +
-                "| EFF:                                       |\n" +
-                "|--------------------------------------------|\n" +
-                "| [Status] (4)SPECIAL (5)Skills              |\n" +
-                "| (6)Perks (7)General                        |\n" +
-                "|--------------------------------------------|\n" +
-                "| STATS ITEMS DATA                           |\n" +
-                "| (1)   (2)   (3)                            |\n" +
-                "|____________________________________________|\n");
-    }
 
     public static void main(String[] args) {
         //Random declarado como rand
@@ -127,40 +44,6 @@ public class Main {
         //condicion para entrar en el combate entre los dos jugadores, y si quiere crear al personaje o no
         boolean combate = true, crearFac1=true,crearClase1=true,crearFac2=true,crearClase2=true;
 
-
-        System.out.println(
-                "....................................................................................................\n" +
-                "................;###########S,............,SSSS?.*###S,...............................,:+%:.........\n" +
-                "................S@@@@@@@@@@@%.............*@@@@;,@@@@%..............................:%#@@#,.........\n" +
-                "...............;@@@@%*******:............,#@@@S.*@@@@:.........,,...................%@@@@+..........\n" +
-                "...............S@@@#,....................+@@@@;,#@@@%.......,.:+...................:@@@@S...........\n" +
-                "..............;@@@@*........;*?SSSS%*:..,#@@@S.*@@@@;.,;?%SS;,S?,..:++++:..;+++;.;+%@@@@%*:.........\n" +
-                "..............%@@@#,......:S@@@#%#@@@@;.+@@@@;,#@@@S.;#@@@S;,S@@#:.%@@@@:.;@@@@*,S@@@@@@@@:.........\n" +
-                ".............:@@@@#?????:.S@@@#,.*@@@@+.S@@@S.+@@@@;,#@@@*..%@@@@::@@@@?..%@@@#,.,%@@@@+,,..........\n" +
-                ".............%@@@@@@@@@@,:SSSS+..#@@@#,;@@@@+,#@@@S.*@@%:.,%@@@@%.?@@@@,.:@@@@*..:@@@@#,............\n" +
-                "............:@@@@#SSSSS*...,,:::+@@@@*.S@@@#.+@@@@;,##+...*#####::@@@@?..%@@@@,..?@@@@+.............\n" +
-                "............?@@@@:.......;%#@@@@@@@@#,;@@@@+.#@@@S.+%,....,,,.,;.?@@@@:.:@@@@*..:@@@@#,.............\n" +
-                "...........:@@@@?.......?@@@@?;?@@@@*.S@@@#,+@@@@+,*;;;;;....:S;,@@@@?..?@@@@,..?@@@@+..............\n" +
-                "...........?@@@@:......;@@@@?..S@@@@,;@@@@*.S@@@#.+@@@@@*...+@S.?@@@@:.:@@@@?..,@@@@#,..............\n" +
-                "..........,@@@@?.......S@@@@,.;@@@@?.%@@@#,;@@@@+,#@@@@S..,?@@;,@@@@%..?@@@@:..?@@@@+...............\n" +
-                "..........?@@@@:......;@@@@@++#@@@@,:@@@@*.S@@@#,+@@@@@:.:S@@%.*@@@@S;*@@@@?..,#@@@@*;,.............\n" +
-                ".........:@@@@%.......+@@@@@@#@@@@?.%@@@@,;@@@@*.:#@@@+.*@@@%,.*@@@@@#@@@@@:..:@@@@@@#,.............\n" +
-                ".........:????:.......,+?%?+:;????,,*???+.+???*,..,+**,?%*+:...,+%%?;,*???+....:*?%%?;..............\n" +
-                "....................................................................................................");
-        System.out.println("Guerra. La guerra nunca cambia.\n" +
-                "Los Romanos la declaraban para conseguir esclavos y riqueza.\n" +
-                "España construyó un imperio para saciar su ansia de oro y territorios.\n" +
-                "Hitler transformó la desvencijada Alemania en una superpotencia económica.\n" +
-                "\n" +
-                "Pero la guerra nunca cambia.\n" +
-                "\n" +
-                "En el siglo XXI, la adquisición de recursos seguía motivando la guerra. En esta ocasión, las armas y el botín eran una misma cosa. Petróleo y uranio. Por estos recursos, China invadiría Alaska, EE.UU. se anexionaría Canadá y la Comunidad Europea se disolvería en reñidos estados-nación, volcados en conseguir el control de los últimos recursos de la Tierra.\n" +
-                "\n" +
-                "En 2077, volvió la tormenta de la guerra mundial. En menos de dos horas, la mayoría del planeta quedó reducido a cenizas. De los residuos de la devastación nuclear, una nueva civilización intentaría resurgir.\n" +
-                "\n" +
-                "Unos pocos pudieron alcanzar a tiempo la seguridad relativa de los Refugios subterráneos. Tu familia formaba parte del grupo que ocupó el Refugio 7. A salvo, encerrada tras la gran puerta del refugio, bajo una montaña de piedra, una generación ha vivido sin conocimiento del mundo exterior.\n" +
-                "\n" +
-                "Pero la vida en el Refugio está a punto de cambiar.");
         System.out.println("Desea crear un personaje o no(Y/N): ");
         crearPersonaje=sc.next().toUpperCase().charAt(0);
         if (crearPersonaje=='Y') {
@@ -171,60 +54,6 @@ public class Main {
                 nombre1=sc.nextLine();
                 System.out.println("Introduce tu sexo: ");
                 genero1=sc.nextLine();
-                while (crearFac1) {
-                    System.out.println("HOLA, "+nombre1);
-                    System.out.println("Que faccion quieres pertenecer: ");
-                    System.out.println("1.PALADIN DE LA HERMANDAD DEL ACERO "+"\n2.SOLDADO DE LA RCN(REPUBLICA DE NUEVA CALIFORNIA)"+"\n3.LEGIONARIO DE LA LEGION DE CESAR"+"\n4.NINGUNA(LLANERO SOLITARIO)");
-                    opcionFaccion1 = sc.nextInt();
-                    switch (opcionFaccion1) {
-                        case 1:
-                            faccion1 = "HERMANDAD DEL ACERO";
-                            System.out.println("La Hermandad del Acero es una organización tecno-religiosa, " +
-                                    "formada por desertores del Ejército de los Estados Unidos durante los últimos momentos de la gran guerra. " +
-                                    "Su objetivo es la recopilación del conocimiento y de la tecnología para poder reconstruir el mundo.");
-                            System.out.println("Desea esta faccion(Y/N): ");
-                            confirmarFaccion1=sc.next().toUpperCase().charAt(0);
-                            if (confirmarFaccion1=='Y') {
-                                crearFac1 = false;
-                            }
-                            break;
-                        case 2:
-                            faccion1 = "RCN";
-                            System.out.println("La República de Nueva California (RNC) es una república federal fundada en Nueva California en 2189. Está compuesta por 5 estados contiguos en el sur de California, " +
-                                    "con algunos territorios en el norte de California, Oregón y Nevada.\n" +
-                                    "La RNC centra su existencia en conservar los valores del antiguo mundo, como la democracia, libertad personal, y las leyes al mismo tiempo que los promueve. " +
-                                    "También apunta a restaurar el orden a todo el yermo, la mejora e instalación de infraestructura y sistemas monetarios, y paz incondicional entre la gente.");
-                            System.out.println("Desea esta faccion(Y/N): ");
-                            confirmarFaccion1=sc.next().toUpperCase().charAt(0);
-                            if (confirmarFaccion1=='Y') {
-                                crearFac1 = false;
-                            }
-                            break;
-                        case 3:
-                            faccion1 = "LEGION DE CESAR";
-                            System.out.println("La Legión de César (en latín: Legio Caesaris) es una dictadura imperialista y totalitaria de gran escala basada en la esclavitud. " +
-                                    "Fue fundada en 2247 por Edward Sallow, que luego se nombró César él mismo, y Joshua Graham (también conocido como Legado Malpais). " +
-                                    "Toda su militarización está inspirada por el Imperio Romano, dándole un nuevo uso a su lenguaje y estéticas en el mundo posnuclear.");
-                            System.out.println("Desea esta faccion(Y/N): ");
-                            confirmarFaccion1=sc.next().toUpperCase().charAt(0);
-                            if (confirmarFaccion1=='Y') {
-                                crearFac1 = false;
-                            }
-                            break;
-                        case 4:
-                            faccion1="LLANERO SOLITARIO";
-                            System.out.println("Estas seguro de esta eleccion?: ");
-                            System.out.println("Desea esta faccion(Y/N): ");
-                            confirmarFaccion1=sc.next().toUpperCase().charAt(0);
-                            if (confirmarFaccion1=='Y') {
-                                crearFac1 = false;
-                            }
-                            break;
-                        default:
-                            System.err.println("ERROR: LA FACCION NO RECONOCIDA.¡VUELVA A INTRODUCIRLO!");
-                            crearFac1=true;
-                    }
-                }
 
                 while (crearClase1) {
                     System.out.println(nombre1 + "\nELIGE UNA CLASE " + "\n1.Cientifico" + "\n2.Lider Carismatico" + "\n3.Mercenario" + "\n4.Saqueador");
@@ -711,37 +540,6 @@ public class Main {
                         if (esCritico1 < probabilidadCritico) {
                             hit1 = (int) (hit1 * 1.3); // Aplica el multiplicador de daño crítico
                             System.out.println(nombre1 + " realiza un ataque CRÍTICO!");
-                            System.out.println("                      @%@                                         \n" +
-                                    "                      @%@@#*@@                                    \n" +
-                                    "                      @@*=..::=%@@@                               \n" +
-                                    "                    @%-%#:+-==--.:%                               \n" +
-                                    "                    @:-*#=....:-++%  @@@%#%%%*+#%@                \n" +
-                                    "                    @-+##=-*-:-+.=@@%*@%+*::=+-:=%@               \n" +
-                                    "                    @@%+*+-+:.=-..#+*%%*% @@@ @@@                 \n" +
-                                    "                     @*-=+.   -+:=**%%=+%                         \n" +
-                                    "                    @@**+=:  ..-#*@@%-:*@                         \n" +
-                                    "                    @%#-#*. ..::#@ @%-:@@@                        \n" +
-                                    "                    @@:=+*+:-++=##@@*.+%=*#@                      \n" +
-                                    "                   @%#..:***...=:..=%:.*@%@@      @@              \n" +
-                                    "                  @*-*..+*=-=..:-...+:++#@     @%-..*@  @         \n" +
-                                    "                 @+:=.=+*:..=...+.:.+...=@@@@@@=..  .=@@=@        \n" +
-                                    "                 #:.. ..=.  -: .+.-:+. .--....=#-... .=#.%@       \n" +
-                                    "                 %-.  .-:. .:: .=:--.. .+..   ..+=:=.. =:#@       \n" +
-                                    "               @@%*...:+....-: .=-+@-.:+=:=+-.. .*#@*:.=*@        \n" +
-                                    "             @%+*:+%#%@=:::::.  ..:%::::+:::=-. ..%@@@@@%@        \n" +
-                                    "             @:.:+#::.#-...   ....:#.. -*:..:+-=..=@--.==%@       \n" +
-                                    "       @@@   @. .-:..=#::-=+++==-:.#..-=.*%*:-@*. :=.=*=.=@       \n" +
-                                    "       @+*@  @-:.:..:#..    ...   .*::*.:+-*::@=. :*=-...:%@      \n" +
-                                    "       @*-=#=*%#-*:++=..    =-.    -=-=..=...=@:..:-..=*==%@      \n" +
-                                    "       @%:+-::*##+*:#*.  ..+=*.. .-:+.***=-=@@%. .=+==-=+:@       \n" +
-                                    "       @@:+:=*:...-#+:.  .+-.-*...-.+.-@@+%@*....=-...--=-@       \n" +
-                                    "        @@@%*+::++.+-:+..-#%+++:..+###+#%%#:....+.....=-*+@       \n" +
-                                    "        @#-...%=...#=#:..*:.:+*+.=:=+:*+--=-.=+::::-=+%##%@       \n" +
-                                    "      @@+%==-*@#:..%==:.*=..  .*-*=:++***#*=.....-+*#@@           \n" +
-                                    "       @@%%@*@@@*..**++#@@*:...:+*+****%%@%=. .:-+%@              \n" +
-                                    "            @%#%%*=%-:+@@**@@@@+:......#@ @=::*@                  \n" +
-                                    "                    @@        @%+::*@@@@  @@@@                    \n" +
-                                    "                                                            ");
                         }
                         //hit1=Math.min(hit1,limiteDamage);//Utilizo Math.min para que tenga un rango de atque aceptable
                         vida2 -= hit1;
@@ -760,37 +558,6 @@ public class Main {
                                     if (esCritico2 < probabilidadCritico) {
                                         hit2 = (int) (hit2 * 1.3); // Aplica el multiplicador de daño crítico
                                         System.out.println(nombre2 + " realiza un ataque CRÍTICO!");
-                                        System.out.println("                      @%@                                         \n" +
-                                                "                      @%@@#*@@                                    \n" +
-                                                "                      @@*=..::=%@@@                               \n" +
-                                                "                    @%-%#:+-==--.:%                               \n" +
-                                                "                    @:-*#=....:-++%  @@@%#%%%*+#%@                \n" +
-                                                "                    @-+##=-*-:-+.=@@%*@%+*::=+-:=%@               \n" +
-                                                "                    @@%+*+-+:.=-..#+*%%*% @@@ @@@                 \n" +
-                                                "                     @*-=+.   -+:=**%%=+%                         \n" +
-                                                "                    @@**+=:  ..-#*@@%-:*@                         \n" +
-                                                "                    @%#-#*. ..::#@ @%-:@@@                        \n" +
-                                                "                    @@:=+*+:-++=##@@*.+%=*#@                      \n" +
-                                                "                   @%#..:***...=:..=%:.*@%@@      @@              \n" +
-                                                "                  @*-*..+*=-=..:-...+:++#@     @%-..*@  @         \n" +
-                                                "                 @+:=.=+*:..=...+.:.+...=@@@@@@=..  .=@@=@        \n" +
-                                                "                 #:.. ..=.  -: .+.-:+. .--....=#-... .=#.%@       \n" +
-                                                "                 %-.  .-:. .:: .=:--.. .+..   ..+=:=.. =:#@       \n" +
-                                                "               @@%*...:+....-: .=-+@-.:+=:=+-.. .*#@*:.=*@        \n" +
-                                                "             @%+*:+%#%@=:::::.  ..:%::::+:::=-. ..%@@@@@%@        \n" +
-                                                "             @:.:+#::.#-...   ....:#.. -*:..:+-=..=@--.==%@       \n" +
-                                                "       @@@   @. .-:..=#::-=+++==-:.#..-=.*%*:-@*. :=.=*=.=@       \n" +
-                                                "       @+*@  @-:.:..:#..    ...   .*::*.:+-*::@=. :*=-...:%@      \n" +
-                                                "       @*-=#=*%#-*:++=..    =-.    -=-=..=...=@:..:-..=*==%@      \n" +
-                                                "       @%:+-::*##+*:#*.  ..+=*.. .-:+.***=-=@@%. .=+==-=+:@       \n" +
-                                                "       @@:+:=*:...-#+:.  .+-.-*...-.+.-@@+%@*....=-...--=-@       \n" +
-                                                "        @@@%*+::++.+-:+..-#%+++:..+###+#%%#:....+.....=-*+@       \n" +
-                                                "        @#-...%=...#=#:..*:.:+*+.=:=+:*+--=-.=+::::-=+%##%@       \n" +
-                                                "      @@+%==-*@#:..%==:.*=..  .*-*=:++***#*=.....-+*#@@           \n" +
-                                                "       @@%%@*@@@*..**++#@@*:...:+*+****%%@%=. .:-+%@              \n" +
-                                                "            @%#%%*=%-:+@@**@@@@+:......#@ @=::*@                  \n" +
-                                                "                    @@        @%+::*@@@@  @@@@                    \n" +
-                                                "                                                            ");
                                     }
                                     //hit2 = Math.min(hit2, limiteDamage);
                                     vida1 -= hit2;
@@ -841,37 +608,6 @@ public class Main {
                         if (esCritico2 < probabilidadCritico) {
                             hit2 = (int) (hit2 * 1.3);
                             System.out.println(nombre2 + " realiza un ataque CRÍTICO!");
-                            System.out.println("                      @%@                                         \n" +
-                                    "                      @%@@#*@@                                    \n" +
-                                    "                      @@*=..::=%@@@                               \n" +
-                                    "                    @%-%#:+-==--.:%                               \n" +
-                                    "                    @:-*#=....:-++%  @@@%#%%%*+#%@                \n" +
-                                    "                    @-+##=-*-:-+.=@@%*@%+*::=+-:=%@               \n" +
-                                    "                    @@%+*+-+:.=-..#+*%%*% @@@ @@@                 \n" +
-                                    "                     @*-=+.   -+:=**%%=+%                         \n" +
-                                    "                    @@**+=:  ..-#*@@%-:*@                         \n" +
-                                    "                    @%#-#*. ..::#@ @%-:@@@                        \n" +
-                                    "                    @@:=+*+:-++=##@@*.+%=*#@                      \n" +
-                                    "                   @%#..:***...=:..=%:.*@%@@      @@              \n" +
-                                    "                  @*-*..+*=-=..:-...+:++#@     @%-..*@  @         \n" +
-                                    "                 @+:=.=+*:..=...+.:.+...=@@@@@@=..  .=@@=@        \n" +
-                                    "                 #:.. ..=.  -: .+.-:+. .--....=#-... .=#.%@       \n" +
-                                    "                 %-.  .-:. .:: .=:--.. .+..   ..+=:=.. =:#@       \n" +
-                                    "               @@%*...:+....-: .=-+@-.:+=:=+-.. .*#@*:.=*@        \n" +
-                                    "             @%+*:+%#%@=:::::.  ..:%::::+:::=-. ..%@@@@@%@        \n" +
-                                    "             @:.:+#::.#-...   ....:#.. -*:..:+-=..=@--.==%@       \n" +
-                                    "       @@@   @. .-:..=#::-=+++==-:.#..-=.*%*:-@*. :=.=*=.=@       \n" +
-                                    "       @+*@  @-:.:..:#..    ...   .*::*.:+-*::@=. :*=-...:%@      \n" +
-                                    "       @*-=#=*%#-*:++=..    =-.    -=-=..=...=@:..:-..=*==%@      \n" +
-                                    "       @%:+-::*##+*:#*.  ..+=*.. .-:+.***=-=@@%. .=+==-=+:@       \n" +
-                                    "       @@:+:=*:...-#+:.  .+-.-*...-.+.-@@+%@*....=-...--=-@       \n" +
-                                    "        @@@%*+::++.+-:+..-#%+++:..+###+#%%#:....+.....=-*+@       \n" +
-                                    "        @#-...%=...#=#:..*:.:+*+.=:=+:*+--=-.=+::::-=+%##%@       \n" +
-                                    "      @@+%==-*@#:..%==:.*=..  .*-*=:++***#*=.....-+*#@@           \n" +
-                                    "       @@%%@*@@@*..**++#@@*:...:+*+****%%@%=. .:-+%@              \n" +
-                                    "            @%#%%*=%-:+@@**@@@@+:......#@ @=::*@                  \n" +
-                                    "                    @@        @%+::*@@@@  @@@@                    \n" +
-                                    "                                                            ");
                         }
                         //hit2=Math.min(hit2,limiteDamage);
                         vida1 -= hit2;
@@ -891,37 +627,6 @@ public class Main {
                                     if (esCritico1 < probabilidadCritico) {
                                         hit1 = (int) (hit1 * 1.5); // Aplica el multiplicador de daño crítico
                                         System.out.println(nombre1 + " realiza un ataque CRÍTICO!");
-                                        System.out.println("                      @%@                                         \n" +
-                                                "                      @%@@#*@@                                    \n" +
-                                                "                      @@*=..::=%@@@                               \n" +
-                                                "                    @%-%#:+-==--.:%                               \n" +
-                                                "                    @:-*#=....:-++%  @@@%#%%%*+#%@                \n" +
-                                                "                    @-+##=-*-:-+.=@@%*@%+*::=+-:=%@               \n" +
-                                                "                    @@%+*+-+:.=-..#+*%%*% @@@ @@@                 \n" +
-                                                "                     @*-=+.   -+:=**%%=+%                         \n" +
-                                                "                    @@**+=:  ..-#*@@%-:*@                         \n" +
-                                                "                    @%#-#*. ..::#@ @%-:@@@                        \n" +
-                                                "                    @@:=+*+:-++=##@@*.+%=*#@                      \n" +
-                                                "                   @%#..:***...=:..=%:.*@%@@      @@              \n" +
-                                                "                  @*-*..+*=-=..:-...+:++#@     @%-..*@  @         \n" +
-                                                "                 @+:=.=+*:..=...+.:.+...=@@@@@@=..  .=@@=@        \n" +
-                                                "                 #:.. ..=.  -: .+.-:+. .--....=#-... .=#.%@       \n" +
-                                                "                 %-.  .-:. .:: .=:--.. .+..   ..+=:=.. =:#@       \n" +
-                                                "               @@%*...:+....-: .=-+@-.:+=:=+-.. .*#@*:.=*@        \n" +
-                                                "             @%+*:+%#%@=:::::.  ..:%::::+:::=-. ..%@@@@@%@        \n" +
-                                                "             @:.:+#::.#-...   ....:#.. -*:..:+-=..=@--.==%@       \n" +
-                                                "       @@@   @. .-:..=#::-=+++==-:.#..-=.*%*:-@*. :=.=*=.=@       \n" +
-                                                "       @+*@  @-:.:..:#..    ...   .*::*.:+-*::@=. :*=-...:%@      \n" +
-                                                "       @*-=#=*%#-*:++=..    =-.    -=-=..=...=@:..:-..=*==%@      \n" +
-                                                "       @%:+-::*##+*:#*.  ..+=*.. .-:+.***=-=@@%. .=+==-=+:@       \n" +
-                                                "       @@:+:=*:...-#+:.  .+-.-*...-.+.-@@+%@*....=-...--=-@       \n" +
-                                                "        @@@%*+::++.+-:+..-#%+++:..+###+#%%#:....+.....=-*+@       \n" +
-                                                "        @#-...%=...#=#:..*:.:+*+.=:=+:*+--=-.=+::::-=+%##%@       \n" +
-                                                "      @@+%==-*@#:..%==:.*=..  .*-*=:++***#*=.....-+*#@@           \n" +
-                                                "       @@%%@*@@@*..**++#@@*:...:+*+****%%@%=. .:-+%@              \n" +
-                                                "            @%#%%*=%-:+@@**@@@@+:......#@ @=::*@                  \n" +
-                                                "                    @@        @%+::*@@@@  @@@@                    \n" +
-                                                "                                                            ");
                                     }
                                     //hit1 = Math.min(hit1, limiteDamage);
                                     vida2 -= hit1;
