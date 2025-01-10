@@ -55,7 +55,6 @@ public class Main {
             System.out.println("¿Desea usar personajes predefinidos? (Y/N):");
             accionJugador = sc.next().toUpperCase().charAt(0);
             if (accionJugador == 'Y') {
-
                 vida1 = 100;
                 ataque1 = 100;
                 defensa1 = 50;
@@ -64,7 +63,6 @@ public class Main {
                 ataque2 = 90;
                 defensa2 = 60;
                 velocidad2 = 110;
-
             } else if (accionJugador == 'N') {
 
                 do {
