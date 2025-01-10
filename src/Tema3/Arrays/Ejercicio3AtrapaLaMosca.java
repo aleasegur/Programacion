@@ -55,9 +55,6 @@ public class Ejercicio3AtrapaLaMosca {
                 do {
                     posicionMosca=random.nextInt(15);
                 }while (Math.abs(posicionMosca-userInput)<=1);
-                //Actualiza la nueva posicion de la mosca
-                initVector(vectorMosca);
-                vectorMosca[posicionMosca]=1;
             }else {
                 System.out.println("La mosca no esta aqui sigue intentandolo");
             }
