@@ -61,7 +61,7 @@ public class MethodsCombats {
     public static void updateLife(String jugador, int vida) {
         StringBuilder barra = new StringBuilder();
         for (int i = 0; i < vida / 10; i++) {
-            barra.append("-");
+            barra.append("\uD83E\uDD0D");
         }
         System.out.println(jugador + " Vida: " + vida + " " + barra);
     }
