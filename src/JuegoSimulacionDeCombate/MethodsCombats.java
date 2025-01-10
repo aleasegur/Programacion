@@ -26,6 +26,7 @@ public class MethodsCombats {
         return res;
     }
 
+    //Metdodo que hace que el jugador hago una accion en cada TUrno y devuelve el valor de la vida del opnente
     public static int makeTurn(Scanner sc, Random rand, String jugador, int ataque, int defensa, int vidaOponente) {
         System.out.println(jugador + ", elige tu acción: (A) Atacar, (C) Curar");
         char accion = sc.next().toUpperCase().charAt(0);
