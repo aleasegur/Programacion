@@ -132,7 +132,7 @@ public class MyMatrix {
         // Verificar si la matriz es cuadrada
         for (int i = 0; i < filas; i++) {
             if (matriz[i].length != filas) {
-                res=false;  // Si no es cuadrada no puede ser una matriz de unidad
+                res=false;
             }
         }
 
@@ -153,7 +153,7 @@ public class MyMatrix {
             }
         }
 
-        return res;  // Si pasa todas las comprobaciones, es una matriz unidad
+        return res;
     }
 
     public static void main(String[] args) {
