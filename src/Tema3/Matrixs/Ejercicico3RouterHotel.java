@@ -55,17 +55,17 @@ public class Ejercicico3RouterHotel {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         int[][] matrizHotel=new int[12][5];
-        int routerX,routerY,potencia,distancia;
+        int posicionX,posicionY,potencia,distancia;
 
         do {
             System.out.println("Selecciona la planta para instalar el router (1-12): ");
-            routerX = sc.nextInt() - 1;
-        } while (!comprobarPlanta(routerX));
+            posicionX = sc.nextInt() - 1;
+        } while (!comprobarPlanta(posicionX));
 
         do {
             System.out.println("Selecciona la habitación para instalar el router (1-5): ");
-            routerY = sc.nextInt() - 1;
-        } while (!comprobarHabitacion(routerY));
+            posicionY = sc.nextInt() - 1;
+        } while (!comprobarHabitacion(posicionY));
 
         do {
             System.out.println("Selecciona la potencia del router (1-6): ");
@@ -74,7 +74,7 @@ public class Ejercicico3RouterHotel {
 
         for (int i = 0; i < matrizHotel.length; i++) {
             for (int j = 0; j < matrizHotel[i].length; j++) {
-                distancia = Math.abs(routerX - i) + Math.abs(routerY - j);
+                distancia = Math.abs(posicionX - i) + Math.abs(posicionY - j);
                 if (distancia<potencia){
                     matrizHotel[i][j]=potencia-distancia;
                 }else {
