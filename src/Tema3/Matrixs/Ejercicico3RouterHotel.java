@@ -13,6 +13,19 @@ import java.util.Scanner;
  señal se pierde con la distancia y vamos a representarlo en el array. Si
  ponemos un router de potencia 3. Lo vamos a instalar en la planta 2,
  habitación 3 (2,3). El resultado será la siguiente matriz:
+ * (CORRECION NO ES PLANTA 2 ES 10)
+[0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0]
+[0, 0, 1, 0, 0]
+[0, 1, 2, 1, 0]
+[1, 2, 3, 2, 1]
+[0, 1, 2, 1, 0]
+[0, 0, 1, 0, 0]
  Fíjate que en las habitaciones en diagonal, como están un poco más lejos que
  las habitaciones directamente superior, inferior, izquierda y derecha, llega
  menos cobertura*/
