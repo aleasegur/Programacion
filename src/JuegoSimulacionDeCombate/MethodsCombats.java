@@ -17,9 +17,9 @@ public class MethodsCombats {
         return valor;
     }
     //Valida si la suma de los atributos no es mayor a 500
-    public static boolean areValidPLayerStats(int vida, int ataque, int defensa, int velocidad,int sumMaxStats) {
+    public static boolean areValidPLayerStats(int vida, int ataque, int defensa, int velocidad, int sumMaxStats, int regenaricion) {
         boolean res=true;
-        if (vida + ataque + defensa + velocidad > sumMaxStats) {
+        if (vida + ataque + defensa + velocidad + regenaricion > sumMaxStats) {
             System.out.println("La suma de los atributos no puede exceder 500. Reinicie el programa.");
             res=false;
         }
@@ -27,24 +27,22 @@ public class MethodsCombats {
     }
 
     //Metdodo que hace que el jugador hago una accion en cada TUrno y devuelve el valor de la vida del opnente
-    public static int makeTurn(Scanner sc, Random rand, String jugador, int ataque, int defensa, int vidaOponente) {
+    public static int makeTurn(Scanner sc, Random rand, String jugador, int ataque, int defensa, int vidaJugador, int vidaOponente, int regeneracion) {
         System.out.println(jugador + ", elige tu acción: (A) Atacar, (C) Curar");
         char accion = sc.next().toUpperCase().charAt(0);
-        switch (accion) {
-            case 'A':
-                int hit = calculateDamage(rand, ataque, defensa);
-                vidaOponente = Math.max(0, vidaOponente - hit);
-                System.out.println(jugador + " realiza un ataque causando " + hit + " puntos de hit.");
-                break;
-            case 'C':
-                vidaOponente = Math.min(200, vidaOponente + 20);
-                System.out.println(jugador + " usa un estimulante y ahora tiene " + vidaOponente + " puntos de vida.");
-                break;
-            default:
+        if (accion == 'A') {
+            int hit = calculateDamage(rand, ataque, defensa);
+            vidaOponente = Math.max(0, vidaOponente - hit);
+            System.out.println(jugador + " realiza un ataque causando " + hit + " puntos de hit.");
+            return vidaOponente;//Devuelvo la vida del oponente
+        } else if (accion == 'C') {
+            vidaJugador = Math.min(200, vidaOponente + regeneracion);
+            System.out.println(jugador + " usa curacion y ahora tiene " + vidaOponente + " puntos de vida.");
+            return vidaJugador;//Devuelvo la vida con los cambios del jugador
+        } else {
                 System.out.println("Acción no válida. Pierdes tu turno.");
-                break;
+                return vidaJugador;//Devuelvo la vida sin cambios
         }
-        return vidaOponente;
     }
 
     //Calcula el daño que Realiza el Jugador
