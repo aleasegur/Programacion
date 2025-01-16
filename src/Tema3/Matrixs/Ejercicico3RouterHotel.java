@@ -13,7 +13,7 @@ import java.util.Scanner;
  señal se pierde con la distancia y vamos a representarlo en el array. Si
  ponemos un router de potencia 3. Lo vamos a instalar en la planta 2,
  habitación 3 (2,3). El resultado será la siguiente matriz:
- * (CORRECION NO ES PLANTA 2 ES 10)
+ * (CORRECION NO ES PLANTA 2 ES 3)
 [0, 0, 0, 0, 0]
 [0, 0, 0, 0, 0]
 [0, 0, 0, 0, 0]
@@ -72,7 +72,7 @@ public class Ejercicico3RouterHotel {
 
         do {
             System.out.println("Selecciona la planta para instalar el router (1-12): ");
-            posicionX = sc.nextInt() - 1;
+            posicionX = 12-sc.nextInt();
         } while (!comprobarPlanta(posicionX));
 
         do {
