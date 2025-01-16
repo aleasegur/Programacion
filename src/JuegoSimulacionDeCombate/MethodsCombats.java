@@ -27,25 +27,21 @@ public class MethodsCombats {
     }
 
     //Metdodo que hace que el jugador hago una accion en cada TUrno y devuelve el valor de la vida del opnente
-    public static int makeTurn(Scanner sc, Random rand, String jugador, int ataque, int defensa,int vidaOponente, int regeneracion) {
-        System.out.println(jugador + ", elige tu acción: (A) Atacar, (C) Curar");
-        char accion = sc.next().toUpperCase().charAt(0);
-        if (accion == 'A') {
-            int hit = calculateDamage(rand, ataque, defensa);
-            vidaOponente = Math.max(0, vidaOponente - hit);
-            System.out.println(jugador + " realiza un ataque causando " + hit + " puntos de hit.");
-        } else if (accion == 'C') {
+    public static int makeTurnCombat(Scanner sc, Random rand, String jugador, int ataque, int defensa, int vidaOponente) {
+        int hit = calculateDamageCritic(rand, ataque, defensa);
+        vidaOponente = Math.max(0, vidaOponente - hit);
+        System.out.println(jugador + " realiza un ataque causando " + hit + " puntos de hit.");/*else if (accion == 'C') {
           int vidaJugador = Math.min(200, vidaOponente + regeneracion);
             System.out.println(jugador + " usa curacion y ahora tiene " + vidaOponente + " puntos de vida.");
             return vidaJugador;
         } else {
                 System.out.println("Acción no válida. Pierdes tu turno.");
-        }
+        }*/
         return vidaOponente;
     }
 
     //Calcula el daño que Realiza el Jugador
-    public static int calculateDamage(Random rand, int ataque, int defensa) {
+    public static int calculateDamageCritic(Random rand, int ataque, int defensa) {
         int hit = Math.max(5, ataque - defensa / 2 + rand.nextInt(10));
         //Realiza ataque critico
         if (rand.nextInt(100) < 20) {

@@ -16,14 +16,54 @@ public class Main {
             MethodsCombats.updateLife("Jugador 2", vida2);
 
             if (velocidad1 >= velocidad2) {
-                vida2 = MethodsCombats.makeTurn(sc, rand, "Jugador 1", ataque1, defensa2,vida2,regeneracion1);
+                System.out.println( "Jugador1, elige tu acción: (A) Atacar, (C) Curar");
+                char accion1 = sc.next().toUpperCase().charAt(0);
+                if (accion1=='A') {
+                    vida2 = MethodsCombats.makeTurnCombat(sc, rand, "Jugador 1", ataque1, defensa2, vida2);
+                }else if (accion1=='C'){
+                    int vidaRegen1 = Math.min(200, vida1 + regeneracion1);
+                    vida1=vidaRegen1;
+                    System.out.println("Jugador1, usa curacion y ahora tiene " + vidaRegen1 + " puntos de vida.");
+                }else{
+                    System.out.println("Acción no válida. Pierdes tu turno.");
+                }
                 if (vida2 > 0) {
-                    vida1 = MethodsCombats.makeTurn(sc, rand, "Jugador 2", ataque2, defensa1,vida1,regeneracion2);
+                    System.out.println( "Jugador2, elige tu acción: (A) Atacar, (C) Curar");
+                    char accion2 = sc.next().toUpperCase().charAt(0);
+                    if (accion2=='A') {
+                        vida1 = MethodsCombats.makeTurnCombat(sc, rand, "Jugador 2", ataque2, defensa1,vida1);
+                    }else if (accion2=='C'){
+                        int vidaRegen2 = Math.min(200, vida2 + regeneracion2);
+                        vida2=vidaRegen2;
+                        System.out.println("Jugador2, usa curacion y ahora tiene " + vidaRegen2 + " puntos de vida.");
+                    }else{
+                        System.out.println("Acción no válida. Pierdes tu turno.");
+                    }
                 }
             } else {
-                vida1 = MethodsCombats.makeTurn(sc, rand, "Jugador 2", ataque2, defensa1,vida1,regeneracion2);
+                System.out.println( "Jugador2, elige tu acción: (A) Atacar, (C) Curar");
+                char accion2 = sc.next().toUpperCase().charAt(0);
+                if (accion2=='A') {
+                    vida1 = MethodsCombats.makeTurnCombat(sc, rand, "Jugador 2", ataque2, defensa1,vida1);
+                }else if (accion2=='C'){
+                    int vidaRegen2 = Math.min(200, vida2 + regeneracion2);
+                    vida2=vidaRegen2;
+                    System.out.println("Jugador2, usa curacion y ahora tiene " + vidaRegen2 + " puntos de vida.");
+                }else{
+                    System.out.println("Acción no válida. Pierdes tu turno.");
+                }
                 if (vida1 > 0) {
-                    vida2 = MethodsCombats.makeTurn(sc, rand, "Jugador 1", ataque1, defensa2,vida2,regeneracion1);
+                    System.out.println( "Jugador1, elige tu acción: (A) Atacar, (C) Curar");
+                    char accion1 = sc.next().toUpperCase().charAt(0);
+                    if (accion1=='A') {
+                        vida2 = MethodsCombats.makeTurnCombat(sc, rand, "Jugador 1", ataque1, defensa2, vida2);
+                    }else if (accion1=='C'){
+                        int vidaRegen1 = Math.min(200, vida1 + regeneracion1);
+                        vida1=vidaRegen1;
+                        System.out.println("Jugador1, usa curacion y ahora tiene " + vidaRegen1 + " puntos de vida.");
+                    }else{
+                        System.out.println("Acción no válida. Pierdes tu turno.");
+                    }
                 }
             }
             if (vida1 <= 0 || vida2<=0) {
