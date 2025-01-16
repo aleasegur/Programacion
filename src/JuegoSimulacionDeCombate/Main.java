@@ -16,14 +16,14 @@ public class Main {
             MethodsCombats.updateLife("Jugador 2", vida2);
 
             if (velocidad1 >= velocidad2) {
-                vida2 = MethodsCombats.makeTurn(sc, rand, "Jugador 1", ataque1, defensa2,vida1, vida2,regeneracion2);
+                vida2 = MethodsCombats.makeTurn(sc, rand, "Jugador 1", ataque1, defensa2,vida2,regeneracion1);
                 if (vida2 > 0) {
-                    vida1 = MethodsCombats.makeTurn(sc, rand, "Jugador 2", ataque2, defensa1,vida2, vida1,regeneracion1);
+                    vida1 = MethodsCombats.makeTurn(sc, rand, "Jugador 2", ataque2, defensa1,vida1,regeneracion2);
                 }
             } else {
-                vida1 = MethodsCombats.makeTurn(sc, rand, "Jugador 2", ataque2, defensa1,vida2, vida1,regeneracion1);
+                vida1 = MethodsCombats.makeTurn(sc, rand, "Jugador 2", ataque2, defensa1,vida1,regeneracion2);
                 if (vida1 > 0) {
-                    vida2 = MethodsCombats.makeTurn(sc, rand, "Jugador 1", ataque1, defensa2,vida1, vida2,regeneracion2);
+                    vida2 = MethodsCombats.makeTurn(sc, rand, "Jugador 1", ataque1, defensa2,vida2,regeneracion1);
                 }
             }
             if (vida1 <= 0 || vida2<=0) {

@@ -27,22 +27,21 @@ public class MethodsCombats {
     }
 
     //Metdodo que hace que el jugador hago una accion en cada TUrno y devuelve el valor de la vida del opnente
-    public static int makeTurn(Scanner sc, Random rand, String jugador, int ataque, int defensa, int vidaJugador, int vidaOponente, int regeneracion) {
+    public static int makeTurn(Scanner sc, Random rand, String jugador, int ataque, int defensa,int vidaOponente, int regeneracion) {
         System.out.println(jugador + ", elige tu acción: (A) Atacar, (C) Curar");
         char accion = sc.next().toUpperCase().charAt(0);
         if (accion == 'A') {
             int hit = calculateDamage(rand, ataque, defensa);
             vidaOponente = Math.max(0, vidaOponente - hit);
             System.out.println(jugador + " realiza un ataque causando " + hit + " puntos de hit.");
-            return vidaOponente;//Devuelvo la vida del oponente
         } else if (accion == 'C') {
-            vidaJugador = Math.min(200, vidaOponente + regeneracion);
+          int vidaJugador = Math.min(200, vidaOponente + regeneracion);
             System.out.println(jugador + " usa curacion y ahora tiene " + vidaOponente + " puntos de vida.");
-            return vidaJugador;//Devuelvo la vida con los cambios del jugador
+            return vidaJugador;
         } else {
                 System.out.println("Acción no válida. Pierdes tu turno.");
-                return vidaJugador;//Devuelvo la vida sin cambios
         }
+        return vidaOponente;
     }
 
     //Calcula el daño que Realiza el Jugador
