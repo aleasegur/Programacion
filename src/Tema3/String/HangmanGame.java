@@ -47,7 +47,7 @@ public class HangmanGame {
             char letra=0;
             do {
                 System.out.print("Introduce un caracter: ");
-                letra = sc.next().charAt(0);
+                letra = sc.next().toLowerCase().charAt(0);
             }while (!comprobarLetraIngresada(letrasIntroducidas,letra));
 
             letrasIntroducidas+=letra;
