@@ -65,5 +65,6 @@ public class CaesarCipher {
         //BSUVSP TF FRVJWPDB FM FODFCPMMBEP OP FT FM NFKPS
         String textoDescod=descifrarCaesar(texto);
         System.out.println("Texto descodificado: "+textoDescod);
+        sc.close();
     }
 }

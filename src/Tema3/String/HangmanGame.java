@@ -19,47 +19,67 @@ public class HangmanGame {
         }
     }
 
+    // Verificar si la letra ya ha sido introducida
+    public static boolean comprobarLetraIngresada(String cadena, char letra){
+        boolean res=true;
+        if (cadena.indexOf(letra) != -1) {
+            System.err.println("¡Ya ingresaste esa letra! Intenta con otra.");
+            res=false;
+        }
+        return res;
+    }
+
     public static void palabraHangman(Scanner sc,String palabra){
-        String progreso = "";
+        String palabraRevelar = "";
+        boolean condicionBucle=true;
         for (int i = 0; i < palabra.length(); i++) {
-            progreso += "_"; // Se inicializa la palabra oculta con guiones bajos
+            //Inicializo la palabra oculta con guiones
+            palabraRevelar += "_";
         }
         int intentos = 0;
         String letrasIncorrectas = "";
+        String letrasIntroducidas="";
 
-        while (intentos < 6) {
-            System.out.println("Palabra: " + progreso);
+        while (condicionBucle) {
+            System.out.println("Palabra: " + palabraRevelar);
             System.out.println("Letras incorrectas: " + letrasIncorrectas);
             System.out.println("Intentos restantes: " + (6 - intentos));
-            System.out.print("Introduce un caracter: ");
-            char letra = sc.next().charAt(0);
+            char letra=0;
+            do {
+                System.out.print("Introduce un caracter: ");
+                letra = sc.next().charAt(0);
+            }while (!comprobarLetraIngresada(letrasIntroducidas,letra));
 
-            // Verificar si la letra está en la palabra
+            letrasIntroducidas+=letra;
+
             boolean acierto = false;
-            StringBuilder nuevaPalabra = new StringBuilder(progreso);
+            String palabraProgreso = "";
             for (int i = 0; i < palabra.length(); i++) {
                 if (palabra.charAt(i) == letra) {
-                    nuevaPalabra.setCharAt(i, letra); // Reemplazamos el guion bajo por la letra correcta
+                    palabraProgreso += letra;
                     acierto = true;
+                } else {
+                    palabraProgreso += palabraRevelar.charAt(i);
                 }
             }
-            progreso = nuevaPalabra.toString(); // Actualizamos el progreso
+
+            palabraRevelar = palabraProgreso;
 
             if (!acierto) {
-                letrasIncorrectas += letra + " "; // Agregamos la letra incorrecta a la lista
+                letrasIncorrectas += letra + " ";
                 intentos++;
                 intentoHangMan(intentos);
             }
 
-            // Verificar si el jugador ha adivinado la palabra
-            if (progreso.equals(palabra)) {
+            if (palabraRevelar.equals(palabra)) {
                 System.out.println("¡Has adivinado la palabra! " + palabra);
-                break;
+                condicionBucle=false;
             }
-        }
 
-        if (intentos == 6) {
-            System.out.println("¡Has perdido! La palabra era: " + palabra);
+            if (intentos == 6) {
+                System.out.println("¡Has perdido! La palabra era: " + palabra);
+                condicionBucle=false;
+            }
         }
     }
 
@@ -93,10 +113,25 @@ public class HangmanGame {
         }
     }
 
+    public static boolean palabraNoEspacio(String cadena){
+        boolean res=false;
+        if (cadena.contains(" ")){
+            System.err.println("La palabra no debe tener un espacio");
+            res=true;
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
-        String texto="hola";
+        String palabraAdivinar;
+        System.out.println("¿VAMOS A JUGAR AL AHORCADO!");
+        do {
+            System.out.println("Introduce una palabra para adivinar: ");
+            palabraAdivinar = sc.nextLine().toLowerCase();
+        }while (palabraNoEspacio(palabraAdivinar));
         borrarConsola();
-        palabraHangman(sc,texto);
+        palabraHangman(sc,palabraAdivinar);
+        sc.close();
     }
 }
