@@ -90,8 +90,66 @@ public class MyString {
         return res;
     }
 
+    public static String formatoTelefono(String cadena){
+        String res="";
+        String codigoPais=cadena.substring(0,2);
+        String codigoArea=cadena.substring(2,5);
+        String restoNumero=cadena.substring(5);
+
+        res=String.format("(+%s)-%s-%s",codigoPais,codigoArea,restoNumero);
+
+        return res;
+    }
+
+    public static void mostrarHistograma(String cadena){
+        int a=0, e=0,i=0,o=0,u=0;
+
+        for (int j = 0; j < cadena.length(); j++) {
+            char caracter=cadena.toLowerCase().charAt(j);
+
+            switch (caracter){
+                case 'a':
+                    a++;
+                    break;
+                case 'e':
+                    e++;
+                    break;
+                case 'i':
+                    i++;
+                    break;
+                case 'o':
+                    o++;
+                    break;
+                case 'u':
+                    u++;
+                    break;
+                default:
+                    //Ignora otros caracteres
+                    break;
+            }
+        }
+        System.out.println("Histograma de frecuencias de vocales:");
+        System.out.print("a " + a + " ");
+        imprimirAsterisco(a);
+        System.out.print("e " + e + " ");
+        imprimirAsterisco(e);
+        System.out.print("i " + i + " ");
+        imprimirAsterisco(i);
+        System.out.print("o " + o + " ");
+        imprimirAsterisco(o);
+        System.out.print("u " + u + " ");
+        imprimirAsterisco(u);
+    }
+
+    public static void imprimirAsterisco(int cant){
+        for (int i = 0; i < cant; i++) {
+            System.out.print("*");
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
-        String ejem = "hola que tal estas";
-        System.out.println(numeroPlabarasContiene(ejem));
+        String ejem ="Hola mundo, que tal estas?";
+        mostrarHistograma(ejem);
     }
 }
