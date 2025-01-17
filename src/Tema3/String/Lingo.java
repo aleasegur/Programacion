@@ -1,6 +1,5 @@
 package Tema3.String;
 
-import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Lingo {
@@ -22,7 +21,7 @@ public class Lingo {
         return res;
     }
 
-    public static String evaluarIntentosPalabra(String palabraSecreta,String palabraUsuario){
+    public static String evaluarPalabras(String palabraSecreta, String palabraUsuario){
         String res = "";
         for (int i = 0; i < palabraSecreta.length(); i++) {
             res+="_";
@@ -66,7 +65,7 @@ public class Lingo {
                 palabraUser=sc.nextLine().toLowerCase();
             }while (HangmanGame.palabraNoEspacio(palabraUser)|| !comprobarLongitudCadenas(palabra,palabraUser));
 
-            palabraRevelar=evaluarIntentosPalabra(palabra,palabraUser);
+            palabraRevelar= evaluarPalabras(palabra,palabraUser);
 
             System.out.println("Try: "+palabraUser);
 
