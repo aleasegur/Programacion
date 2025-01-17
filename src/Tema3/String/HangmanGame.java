@@ -29,7 +29,7 @@ public class HangmanGame {
         return res;
     }
 
-    public static void palabraHangman(Scanner sc,String palabra){
+    public static void startHangman(Scanner sc, String palabra){
         String palabraRevelar = "";
         boolean condicionBucle=true;
         for (int i = 0; i < palabra.length(); i++) {
@@ -131,7 +131,7 @@ public class HangmanGame {
             palabraAdivinar = sc.nextLine().toLowerCase();
         }while (palabraNoEspacio(palabraAdivinar));
         borrarConsola();
-        palabraHangman(sc,palabraAdivinar);
+        startHangman(sc,palabraAdivinar);
         sc.close();
     }
 }
