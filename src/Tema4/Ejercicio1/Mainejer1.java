@@ -1,9 +1,9 @@
 package Tema4.Ejercicio1;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class Mainejer1 {
-
+    /*
     public static boolean comprobarHora(int hora) {
         boolean res = true;
         if (hora < 0 || hora >= 24) {
@@ -20,10 +20,10 @@ public class Mainejer1 {
             res = false;
         }
         return res;
-    }
+    }*/
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        //Scanner sc = new Scanner(System.in); import java.util.Scanner comentado
         Reloj reloj1 = new Reloj();
         //Instancio y inicializo mas abajo el objeto reloj2
         Reloj reloj2;
@@ -31,6 +31,8 @@ public class Mainejer1 {
         int horas, min, seg;
         int horaValor, minValor, segValor;
         boolean formatoHora,respuestaFormato;
+
+        /*
         do {
             System.out.println("Introduce una hora: ");
             horas = sc.nextInt();
@@ -45,10 +47,14 @@ public class Mainejer1 {
             System.out.println("Introduce los segundos");
             seg = sc.nextInt();
         } while (!comprobarMinSeg(seg, "segundos"));
+         */
 
         formatoHora=true;
 
         //Atributos reloj1
+        horas=23;
+        min=55;
+        seg=14;
         respuestaFormato=reloj1.getFormato24();
         reloj1.setFormato24(formatoHora);
         reloj1.setHoras(horas);
@@ -71,8 +77,8 @@ public class Mainejer1 {
         System.out.println(reloj1);
 
         System.out.println("---Reloj2---");
-        System.out.println(reloj2);
         System.out.println(reloj2.mostrarHora(horas,min,seg,formatoHora));
+        System.out.println(reloj2);
 
     }
 }
