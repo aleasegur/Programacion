@@ -57,7 +57,9 @@ public class Persona {
     }
 
     public void setEdad(int edad) {
-        this.edad = edad;
+        if (edad>=0) {
+            this.edad = edad;
+        }
     }
 
     public void print() {
@@ -94,13 +96,20 @@ public class Persona {
         char caracterUltimo=dni.toUpperCase().charAt(8);
 
         if (dni.length()!=9){
-            System.err.println("El DNI debe tener 8 digitos");
+            System.err.println("El DNI debe tener una longitud de 9");
             res=false;
         }
 
         if (!Character.isLetter(caracterUltimo)){
             System.err.println("El DNI debe tener una letra");
             res=false;
+        }
+        for (int i = 0; i < 8; i++) {
+            char caracteresDigit = dni.toUpperCase().charAt(i);
+            if (!Character.isDigit(caracteresDigit)){
+                System.err.println("El dni debe tener 8 digitos");
+                res=false;
+            }
         }
         return res;
     }
