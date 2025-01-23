@@ -25,7 +25,7 @@ public class Mainejer3 {
         heroe2.rest();
 
         System.out.println("\n///ATAQUES REPITIDOS SUBIR DE NIVEL\\\\\\");
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             heroe1.attack(heroe2);
         }
 

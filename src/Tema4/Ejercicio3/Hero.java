@@ -107,7 +107,7 @@ public class Hero {
 
     public void attack(Hero otroHero) {
         // Calcular el hit causado al otroHero
-        int hit = Math.max(this.attack - otroHero.getDefense(), MIN_DAMAGE);
+        int hit = Math.max(getAttack() - otroHero.getDefense(), MIN_DAMAGE);
         otroHero.setHealth(otroHero.getHealth() - hit);
 
         // Add experiencia al atacante
