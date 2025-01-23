@@ -26,7 +26,7 @@ public class CaesarCipher {
                 res+=(char)('A'+posicion);
             }else if(Character.isDigit(caracter)){
                 //ciframos el digito con desplazamiento 1
-                int digito=(caracter-'0'-1)%10;
+                int digito=(caracter-'0'+1)%10;
                 res+=('0'+digito);
             }else {
                 res+=caracter;
@@ -62,8 +62,7 @@ public class CaesarCipher {
         System.out.println("Texto original: "+texto);
         String textoCodificado=cifrarCaesar(texto);
         System.out.println("Texto codificado: "+textoCodificado);
-        //BSUVSP TF FRVJWPDB FM FODFCPMMBEP OP FT FM NFKPS
-        String textoDescod=descifrarCaesar(texto);
+        String textoDescod=descifrarCaesar(textoCodificado);
         System.out.println("Texto descodificado: "+textoDescod);
         sc.close();
     }
