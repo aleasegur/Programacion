@@ -75,6 +75,7 @@ public class MyString {
         return res;
     }
 
+    //.split()
     public static int numeroPlabarasContiene(String cadena){
         int res=0;
         boolean esPalabra=false;
