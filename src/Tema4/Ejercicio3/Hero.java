@@ -1,7 +1,5 @@
 package Tema4.Ejercicio3;
 
-import java.util.Scanner;
-
 /*ALEJANDRO ASENCIO GURAU
 * Crea una clase Hero para representar un personaje de un juego de Rol.
 Están prohibidos los “magic numbers”.
@@ -27,30 +25,42 @@ Haz un programa principal dónde se utilice la clase anterior y todos los
 métodos.*/
 public class Hero {
     private String name;
-    private int level,health,experience,attack,defense;
-    private final int MAX_HEALTH=200;
-    public static final int SUMA_HEALTH=10;
-    public static final int SUMA_REAST_HEALTH=10;
-    public static final int SUMA_EXPERIENCIA=10;
-    public static final String DEFAULT_NAME="HERO DOE";
-    public static final int DEFAULT_ATTACK=100;
-    public static final int DEFAULT_DEFENSE=100;
-    public static final int DEFAULT_HEALTH=100;
-    public static final int DEFAULT_LEVEL=1;
+    private int level,health,maxHealth,experience,attack,defense;
+
+    //Atributos statci final para eveitar los magics numbers
+    private static final int MAX_HEALTH_LIMIT = 200;
+    public static final String DEFAULT_NAME = "HERO DOE";
+    public static final int DEFAULT_ATTACK = 100;
+    public static final int DEFAULT_DEFENSE = 100;
+    public static final int DEFAULT_HEALTH = 100;
+    public static final int DEFAULT_LEVEL = 1;
+    private static final int POTION_HEAL = 10;
+    private static final int REST_HEAL = 50;
+    private static final int LEVEL_UP_HEALTH = 5;
+    private static final int LEVEL_UP_ATTACK = 1;
+    private static final int LEVEL_UP_DEFENSE = 1;
+    private static final int ATTACK_EXPERIENCE = 10;
+    private static final int MAX_EXPERIENCE = 50;
+    private static final int MIN_DAMAGE = 10;
 
     public Hero() {
         this.name = DEFAULT_NAME;
         this.attack=DEFAULT_ATTACK;
         this.level=DEFAULT_LEVEL;
         this.defense=DEFAULT_DEFENSE;
-        this.health=DEFAULT_HEALTH;
+        this.experience = 0;
+        this.maxHealth = Math.min(DEFAULT_HEALTH, MAX_HEALTH_LIMIT);
+        this.health = this.maxHealth;
     }
 
     public Hero(String name, int health, int attack, int defense) {
-        this.name = name;
-        this.health = health;
-        this.attack = attack;
-        this.defense = defense;
+        setName(name);
+        setAttack(attack);
+        setDefense(defense);
+        this.maxHealth = Math.min(health, MAX_HEALTH_LIMIT);
+        setHealth(health);
+        this.level=DEFAULT_LEVEL;
+        this.experience=0;
     }
 
     public String getName() {
@@ -66,7 +76,7 @@ public class Hero {
     }
 
     public void setHealth(int health) {
-        this.health = health;
+        this.health = Math.max(0,Math.min(health,this.maxHealth));
     }
 
     public int getAttack() {
@@ -85,21 +95,45 @@ public class Hero {
         this.defense = defense;
     }
 
-    public int drinHealth(){
-        int res;
-        res=this.health+SUMA_HEALTH;
-        return res;
+    public void drinkPotion(){
+        this.health = Math.min(this.health + POTION_HEAL, this.maxHealth);
+        System.out.println(this.name + " tomo una pocion. Salud actual: " + this.health);
     }
 
-    public int rest(){
-        int res;
-        res=this.health+SUMA_REAST_HEALTH;
-        return res;
+    public void rest(){
+        this.health = Math.min(this.health + REST_HEAL, this.maxHealth);
+        System.out.println(this.name + " descanso. Salud actual: " + this.health);
     }
 
-    public int attack(Hero otroHero){
-        int hit=1+Math.max(this.attack-otroHero.getDefense(),10);
-        return otroHero.getHealth()-hit;
+    public void attack(Hero otroHero) {
+        // Calcular el hit causado al otroHero
+        int hit = Math.max(this.attack - otroHero.getDefense(), MIN_DAMAGE);
+        otroHero.setHealth(otroHero.getHealth() - hit);
+
+        // Añadir experiencia al atacante
+        this.experience += ATTACK_EXPERIENCE;
+
+        // Subir de nivel si acumula 50 o más de experiencia
+        if (this.experience >= MAX_EXPERIENCE) {
+            levelUp();
+        }
+
+        // Imprimir los detalles del ataque
+        System.out.println(this.name + " ataco a " + otroHero.getName() + " causando " + hit + " de hit.");
+        System.out.println(otroHero.getName() + " ahora tiene " + otroHero.getHealth() + " de salud.");
+    }
+
+    // Método para subir de nivel
+    public void levelUp() {
+        this.level++;
+        this.maxHealth = Math.min(this.maxHealth + LEVEL_UP_HEALTH, MAX_HEALTH_LIMIT);
+        this.attack += LEVEL_UP_ATTACK;
+        this.defense += LEVEL_UP_DEFENSE;
+        this.health = this.maxHealth;
+        this.experience = 0;
+
+        System.out.println(this.name + " subio al nivel " + this.level + "!");
+        System.out.println("Nueva salud maxima: " + this.maxHealth + ", Ataque: " + this.attack + ", Defensa: " + this.defense);
     }
 
     @Override
@@ -109,6 +143,7 @@ public class Hero {
                 ", level=" + level +
                 ", experience=" + experience +
                 ", health=" + health +
+                ", maxHealth="+maxHealth+
                 ", attack=" + attack +
                 ", defense=" + defense +
                 '}';
