@@ -110,10 +110,10 @@ public class Hero {
         int hit = Math.max(this.attack - otroHero.getDefense(), MIN_DAMAGE);
         otroHero.setHealth(otroHero.getHealth() - hit);
 
-        // Añadir experiencia al atacante
+        // Add experiencia al atacante
         this.experience += ATTACK_EXPERIENCE;
 
-        // Subir de nivel si acumula 50 o más de experiencia
+        // Subir de nivel si acumula 50 o mas de experiencia
         if (this.experience >= MAX_EXPERIENCE) {
             levelUp();
         }
