@@ -70,7 +70,6 @@ public class Persona {
     public boolean isAdult(){
         boolean res=false;
         if (this.edad>=adultAge){
-            System.out.println("Es mayor de edad");
             res=true;
         }
         return res;
