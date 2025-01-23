@@ -26,10 +26,10 @@ public class Persona {
     private int edad;
 
     public Persona(String nombre, String apellidos, String dni, int edad) {
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.dni = dni;
-        this.edad = edad;
+        setNombre(nombre);
+        setApellidos(apellidos);
+        setEdad(edad);
+        this.dni=dni;
     }
 
     public String getNombre() {
