@@ -1,12 +1,46 @@
 package Tema4.Ejercicio3;
 
+import java.util.Scanner;
+
 public class Mainejer3 {
 
+    public static boolean comporbarValAtrib(int atributo,int max,int min){
+        boolean res=true;
+        if (atributo < min || atributo > max) {
+            System.err.println("Valor fuera de rango. Intente nuevamente.");
+            res=false;
+        }
+        return res;
+    }
 
+    public static int crearAtributo(Scanner sc,String atributo){
+        int res=0;
+        int minAtr=Hero.MIN_NUMBER_ATRIBUTE_LIMIT;
+        int maxAtr=Hero.MAX_ATRIBUTE_LIMIT;
+        do {
+            System.out.println("Ingrese el valor para " + atributo + " (" + minAtr + "-" + maxAtr + "): ");
+            res = sc.nextInt();
+        } while (!comporbarValAtrib(res,maxAtr,minAtr));
+        return res;
+    }
+
+    public static Hero crearHeroe(Scanner sc){
+        String name;
+        int health,attack,defense;
+        System.out.println("Introduce un nombre para tu heroe: ");
+        name=sc.next();
+        health=crearAtributo(sc,"Health");
+        attack=crearAtributo(sc,"Attack");
+        defense=crearAtributo(sc,"Defense");
+        return new Hero(name,health,attack,defense);
+    }
 
     public static void main(String[] args) {
-        Hero heroe1=new Hero("Guerrero",300,300,300);
-        Hero heroe2=new Hero("Picaro",300,300,300);
+        Scanner sc=new Scanner(System.in);
+        System.out.println("---Creacion  del primer heroe---");
+        Hero heroe1=crearHeroe(sc);
+        System.out.println("---Creacion del segundo heroe---");
+        Hero heroe2=crearHeroe(sc);
 
         System.out.println("///HEROES INICIALES\\\\\\");
         System.out.println(heroe1);
