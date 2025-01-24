@@ -28,12 +28,14 @@ public class Hero {
     private int level,health,maxHealth,experience,attack,defense;
 
     //Atributos statci final para eveitar los magics numbers
-    private static final int MAX_HEALTH_LIMIT = 200;
-    public static final String DEFAULT_NAME = "HERO DOE";
-    public static final int DEFAULT_ATTACK = 100;
-    public static final int DEFAULT_DEFENSE = 100;
-    public static final int DEFAULT_HEALTH = 100;
-    public static final int DEFAULT_LEVEL = 1;
+    public static final int MAX_ATRIBUTE_LIMIT = 200;
+    public static final int MIN_NUMBER_ATRIBUTE_LIMIT = 1;
+    public static final int MIN_NUMBER_LIMIT = 0;
+    private static final String DEFAULT_NAME = "HERO DOE";
+    private static final int DEFAULT_ATTACK = 100;
+    private static final int DEFAULT_DEFENSE = 100;
+    private static final int DEFAULT_HEALTH = 100;
+    private static final int DEFAULT_LEVEL = 1;
     private static final int POTION_HEAL = 10;
     private static final int REST_HEAL = 50;
     private static final int LEVEL_UP_HEALTH = 5;
@@ -49,7 +51,7 @@ public class Hero {
         this.level=DEFAULT_LEVEL;
         this.defense=DEFAULT_DEFENSE;
         this.experience = 0;
-        this.maxHealth = Math.min(DEFAULT_HEALTH, MAX_HEALTH_LIMIT);
+        this.maxHealth = Math.min(DEFAULT_HEALTH, MAX_ATRIBUTE_LIMIT);
         this.health = this.maxHealth;
     }
 
@@ -57,7 +59,7 @@ public class Hero {
         setName(name);
         setAttack(attack);
         setDefense(defense);
-        this.maxHealth = Math.min(health, MAX_HEALTH_LIMIT);
+        this.maxHealth = Math.min(health, MAX_ATRIBUTE_LIMIT);
         setHealth(health);
         this.level=DEFAULT_LEVEL;
         this.experience=0;
@@ -76,7 +78,7 @@ public class Hero {
     }
 
     public void setHealth(int health) {
-        this.health = Math.max(0,Math.min(health,this.maxHealth));
+        this.health = Math.max(MIN_NUMBER_LIMIT,Math.min(health,this.maxHealth));
     }
 
     public int getAttack() {
@@ -84,7 +86,7 @@ public class Hero {
     }
 
     public void setAttack(int attack) {
-        this.attack = attack;
+        this.attack = Math.max(MIN_NUMBER_LIMIT,Math.min(attack,MAX_ATRIBUTE_LIMIT));
     }
 
     public int getDefense() {
@@ -92,7 +94,7 @@ public class Hero {
     }
 
     public void setDefense(int defense) {
-        this.defense = defense;
+        this.defense = Math.max(MIN_NUMBER_LIMIT,Math.min(defense,MAX_ATRIBUTE_LIMIT));
     }
 
     public int drinkPotion() {
@@ -136,7 +138,7 @@ public class Hero {
     // Método para subir de nivel
     public String levelUp() {
         this.level++;
-        this.maxHealth = Math.min(this.maxHealth + LEVEL_UP_HEALTH, MAX_HEALTH_LIMIT);
+        this.maxHealth = Math.min(this.maxHealth + LEVEL_UP_HEALTH, MAX_ATRIBUTE_LIMIT);
         this.attack += LEVEL_UP_ATTACK;
         this.defense += LEVEL_UP_DEFENSE;
         this.health = this.maxHealth;
