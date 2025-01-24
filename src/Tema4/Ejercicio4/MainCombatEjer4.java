@@ -28,9 +28,10 @@ public class MainCombatEjer4 {
 
             // Crear enemigos
             for (int i = 0; i < numEnemigos; i++) {
-                enemigos[i] = new Hero("Bandido " + (i + 1), rand.nextInt(50) + 50 +ronda *10,
-                        rand.nextInt(15) + 5 +ronda*2,
-                        rand.nextInt(10) + 5+ronda*2);
+                enemigos[i] = new Hero("Bandido " + (i + 1),
+                        Math.min(rand.nextInt(50) + 50 +ronda *10,Hero.MAX_ATRIBUTE_LIMIT),
+                        Math.min(rand.nextInt(15) + 5 +ronda*2,Hero.MAX_ATRIBUTE_LIMIT),
+                        Math.min(rand.nextInt(10) + 5+ronda*2,Hero.MAX_ATRIBUTE_LIMIT));
             }
 
             System.out.println("Horda " + ronda + " con " + numEnemigos + " enemigos aparece!");
