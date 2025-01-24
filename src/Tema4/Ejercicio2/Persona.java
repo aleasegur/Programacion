@@ -92,25 +92,17 @@ public class Persona {
     }
 
     public static boolean checkDNI(String dni){
-        boolean res=true;
-        char caracterUltimo=dni.toUpperCase().charAt(8);
-
-        if (dni.length()!=9){
-            System.err.println("El DNI debe tener una longitud de 9");
-            res=false;
-        }
-
-        if (!Character.isLetter(caracterUltimo)){
-            System.err.println("El DNI debe tener una letra");
-            res=false;
-        }
-        for (int i = 0; i < 8; i++) {
-            char caracteresDigit = dni.toUpperCase().charAt(i);
-            if (!Character.isDigit(caracteresDigit)){
-                System.err.println("El dni debe tener 8 digitos");
-                res=false;
-            }
-        }
+        boolean res;
+        String letrasDni = "TRWAGMYFPDXBNJZSQVHLCKE";
+        //Extraer los primeros 9 caracteres
+        String numDni = dni.substring(0, 8);
+        //Extraer los primeros 8 caracteres
+        char letraIntroducida = dni.charAt(8);
+        //Convertir los primeros 8 caracteres en numeros entero
+        int valDni = Integer.parseInt(numDni);
+        //calcular la letra correspondiente
+        char letraVal = letrasDni.charAt(valDni % 23);
+        res = letraVal == letraIntroducida;
         return res;
     }
 
