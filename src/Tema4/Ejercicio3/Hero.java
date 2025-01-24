@@ -95,19 +95,26 @@ public class Hero {
         this.defense = defense;
     }
 
-    public void drinkPotion(){
+    public int drinkPotion() {
+        int res;
         this.health = Math.min(this.health + POTION_HEAL, this.maxHealth);
-        System.out.println(this.name + " tomo una pocion. Salud actual: " + this.health);
+        res = this.health;
+        //System.out.println(this.name + " tomo una pocion. Salud actual: " + this.health);
+        return res;
     }
 
-    public void rest(){
+    public int rest() {
+        int res;
         this.health = Math.min(this.health + REST_HEAL, this.maxHealth);
-        System.out.println(this.name + " descanso. Salud actual: " + this.health);
+        //System.out.println(this.name + " descanso. Salud actual: " + this.health);
+        res = this.health;
+        return res;
     }
 
-    public void attack(Hero otroHero) {
+    public int attack(Hero otroHero) {
         // Calcular el hit causado al otroHero
         int hit = Math.max(getAttack() - otroHero.getDefense(), MIN_DAMAGE);
+
         otroHero.setHealth(otroHero.getHealth() - hit);
 
         // Add experiencia al atacante
@@ -115,25 +122,26 @@ public class Hero {
 
         // Subir de nivel si acumula 50 o mas de experiencia
         if (this.experience >= MAX_EXPERIENCE) {
-            levelUp();
+            String level = levelUp();
+            System.out.println(level);
         }
 
         // Imprimir los detalles del ataque
-        System.out.println(this.name + " ataco a " + otroHero.getName() + " causando " + hit + " de hit.");
-        System.out.println(otroHero.getName() + " ahora tiene " + otroHero.getHealth() + " de salud.");
+        /*System.out.println(this.name + " ataco a " + otroHero.getName() + " causando " + hit + " de hit.");
+        System.out.println(otroHero.getName() + " ahora tiene " + otroHero.getHealth() + " de salud.");*/
+        return hit;
+
     }
 
     // Método para subir de nivel
-    public void levelUp() {
+    public String levelUp() {
         this.level++;
         this.maxHealth = Math.min(this.maxHealth + LEVEL_UP_HEALTH, MAX_HEALTH_LIMIT);
         this.attack += LEVEL_UP_ATTACK;
         this.defense += LEVEL_UP_DEFENSE;
         this.health = this.maxHealth;
         this.experience = 0;
-
-        System.out.println(this.name + " subio al nivel " + this.level + "!");
-        System.out.println("Nueva salud maxima: " + this.maxHealth + ", Ataque: " + this.attack + ", Defensa: " + this.defense);
+        return this.name + " subio al nivel " + this.level + "!" + "Nueva salud maxima: " + this.maxHealth + ", Ataque: " + this.attack + ", Defensa: " + this.defense;
     }
 
     @Override
