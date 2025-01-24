@@ -110,7 +110,7 @@ public class Utils {
         return res;
     }
 
-    public static Boolean isValidNIF(String dni){
+    public static boolean isValidNIF(String dni){
         boolean res=false;
             String letrasDni = "TRWAGMYFPDXBNJZSQVHLCKE";
             //Extraer los primeros 9 caracteres
