@@ -28,13 +28,13 @@ public class Hero {
     private int level,health,maxHealth,experience,attack,defense;
 
     //Atributos statci final para eveitar los magics numbers
-    public static final int MAX_ATRIBUTE_LIMIT = 200;
+    public static final int MAX_ATRIBUTE_LIMIT = 40;
     public static final int MIN_NUMBER_ATRIBUTE_LIMIT = 1;
     public static final int MIN_NUMBER_LIMIT = 0;
     private static final String DEFAULT_NAME = "HERO DOE";
-    private static final int DEFAULT_ATTACK = 100;
-    private static final int DEFAULT_DEFENSE = 100;
-    private static final int DEFAULT_HEALTH = 100;
+    private static final int DEFAULT_ATTACK = 40;
+    private static final int DEFAULT_DEFENSE = 40;
+    private static final int DEFAULT_HEALTH = 40;
     private static final int DEFAULT_LEVEL = 1;
     private static final int POTION_HEAL = 10;
     private static final int REST_HEAL = 50;
