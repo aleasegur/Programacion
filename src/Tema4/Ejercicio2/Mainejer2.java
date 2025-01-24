@@ -20,6 +20,9 @@ public class Mainejer2 {
         do {
             System.out.println("Introduce tu dni: ");
             dni = sc.next().toUpperCase();
+            if (!Persona.checkDNI(dni)){
+                System.err.println("DNI introducido no correcto. Vuelva a introducirlo");
+            }
         }while (!Persona.checkDNI(dni));
 
         return new Persona(nombre,apellidos,dni,edad);
