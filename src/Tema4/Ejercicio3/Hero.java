@@ -1,7 +1,4 @@
 package Tema4.Ejercicio3;
-
-import java.util.Random;
-
 /*ALEJANDRO ASENCIO GURAU
 * Crea una clase Hero para representar un personaje de un juego de Rol.
 Están prohibidos los “magic numbers”.
@@ -34,9 +31,9 @@ public class Hero {
     public static final int MIN_NUMBER_ATRIBUTE_LIMIT = 1;
     public static final int MIN_NUMBER_LIMIT = 0;
     private static final String DEFAULT_NAME = "HERO DOE";
-    private static final int DEFAULT_ATTACK = 40;
-    private static final int DEFAULT_DEFENSE = 40;
-    private static final int DEFAULT_HEALTH = 40;
+    private static final int DEFAULT_ATTACK = 100;
+    private static final int DEFAULT_DEFENSE = 80;
+    private static final int DEFAULT_HEALTH = 140;
     private static final int DEFAULT_LEVEL = 1;
     private static final int POTION_HEAL = 10;
     private static final int REST_HEAL = 50;
@@ -46,7 +43,7 @@ public class Hero {
     private static final int ATTACK_EXPERIENCE = 10;
     private static final int MAX_EXPERIENCE = 50;
     private static final int MAX_LEVEL=120;
-    private static final int MIN_DAMAGE = 10;
+    //private static final int MIN_DAMAGE = 10;
 
     public Hero() {
         this.name = DEFAULT_NAME;
@@ -117,13 +114,9 @@ public class Hero {
     }
 
     public int attack(Hero otroHero) {
-        Random rand=new Random();
-
         // Calcular el hit causado al otroHero
-        int hit = Math.max(getAttack() - otroHero.getDefense(), MIN_DAMAGE);
-        int damage=rand.nextInt(hit)+1;
-
-        otroHero.setHealth(otroHero.getHealth() - damage);
+        int hit = Math.max(1,getAttack() - otroHero.getDefense());
+        otroHero.setHealth(otroHero.getHealth() - hit);
 
         // Add experiencia al atacante
         this.experience += ATTACK_EXPERIENCE;
@@ -137,7 +130,7 @@ public class Hero {
         // Imprimir los detalles del ataque
         /*System.out.println(this.name + " ataco a " + otroHero.getName() + " causando " + hit + " de hit.");
         System.out.println(otroHero.getName() + " ahora tiene " + otroHero.getHealth() + " de salud.");*/
-        return damage;
+        return hit;
 
     }
 
@@ -145,7 +138,7 @@ public class Hero {
     public String levelUp() {
 
         if (this.level >= MAX_LEVEL) {
-            return this.name + " ya ha alcanzado el nivel maximo "+MAX_LEVEL;
+            return this.name + " ya ha alcanzado el nivel maximo: "+MAX_LEVEL;
         }
 
         this.level++;
