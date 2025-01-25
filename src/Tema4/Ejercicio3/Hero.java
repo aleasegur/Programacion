@@ -137,6 +137,7 @@ public class Hero {
     // Método para subir de nivel
     public String levelUp() {
 
+        //Limitador de nivel
         if (this.level >= MAX_LEVEL) {
             return this.name + " ya ha alcanzado el nivel maximo: "+MAX_LEVEL;
         }
