@@ -1,4 +1,7 @@
 package Tema4.GestionPersonasCuentas;
+
+import java.util.Scanner;
+
 /*ALEJANDRO ASENCIO GURAU
 * Crear una clase Cuenta la cual se caracteriza por tener asociado un número de cuenta y un
 saldo disponible. Además, se debe poder consultar el saldo disponible en cualquier
@@ -7,14 +10,21 @@ public class Cuenta {
     private String iban;
     private double saldo;
 
+    //Constructor por defecto
     public Cuenta(){
         iban="ES00000000000000000";
         saldo=0;
     }
 
+    //Constructor por parametros
     public Cuenta(String iban, double saldo) {
-        setIban(iban);
-        setSaldo(saldo);
+        if (validarIban(iban)) {
+            this.iban = iban;
+        }else{
+            System.err.println("Iban incorrecto");
+        }
+        //En saldo se tendria que comprobar que el saldo no sea negativo, pero para comporbar las personas morosas se tendria que dejar
+        this.saldo=saldo;
     }
 
     public String getIban() {
@@ -35,6 +45,10 @@ public class Cuenta {
         this.saldo = saldo;
     }
 
+
+    //Metodo para pagar un reciboutilizo String
+    //Comprubo si el saldo es mayor a la cantidad a pagar y si es asi lo resto por esa cantidad y muestro un mensaje
+    //SUGERENCIA (tendre que utilizar String.format PARA EL MENSAJE)
     public String pagarRecibo(String idRecibo,double cantidad){
         String res="";
         if (this.saldo>=cantidad){
@@ -45,6 +59,7 @@ public class Cuenta {
         }
         return res;
     }
+
 
     public double depositarAbono(double cantidad){
         double res;
@@ -59,8 +74,9 @@ public class Cuenta {
 
     public static boolean validarIban(String iban){
         boolean res=true;
-        if (iban.length()!=24){
-            System.out.println("EL IBAN DEBE TENER 24 caracteres");
+        //se que un iban son 24 carcteres, es para no hacerlo largo
+        if (iban.length()!=6){
+            System.out.println("EL IBAN DEBE TENER 6 caracteres");
             res=false;
         }
 
@@ -70,17 +86,39 @@ public class Cuenta {
         }
 
         //utilizo .matches para comprobar la cadena si coincide con el patron
-        //\\d representa carcter numerico, y {22} el patron anterior \\d se debe currir 22 veces
+        //\\d representa carcter numerico, y {4} el patron anterior \\d se debe currir 4 veces(se que un iban son 24 de caracteres)
         String restoIban = iban.substring(2);
-        if (!restoIban.matches("\\d{22}")) {
-            System.err.println("Los ultimos 22 caracteres del IBAN deben ser numeros.");
+        if (!restoIban.matches("\\d{4}")) {
+            System.err.println("Los ultimos 6 caracteres del IBAN deben ser numeros.");
             res= false;
         }
 
         return res;
     }
 
+    public static String intoducirIban(Scanner sc){
+        String iban;
+        do {
+            System.out.println("Introduce el iban: ");
+            iban=sc.next().toUpperCase();
+        }while (!Cuenta.validarIban(iban));
+        return iban;
+    }
 
+    public static double introducirSaldo(Scanner sc){
+        double res;
+        /*Coemntado para hacer pruebas
+        do {
+            System.out.println("Introduce la cantidad de dinero: ");
+            res=sc.nextDouble();
+            if (res<=0){
+                System.err.println("El dinero a ingresar no debe ser menor o igual a 0");
+            }
+        }while (res<=0);*/
+        System.out.println("Introduce la cantidad de dinero: ");
+        res=sc.nextDouble();
+        return res;
+    }
 
     @Override
     public String toString() {
@@ -89,4 +127,5 @@ public class Cuenta {
                 ", saldo=" + saldo +
                 '}';
     }
+
 }

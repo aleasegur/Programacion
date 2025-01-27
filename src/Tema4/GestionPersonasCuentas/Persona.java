@@ -1,4 +1,8 @@
 package Tema4.GestionPersonasCuentas;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
 /*ALEJANDRO ASENCIO GURAU
 * Crear una clase Persona, que se caracteriza por un DNI y un array de cuentas bancarias. La
  Persona puede tener asociada hasta 3 cuentas bancarias, y debe tener un método que permita
@@ -6,19 +10,26 @@ package Tema4.GestionPersonasCuentas;
 si la persona es morosa (si tienen alguna cuenta con saldo negativo).*/
 public class Persona {
     private String dni;
-    private Cuenta[] cuentas;
+    private final Cuenta[] cuentas;
+    //Atributo que asegura que la cantidad de personas a instanciar en PruebaCuentas sea la solicitado o como quieras
+    public static final int NUMERO_DE_PERSONAS=3;
+    //Atributo final para que sean 3 cuentas bancarias sin opcion a modificar durante la ejecuion del programa
+    public static final int NUMERO_DE_CUENTAS_BANCARIAS=3;
 
+    //Constructor por defecto
     public Persona(){
         dni="12345678J";
-        cuentas=new Cuenta[3];
+        cuentas=new Cuenta[NUMERO_DE_CUENTAS_BANCARIAS];
     }
 
+    //Constructor por parametros
     public Persona(String dni) {
-        this.dni = dni.toUpperCase();
-        this.cuentas=new Cuenta[3];
-        for (int i = 0; i < cuentas.length; i++) {
-            cuentas[i] = new Cuenta(); // Objeto vacío
+        if (validarDni(dni)) {
+            this.dni = dni.toUpperCase();
+        }else{
+            System.err.println("El DNI introducido no es correcto");
         }
+        this.cuentas=new Cuenta[NUMERO_DE_CUENTAS_BANCARIAS];
     }
 
     public String getDni() {
@@ -37,13 +48,14 @@ public class Persona {
         return cuentas;
     }
 
-    public boolean agregarCuenta(Cuenta cuenta){
-        boolean res=false;
+    //Lo he ehcho con un procedimiento no se si es mejor cambiarlo a un metodo de tipo cuenta o booleano
+    public void agregarCuenta(Scanner sc){
         for (int i = 0; i < cuentas.length; i++) {
-            cuentas[i] =new Cuenta(cuenta.getIban(),cuenta.getSaldo());
-            res= true;
+            System.out.println("---IBAN CUENTA "+(i+1)+"---");
+            String iban=Cuenta.intoducirIban(sc);
+            double dinero=Cuenta.introducirSaldo(sc);
+            cuentas[i] = new Cuenta(iban, dinero);
         }
-        return res;
     }
 
     public void mostrarCuenta(){
@@ -80,6 +92,7 @@ public class Persona {
         return res;
     }
 
+    //Metodo que buscar dentro del array de cuentas asociado a una persona si existe o no
     public Cuenta buscarCuenta(String iban){
         for (Cuenta cuenta : cuentas){
             if (cuenta!=null && cuenta.getIban().equals(iban)){
@@ -89,5 +102,20 @@ public class Persona {
         return null;
     }
 
+    public static String introducirDni(Scanner sc){
+        String dni;
+        do {
+            System.out.println("Introduce el DNI:");
+            dni=sc.next().toUpperCase();
+        }while (!Persona.validarDni(dni));
+        return dni;
+    }
 
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "dni='" + dni + '\'' +
+                ", cuentas=" + Arrays.toString(cuentas) +
+                '}';
+    }
 }
