@@ -10,9 +10,10 @@ import java.util.Scanner;
 si la persona es morosa (si tienen alguna cuenta con saldo negativo).*/
 public class Persona {
     private String dni;
+    //Pienso que el array de Cuentas su incializacion no se puede modificar, ya que el enunciado deja claro que solo 3 cuentas
     private final Cuenta[] cuentas;
     //Atributo que asegura que la cantidad de personas a instanciar en PruebaCuentas sea la solicitado o como quieras
-    public static final int NUMERO_DE_PERSONAS=3;
+    public static final int NUMERO_DE_PERSONAS=1;
     //Atributo final para que sean 3 cuentas bancarias sin opcion a modificar durante la ejecuion del programa
     public static final int NUMERO_DE_CUENTAS_BANCARIAS=3;
 
@@ -20,6 +21,9 @@ public class Persona {
     public Persona(){
         dni="12345678J";
         cuentas=new Cuenta[NUMERO_DE_CUENTAS_BANCARIAS];
+        for (int i = 0; i < cuentas.length; i++) {
+            cuentas[i]=new Cuenta();
+        }
     }
 
     //Constructor por parametros
@@ -29,7 +33,13 @@ public class Persona {
         }else{
             System.err.println("El DNI introducido no es correcto");
         }
+        //Aqui instancio cuentas con la longtitud del array
         this.cuentas=new Cuenta[NUMERO_DE_CUENTAS_BANCARIAS];
+        //en caso de que no se asocio e instancia la cuenta con Persona,
+        // utilizaremos el constructor por defecto creado en Cuenta
+        for (int i = 0; i < cuentas.length; i++) {
+            cuentas[i]=new Cuenta();
+        }
     }
 
     public String getDni() {
@@ -52,7 +62,10 @@ public class Persona {
     public void agregarCuenta(Scanner sc){
         for (int i = 0; i < cuentas.length; i++) {
             System.out.println("---IBAN CUENTA "+(i+1)+"---");
-            String iban=Cuenta.intoducirIban(sc);
+            String iban;
+            do {
+                iban = Cuenta.intoducirIban(sc);
+            }while (Cuenta.comprobarIbanRepetido(iban,cuentas));
             double dinero=Cuenta.introducirSaldo(sc);
             cuentas[i] = new Cuenta(iban, dinero);
         }

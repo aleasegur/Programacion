@@ -12,7 +12,7 @@ public class Cuenta {
 
     //Constructor por defecto
     public Cuenta(){
-        iban="ES00000000000000000";
+        iban="ES0000";
         saldo=0;
     }
 
@@ -117,6 +117,17 @@ public class Cuenta {
         }while (res<=0);*/
         System.out.println("Introduce la cantidad de dinero: ");
         res=sc.nextDouble();
+        return res;
+    }
+
+    public static boolean comprobarIbanRepetido(String iban,Cuenta[] cuenta){
+        boolean res=false;
+        for (Cuenta cuentas : cuenta){
+            if (cuentas!=null && cuentas.getIban().equals(iban)){
+                System.err.println("El IBAN introducido ya existe. Vuelva a introducir otro");
+                res=true;
+            }
+        }
         return res;
     }
 
