@@ -56,13 +56,13 @@ public class Hero {
     }
 
     public Hero(String name, int health, int attack, int defense) {
-        setName(name);
-        setAttack(attack);
-        setDefense(defense);
+        this.name=name;
+        this.attack=attack;
+        this.defense=defense;
         this.maxHealth = Math.min(health, MAX_ATRIBUTE_LIMIT);
-        setHealth(health);
+        this.health=health;
         this.level=DEFAULT_LEVEL;
-        this.experience=0;
+        this.experience=MIN_NUMBER_LIMIT;
     }
 
     public String getName() {
