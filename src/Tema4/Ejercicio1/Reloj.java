@@ -67,33 +67,28 @@ public class Reloj {
         this.formato24 = formato24;
     }
 
-    public String mostrarHora(int horas, int min, int seg,boolean formato){
+    public void mostrarHora(){
       String res;
-      if (formato){
-          res=String.format("%02d:%02d:%02d", horas, min, seg);
-      }else{
-          horas%=12;
-          if (horas==0){
-              horas=12;
-          }
-          String periodoHora;
-          if (horas<12){
-              periodoHora="AM";
-          }else {
-              periodoHora="PM";
-          }
-          res=String.format("%02d:%02d:%02d %s", horas, min, seg, periodoHora);
-      }
-      return res;
+      res=horas+":"+min+":"+seg;
+        System.out.println(res);
     }
 
     @Override
     public String toString() {
-        return "Reloj{" +
-                "horas=" + horas +
-                ", minutos=" + min +
-                ", segundos=" + seg +
-                ", formato24="+formato24+
-                '}';
+        if (formato24){
+            return String.format("%02d:%02d:%02d", horas, min, seg);
+        }else{
+            horas%=12;
+            if (horas==0){
+                horas=12;
+            }
+            String periodoHora;
+            if (horas<12){
+                periodoHora="AM";
+            }else {
+                periodoHora="PM";
+            }
+            return String.format("%02d:%02d:%02d %s", horas, min, seg, periodoHora);
+        }
     }
 }

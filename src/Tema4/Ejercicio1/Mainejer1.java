@@ -29,7 +29,6 @@ public class Mainejer1 {
         Reloj reloj2;
 
         int horas, min, seg;
-        int horaValor, minValor, segValor;
         boolean formatoHora,respuestaFormato;
 
         /*
@@ -55,14 +54,10 @@ public class Mainejer1 {
         horas=23;
         min=55;
         seg=14;
-        respuestaFormato=reloj1.getFormato24();
         reloj1.setFormato24(formatoHora);
         reloj1.setHoras(horas);
         reloj1.setMin(min);
         reloj1.setSeg(seg);
-        horaValor = reloj1.getHoras();
-        minValor = reloj1.getMin();
-        segValor = reloj1.getSeg();
 
         //Atributos reloj2
         horas=20;
@@ -73,11 +68,11 @@ public class Mainejer1 {
         reloj2.setFormato24(formatoHora);
 
         System.out.println("---Reloj1---");
-        System.out.println(reloj1.mostrarHora(horaValor, minValor, segValor,respuestaFormato));
+        reloj1.mostrarHora();
         System.out.println(reloj1);
 
         System.out.println("---Reloj2---");
-        System.out.println(reloj2.mostrarHora(horas,min,seg,formatoHora));
+        reloj2.mostrarHora();
         System.out.println(reloj2);
 
     }
