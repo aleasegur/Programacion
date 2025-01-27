@@ -13,7 +13,7 @@ public class Persona {
     //Pienso que el array de Cuentas su incializacion no se puede modificar, ya que el enunciado deja claro que solo 3 cuentas
     private final Cuenta[] cuentas;
     //Atributo que asegura que la cantidad de personas a instanciar en PruebaCuentas sea la solicitado o como quieras
-    public static final int NUMERO_DE_PERSONAS=1;
+    public static final int NUMERO_DE_PERSONAS=3;
     //Atributo final para que sean 3 cuentas bancarias sin opcion a modificar durante la ejecuion del programa
     public static final int NUMERO_DE_CUENTAS_BANCARIAS=3;
 
