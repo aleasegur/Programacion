@@ -71,5 +71,14 @@ public class Persona {
         return res;
     }
 
+    public Cuenta buscarCuenta(String iban){
+        for (Cuenta cuenta : cuentas){
+            if (cuenta!=null && cuenta.getIban().equals(iban)){
+                return cuenta;
+            }
+        }
+        return null;
+    }
+
 
 }

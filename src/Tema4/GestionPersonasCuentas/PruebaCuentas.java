@@ -48,6 +48,43 @@ public class PruebaCuentas {
         }
     }
 
+    public static void realizarTransferencia(Persona[] personas,Scanner sc,int numPersonas){
+        System.out.println("INtroduce el dni de la persona de origen");
+        String dniOrigen=introducirDni(sc);
+        Persona personaOrigen=buscarPersona(dniOrigen,personas,numPersonas);
+        if (personaOrigen!=null){
+            System.out.println("INtroduce el iban de la persona de origen");
+            String ibanOrigen=intoducirIban(sc);
+            Cuenta cuentaOrigen=personaOrigen.buscarCuenta(ibanOrigen);
+            if (cuentaOrigen!=null){
+                System.out.println("Introduce el dni del destinatario");
+                String dniDestino=introducirDni(sc);
+                Persona personaDestino=buscarPersona(dniDestino,personas,numPersonas);
+                if (personaDestino!=null){
+                    System.out.println("Introduce el iban del destinatario");
+                    String ibanDestino=intoducirIban(sc);
+                    Cuenta cuentaDestino=personaDestino.buscarCuenta(ibanDestino);
+                    if (cuentaDestino!=null){
+                        System.out.println("Introduce el dinero a transferir: ");
+                        double dinero=sc.nextDouble();
+                        if (cuentaOrigen.getSaldo()>=dinero){
+                            cuentaOrigen.pagarRecibo("Transferencia a"+ibanDestino,dinero);
+                            cuentaDestino.depositarAbono(dinero);
+                        }
+                    }else{
+                        System.err.println("El iban de la persona de destino asociada no existe.");
+                    }
+                }else{
+                    System.err.println("El dni de la persona de destino asociada no existe.");
+                }
+            }else{
+                System.err.println("El iban de la cuenta origen asociada no existe.");
+            }
+        }else{
+            System.err.println("El dni de la persona de origen asociada no existe.");
+        }
+    }
+
     public static Persona buscarPersona(String dni,Persona[] personas,int numPersona){
         for (int i = 0; i < numPersona; i++) {
             if (personas[i].getDni().equals(dni)){
