@@ -1,10 +1,16 @@
 package Tema4.GestionPersonasCuentas;
-
-import javax.swing.plaf.PanelUI;
-
+/*ALEJANDRO ASENCIO GURAU
+* Crear una clase Cuenta la cual se caracteriza por tener asociado un número de cuenta y un
+saldo disponible. Además, se debe poder consultar el saldo disponible en cualquier
+momento, recibir abonos y pagar recibos.*/
 public class Cuenta {
     private String iban;
     private double saldo;
+
+    public Cuenta(){
+        iban="ES00000000000000000";
+        saldo=0;
+    }
 
     public Cuenta(String iban, double saldo) {
         setIban(iban);
@@ -74,4 +80,13 @@ public class Cuenta {
         return res;
     }
 
+
+
+    @Override
+    public String toString() {
+        return "Cuenta{" +
+                "iban='" + iban + '\'' +
+                ", saldo=" + saldo +
+                '}';
+    }
 }
