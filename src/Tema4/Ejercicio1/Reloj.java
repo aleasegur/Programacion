@@ -70,7 +70,7 @@ public class Reloj {
     public void mostrarHora(){
       String res;
       res=horas+":"+min+":"+seg;
-        System.out.println(res);
+      System.out.println(res);
     }
 
     @Override
