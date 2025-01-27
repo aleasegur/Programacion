@@ -23,9 +23,9 @@ public class Reloj {
     }
 
     public Reloj(int horas, int min, int seg) {
-        setHoras(horas);
-        setMin(min);
-        setSeg(seg);
+        this.horas = horas;
+        this.min = min;
+        this.seg = seg;
         this.formato24=true;
     }
 
