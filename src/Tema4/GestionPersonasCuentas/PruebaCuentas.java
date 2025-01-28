@@ -29,8 +29,11 @@ public class PruebaCuentas {
 
     //Metodo para instanciar y crear el objeto persona
     public static void instanciarPersona(Scanner sc,Persona[] personas){
+        String dni;
         for (int i = 0; i < personas.length; i++) {
-            String dni = Persona.introducirDni(sc);
+            do {
+                dni = Persona.introducirDni(sc);
+            } while (Persona.comprobarDniRepetido(dni, personas));
             personas[i] = new Persona(dni);
             System.out.println("Persona añadida correctamente con DNI " + dni);
         }

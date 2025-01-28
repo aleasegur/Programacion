@@ -90,15 +90,21 @@ public class Persona {
 
     public static boolean validarDni(String dni) {
         boolean res=true;
-        if (dni.length() != 9) {
+        if (dni==null || dni.length()!=9) {
             System.err.println("El DNI debe tener 9 caracteres");
             res = false;
         }
+
         String numero = dni.substring(0, 8);
         char letra = dni.charAt(8);
 
-        if (!numero.matches("\\d{8}") && !Character.isLetter(letra)){
-            System.out.println("El DNI debe tener 8 digitosd y una letra");
+        if (!numero.matches("\\d{8}")){
+            System.err.println("El DNI debe tener 8 digitosd y una letra");
+            res=false;
+        }
+
+        if (!Character.isLetter(letra)){
+            System.err.println("El DNI debe tener una letra al final");
             res=false;
         }
 
@@ -122,6 +128,17 @@ public class Persona {
             dni=sc.next().toUpperCase();
         }while (!Persona.validarDni(dni));
         return dni;
+    }
+
+    public static boolean comprobarDniRepetido(String dbi,Persona[] personas){
+        boolean res=false;
+        for (Persona persona : personas){
+            if (persona!=null && persona.getDni().equals(dbi)){
+                System.err.println("El DNI introducido ya existe. Vuelva a introducir otro");
+                res=true;
+            }
+        }
+        return res;
     }
 
     @Override
