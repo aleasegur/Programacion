@@ -213,7 +213,7 @@ public class PruebaCuentas {
                     condiconBucle = false;
                     break;
                 default:
-                    System.out.println("Opción no válida. Intente de nuevo.");
+                    System.err.println("Opcion no valida. Intente de nuevo.");
             }
         }
         sc.close();
