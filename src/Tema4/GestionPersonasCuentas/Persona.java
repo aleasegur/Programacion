@@ -93,19 +93,19 @@ public class Persona {
         if (dni==null || dni.length()!=9) {
             System.err.println("El DNI debe tener 9 caracteres");
             res = false;
-        }
+        }else {
+            String numero = dni.substring(0, 8);
+            char letra = dni.charAt(8);
 
-        String numero = dni.substring(0, 8);
-        char letra = dni.charAt(8);
+            if (!numero.matches("\\d{8}")) {
+                System.err.println("El DNI debe tener 8 digitosd y una letra");
+                res = false;
+            }
 
-        if (!numero.matches("\\d{8}")){
-            System.err.println("El DNI debe tener 8 digitosd y una letra");
-            res=false;
-        }
-
-        if (!Character.isLetter(letra)){
-            System.err.println("El DNI debe tener una letra al final");
-            res=false;
+            if (!Character.isLetter(letra)) {
+                System.err.println("El DNI debe tener una letra al final");
+                res = false;
+            }
         }
 
         return res;
