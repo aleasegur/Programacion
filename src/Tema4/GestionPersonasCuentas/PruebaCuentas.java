@@ -138,9 +138,9 @@ public class PruebaCuentas {
 
     //Este metodo busca si la persona introducida por dni existe o no, si no existe salto un mensaje de error y devuele null
     public static Persona buscarPersona(String dni,Persona[] personas){
-        for (int i = 0; i < personas.length; i++) {
-            if (personas[i].getDni().equals(dni) && personas[i]!=null){
-                return personas[i];
+        for (Persona persona : personas) {
+            if (persona.getDni().equals(dni)) {
+                return persona;
             }
         }
         System.err.println("No se encontro a ninguna persona con el DNI: "+dni);
@@ -162,10 +162,10 @@ public class PruebaCuentas {
     public static boolean imprimirMorosos(Persona[] personas){
         boolean res=false;
         System.out.println("Personas morosas: ");
-        for (int i = 0; i < personas.length; i++) {
-            if (personas[i].esMoroso() && personas[i]!=null){
-                System.out.println("DNI: "+personas[i].getDni());
-                res=true;
+        for (Persona persona : personas) {
+            if (persona.esMoroso()) {
+                System.out.println("DNI: " + persona.getDni());
+                res = true;
             }
         }
         if (!res){

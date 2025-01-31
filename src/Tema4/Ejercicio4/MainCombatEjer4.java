@@ -43,6 +43,7 @@ public class MainCombatEjer4 {
                 System.out.println("---BATTLE---");
                 // Ataques del heroe
                 for (Hero valor : enemigos) {
+
                     if (valor.getHealth() > 0) {
                         ataque1 = hero.attack(valor);
                         System.out.println(hero.getName() + " atacó a " + valor.getName() + " causando " + ataque1 + " de daño");
