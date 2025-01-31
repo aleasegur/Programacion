@@ -42,19 +42,19 @@ public class MainCombatEjer4 {
             while (combateHorda) {
                 System.out.println("---BATTLE---");
                 // Ataques del heroe
-                for (Hero value : enemigos) {
-                    if (value.getHealth() > 0) {
-                        ataque1 = hero.attack(value);
-                        System.out.println(hero.getName() + " atacó a " + value.getName() + " causando " + ataque1 + " de daño");
+                for (Hero valor : enemigos) {
+                    if (valor.getHealth() > 0) {
+                        ataque1 = hero.attack(valor);
+                        System.out.println(hero.getName() + " atacó a " + valor.getName() + " causando " + ataque1 + " de daño");
 
-                        if (value.getHealth() <= 0) {
+                        if (valor.getHealth() <= 0) {
                             System.out.println("---DEFEAT---");
-                            System.out.println(value.getName() + " ha sido derrotado!");
+                            System.out.println(valor.getName() + " ha sido derrotado!");
 
                             //10% de probabilidad de huir de la pelea.
                         } else if (rand.nextInt(100) < 10) {
                             System.out.println("---COWARD---");
-                            System.out.println(value.getName() + " huyó de la pelea!");
+                            System.out.println(valor.getName() + " huyó de la pelea!");
                         }
                     }
                 }
