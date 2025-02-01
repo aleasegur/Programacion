@@ -4,23 +4,23 @@ import java.util.Scanner;
 
 public class Prueba {
     public static String arrayMostrar(Persona[] personas) {
-        StringBuilder sb = new StringBuilder("[");
+        StringBuilder strb = new StringBuilder("[");
         for (int i = 0; i < personas.length; i++) {
             if (personas[i] == null) {
-                sb.append(".");//Posicion vacia
+                strb.append(".");//Posicion vacia
             } else {
-                sb.append("X");//Posicion ocupada
+                strb.append("X");//Posicion ocupada
             }
             if (i < personas.length - 1) {
-                sb.append(", ");//en cada espacio de la posicion pogo coma(,)
+                strb.append(", ");//en cada espacio de la posicion pogo coma(,)
             }
         }
-        sb.append("]");
-        return sb.toString();
+        strb.append("]");
+        return strb.toString();
     }
 
 
-        public static void instanciarPersina(Scanner sc, Persona[] personas, int numPersonas) {
+    public static void instanciarPersina(Scanner sc, Persona[] personas, int numPersonas) {
         String dni;
         do {
             dni = Persona.introducirDni(sc);
@@ -42,8 +42,12 @@ public class Prueba {
             opcion = sc.nextInt();
             switch (opcion) {
                 case 1:
-                    instanciarPersina(sc, personas, numPersonas);
-                    numPersonas++;
+                    if (numPersonas < personas.length) {
+                        instanciarPersina(sc, personas, numPersonas);
+                        numPersonas++;
+                    } else {
+                        System.err.println("No se puede crear mas personas");
+                    }
                     break;
                 case 2:
                     //ES912_(ultimo numero el que quieras del 0-9)
@@ -55,7 +59,7 @@ public class Prueba {
                     PruebaCuentas.mostrarDatosPersona(sc, personas);
                     break;
                 case 4:
-                    PruebaCuentas.reacibirNomina(personas, sc);
+                    PruebaCuentas.recibirNomina(personas, sc);
                     break;
                 case 5:
                     PruebaCuentas.realizarPago(sc, personas);
