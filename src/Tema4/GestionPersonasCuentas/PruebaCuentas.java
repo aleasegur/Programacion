@@ -15,28 +15,45 @@ import java.util.Scanner;
 public class PruebaCuentas {
 
     public static void showMenu() {
-        System.out.println(" 1. Instanciar objetos de tipo Persona \n" +
-                " 2. Instanciar objetos de tipo Cuenta y asociarlo a una persona.\n" +
-                " 3. Mostrar datos de una persona (por su dni).\n" +
-                " 4. Recibir la nómina mensual de una persona (por dni y núm de cuenta).\n" +
-                " 5. Recibir un pago (por dni y núm de cuenta).\n" +
-                " 6. Realizar transferencia entre cuentas.\n" +
-                " 7. Imprimir las personas morosas.\n" +
-                " 8. Salir.\n" +
-                " Eleger opcion: ");
+        System.out.println("""
+                 1. Instanciar objetos de tipo Persona\s
+                 2. Instanciar objetos de tipo Cuenta y asociarlo a una persona.
+                 3. Mostrar datos de una persona (por su dni).
+                 4. Recibir la nómina mensual de una persona (por dni y núm de cuenta).
+                 5. Recibir un pago (por dni y núm de cuenta).
+                 6. Realizar transferencia entre cuentas.
+                 7. Imprimir las personas morosas.
+                 8. Salir.
+                 Eleger opcion: \
+                """);
     }
 
+    public static String arrayMostrar(Persona[] personas) {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < personas.length; i++) {
+            if (personas[i] == null) {
+                sb.append(".");//Posicion vacia
+            } else {
+                sb.append("X");//Posicion ocupada
+            }
+            if (i < personas.length - 1) {
+                sb.append(", ");//en cada espacio de la posicion pongo coma(,)
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 
     //Metodo para instanciar y crear el objeto persona
-    public static void instanciarPersona(Scanner sc,Persona[] personas){
+    public static void instanciarPersona(Scanner sc,Persona[] personas,int numPersonas){
         String dni;
-        for (int i = 0; i < personas.length; i++) {
-            do {
-                dni = Persona.introducirDni(sc);
-            } while (Persona.comprobarDniRepetido(dni, personas));
-            personas[i] = new Persona(dni);
-            System.out.println("Persona añadida correctamente con DNI " + dni);
+        do {
+            dni = Persona.introducirDni(sc);
+        } while (Persona.comprobarDniRepetido(dni, personas));
+        if (numPersonas < personas.length) {
+            personas[numPersonas] = new Persona(dni);
         }
+        System.out.println(arrayMostrar(personas));
     }
 
     //Utilizo null para verificar si existe esa persona, lo gasto tambien para verificar si una cuenta existe en los metodos de mas abajo
@@ -53,7 +70,7 @@ public class PruebaCuentas {
     }
 
     //Recibir la nómina mensual de una persona (por dni y núm de cuenta).
-    public static void reacibirNomina(Persona[] personas, Scanner sc) {
+    public static void recibirNomina(Persona[] personas, Scanner sc) {
         String dni = Persona.introducirDni(sc);
         Persona persona = buscarPersona(dni, personas);
         if (persona != null) {
@@ -139,7 +156,7 @@ public class PruebaCuentas {
     //Este metodo busca si la persona introducida por dni existe o no, si no existe salto un mensaje de error y devuele null
     public static Persona buscarPersona(String dni,Persona[] personas){
         for (Persona persona : personas) {
-            if (persona.getDni().equals(dni)) {
+            if (persona!= null && persona.getDni().equals(dni)) {
                 return persona;
             }
         }
@@ -163,41 +180,43 @@ public class PruebaCuentas {
         boolean res=false;
         System.out.println("Personas morosas: ");
         for (Persona persona : personas) {
-            if (persona.esMoroso()) {
+            if (persona!=null && persona.esMoroso()) {
                 System.out.println("DNI: " + persona.getDni());
                 res = true;
             }
-        }
-        if (!res){
-            System.out.println("No hay morosos");
         }
         return res;
     }
 
     public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
-        //El array de personas puede cambiarse manualmente, con un atributo final procediente en Persona
-        Persona[] personas=new Persona[Persona.NUMERO_DE_PERSONAS];
+        Scanner sc = new Scanner(System.in);
+        Persona[] personas = new Persona[Persona.NUMERO_DE_PERSONAS];
+        int numPersonas = 0;
         int opcion;
         boolean condiconBucle = true;
         while (condiconBucle) {
-            showMenu();
+            PruebaCuentas.showMenu();
             opcion = sc.nextInt();
             switch (opcion) {
                 case 1:
-                    instanciarPersona(sc, personas);
+                    if (numPersonas < personas.length) {
+                        instanciarPersona(sc, personas, numPersonas);
+                        numPersonas++;
+                    } else {
+                        System.err.println("No se puede crear mas personas");
+                    }
                     break;
                 case 2:
-                    //ES912_(ultimo numero el que quieras del 0-9)
-                    //ES91__(ultimos numeros el que quieras del 0-9)
-                    //Comprobar al introducir sin repetir mucho numeros
+                    //__12(las dos primeras letras las que quieras)
+                    //ES__(ultimos numeros el que quieras del 0-9)
+                    //Verificar como comprubo el numero de cuenta
                     instanciarAsociarCuenta(sc, personas);
                     break;
                 case 3:
                     mostrarDatosPersona(sc, personas);
                     break;
                 case 4:
-                    reacibirNomina(personas, sc);
+                    recibirNomina(personas, sc);
                     break;
                 case 5:
                     realizarPago(sc, personas);
@@ -206,7 +225,8 @@ public class PruebaCuentas {
                     realizarTransferencia(personas, sc);
                     break;
                 case 7:
-                    imprimirMorosos(personas);
+                    boolean moroso=imprimirMorosos(personas);
+                    System.out.println("Hay morosos? "+moroso);
                     break;
                 case 8:
                     System.out.println("Saliendo del progrma...");
