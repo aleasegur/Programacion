@@ -79,13 +79,12 @@ public class Persona {
     }
 
     public boolean esMoroso(){
-        boolean res=false;
-        for (int i = 0; i < cuentas.length; i++) {
-            if (getCuentas()[i].getSaldo()<0){
-                res=true;
+        for (Cuenta cuenta : getCuentas()) {
+            if (cuenta.getSaldo() < 0) {
+                return true;
             }
         }
-        return res;
+        return false;
     }
 
     public static boolean validarDni(String dni) {
