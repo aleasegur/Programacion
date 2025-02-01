@@ -75,8 +75,8 @@ public class Cuenta {
     public static boolean validarIban(String iban){
         boolean res=true;
         //se que un iban son 24 carcteres, es para no hacerlo largo
-        if (iban.length()!=6){
-            System.out.println("EL IBAN DEBE TENER 6 caracteres");
+        if (iban.length()!=4){
+            System.out.println("EL IBAN DEBE TENER 4 caracteres");
             res=false;
         }
 
@@ -88,7 +88,7 @@ public class Cuenta {
         //utilizo .matches para comprobar la cadena si coincide con el patron
         //\\d representa carcter numerico, y {4} el patron anterior \\d se debe currir 4 veces(se que un iban son 24 de caracteres)
         String restoIban = iban.substring(2);
-        if (!restoIban.matches("\\d{4}")) {
+        if (!restoIban.matches("\\d{2}")) {
             System.err.println("Los ultimos 6 caracteres del IBAN deben ser numeros.");
             res= false;
         }
