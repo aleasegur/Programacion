@@ -77,7 +77,7 @@ public class PruebaCuentas {
             String iban = Cuenta.intoducirIban(sc);
             Cuenta cuenta = persona.buscarCuenta(iban);
             if (cuenta != null) {
-                double dinero = Cuenta.introducirSaldo(sc);
+                double dinero = Persona.introducirSaldo(sc);
                 cuenta.depositarAbono(dinero);
                 System.out.println("Nomina recibida.Nuevo saldo " + cuenta.getSaldo());
             } else {
@@ -96,7 +96,7 @@ public class PruebaCuentas {
             String iban = Cuenta.intoducirIban(sc);
             Cuenta cuenta = persona.buscarCuenta(iban);
             if (cuenta != null) {
-                double dinero = Cuenta.introducirSaldo(sc);
+                double dinero = Persona.introducirSaldo(sc);
                 if (cuenta.getSaldo() >= dinero) {
                     cuenta.pagarRecibo("Pago", dinero);
                     System.out.println("Pago realizado con exito. Nuevo saldo: " + cuenta.getSaldo());
@@ -132,7 +132,7 @@ public class PruebaCuentas {
                     Cuenta cuentaDestino=personaDestino.buscarCuenta(ibanDestino);
                     if (cuentaDestino!=null){
                         System.out.println("---dinero a transferir---");
-                        double dinero = Cuenta.introducirSaldo(sc);
+                        double dinero = Persona.introducirSaldo(sc);
                         //Utilizo el metodo pagar recibo para mostrar la transferencia en forma de recibo de banco
                         cuentaOrigen.pagarRecibo("Transferencia a"+ibanDestino,dinero);
                         cuentaDestino.depositarAbono(dinero);

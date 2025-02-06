@@ -65,8 +65,8 @@ public class Persona {
             String iban;
             do {
                 iban = Cuenta.intoducirIban(sc);
-            }while (Cuenta.comprobarIbanRepetido(iban,cuentas));
-            double dinero=Cuenta.introducirSaldo(sc);
+            }while (comprobarIbanRepetido(iban,cuentas));
+            double dinero=introducirSaldo(sc);
             cuentas[i] = new Cuenta(iban, dinero);
         }
     }
@@ -107,6 +107,32 @@ public class Persona {
             }
         }
 
+        return res;
+    }
+
+    public static double introducirSaldo(Scanner sc){
+        double res;
+        /*Coemntado para hacer pruebas
+        do {
+            System.out.println("Introduce la cantidad de dinero: ");
+            res=sc.nextDouble();
+            if (res<=0){
+                System.err.println("El dinero a ingresar no debe ser menor o igual a 0");
+            }
+        }while (res<=0);*/
+        System.out.println("Introduce la cantidad de dinero: ");
+        res=sc.nextDouble();
+        return res;
+    }
+
+    public static boolean comprobarIbanRepetido(String iban,Cuenta[] cuenta){
+        boolean res=false;
+        for (Cuenta cuentas : cuenta){
+            if (cuentas!=null && cuentas.getIban().equals(iban)){
+                System.err.println("El IBAN introducido ya existe. Vuelva a introducir otro");
+                res=true;
+            }
+        }
         return res;
     }
 

@@ -105,33 +105,7 @@ public class Cuenta {
         return iban;
     }
 
-    //mejor este metodo en Persona
-    public static double introducirSaldo(Scanner sc){
-        double res;
-        /*Coemntado para hacer pruebas
-        do {
-            System.out.println("Introduce la cantidad de dinero: ");
-            res=sc.nextDouble();
-            if (res<=0){
-                System.err.println("El dinero a ingresar no debe ser menor o igual a 0");
-            }
-        }while (res<=0);*/
-        System.out.println("Introduce la cantidad de dinero: ");
-        res=sc.nextDouble();
-        return res;
-    }
-
     //este método mejor en persona
-    public static boolean comprobarIbanRepetido(String iban,Cuenta[] cuenta){
-        boolean res=false;
-        for (Cuenta cuentas : cuenta){
-            if (cuentas!=null && cuentas.getIban().equals(iban)){
-                System.err.println("El IBAN introducido ya existe. Vuelva a introducir otro");
-                res=true;
-            }
-        }
-        return res;
-    }
 
     @Override
     public String toString() {
