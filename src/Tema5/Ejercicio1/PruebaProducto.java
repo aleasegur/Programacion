@@ -16,6 +16,7 @@ public class PruebaProducto {
             System.err.println("Error: "+strex.getMessage());
         }
         lista.add(new Producto(nombre));
+        System.out.println("Producto "+nombre+" agregado a la lista");
     }
 
     public static void mostrarProductos(Set<Producto> lista){
