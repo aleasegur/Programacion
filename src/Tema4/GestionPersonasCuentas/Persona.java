@@ -129,6 +129,7 @@ public class Persona {
         return dni;
     }
 
+    //est metodo mejor en la clase PruebaCuentas
     public static boolean comprobarDniRepetido(String dbi,Persona[] personas){
         boolean res=false;
         for (Persona persona : personas){

@@ -105,6 +105,7 @@ public class Cuenta {
         return iban;
     }
 
+    //mejor este metodo en Persona
     public static double introducirSaldo(Scanner sc){
         double res;
         /*Coemntado para hacer pruebas
@@ -120,6 +121,7 @@ public class Cuenta {
         return res;
     }
 
+    //este método mejor en persona
     public static boolean comprobarIbanRepetido(String iban,Cuenta[] cuenta){
         boolean res=false;
         for (Cuenta cuentas : cuenta){
