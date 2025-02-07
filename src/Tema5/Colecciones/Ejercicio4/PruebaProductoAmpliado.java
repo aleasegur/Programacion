@@ -7,6 +7,11 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+/*
+* Amplia el ejercicio 1 para que te permita añadir productos a un nuevo set
+que será el carro de la compra y opciones para mostrar qué productos tienes
+en el carro y qué productos te falta añadir (utiliza uniones y/o intersecciones
+de conjuntos).*/
 public class PruebaProductoAmpliado {
 
     public static void mostrarProductosCarroYLista(Set<Producto> lista,Set<Producto> carro){

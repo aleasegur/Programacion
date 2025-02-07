@@ -1,5 +1,12 @@
 package Tema5.Colecciones.Ejercicio2;
-
+/*
+* Haz una aplicación que permitirá gestionar los usuarios de un gimnasio.
+Necesitarás una clase Usuario con los datos del usuario (nombre y edad). La
+información de los usuarios se almacenará en un Mapa donde la clave será el
+DNI y el valor un objeto de la clase Usuario. La aplicación debe permitir dar de
+alta usuarios, dar de baja usuarios, mostrar los datos de un usuario y
+modificar usuarios. Debe mostrar mensajes de error si no existe un usuario o
+hay cualquier otro problema.*/
 public class Usuario {
     private String nombre;
     private int edad;
