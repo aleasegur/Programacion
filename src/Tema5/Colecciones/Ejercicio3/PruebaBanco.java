@@ -1,6 +1,6 @@
-package Tema5.Ejercicio3;
+package Tema5.Colecciones.Ejercicio3;
 
-import Tema5.Ejercicio2.PruebaUsuario;
+import Tema5.Colecciones.Ejercicio2.PruebaUsuario;
 
 import java.util.ArrayList;
 import java.util.Iterator;

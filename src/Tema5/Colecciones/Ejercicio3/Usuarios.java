@@ -1,4 +1,4 @@
-package Tema5.Ejercicio3;
+package Tema5.Colecciones.Ejercicio3;
 
 public class Usuarios {
     private String dni,nombre;
@@ -11,7 +11,7 @@ public class Usuarios {
     }
 
     public Usuarios(String dni, String nombre, int edad)throws Exception {
-        if (Tema5.Ejercicio2.Usuario.validarDni(dni)) {
+        if (Tema5.Colecciones.Ejercicio2.Usuario.validarDni(dni)) {
             this.dni = dni;
         }else{
             throw new Exception("Error:El DNI no es correcto");
@@ -29,7 +29,7 @@ public class Usuarios {
     }
 
     public void setDni(String dni)throws Exception {
-        if (Tema5.Ejercicio2.Usuario.validarDni(dni)) {
+        if (Tema5.Colecciones.Ejercicio2.Usuario.validarDni(dni)) {
             this.dni = dni;
         }else{
             throw new Exception("Error:El DNI no es correcto");

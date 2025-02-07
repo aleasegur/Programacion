@@ -1,7 +1,7 @@
-package Tema5.Ejercicio4;
+package Tema5.Colecciones.Ejercicio4;
 
-import Tema5.Ejercicio1.Producto;
-import Tema5.Ejercicio1.PruebaProducto;
+import Tema5.Colecciones.Ejercicio1.Producto;
+import Tema5.Colecciones.Ejercicio1.PruebaProducto;
 
 import java.util.HashSet;
 import java.util.Scanner;

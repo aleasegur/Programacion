@@ -1,4 +1,4 @@
-package Tema5.Ejercicio2;
+package Tema5.Colecciones.Ejercicio2;
 
 public class Usuario {
     private String nombre;

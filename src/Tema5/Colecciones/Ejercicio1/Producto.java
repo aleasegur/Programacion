@@ -1,4 +1,4 @@
-package Tema5.Ejercicio1;
+package Tema5.Colecciones.Ejercicio1;
 
 import java.util.Objects;
 import java.util.Set;
