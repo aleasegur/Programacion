@@ -1,5 +1,6 @@
 package Tema5.Ejercicio1;
 
+import java.util.Objects;
 import java.util.Set;
 
 /*ALEJANDRO ASENCIO GURAU
@@ -33,6 +34,19 @@ public class Producto {
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Producto producto = (Producto) o;
+        return Objects.equals(nombre, producto.nombre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(nombre);
     }
 
     @Override
