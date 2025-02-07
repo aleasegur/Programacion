@@ -37,6 +37,11 @@ public class Producto {
     }
 
     @Override
+    public String toString() {
+        return "nombre='" + nombre + '\'';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -47,10 +52,5 @@ public class Producto {
     @Override
     public int hashCode() {
         return Objects.hashCode(nombre);
-    }
-
-    @Override
-    public String toString() {
-        return "nombre='" + nombre + '\'';
     }
 }
