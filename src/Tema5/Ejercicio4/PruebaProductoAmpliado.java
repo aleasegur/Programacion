@@ -1,26 +1,13 @@
 package Tema5.Ejercicio4;
 
 import Tema5.Ejercicio1.Producto;
+import Tema5.Ejercicio1.PruebaProducto;
 
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
 public class PruebaProductoAmpliado {
-    public static void addProducto(Scanner sc, Set<Producto> lista){
-        String nombre="";
-        try {
-            do {
-                System.out.println("Introduce el nombre del producto: ");
-                nombre = sc.next();
-            }while (Producto.comprobarRepeticionProducto(nombre,lista));
-        }catch (StringIndexOutOfBoundsException strex){
-            System.err.println("Error: "+strex.getMessage());
-        }
-        Producto nuevoProducto=new Producto(nombre);
-        lista.add(nuevoProducto);
-        System.out.println("Producto "+nombre+" agregado a la lista");
-    }
 
     public static void mostrarProductosCarroYLista(Set<Producto> lista,Set<Producto> carro){
         Set<Producto> productosCarro=new HashSet<>(lista);
@@ -30,19 +17,9 @@ public class PruebaProductoAmpliado {
         productosFalta.removeAll(carro);
         System.out.println("---PRODUCTOS EN EL CARRO Y LISTA---");
         System.out.println("Productos en el carro: ");
-        mostrarProductos(productosCarro);
+        PruebaProducto.mostrarProductos(productosCarro);
         System.out.println("Productos faltantes: ");
-        mostrarProductos(productosFalta);
-    }
-
-    public static void mostrarProductos(Set<Producto> lista){
-        if (lista.isEmpty()){
-            System.out.println("Esta vacio la compra");
-        }else {
-            for (Producto producto : lista) {
-                System.out.println(producto.getNombre());
-            }
-        }
+        PruebaProducto.mostrarProductos(productosFalta);
     }
 
     public static void showMenu(){
@@ -65,13 +42,13 @@ public class PruebaProductoAmpliado {
             opcion=sc.next().charAt(0);
             switch (opcion) {
                 case 'a':
-                    addProducto(sc, lista);
+                    PruebaProducto.addProducto(sc, lista);
                     break;
                 case 'b':
-                    mostrarProductos(lista);
+                    PruebaProducto.mostrarProductos(lista);
                     break;
                 case 'c':
-                    addProducto(sc,carro);
+                    PruebaProducto.addProducto(sc,carro);
                     break;
                 case 'd':
                     mostrarProductosCarroYLista(lista,carro);
