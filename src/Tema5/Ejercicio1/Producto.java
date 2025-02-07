@@ -27,7 +27,7 @@ public class Producto {
 
     public static boolean comprobarRepeticionProducto(String nombre, Set<Producto> lista){
         for (Producto producto : lista){
-            if (nombre.toLowerCase().equals(producto.getNombre())){
+            if (nombre.equals(producto.getNombre())){
                 System.err.println("El producto introducido ya existe");
                 return true;
             }

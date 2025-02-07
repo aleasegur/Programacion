@@ -10,12 +10,13 @@ public class PruebaProducto {
         try {
             do {
                 System.out.println("Introduce el nombre del producto: ");
-                nombre = sc.next();
+                nombre = sc.next().toLowerCase();
             }while (Producto.comprobarRepeticionProducto(nombre,lista));
         }catch (StringIndexOutOfBoundsException strex){
             System.err.println("Error: "+strex.getMessage());
         }
-        lista.add(new Producto(nombre));
+        Producto nuevoProducto=new Producto(nombre);
+        lista.add(nuevoProducto);
         System.out.println("Producto "+nombre+" agregado a la lista");
     }
 
