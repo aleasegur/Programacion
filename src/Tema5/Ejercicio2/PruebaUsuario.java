@@ -51,7 +51,7 @@ public class PruebaUsuario {
             nombre = introducerNombre(sc);
             edad = introducirEdad(sc);
             sistema.put(dni, new Usuario(nombre, edad));
-            System.out.println("Usuario registrado");
+            System.out.println("Usuarios registrado");
         }
     }
 
@@ -60,7 +60,7 @@ public class PruebaUsuario {
             System.out.println("No hay usuarios registrados");
         }else {
             for (Map.Entry<String, Usuario> entry : sistema.entrySet()) {
-                System.out.println("DNI: " + entry.getKey() + "\nUsuario: " + entry.getValue());
+                System.out.println("DNI: " + entry.getKey() + "\nUsuarios: " + entry.getValue());
             }
         }
     }
@@ -68,7 +68,7 @@ public class PruebaUsuario {
     public static void bajaUsuario(Scanner sc,Map<String,Usuario> sistema){
         String dni=introducerDni(sc);
         if (sistema.remove(dni)!=null){
-            System.out.println("Usuario se ha dado de baja");
+            System.out.println("Usuarios se ha dado de baja");
         }else {
             System.out.println("El usuario no existe");
         }
@@ -95,7 +95,7 @@ public class PruebaUsuario {
             int edad = introducirEdad(sc);
             usuario.setNombre(newName);
             usuario.setEdad(edad);
-            System.out.println("Usuario actualizado");
+            System.out.println("Usuarios actualizado");
         }
     }
 
