@@ -33,7 +33,7 @@ public class PruebaUsuario {
                     System.err.println("Edad no puede ser negativo");
                 }
             }catch (InputMismatchException e){
-                System.err.println("Error: Introduce un numero valido.");
+                System.err.println("Error: Introduce un numero valido "+e.getMessage());
                 sc.next();
             }
         }while (edad<0);
