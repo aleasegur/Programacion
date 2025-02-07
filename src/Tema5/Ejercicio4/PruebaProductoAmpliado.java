@@ -10,14 +10,13 @@ import java.util.Set;
 public class PruebaProductoAmpliado {
 
     public static void mostrarProductosCarroYLista(Set<Producto> lista,Set<Producto> carro){
-        Set<Producto> productosCarro=new HashSet<>(lista);
-        productosCarro.retainAll(carro);
-
+        /*Set<Producto> productosCarro=new HashSet<>(lista);
+        productosCarro.retainAll(carro);*/
         Set<Producto> productosFalta=new HashSet<>(lista);
         productosFalta.removeAll(carro);
         System.out.println("---PRODUCTOS EN EL CARRO Y LISTA---");
-        System.out.println("Productos en el carro: ");
-        PruebaProducto.mostrarProductos(productosCarro);
+        /*System.out.println("Productos en el carro: ");
+        PruebaProducto.mostrarProductos(productosCarro);*/
         System.out.println("Productos faltantes: ");
         PruebaProducto.mostrarProductos(productosFalta);
     }

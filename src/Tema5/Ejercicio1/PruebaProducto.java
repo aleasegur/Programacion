@@ -22,7 +22,7 @@ public class PruebaProducto {
 
     public static void mostrarProductos(Set<Producto> lista){
         if (lista.isEmpty()){
-            System.out.println("Esta vacio la compra");
+            System.out.println("Esta completo la compra");
         }else {
             for (Producto producto : lista) {
                 System.out.println(producto.getNombre());
