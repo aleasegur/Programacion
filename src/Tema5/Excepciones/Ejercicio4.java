@@ -32,15 +32,21 @@ public class Ejercicio4 {
 
     public static void mostrarUnaPosicionVector(Scanner sc,int[] vector){
         int numUser;
-        try {
-            do {
+        boolean bucle=true;
+        while (bucle) {
+            try {
                 System.out.println("Introduce una psocion del vector a mostrar(1-100,para salir introduce un numero negativo): ");
-                numUser = sc.nextInt()-1;
-                System.out.println(vector[numUser]);
-            }while (numUser>=0);
-        }catch (ArrayIndexOutOfBoundsException e){
-            System.err.println("Error: "+e.getMessage());
-            e.printStackTrace();
+                numUser = sc.nextInt() - 1;
+                if (numUser>=0) {
+                    System.out.println(vector[numUser]);
+                }else{
+                    System.out.println("Saliendo...");
+                    bucle=false;
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.err.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
         }
     }
 

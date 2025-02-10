@@ -34,12 +34,30 @@ public class Ejercicio5 {
     public static void main(String[] args) throws Exception {
         Scanner sc=new Scanner(System.in);
         int num;
+        char opcion;
         boolean bucle=true;
         while (bucle){
+            System.out.println("a).Imprime Positivo");
+            System.out.println("b).Imprime negativo");
+            System.out.println("c).Salir");
+            System.out.println("Elegir: ");
+            opcion=sc.next().toLowerCase().charAt(0);
             System.out.println("Introduce un numero: ");
-            num=sc.nextInt();
-            imprimePositivo(num);
-            imprimeNegativo(num);
+            num = sc.nextInt();
+            switch (opcion) {
+                case 'a':
+                imprimePositivo(num);
+                break;
+                case 'b':
+                imprimeNegativo(num);
+                break;
+                case 'c':
+                    System.out.println("Saliendo....");
+                    bucle=false;
+                    break;
+                default:
+                    System.err.println("Opcion invalida vuelva a introducir");
+            }
         }
         sc.close();
     }
