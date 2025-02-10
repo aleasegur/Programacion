@@ -28,6 +28,7 @@ public class PruebaBanco {
 
     public static void quitarUsuario(Scanner sc,List<Usuarios> cola){
         String dni=PruebaUsuario.introducerDni(sc);
+        //Gasto iterator para modificar la lista, porque al quitar directamente se peta el programa
         Iterator<Usuarios> it= cola.iterator();
         boolean encontrar=false;
         while (it.hasNext()){
