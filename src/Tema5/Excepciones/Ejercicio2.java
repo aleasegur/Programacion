@@ -31,5 +31,6 @@ public class Ejercicio2 {
         Scanner sc=new Scanner(System.in);
         int resCalculo=calculoNUms(sc);
         System.out.println("Resultado: "+resCalculo);
+        sc.close();
     }
 }

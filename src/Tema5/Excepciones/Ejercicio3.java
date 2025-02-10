@@ -39,5 +39,6 @@ public class Ejercicio3 {
         double[] vectorReal=new double[5];
         double[] result=rellenarVector(sc,vectorReal);
         System.out.println("Dentro del vector esta: "+ Arrays.toString(result));
+        sc.close();
     }
 }

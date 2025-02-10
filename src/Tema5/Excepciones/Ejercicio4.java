@@ -50,6 +50,6 @@ public class Ejercicio4 {
         int[] vectorInte=rellenarVectorAleatorio(rand);
         //System.out.println(Arrays.toString(vectorInte));
         mostrarUnaPosicionVector(sc,vectorInte);
-
+        sc.close();
     }
 }
