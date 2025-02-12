@@ -1,17 +1,20 @@
 package Tema5.Excepciones;
 
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Ejercicio6 {
-    public static String arrayMostrar(Gato[] gatos) {
+    public static String arrayMostrar(List<Gato> gatos) {
         StringBuilder sb = new StringBuilder("[");
-        for (int i = 0; i < gatos.length; i++) {
-            if (gatos[i] == null) {
+        for (int i = 0; i < gatos.size(); i++) {
+            if (gatos.get(i) == null) {
                 sb.append(".");//Posicion vacia
             } else {
                 sb.append("X");//Posicion ocupada
             }
-            if (i < gatos.length - 1) {
+            if (i < gatos.size() - 1) {
                 sb.append(", ");//en cada espacio de la posicion pongo coma(,)
             }
         }
@@ -19,20 +22,19 @@ public class Ejercicio6 {
         return sb.toString();
     }
 
-    public static void instanciarGato(Scanner sc,Gato[] gatos,int numGatos) throws Exception {
+    public static void instanciarGato(Scanner sc,List<Gato> gatos) throws Exception {
         String name;
         int edad;
         System.out.println("Introduce el nombre del gato: ");
         name=sc.next();
         System.out.println("Introduce la edad del gato: ");
         edad= sc.nextInt();
-        if (numGatos<gatos.length){
-            gatos[numGatos]=new Gato(name,edad);
-        }
+        Gato newGato=new Gato(name,edad);
+        gatos.add(newGato);
         System.out.println(arrayMostrar(gatos));
     }
 
-    public static void mostrarGatos(Gato[] gatos){
+    public static void mostrarGatos(List<Gato> gatos){
         for (Gato gato : gatos){
             if (gato!=null){
                 gato.imprimir();
@@ -40,20 +42,21 @@ public class Ejercicio6 {
         }
     }
 
-    public static void cambiarValoresGato(Gato[] gatos,Scanner sc)throws Exception{
+    public static void cambiarValoresGato(List<Gato> gatos,Scanner sc)throws Exception{
         String name;
-        int edad,numModulo;
+        int edad,indice;
         System.out.println(arrayMostrar(gatos));
         try {
-            System.out.println("Elige que gato quieres cambiar los valores(1-10,selecciona las casillas marcadas en X): ");
-            numModulo = sc.nextInt() - 1;
+            System.out.println("Elige que gato quieres cambiar los valores(1-"+gatos.size()+",selecciona las casillas marcadas en X): ");
+            indice = sc.nextInt() - 1;
             System.out.println("Introduce el nombre del gato: ");
             name = sc.next();
             System.out.println("Introduce la edad del gato: ");
             edad = sc.nextInt();
-            gatos[numModulo].setName(name);
-            gatos[numModulo].setEdad(edad);
-        }catch (ArrayIndexOutOfBoundsException e){
+            Gato gatoSelec=gatos.get(indice);
+            gatoSelec.setName(name);
+            gatoSelec.setEdad(edad);
+        }catch (InputMismatchException e){
             System.err.println("Error "+e.getMessage());
             e.printStackTrace();
         }
@@ -69,21 +72,15 @@ public class Ejercicio6 {
 
     public static void main(String[] args) throws Exception {
         Scanner sc=new Scanner(System.in);
-        int numGatos=0;
+        List<Gato> gatos=new ArrayList<>();
         char opcion;
-        Gato[] gatos=new Gato[10];
         boolean bucle=true;
         while (bucle){
             showMenu();
             opcion=sc.next().toLowerCase().charAt(0);
             switch (opcion){
                 case 'a':
-                    if (numGatos<gatos.length){
-                        instanciarGato(sc,gatos,numGatos);
-                        numGatos++;
-                    }else {
-                        System.err.println("No se puede crear mas gatos");
-                    }
+                    instanciarGato(sc,gatos);
                     break;
                 case 'b':
                     cambiarValoresGato(gatos,sc);
