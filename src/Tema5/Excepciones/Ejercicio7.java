@@ -11,9 +11,9 @@ public class Ejercicio7 {
         try {
             for (int i = 0; i < 5; i++) {
                 if (lista.size() < 5) {
-                    System.out.println("Introduce el nombre del gato" + (i + 1) + ": ");
+                    System.out.println("Introduce el nombre del gato " + (i + 1) + ": ");
                     name = sc.next();
-                    System.out.println("Introduce la edad del gato" + (i + 1) + ": ");
+                    System.out.println("Introduce la edad del gato " + (i + 1) + ": ");
                     edad = sc.nextInt();
                     Gato nuevoGato = new Gato(name, edad);
                     lista.add(nuevoGato);
