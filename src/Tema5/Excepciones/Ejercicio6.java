@@ -96,5 +96,6 @@ public class Ejercicio6 {
                     System.err.println("Opcion incorrecta, vuelva a introducirlo");
             }
         }
+        sc.close();
     }
 }
