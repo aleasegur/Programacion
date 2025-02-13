@@ -43,7 +43,7 @@ public class Ejercicio4 {
                     System.out.println("Saliendo...");
                     bucle=false;
                 }
-            } catch (ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException | InputMismatchException e) {
                 System.err.println("Error: " + e.getMessage());
                 e.printStackTrace();
             }
