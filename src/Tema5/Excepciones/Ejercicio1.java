@@ -18,7 +18,7 @@ public class Ejercicio1 {
             num = sc.nextInt();
         }catch (InputMismatchException iE){
             System.err.println("Valor introducido incorrecto");
-            //iE.printStackTrace();
+            iE.printStackTrace();
         }
         return num;
     }

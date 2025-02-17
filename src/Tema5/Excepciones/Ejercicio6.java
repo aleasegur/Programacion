@@ -69,32 +69,37 @@ public class Ejercicio6 {
         System.out.println("d).Salir");
         System.out.println("Elegir opcion: ");
     }
-
+//try catch meter
     public static void main(String[] args) throws Exception {
         Scanner sc=new Scanner(System.in);
         List<Gato> gatos=new ArrayList<>();
         char opcion;
         boolean bucle=true;
-        while (bucle){
-            showMenu();
-            opcion=sc.next().toLowerCase().charAt(0);
-            switch (opcion){
-                case 'a':
-                    instanciarGato(sc,gatos);
-                    break;
-                case 'b':
-                    cambiarValoresGato(gatos,sc);
-                    break;
-                case 'c':
-                    mostrarGatos(gatos);
-                    break;
-                case 'd':
-                    System.out.println("Saliendo...");
-                    bucle=false;
-                    break;
-                default:
-                    System.err.println("Opcion incorrecta, vuelva a introducirlo");
+        try {
+            while (bucle) {
+                showMenu();
+                opcion = sc.next().toLowerCase().charAt(0);
+                switch (opcion) {
+                    case 'a':
+                        instanciarGato(sc, gatos);
+                        break;
+                    case 'b':
+                        cambiarValoresGato(gatos, sc);
+                        break;
+                    case 'c':
+                        mostrarGatos(gatos);
+                        break;
+                    case 'd':
+                        System.out.println("Saliendo...");
+                        bucle = false;
+                        break;
+                    default:
+                        System.err.println("Opcion incorrecta, vuelva a introducirlo");
+                }
             }
+        }catch (Exception e){
+            System.err.println("Error "+e.getMessage());
+            e.printStackTrace();
         }
         sc.close();
     }
