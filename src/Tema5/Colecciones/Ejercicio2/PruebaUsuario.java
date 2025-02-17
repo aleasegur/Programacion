@@ -54,13 +54,14 @@ public class PruebaUsuario {
             System.out.println("Usuarios registrado");
         }
     }
-
-    public static void mostrarUsuarios(Map<String,Usuario> sistema){
+//Cambiar recoorer usuario, por buscar por dni y mostrar un usuario
+    public static void mostrarUsuarios(Scanner sc,Map<String,Usuario> sistema){
         if (sistema.isEmpty()){
             System.out.println("No hay usuarios registrados");
         }else {
-            for (Map.Entry<String, Usuario> entry : sistema.entrySet()) {
-                System.out.println("DNI: " + entry.getKey() + "\nUsuarios: " + entry.getValue());
+            String dni=introducerDni(sc);
+            if (sistema.containsKey(dni)){
+                System.out.println(sistema.get(dni));
             }
         }
     }
@@ -112,7 +113,7 @@ public class PruebaUsuario {
                     altaUsuario(sc,sistema);
                     break;
                 case 'b':
-                    mostrarUsuarios(sistema);
+                    mostrarUsuarios(sc,sistema);
                     break;
                 case 'c':
                     bajaUsuario(sc,sistema);
