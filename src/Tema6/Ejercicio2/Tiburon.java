@@ -1,4 +1,4 @@
 package Tema6.Ejercicio2;
 
-public class Toro {
+public class Tiburon {
 }
