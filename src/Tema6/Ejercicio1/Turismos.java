@@ -38,7 +38,7 @@ public class Turismos extends Vehiculo{
         }
     }
 
-    public boolean checkPlazas(int num)throws Exception{
+    public static boolean checkPlazas(int num)throws Exception{
         if (num<=0){
             throw new Exception("El numero de plazas no pude ser menor o igual a 0");
         }
@@ -49,10 +49,20 @@ public class Turismos extends Vehiculo{
         String[] tiposDeUso=new String[]{"profesional","particular"};
         for (String tipos : tiposDeUso){
             if (!tipos.equalsIgnoreCase(uso)){
-                throw new Exception("El tipo de uso introducido no es correcto");
+                return true;
             }
         }
-        return true;
+        throw new Exception("El tipo de uso introducido no es correcto");
     }
 
+    @Override
+    public String toString() {
+        return "Turismos{" +
+                "numPlazas:" + numPlazas +
+                ", tipoUso:" + tipoUso + '\'' +
+                ", matricula:" + matricula + '\'' +
+                ", combustible:" + combustible + '\'' +
+                ", ruedas:" + ruedas +
+                '}';
+    }
 }

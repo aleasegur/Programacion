@@ -50,18 +50,18 @@ public class Vehiculo {
         }
     }
 
-    public boolean checkMatricula(String matricula)throws Exception{
-        if (matricula.length()!=7){
+    public static boolean checkMatricula(String matricula)throws Exception{
+        if (matricula.length()!=7) {
             throw new Exception("Debe tener 7 caracteres la matricula");
-        }else {
-            String numero=matricula.substring(0,4);
-            if (!numero.matches("\\d{4}")){
-                throw new Exception("Los primeros 4 caracteres de la matriicula deben ser numeros");
-            }
-            String letars=matricula.substring(4).toUpperCase();
-            if (letars.matches("[A-Z]{3}")){
-                throw new Exception("Los ultimos 3 caracteres de la matricula deben ser letras");
-            }
+        }
+        String numero=matricula.substring(0,4);
+        if (!numero.matches("\\d{4}")){
+            throw new Exception("Los primeros 4 caracteres de la matriicula deben ser numeros");
+        }
+
+        String letars=matricula.substring(3).toUpperCase();
+        if (letars.matches("[A-Z]{3}")){
+            throw new Exception("Los ultimos 3 caracteres de la matricula deben ser letras");
         }
         return true;
     }
@@ -76,12 +76,11 @@ public class Vehiculo {
         throw new Exception("El tipo de combustible introducido no existe");
     }
 
-    public boolean checkRuedas(int ruedas)throws Exception{
+    public static boolean checkRuedas(int ruedas)throws Exception{
         if (ruedas<=0){
             throw new Exception("El numero de ruedas no puede ser menor o igual a 0");
         }
         return true;
     }
-
 
 }

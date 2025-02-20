@@ -25,7 +25,7 @@ public class Ciclomotor extends Vehiculo {
         }
     }
 
-    public boolean checkCilindrana(int cilin)throws Exception{
+    public static boolean checkCilindrana(int cilin)throws Exception{
         if (cilin<=0){
             throw new Exception("El valor no puede ser menor o igual a 0");
         }
@@ -38,5 +38,15 @@ public class Ciclomotor extends Vehiculo {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Ciclomotor{" +
+                "cilindrana:" + cilindrana +
+                ", matricula:" + matricula + '\'' +
+                ", combustible:" + combustible + '\'' +
+                ", ruedas:" + ruedas +
+                '}';
     }
 }

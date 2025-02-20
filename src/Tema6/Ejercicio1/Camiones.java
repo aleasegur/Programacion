@@ -37,11 +37,21 @@ public class Camiones extends Vehiculo {
         this.mercanciaPeligrosa = mercanciaPeligrosa;
     }
 
-    public boolean checkPeso(int peso)throws Exception{
+    public static boolean checkPeso(int peso)throws Exception{
         if (peso<=0 || peso>PESO_MAX){
             throw new Exception("El peso no puede ser menor o igual a 0, ni mayor a 3500");
         }
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Camiones{" +
+                "peso:" + peso +
+                ", mercanciaPeligrosa:" + mercanciaPeligrosa +
+                ", matricula:" + matricula + '\'' +
+                ", combustible:" + combustible + '\'' +
+                ", ruedas:" + ruedas +
+                '}';
+    }
 }
