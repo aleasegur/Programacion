@@ -2,7 +2,6 @@ package Tema6.Ejercicio1;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class PruebaVehiculos {
