@@ -61,7 +61,7 @@ public abstract class Animal {
         }
     }
 
-    public boolean numeroNoNegativo(int num)throws Exception{
+    public static boolean numeroNoNegativo(int num)throws Exception{
         if (num>0) {
             return true;
         }else{
@@ -69,7 +69,7 @@ public abstract class Animal {
         }
     }
 
-    public boolean numeroNoNegativo(double num)throws Exception{
+    public static boolean numeroNoNegativo(double num)throws Exception{
         if (num>0) {
             return true;
         }else{

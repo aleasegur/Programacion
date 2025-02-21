@@ -33,6 +33,10 @@ public class Tiburon extends Animal{
         this.pielRigida = pielRigida;
     }
 
+    public String nadar(){
+        return "El tiburon "+getName()+" esta nadando";
+    }
+
     public String comer(){
         return "El tiburon "+getName()+" come ñanmmm";
     }
