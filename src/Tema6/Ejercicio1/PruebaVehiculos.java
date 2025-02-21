@@ -115,24 +115,25 @@ public class PruebaVehiculos {
         return num;
     }
 
-    public static String introducirTipoUso(Scanner sc){
-        String cadena = "";
+    public static TipoUso introducirTipoUso(Scanner sc){
         int num;
+        TipoUso tipo=null;
         boolean entrar=true;
         //"profesional","particular"
         while (entrar){
             try {
+                System.out.println("Introduce el tipo de uso del turismo: ");
                 System.out.println("1.Profesional");
                 System.out.println("2.Particular");
                 System.out.println("Elegir la opcion");
                 num = sc.nextInt();
                 switch (num) {
                     case 1:
-                        cadena = "profesional";
+                        tipo=TipoUso.PROFESIONAL;
                         entrar=false;
                         break;
                     case 2:
-                        cadena = "particular";
+                        tipo=TipoUso.PARTICULAR;
                         entrar=false;
                         break;
                     default:
@@ -148,7 +149,7 @@ public class PruebaVehiculos {
                 sc.nextLine();
             }
         }
-        return cadena;
+        return tipo;
     }
 
     public static int introducirPeso(Scanner sc){
@@ -172,9 +173,10 @@ public class PruebaVehiculos {
 
     public static boolean introducirEspeligroso(Scanner sc){
         boolean res=true,entrar=true;
-        int num=0;
+        int num;
         while (entrar) {
             try {
+                System.out.println("Introduce si es peligro o no la mercancia del camion: ");
                 System.out.println("1.True");
                 System.out.println("2.False");
                 System.out.println("Elegir opcion: ");
@@ -236,7 +238,7 @@ public class PruebaVehiculos {
                 switch (opcion){
                     case 'a':
                         int numPlazas=introducirPlazas(sc);
-                        String tipoUso=introducirTipoUso(sc);
+                        TipoUso tipoUso=introducirTipoUso(sc);
                         Turismos turismo=new Turismos(matricula,combustible,ruedas,numPlazas,tipoUso);
                         lista.add(turismo);
                         entrar=false;
@@ -270,7 +272,7 @@ public class PruebaVehiculos {
     }
 
     public static void mostrarLista(ArrayList<Vehiculo> lista,Scanner sc){
-        int num=0;
+        int num;
         try {
             do {
                 System.out.println("1.Turismo");

@@ -2,30 +2,28 @@ package Tema6.Ejercicio1;
 
 public class Turismos extends Vehiculo{
     private int numPlazas;
-    private String tipoUso;
+    private TipoUso tipoUso;
 
     public Turismos(){
         super();
         numPlazas = 0;
-        tipoUso = "";
+        tipoUso = null;
     }
 
-    public Turismos(String matricula, String combustible, int ruedas, int numPlazas, String tipoUso) throws Exception {
+    public Turismos(String matricula, String combustible, int ruedas, int numPlazas, TipoUso tipoUso) throws Exception {
         super(matricula, combustible, ruedas);
-        if (checkPlazas(numPlazas) && checkTipoUso(tipoUso)) {
+        if (checkPlazas(numPlazas)) {
             this.numPlazas = numPlazas;
-            this.tipoUso = tipoUso;
         }
+        this.tipoUso = tipoUso;
     }
 
-    public String getTipoUso() {
+    public TipoUso getTipoUso() {
         return tipoUso;
     }
 
-    public void setTipoUso(String tipoUso)throws Exception {
-        if (checkTipoUso(tipoUso)) {
-            this.tipoUso = tipoUso;
-        }
+    public void setTipoUso(TipoUso tipoUso) {
+        this.tipoUso = tipoUso;
     }
 
     public int getNumPlazas() {
@@ -45,24 +43,26 @@ public class Turismos extends Vehiculo{
         return true;
     }
 
+    /*
     public boolean checkTipoUso(String uso)throws Exception{
         String[] tiposDeUso=new String[]{"profesional","particular"};
         for (String tipos : tiposDeUso){
-            if (!tipos.equalsIgnoreCase(uso)){
+            if (tipos.equalsIgnoreCase(uso)){
                 return true;
             }
         }
         throw new Exception("El tipo de uso introducido no es correcto");
     }
+    */
 
     @Override
     public String toString() {
         return "Turismos{" +
-                "numPlazas:" + numPlazas +
-                ", tipoUso:" + tipoUso + '\'' +
-                ", matricula:" + matricula + '\'' +
-                ", combustible:" + combustible + '\'' +
-                ", ruedas:" + ruedas +
+                "numPlazas=" + numPlazas +
+                ", tipoUso=" + tipoUso +
+                ", matricula='" + matricula + '\'' +
+                ", combustible='" + combustible + '\'' +
+                ", ruedas=" + ruedas +
                 '}';
     }
 }

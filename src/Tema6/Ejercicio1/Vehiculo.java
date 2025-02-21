@@ -69,7 +69,7 @@ public class Vehiculo {
     public boolean checkCombustibles(String combustible)throws Exception{
         String[] combustibles=new String[]{"gasolina","diesel","electrico","hidrogeno"};
         for (String tipo : combustibles){
-            if (!tipo.equalsIgnoreCase(combustible)){
+            if (tipo.equalsIgnoreCase(combustible)){
                 return true;
             }
         }
