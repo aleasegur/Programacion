@@ -22,9 +22,11 @@ public class PruebaVehiculos {
         }catch (StringIndexOutOfBoundsException e){
             System.err.println("Error "+e.getMessage());
             e.printStackTrace();
+            sc.nextLine();
         }catch (Exception e){
             System.err.println("Error "+e.getMessage());
             e.printStackTrace();
+            sc.nextLine();
         }
         return cadena;
     }
@@ -65,9 +67,11 @@ public class PruebaVehiculos {
             } catch (StringIndexOutOfBoundsException e) {
                 System.err.println("Error " + e.getMessage());
                 e.printStackTrace();
+                sc.nextLine();
             } catch (Exception e) {
                 System.err.println("Error " + e.getMessage());
                 e.printStackTrace();
+                sc.nextLine();
             }
         }
         return cadena;
@@ -83,9 +87,11 @@ public class PruebaVehiculos {
         }catch (InputMismatchException e){
             System.err.println("Error "+e.getMessage());
             e.printStackTrace();
+            sc.nextLine();
         }catch (Exception e){
             System.err.println("Error "+e.getMessage());
             e.printStackTrace();
+            sc.nextLine();
         }
         return ruedas;
     }
@@ -100,9 +106,11 @@ public class PruebaVehiculos {
         }catch (InputMismatchException | ArithmeticException e){
             System.err.println("Error "+e.getMessage());
             e.printStackTrace();
+            sc.nextLine();
         }catch (Exception e){
             System.err.println("Error "+e.getMessage());
             e.printStackTrace();
+            sc.nextLine();
         }
         return num;
     }
@@ -133,9 +141,11 @@ public class PruebaVehiculos {
             } catch (StringIndexOutOfBoundsException e) {
                 System.err.println("Error " + e.getMessage());
                 e.printStackTrace();
+                sc.nextLine();
             } catch (Exception e) {
                 System.err.println("Error " + e.getMessage());
                 e.printStackTrace();
+                sc.nextLine();
             }
         }
         return cadena;
@@ -151,9 +161,11 @@ public class PruebaVehiculos {
         }catch (InputMismatchException | ArithmeticException e){
             System.err.println("Error "+e.getMessage());
             e.printStackTrace();
+            sc.nextLine();
         }catch (Exception e){
             System.err.println("Error "+e.getMessage());
             e.printStackTrace();
+            sc.nextLine();
         }
         return num;
     }
@@ -182,6 +194,7 @@ public class PruebaVehiculos {
             } catch (Exception e) {
                 System.err.println("Error " + e.getMessage());
                 e.printStackTrace();
+                sc.nextLine();
             }
         }
         return res;
@@ -197,25 +210,29 @@ public class PruebaVehiculos {
         }catch (InputMismatchException | ArithmeticException e){
             System.err.println("Error "+e.getMessage());
             e.printStackTrace();
+            sc.nextLine();
         }catch (Exception e){
             System.err.println("Error "+e.getMessage());
             e.printStackTrace();
+            sc.nextLine();
         }
         return num;
     }
 
     public static void instanciarVehiculo(Scanner sc,ArrayList<Vehiculo> lista){
         char opcion;
-        String matricula,combustible;
-        int ruedas;
+        String matricula="",combustible="";
+        int ruedas=0;
         boolean entrar=true;
         while (entrar){
             try {
                 subMenu();
                 opcion=sc.next().toLowerCase().charAt(0);
+                if (opcion=='a' || opcion=='b' || opcion=='c'){
                 matricula=introducirMatricula(sc);
                 combustible=introducirCombustible(sc);
                 ruedas=introducirRuedas(sc);
+                }
                 switch (opcion){
                     case 'a':
                         int numPlazas=introducirPlazas(sc);
@@ -243,9 +260,11 @@ public class PruebaVehiculos {
             }catch (InputMismatchException | ArithmeticException e){
                 System.err.println("Error "+e.getMessage());
                 e.printStackTrace();
+                sc.nextLine();
             }catch (Exception e){
                 System.err.println("Error "+e.getMessage());
                 e.printStackTrace();
+                sc.nextLine();
             }
         }
     }
@@ -263,27 +282,55 @@ public class PruebaVehiculos {
                     System.err.println("Valor introducido no correcto");
                 }
             } while (num < 0 || num > 3);
+
+            if (lista.isEmpty()){
+                System.out.println("La lista esta vacia");
+            }else {
+                for (Vehiculo vehiculo : lista) {
+                    if (num==1 && vehiculo instanceof Turismos ||
+                            num==2 && vehiculo instanceof Camiones ||
+                            num==3 && vehiculo instanceof Ciclomotor) {
+                        System.out.println(vehiculo);
+                    }else{
+                        System.out.println("No hay vehiculos de ese tipo en la lista");
+                    }
+                }
+            }
         }catch (InputMismatchException | ArithmeticException e){
             System.err.println("Error "+e.getMessage());
             e.printStackTrace();
+            sc.nextLine();
         }
-        if (lista.isEmpty()){
-            System.out.println("La lista esta vacia");
-        }else {
-            for (Vehiculo vehiculo : lista) {
-                if (num==1 && vehiculo instanceof Turismos ||
-                    num==2 && vehiculo instanceof Camiones ||
-                    num==3 && vehiculo instanceof Ciclomotor) {
-                    System.out.println(vehiculo);
+    }
+
+    public static void removeVehiculo(Scanner sc,ArrayList<Vehiculo> lista){
+        String matricula;
+        try {
+            matricula=introducirMatricula(sc);
+            for (Vehiculo vehiculo : lista){
+                if (vehiculo.getMatricula().equalsIgnoreCase(matricula)){
+                    lista.remove(vehiculo);
+                    System.out.println("Vehiculo eliminado");
+                }else{
+                    System.out.println("La matricula introducida no existe");
                 }
             }
+        }catch (StringIndexOutOfBoundsException e){
+            System.err.println("Error "+e.getMessage());
+            e.printStackTrace();
+            sc.nextLine();
+        }catch (Exception e){
+            System.err.println("Error "+e.getMessage());
+            e.printStackTrace();
+            sc.nextLine();
         }
     }
 
     public static void showMenu(){
         System.out.println("a).Instanciar vehiculo");
         System.out.println("b).Mostrar vehiculo");
-        System.out.println("c)Salir");
+        System.out.println("c).Eliminar un vehiculo");
+        System.out.println("d).Salir");
     }
 
     public static void main(String[] args) {
@@ -302,6 +349,9 @@ public class PruebaVehiculos {
                     mostrarLista(lista,sc);
                     break;
                 case 'c':
+                    removeVehiculo(sc,lista);
+                    break;
+                case 'd':
                     System.out.println("Saliendo...");
                     buclePrincipal=false;
                     break;

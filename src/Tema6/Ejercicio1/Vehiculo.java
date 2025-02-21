@@ -59,8 +59,8 @@ public class Vehiculo {
             throw new Exception("Los primeros 4 caracteres de la matriicula deben ser numeros");
         }
 
-        String letars=matricula.substring(3).toUpperCase();
-        if (letars.matches("[A-Z]{3}")){
+        String letras=matricula.substring(3).toUpperCase();
+        if (letras.matches("[A-Z]{3}")){
             throw new Exception("Los ultimos 3 caracteres de la matricula deben ser letras");
         }
         return true;
