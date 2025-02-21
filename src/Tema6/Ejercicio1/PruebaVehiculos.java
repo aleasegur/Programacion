@@ -5,6 +5,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PruebaVehiculos {
+
+    //un sub menu en el que instanciar subclases de Vehiculo
     public static void subMenu(){
         System.out.println("a).Turismo");
         System.out.println("b).Camion");
@@ -12,6 +14,7 @@ public class PruebaVehiculos {
         System.out.println("Elegir opcion: ");
     }
 
+    //Metodo que introduzco la matricula
     public static String introducirMatricula(Scanner sc){
         String cadena="";
         try {
@@ -31,6 +34,7 @@ public class PruebaVehiculos {
         return cadena;
     }
 
+    //Metodo String que devuelve un string de combustible
     public static String introducirCombustible(Scanner sc){
         String cadena="";
         int num;
@@ -77,6 +81,7 @@ public class PruebaVehiculos {
         return cadena;
     }
 
+    //Metodo que devuelve un int de ruedas
     public static int introducirRuedas(Scanner sc){
         int ruedas=0;
         try {
@@ -96,6 +101,7 @@ public class PruebaVehiculos {
         return ruedas;
     }
 
+    //Metodo que devuelve un int de plazas
     public static int introducirPlazas(Scanner sc){
         int num=0;
         try {
@@ -115,6 +121,7 @@ public class PruebaVehiculos {
         return num;
     }
 
+    //Metodo que devuelve un tipouso
     public static TipoUso introducirTipoUso(Scanner sc){
         int num;
         TipoUso tipo=null;
@@ -152,6 +159,7 @@ public class PruebaVehiculos {
         return tipo;
     }
 
+    //Metodo que devuelve un int de peso
     public static int introducirPeso(Scanner sc){
         int num=0;
         try {
@@ -171,6 +179,7 @@ public class PruebaVehiculos {
         return num;
     }
 
+    //devuelve un booleano
     public static boolean introducirEspeligroso(Scanner sc){
         boolean res=true,entrar=true;
         int num;
@@ -202,7 +211,8 @@ public class PruebaVehiculos {
         return res;
     }
 
-    public static int introducirCilindrana(Scanner sc){
+    //devuelve un int
+    public static int introducirCilindrada(Scanner sc){
         int num=0;
         try {
             do {
@@ -251,7 +261,7 @@ public class PruebaVehiculos {
                         entrar=false;
                         break;
                     case 'c':
-                        int cilindrana=introducirCilindrana(sc);
+                        int cilindrana= introducirCilindrada(sc);
                         Ciclomotor ciclomotor=new Ciclomotor(matricula,combustible,ruedas,cilindrana);
                         lista.add(ciclomotor);
                         entrar=false;
