@@ -6,6 +6,35 @@ import java.util.Scanner;
 
 public class PruebaVehiculos {
 
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        ArrayList<Vehiculo> lista = new ArrayList<>();
+        boolean buclePrincipal=true;
+        char opcion;
+        while (buclePrincipal){
+            showMenu();
+            opcion=sc.next().toLowerCase().charAt(0);
+            switch (opcion){
+                case 'a':
+                    instanciarVehiculo(sc,lista);
+                    break;
+                case 'b':
+                    mostrarLista(lista,sc);
+                    break;
+                case 'c':
+                    removeVehiculo(sc,lista);
+                    break;
+                case 'd':
+                    System.out.println("Saliendo...");
+                    buclePrincipal=false;
+                    break;
+                default:
+                    System.err.println("Valor introducido incorrecto");
+            }
+        }
+        sc.close();
+    }
+
     //un sub menu en el que instanciar subclases de Vehiculo
     public static void subMenu(){
         System.out.println("a).Turismo");
@@ -343,34 +372,5 @@ public class PruebaVehiculos {
         System.out.println("b).Mostrar vehiculo");
         System.out.println("c).Eliminar un vehiculo");
         System.out.println("d).Salir");
-    }
-
-    public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
-        ArrayList<Vehiculo> lista = new ArrayList<>();
-        boolean buclePrincipal=true;
-        char opcion;
-        while (buclePrincipal){
-            showMenu();
-            opcion=sc.next().toLowerCase().charAt(0);
-            switch (opcion){
-                case 'a':
-                    instanciarVehiculo(sc,lista);
-                    break;
-                case 'b':
-                    mostrarLista(lista,sc);
-                    break;
-                case 'c':
-                    removeVehiculo(sc,lista);
-                    break;
-                case 'd':
-                    System.out.println("Saliendo...");
-                    buclePrincipal=false;
-                    break;
-                default:
-                    System.err.println("Valor introducido incorrecto");
-            }
-        }
-        sc.close();
     }
 }
