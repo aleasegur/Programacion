@@ -36,6 +36,10 @@ public class Gato extends Animal{
         }
     }
 
+    public String saltando(){
+        return "EL gato esta saltando";
+    }
+
     public String comer(){
         return "El gato "+getName()+" come ñanmmm";
     }
@@ -46,5 +50,17 @@ public class Gato extends Animal{
 
     public String hacerRuido(){
         return "El gato "+getName()+" hace ruido piiipiii";
+    }
+
+    @Override
+    public String toString() {
+        return "Gato{" +
+                "colorPatron='" + colorPatron + '\'' +
+                ", colorOjos='" + colorOjos + '\'' +
+                ", edad=" + edad +
+                ", name='" + name + '\'' +
+                ", peso=" + peso +
+                ", altura=" + altura +
+                '}';
     }
 }

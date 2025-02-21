@@ -35,6 +35,10 @@ public class Cocodrilo extends Animal{
         this.escamas = escamas;
     }
 
+    public String cazar(){
+        return "El cocodrilo esta cazando";
+    }
+
     public String comer(){
         return "El cocodrilo "+getName()+" come ñanmmm";
     }
@@ -47,4 +51,15 @@ public class Cocodrilo extends Animal{
         return "El cocodrilo "+getName()+" hace ruido piiipiii";
     }
 
+    @Override
+    public String toString() {
+        return "Cocodrilo{" +
+                "dientes=" + dientes +
+                ", escamas=" + escamas +
+                ", name='" + name + '\'' +
+                ", edad=" + edad +
+                ", altura=" + altura +
+                ", peso=" + peso +
+                '}';
+    }
 }

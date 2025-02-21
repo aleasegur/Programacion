@@ -25,10 +25,6 @@ public class Canario extends Animal{
         this.volar = volar;
     }
 
-    public String estaVolando(){
-        return "El Canario "+getName()+" esta volando";
-    }
-
     public String getColor() {
         return color;
     }
@@ -37,6 +33,10 @@ public class Canario extends Animal{
         if (cadenaNoNull(color)){
             this.color = color;
         }
+    }
+
+    public String estaVolando(){
+        return "El Canario "+getName()+" esta volando";
     }
 
     public String comer(){
@@ -51,4 +51,15 @@ public class Canario extends Animal{
         return "El canario "+getName()+" hace ruido piiipiii";
     }
 
+    @Override
+    public String toString() {
+        return "Canario{" +
+                "volar=" + volar +
+                ", color='" + color + '\'' +
+                ", name='" + name + '\'' +
+                ", edad=" + edad +
+                ", peso=" + peso +
+                ", altura=" + altura +
+                '}';
+    }
 }
