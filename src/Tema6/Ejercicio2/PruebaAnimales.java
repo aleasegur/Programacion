@@ -193,7 +193,6 @@ public class PruebaAnimales {
             do {
                 System.out.print("Elige un animal (1-" + lista.size() + "): ");
                 opcion = sc.nextInt() - 1;
-                sc.nextLine();
                 if (opcion < 0 || opcion >= lista.size()) {
                     System.err.println("Posicion selecionada no existe");
                 }
