@@ -48,7 +48,7 @@ public class Triangulo extends Figura2D {
     }
 
     // ValidO la existencia del triAngulo,cada lado debe ser menor que la suma de los otros dos.
-    public boolean checkTriangulo(double lado1, double lado2,double lado3)throws Exception{
+    public static boolean checkTriangulo(double lado1, double lado2,double lado3)throws Exception{
         if (lado1 + lado2 <= lado3 || lado1 + lado3 <= lado2 || lado2 + lado3 <= lado1) {
             throw new Exception("Los lados no pueden formar un triangulo");
         }
