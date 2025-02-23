@@ -71,6 +71,6 @@ public class Triangulo extends Figura2D {
 
     @Override
     public String toString() {
-        return "Triangulo{\nLados: "+lado1+","+lado2+","+lado3+ super.toString()+"}";
+        return "Triangulo{\nLados: "+lado1+","+lado2+","+lado3+"\n"+super.toString()+"}";
     }
 }
