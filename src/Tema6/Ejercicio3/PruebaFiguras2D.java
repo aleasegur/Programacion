@@ -35,6 +35,7 @@ public class PruebaFiguras2D {
                 e.printStackTrace();
             }
         }
+        sc.close();
     }
 
     public static void addFiguras(Scanner sc,ArrayList<Figura2D> lista){
