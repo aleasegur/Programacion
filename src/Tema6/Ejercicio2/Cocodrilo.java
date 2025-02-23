@@ -39,14 +39,17 @@ public class Cocodrilo extends Animal{
         return "El cocodrilo esta cazando";
     }
 
+    @Override
     public String comer(){
         return "El cocodrilo "+getName()+" come ñanmmm";
     }
 
+    @Override
     public String dormir(){
         return "El cocodrilo "+getName()+" duerme zzzzz";
     }
 
+    @Override
     public String hacerRuido(){
         return "El cocodrilo "+getName()+" hace ruido piiipiii";
     }

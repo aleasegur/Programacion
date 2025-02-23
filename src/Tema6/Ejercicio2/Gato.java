@@ -40,14 +40,17 @@ public class Gato extends Animal{
         return "EL gato esta saltando";
     }
 
+    @Override
     public String comer(){
         return "El gato "+getName()+" come ñanmmm";
     }
 
+    @Override
     public String dormir(){
         return "El gato "+getName()+" duerme zzzzz";
     }
 
+    @Override
     public String hacerRuido(){
         return "El gato "+getName()+" hace ruido piiipiii";
     }

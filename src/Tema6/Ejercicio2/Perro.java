@@ -35,14 +35,17 @@ public class Perro extends Animal{
         return "El perro "+getName()+" esta rastreando";
     }
 
+    @Override
     public String comer(){
         return "El perro "+getName()+" come ñanmmm";
     }
 
+    @Override
     public String dormir(){
         return "El perro "+getName()+" duerme zzzzz";
     }
 
+    @Override
     public String hacerRuido(){
         return "El perro "+getName()+" hace ruido piiipiii";
     }

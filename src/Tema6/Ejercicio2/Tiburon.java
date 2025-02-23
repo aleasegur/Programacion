@@ -37,14 +37,17 @@ public class Tiburon extends Animal{
         return "El tiburon "+getName()+" esta nadando";
     }
 
+    @Override
     public String comer(){
         return "El tiburon "+getName()+" come ñanmmm";
     }
 
+    @Override
     public String dormir(){
         return "El tiburon "+getName()+" duerme zzzzz";
     }
 
+    @Override
     public String hacerRuido(){
         return "El tiburon "+getName()+" hace ruido piiipiii";
     }

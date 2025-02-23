@@ -39,14 +39,17 @@ public class Canario extends Animal{
         return "El Canario "+getName()+" esta volando";
     }
 
+    @Override
     public String comer(){
         return "El canario "+getName()+" come ñanmmm";
     }
 
+    @Override
     public String dormir(){
         return "El canario "+getName()+" duerme zzzzz";
     }
 
+    @Override
     public String hacerRuido(){
         return "El canario "+getName()+" hace ruido piiipiii";
     }
