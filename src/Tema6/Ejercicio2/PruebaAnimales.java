@@ -261,41 +261,41 @@ public class PruebaAnimales {
         return cadena;
     }
 
-    public static int introducirInt(Scanner sc, String atributo) {
+    public static int introducirInt(Scanner sc, String atributo) throws Exception {
         int num=0;
-        try {
-            do {
+        do {
+            try {
                 System.out.println("Introduce " + atributo + ": ");
                 num = sc.nextInt();
-            }while (!Animal.numeroNoNegativo(num));
-        }catch (InputMismatchException e){
-            System.err.println("Error "+e.getMessage());
-            e.printStackTrace();
-            sc.nextLine();
-        }catch (Exception e){
-            System.err.println("Error "+e.getMessage());
-            e.printStackTrace();
-            sc.nextLine();
-        }
+            } catch (InputMismatchException e) {
+                System.err.println("Error " + e.getMessage());
+                e.printStackTrace();
+                sc.nextLine();
+            } catch (Exception e) {
+                System.err.println("Error " + e.getMessage());
+                e.printStackTrace();
+                sc.nextLine();
+            }
+        }while (!Animal.numeroNoNegativo(num));
         return num;
     }
 
-    public static double introducirDouble(Scanner sc, String atributo) {
+    public static double introducirDouble(Scanner sc, String atributo) throws Exception {
         double num=0;
-        try {
-            do {
+        do {
+            try {
                 System.out.println("Introduce su " + atributo + " : ");
                 num = sc.nextDouble();
-            }while (!Animal.numeroNoNegativo(num));
-        }catch (InputMismatchException e){
-            System.err.println("Error "+e.getMessage());
-            e.printStackTrace();
-            sc.nextLine();
-        }catch (Exception e){
-            System.err.println("Error "+e.getMessage());
-            e.printStackTrace();
-            sc.nextLine();
-        }
+            }catch (InputMismatchException e){
+                System.err.println("Error "+e.getMessage());
+                e.printStackTrace();
+                sc.nextLine();
+            }catch (Exception e){
+                System.err.println("Error "+e.getMessage());
+                e.printStackTrace();
+                sc.nextLine();
+            }
+        } while (!Animal.numeroNoNegativo(num));
         return num;
     }
 
