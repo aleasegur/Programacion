@@ -210,6 +210,4 @@ public class PruebaFicha {
         System.out.println("4.Ciencia Ficcion");
         System.out.println("Elegir opcion: ");
     }
-
-
 }
