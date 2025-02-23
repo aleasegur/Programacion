@@ -60,6 +60,14 @@ public class PruebaFiguras2D {
                         entrar=false;
                         break;
                     case 3:
+                        /*
+                        * Introduce el valor de lado 1 del triangulo :
+                            2,4
+                          Introduce el valor de lado 2 del triangulo :
+                            3,4
+                         Introduce el valor de lado 3 del triangulo :
+                            6,7
+                            *  Valores que no pueden formar un triangulo*/
                         double lado1,lado2,lado3;
                         do {
                             lado1 = crearDouble(sc, "lado 1", "triangulo");
@@ -114,7 +122,7 @@ public class PruebaFiguras2D {
                     }
                 }
                 if (!encontrado){
-                    System.out.println("No hay animal de ese tipo en la lista");
+                    System.out.println("No hay figura de ese tipo en la lista");
                 }
             }
         } catch (InputMismatchException | ArithmeticException e) {
