@@ -51,6 +51,6 @@ public class Dvd extends Ficha{
 
     @Override
     public String toString() {
-        return "DVD{"+"\nDirector: "+director+"\nAño: "+year+"\nTipo: "+tipo+"\n"+ super.toString()+"}";
+        return "DVD{"+"\nDirector: "+director+"\nAño: "+year+"\nTipo: "+tipo+super.toString()+"}";
     }
 }

@@ -41,6 +41,6 @@ public class Libros extends Ficha{
     public String toString() {
         return "Libros{" +
                 "\nEditorial:" + editorial +
-                "\nAutor:" + autor +"\n"+super.toString()+"}";
+                "\nAutor:" + autor +super.toString()+"}";
     }
 }

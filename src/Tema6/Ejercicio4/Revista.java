@@ -39,6 +39,6 @@ public class Revista extends Ficha{
 
     @Override
     public String toString() {
-        return "Revista{"+"\nNumero de publicacion: "+numPubli+"\nAño: "+year+"\n"+super.toString()+"}";
+        return "Revista{"+"\nNumero de publicacion: "+numPubli+"\nAño: "+year+super.toString()+"}";
     }
 }
