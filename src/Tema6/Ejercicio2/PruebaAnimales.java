@@ -122,7 +122,7 @@ public class PruebaAnimales {
         System.out.println("3).Gato");
         System.out.println("4).Perro");
         System.out.println("5).Tiburon");
-        System.out.println("Elegir opcion");
+        System.out.print("Elegir opcion:");
     }
 
     public static void mostrarLista(ArrayList<Animal> lista, Scanner sc) {
@@ -248,7 +248,8 @@ public class PruebaAnimales {
         String cadena="";
         try {
             System.out.println("Introduce el " + atributo + ": ");
-            cadena=sc.next();
+            sc.nextLine();
+            cadena=sc.nextLine();
         }catch (StringIndexOutOfBoundsException e){
             System.err.println("Error "+e.getMessage());
             e.printStackTrace();
@@ -308,7 +309,7 @@ public class PruebaAnimales {
                 System.out.println("El animal " + atributo + "?:");
                 System.out.println("1.True");
                 System.out.println("2.False");
-                System.out.println("Elegir opcion: ");
+                System.out.print("Elegir opcion: ");
                 opcion = sc.nextInt();
                 switch (opcion) {
                     case 1:
