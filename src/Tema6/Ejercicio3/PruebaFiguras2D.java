@@ -5,7 +5,6 @@ import Tema6.Ejercicio2.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.jar.Manifest;
 
 public class PruebaFiguras2D {
     public static void main(String[] args) {
