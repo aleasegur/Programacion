@@ -1,6 +1,8 @@
 package Tema6.Ejercicio5;
 
-public class PublicacionFoto implements Publicacion,AbrirPublicacion{
+import Tema6.Ejercicio6.PublicacionConReaccion;
+
+public class PublicacionFoto implements Publicacion,AbrirPublicacion,PublicacionConReaccion{
     private String urlFoto,descripcion;
 
     public PublicacionFoto(){
@@ -27,6 +29,11 @@ public class PublicacionFoto implements Publicacion,AbrirPublicacion{
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    @Override
+    public void comentar(String comentario) {
+        System.out.println("Comentario: "+comentario);
     }
 
     @Override

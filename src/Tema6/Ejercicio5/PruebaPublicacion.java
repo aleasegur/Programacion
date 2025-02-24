@@ -99,6 +99,8 @@ public class PruebaPublicacion {
                             for (PublicacionTexto pT : listaTexto){
                                 pT.publicar();
                                 pT.compartir();
+                                String comentario1=introducirStr(sc,"comentario");
+                                pT.comentar(comentario1);
                             }
                         }
                         listado=false;
@@ -111,6 +113,8 @@ public class PruebaPublicacion {
                                 pF.publicar();
                                 pF.compartir();
                                 pF.abrirPublicacion();
+                                String comentario2=introducirStr(sc,"comentario");
+                                pF.comentar(comentario2);
                             }
                         }
                         listado=false;
@@ -123,6 +127,8 @@ public class PruebaPublicacion {
                                 pV.publicar();
                                 pV.compartir();
                                 pV.abrirPublicacion();
+                                String comentario3=introducirStr(sc,"comentario");
+                                pV.comentar(comentario3);
                             }
                         }
                         listado=false;

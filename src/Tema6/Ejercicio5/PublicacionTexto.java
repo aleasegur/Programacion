@@ -1,6 +1,8 @@
 package Tema6.Ejercicio5;
 
-public class PublicacionTexto implements Publicacion{
+import Tema6.Ejercicio6.PublicacionConReaccion;
+
+public class PublicacionTexto implements Publicacion,PublicacionConReaccion {
     private String contenido;
 
     public PublicacionTexto(){
@@ -17,6 +19,11 @@ public class PublicacionTexto implements Publicacion{
 
     public void setContenido(String contenido) {
         this.contenido = contenido;
+    }
+
+    @Override
+    public void comentar(String comentario) {
+        System.out.println("Comentario: "+comentario);
     }
 
     @Override
