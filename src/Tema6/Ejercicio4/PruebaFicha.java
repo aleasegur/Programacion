@@ -101,7 +101,7 @@ public class PruebaFicha {
                     case 3:
                         String director=introducirCadena(sc,"director","dvd");
                         int yearDvd=introducirEntero(sc,"año","dvd");
-                        Tipo tipo=introducirTipo(sc);
+                        String tipo=introducirCadena(sc,"tipo de genero","dvd");
                         Dvd dvd=new Dvd(numero,titulo,director,yearDvd,tipo);
                         lista.add(dvd);
                         entrar=false;
@@ -146,44 +146,6 @@ public class PruebaFicha {
         return num;
     }
 
-    public static Tipo introducirTipo(Scanner sc){
-        int opcion;
-        boolean bucle=true;
-        Tipo tipoGenero=null;
-        while (bucle) {
-            try {
-                showTipos();
-                opcion=sc.nextInt();
-                switch (opcion){
-                    case 1:
-                        tipoGenero=Tipo.ANIMACION;
-                        bucle=false;
-                        break;
-                    case 2:
-                        tipoGenero=Tipo.ACCION;
-                        bucle=false;
-                        break;
-                    case 3:
-                        tipoGenero=Tipo.DOCUMENTAL;
-                        bucle=false;
-                        break;
-                    case 4:
-                        tipoGenero=Tipo.CIENCIA_FICCION;
-                        bucle=false;
-                        break;
-                    default:
-                        System.err.println("Opcion invalida");
-                }
-
-            } catch (InputMismatchException e) {
-                System.err.println("Error " + e.getMessage());
-            } catch (Exception e) {
-                System.err.println("Error " + e.getMessage());
-            }
-        }
-        return tipoGenero;
-    }
-
     public static void showMe(){
         System.out.println("a).Instanciar ficha");
         System.out.println("b).Mostrar ficha");
@@ -198,16 +160,4 @@ public class PruebaFicha {
         System.out.println("Elegir opcion: ");
     }
 
-    //ANIMACION,
-    //ACCION,
-    //DOCUMENTAL,
-    //CIENCIA_FICCION
-    public static void showTipos(){
-        System.out.println("--TIPOS DE GENEROS EN DVD--");
-        System.out.println("1.Animacion");
-        System.out.println("2.Accion");
-        System.out.println("3.Documental");
-        System.out.println("4.Ciencia Ficcion");
-        System.out.println("Elegir opcion: ");
-    }
 }

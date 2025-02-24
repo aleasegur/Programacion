@@ -1,18 +1,16 @@
 package Tema6.Ejercicio4;
 
 public class Dvd extends Ficha{
-    private String director;
+    private String director,tipo;
     private int year;
-    private Tipo tipo;
 
     public Dvd(){
         super();
         director="";
         year=0;
-        tipo=Tipo.CIENCIA_FICCION;
     }
 
-    public Dvd(int numero, String titulo, String director, int year, Tipo tipo) throws Exception {
+    public Dvd(int numero, String titulo, String director, int year, String tipo) throws Exception {
         super(numero, titulo);
         if (validateCadena(director) && validateNum(year)) {
             this.director = director;
@@ -41,11 +39,11 @@ public class Dvd extends Ficha{
         }
     }
 
-    public Tipo getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(Tipo tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
