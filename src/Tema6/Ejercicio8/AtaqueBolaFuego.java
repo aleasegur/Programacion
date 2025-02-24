@@ -1,10 +1,30 @@
 package Tema6.Ejercicio8;
 
 public class AtaqueBolaFuego implements AtaqueAvanzado {
-    private final int poderMagico;
+    private int poderMagico;
 
-    public AtaqueBolaFuego(int poderMagico) {
-        this.poderMagico = poderMagico;
+    public AtaqueBolaFuego(){
+        poderMagico=0;
+    }
+
+    public AtaqueBolaFuego(int poderMagico)throws Exception {
+        if (poderMagico>0) {
+            this.poderMagico = poderMagico;
+        }else{
+            throw new Exception("El valor no puede ser negativo");
+        }
+    }
+
+    public int getPoderMagico() {
+        return poderMagico;
+    }
+
+    public void setPoderMagico(int poderMagico)throws Exception {
+        if (poderMagico>0) {
+            this.poderMagico = poderMagico;
+        }else{
+            throw new Exception("El valor no puede ser negativo");
+        }
     }
 
     @Override

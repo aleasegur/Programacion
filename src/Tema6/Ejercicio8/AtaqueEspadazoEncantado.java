@@ -8,25 +8,37 @@ public class AtaqueEspadazoEncantado implements AtaqueAvanzado{
         fuerza=0;
     }
 
-    public AtaqueEspadazoEncantado(int poderMag, int fuerza) {
-        this.poderMag = poderMag;
-        this.fuerza = fuerza;
+    public AtaqueEspadazoEncantado(int poderMag, int fuerza)throws Exception {
+        if (poderMag>0 && fuerza>0) {
+            this.poderMag = poderMag;
+            this.fuerza = fuerza;
+        }else{
+            throw new Exception("El valor no puede ser negativo");
+        }
     }
 
     public int getPoderMag() {
         return poderMag;
     }
 
-    public void setPoderMag(int poderMag) {
-        this.poderMag = poderMag;
+    public void setPoderMag(int poderMag) throws Exception {
+        if (poderMag>0) {
+            this.poderMag = poderMag;
+        }else{
+            throw new Exception("El valor no puede ser negativo");
+        }
     }
 
     public int getFuerza() {
         return fuerza;
     }
 
-    public void setFuerza(int fuerza) {
-        this.fuerza = fuerza;
+    public void setFuerza(int fuerza) throws Exception {
+        if (fuerza>0) {
+            this.fuerza = fuerza;
+        }else{
+            throw new Exception("El valor no puede ser negativo");
+        }
     }
 
     @Override

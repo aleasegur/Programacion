@@ -3,16 +3,24 @@ package Tema6.Ejercicio8;
 public class AtaqueEspadazo implements AtaqueAvanzado {
     private int fuerza;
 
-    public AtaqueEspadazo(int fuerza) {
-        this.fuerza = fuerza;
+    public AtaqueEspadazo(int fuerza)throws Exception {
+        if (fuerza>0) {
+            this.fuerza = fuerza;
+        }else {
+            throw new Exception("El valor no puede ser negativo");
+        }
     }
 
     public int getFuerza() {
         return fuerza;
     }
 
-    public void setFuerza(int fuerza) {
-        this.fuerza = fuerza;
+    public void setFuerza(int fuerza)throws Exception {
+        if (fuerza>0) {
+            this.fuerza = fuerza;
+        }else {
+            throw new Exception("El valor no puede ser negativo");
+        }
     }
 
     @Override
