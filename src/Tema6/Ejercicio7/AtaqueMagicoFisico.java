@@ -53,6 +53,6 @@ public class AtaqueMagicoFisico implements Ataque {
 
     @Override
     public void iLanzar() {
-        System.out.println("He lanzado atauqe magico y fuerza "+idamageInflingido()+"daño con un coste de "+iCoste());
+        System.out.println("He lanzado atauqe magico y fuerza "+idamageInflingido()+" daño con un coste de "+iCoste());
     }
 }
