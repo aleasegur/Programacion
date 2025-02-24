@@ -12,11 +12,6 @@ public class Cuadrado extends Rectangulo{
     }
 
     @Override
-    public double area() {
-        return 4*getBase();
-    }
-
-    @Override
     public String toString() {
         return "Cuadrado {\nLado: " + getBase() + "\nArea: " + area() + "\nPerimetro: " + perimetro()+"}";
     }
