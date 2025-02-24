@@ -1,6 +1,8 @@
 package Tema6.Ejercicio5;
 
-public class PublicacionVideo implements Publicacion,AbrirPublicacion{
+import Tema6.Ejercicio6.PublicacionConReaccion;
+
+public class PublicacionVideo implements Publicacion,AbrirPublicacion, PublicacionConReaccion {
     private String urlVideo,titulo;
 
     public PublicacionVideo(){
