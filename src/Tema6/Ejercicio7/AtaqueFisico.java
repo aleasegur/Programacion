@@ -1,22 +1,30 @@
 package Tema6.Ejercicio7;
 
-public class AtaqueFisico implements Ataque{
+public class AtaqueFisico implements Ataque {
     private int fuerza;
 
-    public AtaqueFisico(){
-        fuerza=0;
+    public AtaqueFisico() {
+        fuerza = 0;
     }
 
-    public AtaqueFisico(int fuerza) {
-        this.fuerza = fuerza;
+    public AtaqueFisico(int fuerza) throws Exception {
+        if (fuerza > 0) {
+            this.fuerza = fuerza;
+        } else {
+            throw new Exception("El valor no puede ser negativo");
+        }
     }
 
     public int getFuerza() {
         return fuerza;
     }
 
-    public void setFuerza(int fuerza) {
-        this.fuerza = fuerza;
+    public void setFuerza(int fuerza)throws Exception {
+        if (fuerza>0) {
+            this.fuerza = fuerza;
+        }else{
+            throw new Exception("El valor no puede ser negativo");
+        }
     }
 
     @Override

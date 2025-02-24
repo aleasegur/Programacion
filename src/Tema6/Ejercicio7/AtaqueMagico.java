@@ -7,16 +7,24 @@ public class AtaqueMagico implements Ataque{
         poderMag=0;
     }
 
-    public AtaqueMagico(int poderMag) {
-        this.poderMag = poderMag;
+    public AtaqueMagico(int poderMag)throws Exception {
+        if (poderMag>0) {
+            this.poderMag = poderMag;
+        }else{
+            throw new Exception("El valor no puede ser negativo");
+        }
     }
 
     public int getPoderMag() {
         return poderMag;
     }
 
-    public void setPoderMag(int poderMag) {
-        this.poderMag = poderMag;
+    public void setPoderMag(int poderMag)throws Exception {
+        if (poderMag>0) {
+            this.poderMag = poderMag;
+        }else {
+            throw new Exception("El valor no puede ser negativo");
+        }
     }
 
     @Override
