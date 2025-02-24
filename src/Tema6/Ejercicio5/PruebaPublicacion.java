@@ -1,10 +1,5 @@
 package Tema6.Ejercicio5;
 
-import Tema6.Ejercicio4.Dvd;
-import Tema6.Ejercicio4.Ficha;
-import Tema6.Ejercicio4.Libros;
-import Tema6.Ejercicio4.Revista;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -97,10 +92,10 @@ public class PruebaPublicacion {
                             System.out.println("No hay ninguna publicacion");
                         }else {
                             for (PublicacionTexto pT : listaTexto){
-                                pT.publicar();
-                                pT.compartir();
+                                pT.iPublicar();
+                                pT.iCompartir();
                                 String comentario1=introducirStr(sc,"comentario");
-                                pT.comentar(comentario1);
+                                pT.iComentar(comentario1);
                             }
                         }
                         listado=false;
@@ -110,11 +105,11 @@ public class PruebaPublicacion {
                             System.out.println("No hay ninguna publicacion");
                         }else {
                             for (PublicacionFoto pF : listaFoto){
-                                pF.publicar();
-                                pF.compartir();
-                                pF.abrirPublicacion();
+                                pF.iPublicar();
+                                pF.iCompartir();
+                                pF.iAbrirPublicacion();
                                 String comentario2=introducirStr(sc,"comentario");
-                                pF.comentar(comentario2);
+                                pF.iComentar(comentario2);
                             }
                         }
                         listado=false;
@@ -124,11 +119,11 @@ public class PruebaPublicacion {
                             System.out.println("No hay ninguna publicacion");
                         }else {
                             for (PublicacionVideo pV : listaVideo){
-                                pV.publicar();
-                                pV.compartir();
-                                pV.abrirPublicacion();
+                                pV.iPublicar();
+                                pV.iCompartir();
+                                pV.iAbrirPublicacion();
                                 String comentario3=introducirStr(sc,"comentario");
-                                pV.comentar(comentario3);
+                                pV.iComentar(comentario3);
                             }
                         }
                         listado=false;

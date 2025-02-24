@@ -32,22 +32,22 @@ public class PublicacionVideo implements Publicacion,AbrirPublicacion, Publicaci
     }
 
     @Override
-    public void comentar(String comentario) {
+    public void iComentar(String comentario) {
         System.out.println("Comentario: "+comentario);
     }
 
     @Override
-    public void compartir() {
+    public void iCompartir() {
         System.out.println("Compartiendo video "+urlVideo);
     }
 
     @Override
-    public void publicar() {
+    public void iPublicar() {
         System.out.println("Publicando video "+urlVideo+" con titulo "+titulo);
     }
 
     @Override
-    public void abrirPublicacion() {
+    public void iAbrirPublicacion() {
         System.out.println("Abriendo publicacion de video: "+urlVideo);
     }
 
