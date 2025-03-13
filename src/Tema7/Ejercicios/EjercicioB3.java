@@ -10,12 +10,12 @@ public class EjercicioB3 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         //MyMethos es una clase que contiene metodos
-        String fileInput=MyMethods.introducirCadena(sc,"el archivo de entrada: ");
-        String fileOutput=MyMethods.introducirCadena(sc,"el archivo de salida: ");
+        String fileInput= MyMethodsAtributes.introducirCadena(sc,"el archivo de entrada: ");
+        String fileOutput= MyMethodsAtributes.introducirCadena(sc,"el archivo de salida: ");
         List<String> listaLines=new ArrayList<>();
 
         //Lee el archivo de entrada
-        try(BufferedReader br=new BufferedReader(new FileReader("Documentos/"+fileInput))) {
+        try(BufferedReader br=new BufferedReader(new FileReader(MyMethodsAtributes.namePath+fileInput))) {
             String lineas;
             while ((lineas=br.readLine())!=null){
                 listaLines.add(lineas);
