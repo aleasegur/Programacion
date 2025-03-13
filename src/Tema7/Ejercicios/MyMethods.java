@@ -7,7 +7,7 @@ public class MyMethods {
     public static String introducirCadena(Scanner sc, String tipo){
         String res=null;
         try {
-            System.out.println("Introduce el nombre del archivo de "+tipo);
+            System.out.println("Introduce "+tipo);
             res=sc.next();
         }catch (StringIndexOutOfBoundsException e){
             System.err.println(e.getMessage());

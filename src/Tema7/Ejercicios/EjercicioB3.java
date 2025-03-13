@@ -10,8 +10,8 @@ public class EjercicioB3 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         //MyMethos es una clase que contiene metodos
-        String fileInput=MyMethods.introducirCadena(sc,"entrada");
-        String fileOutput=MyMethods.introducirCadena(sc,"salida");
+        String fileInput=MyMethods.introducirCadena(sc,"el archivo de entrada: ");
+        String fileOutput=MyMethods.introducirCadena(sc,"el archivo de salida: ");
         List<String> listaLines=new ArrayList<>();
 
         //Lee el archivo de entrada
