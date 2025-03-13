@@ -5,8 +5,10 @@ import java.util.Scanner;
 
 public class MyMethodsAtributes {
 
-    //Constante statica que tiene el nombre del directorio que contiene los ficheros o carpetas
+    //Constantes statica que tiene el nombre del directorio que contiene los ficheros o carpetas
     public static final String namePath="Documentos/";
+    public static final String namePathPhoto="Documentos/Fotografias/";
+    public static final String namePathBooks="Documentos/Libros/";
 
     //Metdodo que devuelve una cadena de texto
     public static String introducirCadena(Scanner sc, String tipo){
