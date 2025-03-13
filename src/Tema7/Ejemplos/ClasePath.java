@@ -8,7 +8,6 @@ import java.util.Iterator;
 public class ClasePath {
 
     public static void main(String[] args) {
-
         //STARTSWITH, ENDSWITH
         // create object of Path
         Path path = Paths.get("/Users/anavicianofabregat/intelliJ-workspace/programacionSoluciones");
