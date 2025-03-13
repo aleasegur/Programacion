@@ -11,12 +11,12 @@ public class EjercicioB4 {
         Scanner sc=new Scanner(System.in);
         Random randdom=new Random();
 
-        String fileNames= MyMethodsAtributes.introducirCadena(sc,"el archivo de listNames(ej: usa_nombres.txt): ");
-        String fileLastName= MyMethodsAtributes.introducirCadena(sc,"el archivo de listLastNames(ej: usa_apellidos.txt): ");
-        int cantidad= MyMethodsAtributes.introducirEntero(sc,"la cantidad de listNames a generar: ");
+        String fileNames= MyMethodsAtributes.introducirCadena(sc,"el archivo de nombres(ej: usa_nombres.txt): ");
+        String fileLastName= MyMethodsAtributes.introducirCadena(sc,"el archivo de apellidos(ej: usa_apellidos.txt): ");
+        int cantidad= MyMethodsAtributes.introducirEntero(sc,"la cantidad de nombres y apellidos a generar: ");
         String fileOut= MyMethodsAtributes.introducirCadena(sc,"el archivo de salida(ej: personas_nuevas.txt): ");
 
-        List<String> listNames=readFile(fileLastName);
+        List<String> listNames=readFile(fileNames);
         List<String> listLastNames=readFile(fileLastName);
 
         if (listNames.isEmpty() && listLastNames.isEmpty()){
@@ -30,7 +30,7 @@ public class EjercicioB4 {
                 bw.write(nombreAlea);
                 bw.newLine();
             }
-            System.out.println("Se han generado "+cantidad+" listNames en "+fileOut);
+            System.out.println("Se han generado "+cantidad+" nombres y apellidos en "+fileOut);
         }catch (IOException e){
             e.printStackTrace();
         }
