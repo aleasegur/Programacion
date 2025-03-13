@@ -9,8 +9,9 @@ escribirá ordenado alfabéticamente en B (por ejemplo ‘usa_personas_sorted.tx
 public class EjercicioB3 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String fileInput=introducirCadena(sc,"entrada");
-        String fileOutput=introducirCadena(sc,"salida");
+        //MyMethos es una clase que contiene metodos
+        String fileInput=MyMethods.introducirCadena(sc,"entrada");
+        String fileOutput=MyMethods.introducirCadena(sc,"salida");
         List<String> listaLines=new ArrayList<>();
 
         //Lee el archivo de entrada
@@ -37,19 +38,6 @@ public class EjercicioB3 {
             e.printStackTrace();
         }
         sc.close();
-    }
-
-    public static String introducirCadena(Scanner sc,String tipo){
-        String res=null;
-        try {
-            System.out.println("Introduce el nombre del archivo de "+tipo);
-            res=sc.next();
-        }catch (StringIndexOutOfBoundsException e){
-            System.err.println(e.getMessage());
-        }catch (Exception e){
-            System.err.println(e.getMessage());
-        }
-        return res;
     }
 
 }
