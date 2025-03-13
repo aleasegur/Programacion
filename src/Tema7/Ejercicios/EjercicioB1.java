@@ -7,11 +7,11 @@ import java.util.InputMismatchException;
 
 public class EjercicioB1 {
     public static void main(String[] args) {
-        String fileName="Documentos/numeros.txt";
+        String fileName="numeros.txt";
         int max=Integer.MAX_VALUE;
         int min=Integer.MIN_VALUE;
 
-        try(BufferedReader br=new BufferedReader(new FileReader(fileName))){
+        try(BufferedReader br=new BufferedReader(new FileReader(MyMethodsAtributes.namePath+fileName))){
             String linea;
             boolean hayNumero=false;
             while ((linea=br.readLine())!=null){

@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
 public class EjercicioB2 {
     public static void main(String[] args) {
-        String fileName="Documentos/alumnos_notas.txt";
+        String fileName="alumnos_notas.txt";
         ArrayList<String> nombres=new ArrayList<>();
         ArrayList<Double> notasMedia=new ArrayList<>();
 
-        try(BufferedReader br=new BufferedReader(new FileReader(fileName))) {
+        try(BufferedReader br=new BufferedReader(new FileReader(MyMethodsAtributes.namePath+fileName))) {
             String linea;
 
             while ((linea=br.readLine())!=null){
