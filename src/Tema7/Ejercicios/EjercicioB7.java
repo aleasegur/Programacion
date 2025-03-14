@@ -35,10 +35,10 @@ public class EjercicioB7 {
 
             int cont=0;
             for (Map.Entry<String,Integer>entry : listPalabras){
-                cont++;
                 if (cont<10){
                     System.out.println(entry.getKey()+" : "+entry.getValue());
                 }
+                cont++;
             }
 
         }catch (IOException e){
