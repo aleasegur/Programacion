@@ -39,9 +39,9 @@ public class EjercicioB6 {
         }
 
         if (buscado){
-            System.out.println("El nmero "+numSearch+" aparece en los primeros decimales de pi");
+            System.out.println("El nmero "+numSearch+" aparece en los primeros millones decimales de pi");
         }else{
-            System.out.println("El nmero "+numSearch+" no aparece en los primeros decimales de pi");
+            System.out.println("El nmero "+numSearch+" no aparece en los primeros millones decimales de pi");
         }
 
     }

@@ -30,7 +30,7 @@ public class EjercicioB2 {
                             suma += Double.parseDouble(partes[i]);
                             cantidadNotas++;
                         } catch (NumberFormatException e) {
-                            System.err.println("Nota inválida ignorada para " + nombreCompleto + ": " + partes[i]);
+                            e.printStackTrace();
                         }
                     }
 
