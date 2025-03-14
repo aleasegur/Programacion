@@ -25,7 +25,7 @@ public class EjercicioB4 {
 
         try(BufferedWriter bw=new BufferedWriter(new FileWriter(fileOut,true))) {
             for (int i = 0; i < cantidad; i++) {
-                //Esta coge un nombre y apellido aleatorios accediendo a las listas.
+                //coge un nombre y apellido aleatorios accediendo a las listas.
                 String nombreAlea=listNames.get(randdom.nextInt(listNames.size()))+" "+listLastNames.get(randdom.nextInt(listLastNames.size()));
                 bw.write(nombreAlea);
                 bw.newLine();
