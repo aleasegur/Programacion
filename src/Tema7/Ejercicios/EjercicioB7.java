@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-
+/*
+* Implementa un programa que lea un documento de texto y muestre por pantalla algunos datos
+estadísticos: nº de líneas, nº de palabras, nº de caracteres y cuáles son las 10 palabras más
+comunes (y cuántas veces aparecen). Prueba el programa con los archivos de la carpeta ‘Libros’*/
 public class EjercicioB7 {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
