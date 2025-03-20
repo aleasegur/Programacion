@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.InputMismatchException;
-
+/*
+* Implementa un programa que muestre por pantalla los valores máximos y mínimos del archivo
+‘numeros.txt’.*/
 public class EjercicioB1 {
     public static void main(String[] args) {
         String fileName="numeros.txt";

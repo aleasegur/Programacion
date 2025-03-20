@@ -4,7 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
+/*
+* El archivo ‘alumnos_notas.txt’ contiene una lista de 10 alumnos y las notas que han obtenido en
+cada asignatura. El número de asignaturas de cada alumno es variable. Implementa un programa
+que muestre por pantalla la nota media de cada alumno junto a su nombre y apellido, ordenado
+por nota media de mayor a menor.*/
 public class EjercicioB2 {
     public static void main(String[] args) {
         String fileName="alumnos_notas.txt";
