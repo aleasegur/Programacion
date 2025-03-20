@@ -48,5 +48,6 @@ public class EjercicioB7 {
         }catch (IOException e){
             e.printStackTrace();
         }
+        sc.close();
     }
 }
