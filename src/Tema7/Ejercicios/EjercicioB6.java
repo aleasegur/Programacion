@@ -43,7 +43,7 @@ public class EjercicioB6 {
         }else{
             System.out.println("El nmero "+numSearch+" no aparece en los primeros millones decimales de pi");
         }
-
+        sc.close();
     }
 
     public static String leerArchivo(String file){
