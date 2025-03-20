@@ -20,7 +20,8 @@ public class EjercicioB7 {
             while ((linea=br.readLine())!=null){
                 numLineas++;
                 numChars+=linea.length();
-                String[] palabras=linea.replaceAll("[^a-zA-Záéíóúüñ]]","").split("\\s+");
+                //Reemplaza y mantiene solo letras y caracteres acentuado y ignora los eswpacios en blanco
+                String[] palabras=linea.replaceAll("[^a-zA-Záéíóúüñ]","").split("\\s+");
                 numPalabras+=palabras.length;
 
                 for (String palabra : palabras){
