@@ -1,5 +1,7 @@
 package Tema7.Ejercicios;
 
+import Tema7.MyMethodsAtributes;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,7 +16,7 @@ public class EjercicioB6 {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         String nameFile="pi-million.txt";
-        String numSearch=MyMethodsAtributes.introducirCadena(sc,"el numero a buscado en los decimales de pi: ");
+        String numSearch= MyMethodsAtributes.introducirCadena(sc,"el numero a buscado en los decimales de pi: ");
         String piDecimales=leerArchivo(nameFile);
 
         if (piDecimales.isEmpty()){

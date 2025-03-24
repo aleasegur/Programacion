@@ -1,5 +1,7 @@
 package Tema7.Ejercicios;
 
+import Tema7.MyMethodsAtributes;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;

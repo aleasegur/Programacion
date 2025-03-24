@@ -1,5 +1,7 @@
 package Tema7.Ejercicios;
 
+import Tema7.MyMethodsAtributes;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,7 +14,7 @@ public class EjercicioB7 {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         int numLineas=0,numPalabras=0,numChars=0;
-        String fileName=MyMethodsAtributes.introducirCadena(sc,"el nombre del archivo a analizar(ej: coplas_manrique.txt): ");
+        String fileName= MyMethodsAtributes.introducirCadena(sc,"el nombre del archivo a analizar(ej: coplas_manrique.txt): ");
         Map<String,Integer> mapEstadistica=new Hashtable<>();
 
         try(BufferedReader br=new BufferedReader(new FileReader(MyMethodsAtributes.namePathBooks+fileName))) {

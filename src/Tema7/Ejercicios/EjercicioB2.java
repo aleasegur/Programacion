@@ -1,5 +1,7 @@
 package Tema7.Ejercicios;
 
+import Tema7.MyMethodsAtributes;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
