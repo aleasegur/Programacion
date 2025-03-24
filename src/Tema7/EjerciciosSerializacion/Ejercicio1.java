@@ -12,12 +12,13 @@ public class Ejercicio1 {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         File file=new File(MyMethodsAtributes.newPath);
-        String fileOut,name,edad;
+        String fileOut,name;
+        int edad;
         if (!file.exists()){
             file.mkdir();
         }
         name = MyMethodsAtributes.introducirCadena(sc, "el nombre del  usuario: ");
-        edad = MyMethodsAtributes.introducirCadena(sc, "la edad del usuario " + name + ": ");
+        edad = MyMethodsAtributes.introducirEntero(sc, "la edad del usuario " + name + ": ");
         fileOut = MyMethodsAtributes.introducirCadena(sc, "el nombre del fichero que almacena la edad y nombre del usuario: ");
         try(BufferedWriter bw=new BufferedWriter(new FileWriter(MyMethodsAtributes.newPath+fileOut))){
             bw.write("Nombre:"+name);
