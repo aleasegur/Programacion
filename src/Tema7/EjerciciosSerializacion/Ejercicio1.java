@@ -18,7 +18,7 @@ public class Ejercicio1 {
         }
         name = MyMethodsAtributes.introducirCadena(sc, "el nombre del  usuario: ");
         edad = MyMethodsAtributes.introducirCadena(sc, "la edad del usuario " + name + ": ");
-        fileOut = MyMethodsAtributes.introducirCadena(sc, "el nombre del fichero que alamcena la edad y nombre del usuario: ");
+        fileOut = MyMethodsAtributes.introducirCadena(sc, "el nombre del fichero que almacena la edad y nombre del usuario: ");
         try(BufferedWriter bw=new BufferedWriter(new FileWriter(MyMethodsAtributes.newPath+fileOut))){
             bw.write("Nombre:"+name);
             bw.newLine();
