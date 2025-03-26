@@ -9,7 +9,7 @@ public class MyMethodsAtributes {
     public static final String namePath="Documentos/";
     public static final String namePathPhoto="Documentos/Fotografias/";
     public static final String namePathBooks="Documentos/Libros/";
-    public static final String newPath="DirectorioEjem/";
+    public static final String newPath="DirectorioUsers/";
 
     //Metdodo que devuelve una cadena de texto
     public static String introducirCadena(Scanner sc, String tipo){

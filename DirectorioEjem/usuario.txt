@@ -1,2 +1,0 @@
-Nombre:Alejandro
-Edad:20

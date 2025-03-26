@@ -11,10 +11,25 @@ import java.util.Scanner;
 public class Ejercicio3 {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
-        String directorio1=MyMethodsAtributes.namePath;
-        String directorio2=MyMethodsAtributes.newPath;
-        String directorio3=MyMethodsAtributes.namePathBooks;
+        String dir1=MyMethodsAtributes.namePath;
+        String dir2=MyMethodsAtributes.newPath;
+        String dir3=MyMethodsAtributes.namePathBooks;
         String fileSearch= MyMethodsAtributes.introducirCadena(sc,"el archivo que buscas(ej: usuario.txt): ");
+        int totalPalabras=contarPalabras(dir1+fileSearch);
+
+        if (totalPalabras == -1) {
+            totalPalabras = contarPalabras(dir2 + fileSearch);
+            if (totalPalabras==-1){
+                totalPalabras=contarPalabras(dir3+fileSearch);
+            }
+        }
+
+        if (totalPalabras >= 0) {
+            System.out.println("El archivo contiene " + totalPalabras + " palabras.");
+        } else {
+            System.out.println("No se pudo encontrar el archivo en ninguno de los directorios.");
+        }
+
 
     }
 
@@ -39,9 +54,9 @@ public class Ejercicio3 {
                     contador += palabras.length;
                 }
             }
-            System.out.println("Archivo encontrado en: " + filePath);
+            //System.out.println("Archivo encontrado en: " + filePath);
         } catch (IOException e) {
-            System.err.println("Error al leer el archivo: " + e.getMessage());
+            System.err.println(e.getMessage());
             return -1;
         }
 
