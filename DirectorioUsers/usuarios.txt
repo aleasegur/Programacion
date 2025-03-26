@@ -1,0 +1,2 @@
+Nombre:Al
+Edad:20
