@@ -7,7 +7,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-
+/*
+* Crea	un	programa	que	pida	al	usuario	su	nombre	y	edad	y	los	guarde	en	un	fichero	llamado
+usuario.txt,	con	el	siguiente	formato:
+Nombre:	Ximo
+Edad:	25	*/
 public class Ejercicio1 {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);

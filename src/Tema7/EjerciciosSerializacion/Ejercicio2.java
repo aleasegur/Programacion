@@ -7,7 +7,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
-
+/*
+* Lee	el	contenido	del	fichero	usuario.txt	(del	ejercicio	anterior)	y	muestra	las	líneas	en
+consola.*/
 public class Ejercicio2 {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);

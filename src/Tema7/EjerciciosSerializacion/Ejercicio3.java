@@ -7,7 +7,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
-
+/*
+* Lee	un	fichero	de	texto	llamado	texto.txt	y	cuenta	cuántas	palabras	hay	en	total.	Muestra	el
+número	de	palabras	al	final.*/
 public class Ejercicio3 {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
@@ -37,7 +39,6 @@ public class Ejercicio3 {
         File file = new File(filePath);
 
         if (!file.exists()) {
-            System.out.println("Archivo no encontrado en: " + filePath);
             return -1;
         }
 
@@ -54,7 +55,6 @@ public class Ejercicio3 {
                     contador += palabras.length;
                 }
             }
-            //System.out.println("Archivo encontrado en: " + filePath);
         } catch (IOException e) {
             System.err.println(e.getMessage());
             return -1;
