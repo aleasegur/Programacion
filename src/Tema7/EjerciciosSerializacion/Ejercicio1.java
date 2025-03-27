@@ -29,6 +29,7 @@ public class Ejercicio1 {
             bw.newLine();
             bw.write("Edad:"+edad);
             bw.newLine();
+            System.out.println("El usuario se ha guardado en el directorio: "+MyMethodsAtributes.newPath+fileOut);
         }catch (IOException e){
             System.err.println(e.getMessage());
         }
