@@ -10,6 +10,7 @@ import java.util.Scanner;
 /*
 * Lee	un	fichero	de	texto	llamado	texto.txt	y	cuenta	cuántas	palabras	hay	en	total.	Muestra	el
 número	de	palabras	al	final.*/
+//He considerado que texto.txt puede ser cualquier fichero de los directorios ya creados en el proyecto
 public class Ejercicio3 {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
