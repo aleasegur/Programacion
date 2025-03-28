@@ -1,6 +1,11 @@
 package Tema7.EjercicioCSV;
 
+import java.io.Serial;
+
 public class Funko {
+    @Serial
+    private static final long serialVersionUID=1L;
+
     private String codigo,nombre,modelo,fecha;
     private double precio;
 
@@ -58,5 +63,14 @@ public class Funko {
         }else{
             throw new Exception("ERROR: el precio no puede ser negativo");
         }
+    }
+
+    @Override
+    public String toString() {
+        return  "codigo=" + codigo + '\'' +
+                ", nombre=" + nombre + '\'' +
+                ", modelo=" + modelo + '\'' +
+                ", fecha=" + fecha + '\'' +
+                ", precio=" + precio;
     }
 }
