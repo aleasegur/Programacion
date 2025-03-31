@@ -177,6 +177,7 @@ public class Main {
     public static void saveFunkos(String direc, String fichero,ArrayList<Funko> lista){
         try(BufferedWriter bw= Files.newBufferedWriter(Paths.get(direc+fichero))) {
             bw.write("COD,NOMBRE,MODELO,PRECIO,FECHA_LANZAMIENTO\n");
+            bw.newLine();
             for (Funko funko : lista){
                 bw.write(funko.toCSV()+ "\n");
                 System.out.println("Datos guardados");
