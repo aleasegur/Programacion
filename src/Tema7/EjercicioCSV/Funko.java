@@ -1,15 +1,18 @@
 package Tema7.EjercicioCSV;
 
 import java.io.Serial;
+import java.time.LocalDate;
+import java.util.Locale;
 
 public class Funko {
     @Serial
     private static final long serialVersionUID=1L;
 
-    private String codigo,nombre,modelo,fecha;
+    private String codigo,nombre,modelo;
+    private LocalDate fecha;
     private double precio;
 
-    public Funko(String modelo, String nombre, String codigo, String fecha, double precio) throws Exception {
+    public Funko(String codigo, String nombre, String modelo, double precio, LocalDate fecha)throws Exception {
         this.modelo = modelo;
         this.nombre = nombre;
         this.codigo = codigo;
@@ -45,12 +48,12 @@ public class Funko {
         this.modelo = modelo;
     }
 
-    public String getFecha() {
-        return fecha;
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public LocalDate getFecha() {
+        return fecha;
     }
 
     public double getPrecio() {
@@ -65,6 +68,15 @@ public class Funko {
         }
     }
 
+    public static Funko fromCSV(String linea) throws Exception {
+        String[] datos=linea.split(",");
+        return new Funko(datos[0],datos[1],datos[2],Double.parseDouble(datos[3]),LocalDate.parse(datos[4]));
+    }
+
+    public String toCSV(){
+        return codigo+","+nombre+","+modelo+","+precio+","+fecha;
+    }
+
     @Override
     public String toString() {
         return  "codigo=" + codigo + '\'' +
@@ -73,4 +85,5 @@ public class Funko {
                 ", fecha=" + fecha + '\'' +
                 ", precio=" + precio;
     }
+
 }
