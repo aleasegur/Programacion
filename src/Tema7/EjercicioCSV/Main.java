@@ -1,9 +1,6 @@
 package Tema7.EjercicioCSV;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.Serial;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -73,15 +70,18 @@ public class Main {
     }
 
     public static void loadFunko(String direc, String fichero,ArrayList<Funko> lista){
+        lista.clear();
         Path ruta= Paths.get(direc);
         if (!Files.exists(ruta)){
-            System.err.println("Archivo no encontrado");
+            System.err.println("ruta no encontrado");
         }
-        try(BufferedReader br= Files.newBufferedReader(Path.of(ruta + fichero))) {
+        try(BufferedReader br= new BufferedReader(new FileReader(direc+fichero))) {
             String linea;
-            //br.readLine(); //Salto la cabecera
             while ((linea=br.readLine())!=null){
-                lista.add(Funko.fromCSV(linea));
+                String[] datos=linea.split(",");
+                if (datos.length==4){
+                    lista.add(Funko.fromCSV(linea));
+                }
             }
         }catch (IOException e){
             System.err.println(e.getMessage());
@@ -103,7 +103,7 @@ public class Main {
         try {
             codigo=MyMetodosCSV.introducirString(sc,"el codigo del funko: ");
             nombre=MyMetodosCSV.introducirString(sc,"el nombre del funko(nombre_completo): ");
-            modelo=MyMetodosCSV.introducirString(sc,"el modelo del funko: ");
+            modelo=MyMetodosCSV.introducirString(sc,"el modelo del funko(nombre_completo): ");
             fecha=MyMetodosCSV.introducirFecha(sc,"la fecha del funko(YYYY-MM-DD): ");
             precio=MyMetodosCSV.introducirNumeroReal(sc,"el precio del funko: ");
             Funko funko=new Funko(codigo,nombre,modelo,precio,fecha);
@@ -112,28 +112,6 @@ public class Main {
             System.err.println(e.getMessage());
         }catch (Exception e){
             System.err.println(e.getMessage());
-        }
-    }
-
-    public static void modFunko(Scanner sc,ArrayList<Funko> lista) throws Exception {
-        String cod=MyMetodosCSV.introducirString(sc,"el codigo del funko a modificar: ");
-        String nombre;
-        double precio;
-        for (Funko funk : lista){
-            if (funk.getCodigo().equalsIgnoreCase(cod)){
-                try {
-                    nombre = MyMetodosCSV.introducirString(sc, "el nuevo nombre para el funko(nombre_completo): ");
-                    precio = MyMetodosCSV.introducirNumeroReal(sc, "el nuevo precio del funko");
-                    funk.setNombre(nombre);
-                    funk.setPrecio(precio);
-                }catch (InputMismatchException | ArithmeticException | StringIndexOutOfBoundsException e){
-                    System.err.println(e.getMessage());
-                }catch (Exception e){
-                    System.err.println(e.getMessage());
-                }
-            }else{
-                System.err.println("Funko no encontrado");
-            }
         }
     }
 
@@ -148,7 +126,7 @@ public class Main {
     }
 
     public static void mostrarFunkoPrecioMedio(ArrayList<Funko> lista){
-        double precioMedio=lista.stream().mapToDouble(Funko::getPrecio).average().orElse(0);
+        double precioMedio=lista.stream().mapToDouble(Funko::getPrecio).average().orElse(0.0);
         System.out.println("Precio medio: "+precioMedio);
     }
 
@@ -175,12 +153,16 @@ public class Main {
     }
 
     public static void saveFunkos(String direc, String fichero,ArrayList<Funko> lista){
-        try(BufferedWriter bw= Files.newBufferedWriter(Paths.get(direc+fichero))) {
-            bw.write("COD,NOMBRE,MODELO,PRECIO,FECHA_LANZAMIENTO\n");
-            bw.newLine();
+        try(BufferedWriter bw= new BufferedWriter(new FileWriter(direc+fichero,true))) {
+            File archivo=new File(direc+fichero);
+            // Si el archivo no esta vacío, aseguro que el nuevo funko empiece en una nueva línea
+            if (archivo.length()>0){
+                bw.newLine();
+            }
+
             for (Funko funko : lista){
-                bw.write(funko.toCSV()+ "\n");
-                System.out.println("Datos guardados");
+                bw.write(funko.toCSV());
+                bw.newLine();
             }
         }catch (IOException e){
             System.err.println(e.getMessage());

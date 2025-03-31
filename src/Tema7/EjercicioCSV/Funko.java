@@ -1,10 +1,11 @@
 package Tema7.EjercicioCSV;
 
 import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Locale;
 
-public class Funko {
+public class Funko implements Serializable {
     @Serial
     private static final long serialVersionUID=1L;
 
@@ -13,10 +14,10 @@ public class Funko {
     private double precio;
 
     public Funko(String codigo, String nombre, String modelo, double precio, LocalDate fecha)throws Exception {
-        this.modelo = modelo;
-        this.nombre = nombre;
         this.codigo = codigo;
+        this.nombre = nombre;
         this.fecha = fecha;
+        this.modelo = modelo;
         if (precio>0) {
             this.precio = precio;
         }else{

@@ -5,15 +5,14 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MyMetodosCSV {
-    public static final String PATH_CSV ="DirectorioFukos/";
+    public static final String PATH_CSV ="DirectorioFunkos/";
     public static final String FILE_CSV ="funkos.csv";
 
     public static String introducirString(Scanner sc, String tipo){
         String res="";
         try{
             System.out.println("Introduce "+tipo);
-            sc.next();
-            res=sc.nextLine();
+            res=sc.next();
         }catch (StringIndexOutOfBoundsException e){
             System.err.println(e.getMessage());
         }catch (Exception e){
@@ -39,7 +38,7 @@ public class MyMetodosCSV {
         LocalDate res = null;
         try {
             System.out.println("Introduce "+tipo);
-            res=LocalDate.parse(sc.nextLine());
+            res=LocalDate.parse(sc.next());
         }catch (Exception e){
             System.err.println(e.getMessage());
         }
