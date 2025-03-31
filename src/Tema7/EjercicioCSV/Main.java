@@ -77,9 +77,15 @@ public class Main {
         }
         try(BufferedReader br= new BufferedReader(new FileReader(direc+fichero))) {
             String linea;
+            boolean primeraLinea = true; //Es para saltar la cabecera de la linea
             while ((linea=br.readLine())!=null){
+                if (primeraLinea) {
+                    primeraLinea = false;
+                    continue;//Salta la primera linea
+                }
+
                 String[] datos=linea.split(",");
-                if (datos.length==4){
+                if (datos.length==5){
                     lista.add(Funko.fromCSV(linea));
                 }
             }
