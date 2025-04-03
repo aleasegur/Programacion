@@ -127,13 +127,14 @@ public class Main {
     }
 
     public static void mostrarFunkoCaro(ArrayList<Funko> lista){
-        //Gasto optionak para que si la lista de funkos esta vacia, max no tiene un valor que devolver
-
+        //Gasto optional para que si la lista de funkos esta vacia, max no tiene un valor que devolver
+        // para que no me salte NonullException
         Optional<Funko> funkoCaro=lista.stream().max(Comparator.comparing(Funko::getPrecio));
         System.out.println("Funko mas caro: "+funkoCaro.orElse(null));
     }
 
     public static void mostrarFunkoPrecioMedio(ArrayList<Funko> lista){
+        //Mediante un stream que genero una secuencia de datos que almacena y transforma todos los elementos precios en double
         double precioMedio=lista.stream().mapToDouble(Funko::getPrecio).average().orElse(0.0);
         System.out.println("Precio medio: "+precioMedio);
     }
