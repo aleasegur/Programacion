@@ -127,6 +127,8 @@ public class Main {
     }
 
     public static void mostrarFunkoCaro(ArrayList<Funko> lista){
+        //Gasto optionak para que si la lista de funkos esta vacia, max no tiene un valor que devolver
+
         Optional<Funko> funkoCaro=lista.stream().max(Comparator.comparing(Funko::getPrecio));
         System.out.println("Funko mas caro: "+funkoCaro.orElse(null));
     }
@@ -161,7 +163,7 @@ public class Main {
     public static void saveFunkos(String direc, String fichero,ArrayList<Funko> lista){
         try(BufferedWriter bw= new BufferedWriter(new FileWriter(direc+fichero,true))) {
             File archivo=new File(direc+fichero);
-            // Si el archivo no esta vacío, aseguro que el nuevo funko empiece en una nueva línea
+            // Si el archivo no esta vacio aseguro que el nuevo funko empiece en una nueva linea
             if (archivo.length()>0){
                 bw.newLine();
             }
