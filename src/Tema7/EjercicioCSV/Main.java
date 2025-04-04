@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.*;
 
-public class MainCSV {
+public class Main {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         String direc=MyMetodosCSV.PATH_CSV;
