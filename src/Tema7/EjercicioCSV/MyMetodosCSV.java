@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class MyMetodosCSV {
     public static final String PATH_CSV ="DirectorioFunkos/";
     public static final String FILE_CSV ="funkos.csv";
+    public static final String FILE_DAT="funkos.dat";
 
     public static String introducirString(Scanner sc, String tipo){
         String res="";
