@@ -168,17 +168,8 @@ public class MainDat {
     }
 
     public static void saveFunkos(String direc, String fichero,ArrayList<Funko> lista){
-        try(BufferedWriter bw= new BufferedWriter(new FileWriter(direc+fichero,true))) {
-            File archivo=new File(direc+fichero);
-            // Si el archivo no esta vacio aseguro que el nuevo funko empiece en una nueva linea
-            if (archivo.length()>0){
-                bw.newLine();
-            }
-
-            for (Funko funko : lista){
-                bw.write(funko.toCSV());
-                bw.newLine();
-            }
+        try(ObjectOutputStream os=new ObjectOutputStream(new FileOutputStream(direc+fichero,true))) {
+            os.writeObject(lista);
         }catch (IOException e){
             System.err.println(e.getMessage());
         }
