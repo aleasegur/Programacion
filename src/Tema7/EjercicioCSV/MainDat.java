@@ -168,7 +168,7 @@ public class MainDat {
     }
 
     public static void saveFunkos(String direc, String fichero,ArrayList<Funko> lista){
-        try(ObjectOutputStream os=new ObjectOutputStream(new FileOutputStream(direc+fichero,true))) {
+        try(ObjectOutputStream os=new ObjectOutputStream(new FileOutputStream(direc+fichero))) {
             os.writeObject(lista);
         }catch (IOException e){
             System.err.println(e.getMessage());
