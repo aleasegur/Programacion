@@ -123,7 +123,12 @@ public class Main {
 
     public static void eliminarFunko(Scanner sc,ArrayList<Funko> lista){
         String codigo=MyMetodosCSV.introducirString(sc,"el codigo del funko a eliminar: ");
-        lista.removeIf(f->f.getCodigo().equalsIgnoreCase(codigo));
+        boolean encontrado=lista.removeIf(f->f.getCodigo().equalsIgnoreCase(codigo));
+        if (encontrado){
+            System.out.println("Funko con el codgigo "+codigo+" ha sido eliminado");
+        }else {
+            System.err.println("Funko no encontrado con ese codigo");
+        }
     }
 
     public static void mostrarFunkoCaro(ArrayList<Funko> lista){
