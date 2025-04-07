@@ -54,7 +54,7 @@ public class MetodosRanking {
     }
 
     public static String introducirEstado(Scanner sc,String tipo){
-        String res;
+        String res="";
         boolean bucleEstado=true;
         int opcion;
         while (bucleEstado){
@@ -64,13 +64,25 @@ public class MetodosRanking {
                 System.out.println("2.Usado");
                 System.out.println("Elegir opcion: ");
                 opcion=sc.nextInt();
-
+                switch (opcion){
+                    case 1:
+                        res="nuevo";
+                        bucleEstado=false;
+                        break;
+                    case 2:
+                        res="usado";
+                        bucleEstado=false;
+                        break;
+                    default:
+                        System.err.println("Opcion elegido incorrecta");
+                }
             }catch (InputMismatchException | ArithmeticException e){
                 System.err.println(e.getMessage());
             }catch (Exception e){
                 System.err.println(e.getMessage());
             }
         }
+        return res;
     }
 
 }
