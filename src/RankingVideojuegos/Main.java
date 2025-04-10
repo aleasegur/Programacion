@@ -172,6 +172,8 @@ public class Main {
         }
         try(ObjectInputStream oi=new ObjectInputStream(new FileInputStream(dir+fileDat))) {
             ArrayList<Videojuegos> listaCarga = (ArrayList<Videojuegos>) oi.readObject();
+            // Elimino los elementos anteriores para evitar duplicados
+            lista.clear();
             //Utilizo adAll para añadir los elemntos de una lista(listaCarga) a la otra lista
             lista.addAll(listaCarga);
             System.out.println("Ranking cargado desde archivo: " + dir + fileDat);
