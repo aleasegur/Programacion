@@ -1,5 +1,5 @@
 package RankingVideojuegos;
 
-public interface iDemojugar {
+public interface iJugable {
     void iJugarDemo();
 }
