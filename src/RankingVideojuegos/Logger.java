@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
-//Fichero que contiene los errores
+//Clase que genera un fichero que contiene los errores
 public class Logger {
     public static void log(String mensaje) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(MetodosRanking.DIRECTORIO+MetodosRanking.DIR_LOG_ERRORS, true))) {
