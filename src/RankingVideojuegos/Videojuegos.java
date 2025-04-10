@@ -3,7 +3,7 @@ package RankingVideojuegos;
 import java.io.Serial;
 import java.io.Serializable;
 
-public abstract class Videojuegos implements Serializable {
+public abstract class Videojuegos implements Serializable,iDemojugar {
     @Serial
     private static final long serialVersionUID=1L;
 
@@ -67,4 +67,9 @@ public abstract class Videojuegos implements Serializable {
     }
 
     public abstract String getTipo();
+
+    @Override
+    public void iJugarDemo() {
+        System.out.println("Jugando a "+titulo);
+    }
 }

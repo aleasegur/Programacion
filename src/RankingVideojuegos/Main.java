@@ -85,7 +85,7 @@ public class Main {
         System.out.println("5.Eliminar videojuego");
         System.out.println("6.Exportar a texto");
         System.out.println("0.Salir");
-        System.out.println("Elegir opcion");
+        System.out.println("Elegir opcion: ");
     }
 
     public static void menuSecundario(){
@@ -138,14 +138,17 @@ public class Main {
     }
 
     public static void mostrarRanking(ArrayList<Videojuegos> lista){
-        lista.forEach(System.out::println);
+        lista.stream().forEach(v -> {
+            System.out.println(v);
+            v.iJugarDemo();});
     }
 
     public static void mostrarRankingOrdenado(ArrayList<Videojuegos> lista){
         lista.sort(Comparator.comparingInt(Videojuegos::getNota).reversed());
-        for (Videojuegos videojuegos : lista){
-            System.out.println(videojuegos);
-        }
+        lista.stream().forEach(v->{
+            System.out.println(v);
+            v.iJugarDemo();
+        });
     }
 
     public static void guardarRanking(ArrayList<Videojuegos> lista,String dir,String fileDat){
