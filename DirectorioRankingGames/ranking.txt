@@ -1,0 +1,9 @@
+tiendaOnline='microsoft_store', tamGB=45.67, titulo='doom', plataforma='xbox', nota=10', tipo=Digital
+tiendaOnline='nitnedo_online', tamGB=10.02, titulo='zelda', plataforma='nintendo', nota=10', tipo=Digital
+tiendaOnline='microsoft_store', tamGB=45.67, titulo='doom', plataforma='xbox', nota=10', tipo=Digital
+tiendaOnline='nitnedo_online', tamGB=10.02, titulo='zelda', plataforma='nintendo', nota=10', tipo=Digital
+estado='nuevo', tiendaCompra='media_mark', titulo='dmc', plataforma='ps5', nota=9', tipo=Fisico
+estado='nuevo', tiendaCompra='media_mark', titulo='dmc', plataforma='ps5', nota=9', tipo=Fisico
+estado='usado', tiendaCompra='game', titulo='gta5', plataforma='ps5', nota=8', tipo=Fisico
+estado='usado', tiendaCompra='game', titulo='gta5', plataforma='ps5', nota=8', tipo=Fisico
+estado='usado', tiendaCompra='ps_store', titulo='days_gone', plataforma='ps5', nota=3', tipo=Fisico
