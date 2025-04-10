@@ -17,7 +17,7 @@ public class VideojuegoFisico extends Videojuegos implements Serializable {
 
     public VideojuegoFisico(String titulo, String plataforma, int nota, String estado, String tiendaCompra) throws Exception {
         super(titulo, plataforma, nota);
-        if (estado!=null && tiendaCompra!=null && !estado.equals("nuevo") && !estado.equals("usado")) {
+        if (estado!=null && tiendaCompra!=null && estado.equals("nuevo") || estado.equals("usado")) {
             this.estado = estado;
             this.tiendaCompra = tiendaCompra;
         }else{
@@ -30,7 +30,7 @@ public class VideojuegoFisico extends Videojuegos implements Serializable {
     }
 
     public void setEstado(String estado) throws Exception {
-        if (estado!=null && !estado.equals("nuevo") && !estado.equals("usado")) {
+        if (estado!=null && estado.equals("nuevo") || estado.equals("usado")) {
             this.estado = estado;
         }else{
             throw new Exception("Error estado no es correcto");

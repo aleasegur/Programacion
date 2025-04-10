@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class MetodosRanking {
     public static final String DIRECTORIO="DirectorioRankingGames/";
-    public static final String DIR_FILE_TXT="DirectorioRankingGames/ranking.txt";
-    public static final String DIR_FILE_DAT="DirectorioRankingGames/ranking.dat";
-    public static final String DIR_LOG_ERRORS="DirectorioRankingGames/errores.log";
+    public static final String DIR_FILE_TXT="ranking.txt";
+    public static final String DIR_FILE_DAT="ranking.dat";
+    public static final String DIR_LOG_ERRORS="errores.log";
 
     public static String introducirString(Scanner sc,String tipo){
         String res="";
@@ -17,8 +17,10 @@ public class MetodosRanking {
             res=sc.next().toLowerCase();
         }catch (StringIndexOutOfBoundsException e){
             System.err.println(e.getMessage());
+            Logger.log(e.getMessage());
         }catch (Exception e){
             System.err.println(e.getMessage());
+            Logger.log(e.getMessage());
         }
         return res;
     }
@@ -32,8 +34,10 @@ public class MetodosRanking {
 
             } catch (InputMismatchException | ArithmeticException e) {
                 System.err.println(e.getMessage());
+                Logger.log(e.getMessage());
             }catch (Exception e){
                 System.err.println(e.getMessage());
+                Logger.log(e.getMessage());
             }
         }while (res<0 || res>10);
         return res;
@@ -47,8 +51,10 @@ public class MetodosRanking {
                 res = sc.nextDouble();
             } catch (InputMismatchException | ArithmeticException e) {
                 System.err.println(e.getMessage());
+                Logger.log(e.getMessage());
             }catch (Exception e){
                 System.err.println(e.getMessage());
+                Logger.log(e.getMessage());
             }
         }while (res<0);
         return res;
@@ -60,7 +66,7 @@ public class MetodosRanking {
         int opcion;
         while (bucleEstado){
             try {
-                System.out.println("---SELECCIONA EL ESTADO DEL VIDEOJUEGO FISICO---");
+                System.out.println("---SELECCIONA EL ESTADO DEL VIDEOJUEGO FISICO "+tipo+"---");
                 System.out.println("1.Nuevo");
                 System.out.println("2.Usado");
                 System.out.println("Elegir opcion: ");
@@ -79,8 +85,10 @@ public class MetodosRanking {
                 }
             }catch (InputMismatchException | ArithmeticException e){
                 System.err.println(e.getMessage());
+                Logger.log(e.getMessage());
             }catch (Exception e){
                 System.err.println(e.getMessage());
+                Logger.log(e.getMessage());
             }
         }
         return res;

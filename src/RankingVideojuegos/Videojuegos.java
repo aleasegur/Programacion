@@ -67,5 +67,4 @@ public abstract class Videojuegos implements Serializable {
     }
 
     public abstract String getTipo();
-
 }
