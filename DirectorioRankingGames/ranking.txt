@@ -1,10 +1,4 @@
-tiendaOnline='microsoft_store', tamGB=45.67, titulo='doom', plataforma='xbox', nota=10', tipo=Digital
-tiendaOnline='nitnedo_online', tamGB=10.02, titulo='zelda', plataforma='nintendo', nota=10', tipo=Digital
-tiendaOnline='microsoft_store', tamGB=45.67, titulo='doom', plataforma='xbox', nota=10', tipo=Digital
-tiendaOnline='nitnedo_online', tamGB=10.02, titulo='zelda', plataforma='nintendo', nota=10', tipo=Digital
-estado='nuevo', tiendaCompra='media_mark', titulo='dmc', plataforma='ps5', nota=9', tipo=Fisico
-estado='nuevo', tiendaCompra='media_mark', titulo='dmc', plataforma='ps5', nota=9', tipo=Fisico
-estado='usado', tiendaCompra='game', titulo='gta5', plataforma='ps5', nota=8', tipo=Fisico
-estado='usado', tiendaCompra='game', titulo='gta5', plataforma='ps5', nota=8', tipo=Fisico
-estado='usado', tiendaCompra='ps_store', titulo='days_gone', plataforma='ps5', nota=3', tipo=Fisico
-tiendaOnline='steam_epicgames_psstore_microsoftstore', tamGB=23.45, titulo='doom_eternal', plataforma='xbox_ps5_nintendo_pc', nota=10', tipo=Digital
+tiendaOnline='steam', tamGB=0.9, titulo='doom', plataforma='pc', nota=9', tipo=Digital
+estado='usado', tiendaCompra='media_mark', titulo='forza_horizon', plataforma='xbox', nota=9', tipo=Fisico
+tiendaOnline='epic_games', tamGB=12.45, titulo='fallout', plataforma='pc', nota=7', tipo=Digital
+estado='usado', tiendaCompra='game', titulo='dmc', plataforma='ps5', nota=6', tipo=Fisico
