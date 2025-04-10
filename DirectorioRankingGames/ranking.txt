@@ -7,3 +7,4 @@ estado='nuevo', tiendaCompra='media_mark', titulo='dmc', plataforma='ps5', nota=
 estado='usado', tiendaCompra='game', titulo='gta5', plataforma='ps5', nota=8', tipo=Fisico
 estado='usado', tiendaCompra='game', titulo='gta5', plataforma='ps5', nota=8', tipo=Fisico
 estado='usado', tiendaCompra='ps_store', titulo='days_gone', plataforma='ps5', nota=3', tipo=Fisico
+tiendaOnline='steam_epicgames_psstore_microsoftstore', tamGB=23.45, titulo='doom_eternal', plataforma='xbox_ps5_nintendo_pc', nota=10', tipo=Digital
