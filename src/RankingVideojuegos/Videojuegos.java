@@ -17,12 +17,16 @@ public abstract class Videojuegos implements Serializable {
     }
 
     public Videojuegos(String titulo, String plataforma, int nota) throws Exception {
-        if (nota>0 && nota<=10 && plataforma!=null && titulo!=null) {
+        if (plataforma!=null && titulo!=null) {
             this.titulo = titulo;
             this.plataforma = plataforma;
-            this.nota = nota;
         }else{
             throw new Exception("Error atributos no tiene valores correcto");
+        }
+        if (nota>0 && nota<=10) {
+            this.nota = nota;
+        }else{
+            throw new NotaInvalidaException("Error la nota debe ser entre 1 y 10");
         }
     }
 
@@ -58,7 +62,7 @@ public abstract class Videojuegos implements Serializable {
         if (nota>0 && nota<=10) {
             this.nota = nota;
         }else{
-            throw new Exception("Error la nota debe ser entre 1 y 10");
+            throw new NotaInvalidaException("Error la nota debe ser entre 1 y 10");
         }
     }
 

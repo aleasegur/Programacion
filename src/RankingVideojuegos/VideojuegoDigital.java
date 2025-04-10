@@ -61,6 +61,7 @@ public class VideojuegoDigital extends Videojuegos implements Serializable {
                 ", tamGB=" + tamGB +
                 ", titulo='" + titulo + '\'' +
                 ", plataforma='" + plataforma + '\'' +
-                ", nota=" + nota;
+                ", nota=" + nota+ '\'' +
+                ", tipo=" +getTipo();
     }
 }

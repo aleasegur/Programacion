@@ -60,6 +60,7 @@ public class VideojuegoFisico extends Videojuegos implements Serializable {
                 ", tiendaCompra='" + tiendaCompra + '\'' +
                 ", titulo='" + titulo + '\'' +
                 ", plataforma='" + plataforma + '\'' +
-                ", nota=" + nota;
+                ", nota=" + nota+ '\'' +
+                ", tipo=" +getTipo();
     }
 }

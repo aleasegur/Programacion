@@ -8,6 +8,7 @@ public class MetodosRanking {
     public static final String DIRECTORIO="DirectorioRankingGames/";
     public static final String DIR_FILE_TXT="DirectorioRankingGames/ranking.txt";
     public static final String DIR_FILE_DAT="DirectorioRankingGames/ranking.dat";
+    public static final String DIR_LOG_ERRORS="DirectorioRankingGames/errores.log";
 
     public static String introducirString(Scanner sc,String tipo){
         String res="";
@@ -38,7 +39,7 @@ public class MetodosRanking {
         return res;
     }
 
-    public static double introdcirTam(Scanner sc, String tipo){
+    public static double introducirTamGb(Scanner sc, String tipo){
         double res=0;
         do {
             try {
@@ -49,7 +50,7 @@ public class MetodosRanking {
             }catch (Exception e){
                 System.err.println(e.getMessage());
             }
-        }while (res<0 || res>10);
+        }while (res<0);
         return res;
     }
 
