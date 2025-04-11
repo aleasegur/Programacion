@@ -67,7 +67,7 @@ public class VideojuegoDigital extends Videojuegos implements Serializable {
 
     @Override
     public void iJugarDemo() {
-        System.out.println("Jugando a "+titulo);
+        System.out.println("Jugando a "+titulo+" digital");
     }
 
 }
