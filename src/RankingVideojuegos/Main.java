@@ -186,13 +186,13 @@ public class Main {
         }
     }
 
-    public static void eliminarVideojuego(Scanner sc,ArrayList<Videojuegos> lista){
+    public static void eliminarVideojuego(Scanner sc,ArrayList<Videojuegos> lista) throws JuegoNoEncontradoException {
         String titulo=MetodosRanking.introducirString(sc,"el titulo del videojuego a eliminar(ejem: devil_may_cry): ");
         boolean encontrado=lista.removeIf(v->v.getTitulo().equalsIgnoreCase(titulo));
         if (encontrado){
             System.out.println("El videojuego: "+titulo+" ha sido eliminado");
         }else{
-            System.err.println("Videojuego no encontrado");
+            throw new JuegoNoEncontradoException("No se ha encontrado ese juego con ese titulo");
         }
     }
 
