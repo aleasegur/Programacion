@@ -68,8 +68,4 @@ public abstract class Videojuegos implements Serializable, iJugable {
 
     public abstract String getTipo();
 
-    @Override
-    public void iJugarDemo() {
-        System.out.println("Jugando a "+titulo);
-    }
 }

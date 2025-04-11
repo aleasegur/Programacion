@@ -63,4 +63,9 @@ public class VideojuegoFisico extends Videojuegos implements Serializable {
                 ", nota=" + nota+ '\'' +
                 ", tipo=" +getTipo();
     }
+
+    @Override
+    public void iJugarDemo() {
+        System.out.println("Jugando a "+titulo);
+    }
 }

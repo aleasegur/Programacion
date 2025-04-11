@@ -2,3 +2,5 @@ tiendaOnline='steam', tamGB=0.9, titulo='doom', plataforma='pc', nota=9', tipo=D
 estado='usado', tiendaCompra='media_mark', titulo='forza_horizon', plataforma='xbox', nota=9', tipo=Fisico
 tiendaOnline='epic_games', tamGB=12.45, titulo='fallout', plataforma='pc', nota=7', tipo=Digital
 estado='usado', tiendaCompra='game', titulo='dmc', plataforma='ps5', nota=6', tipo=Fisico
+estado='nuevo', tiendaCompra='meidmarkt', titulo='a', plataforma='a', nota=1', tipo=Fisico
+estado='nuevo', tiendaCompra='b', titulo='b', plataforma='b', nota=10', tipo=Fisico
