@@ -84,6 +84,7 @@ public class Main {
         System.out.println("4.Cargar ranking");
         System.out.println("5.Eliminar videojuego");
         System.out.println("6.Exportar a texto");
+        System.out.println("7.Jugar demo");
         System.out.println("0.Salir");
         System.out.println("Elegir opcion: ");
     }
