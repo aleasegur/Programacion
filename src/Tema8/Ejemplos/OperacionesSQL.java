@@ -53,7 +53,7 @@ public class OperacionesSQL {
     private static void loadDatabaseProperties() {
         Properties properties = new Properties();
         //try (InputStream input = OperacionesSQL.class.getClassLoader().getResourceAsStream("db.properties")) {
-        try (InputStream input = Files.newInputStream(Paths.get("resources/db.properties"))) {
+        try (InputStream input = Files.newInputStream(Paths.get("db.properties"))) {
             properties.load(input);
             URL = properties.getProperty("db.url");
             USER = properties.getProperty("db.user");
