@@ -2,7 +2,7 @@ package Tema8.Ejemplos;
 import java.sql.*;
 public class EjemploJDBC {
     public static void main(String[] args){
-        try(Connection con = DriverManager.getConnection("jdbc:postgresql://ad-postgres.cpsk8il53gbl.us-east-1.rds.amazonaws.com:5432/ad-postgres")) {
+        try(Connection con = DriverManager.getConnection("jdbc:postgresql://ad-postgres.cpsk8il53gbl.us-east-1.rds.amazonaws.com:5432/hogwarts")) {
             //opción1: Statement (NO RECOMENDADO)
             try(Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery("SELECT * FROM personas")){
@@ -19,7 +19,7 @@ public class EjemploJDBC {
         //Saco la consulta fuera, para poderla usar en el PreparedStatement del try
         String sentenciaSQL = "SELECT * FROM personas";
         //opcion 2: PreparedStatement
-        try(Connection con2 = DriverManager.getConnection("jdbc:postgresql://ad-postgres.cpsk8il53gbl.us-east-1.rds.amazonaws.com:5432/ad-postgres");
+        try(Connection con2 = DriverManager.getConnection("jdbc:postgresql://ad-postgres.cpsk8il53gbl.us-east-1.rds.amazonaws.com:5432/hogwarts");
             PreparedStatement sentencia = con2.prepareStatement(sentenciaSQL)){
 
             //no hace falta meterlo en el try, porque se cierra automáticamente al cerrarse el PreparedStatement
