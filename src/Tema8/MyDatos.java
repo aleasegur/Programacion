@@ -83,7 +83,23 @@ public class MyDatos {
             if (filasAfectadas > 0) {
                 System.out.println("Jefe de la casa actualizado correctamente.");
             } else {
-                System.out.println("No se encontro la casa o el profesor.");
+                System.err.println("No se encontro la casa o el profesor.");
+            }
+        }catch (SQLException e){
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public static void borrarEstudiante(Connection con,String nombre,String apellido){
+        String sql = "DELETE FROM Estudiante WHERE nombre = ? AND apellido = ?";
+        try(PreparedStatement pst=con.prepareStatement(sql)) {
+            pst.setString(1,nombre);
+            pst.setString(2,apellido);
+            int filasAfectadas = pst.executeUpdate();
+            if (filasAfectadas > 0) {
+                System.out.println("Estudiante eliminado correctamente.");
+            } else {
+                System.err.println("No se encontro el estudiante con nombre: " + nombre + " " + apellido);
             }
         }catch (SQLException e){
             System.err.println(e.getMessage());
