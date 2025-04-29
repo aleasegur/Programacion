@@ -54,7 +54,7 @@ public class MyDatos {
 
     public static int insertarEstudiante(Connection con, String nombre, String apellido, int idCasa, int curso, LocalDate fecha) {
         int idGenerado = -1;  // Para almacenar el ID generado
-        String sql = "INSERT INTO Estudiante (nombre, apellido, id_casa, anyo_curso, fecha_nacimiento) " +
+        String sql = "INSERT INTO estudiante (nombre, apellido, id_casa, anyo_curso, fecha_nacimiento) " +
                 "VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement pst = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -105,7 +105,7 @@ public class MyDatos {
     }
 
     public static void borrarEstudiante(Connection con,String nombre,String apellido){
-        String sql = "DELETE FROM Estudiante WHERE nombre = ? AND apellido = ?";
+        String sql = "DELETE FROM estudiante WHERE nombre = ? AND apellido = ?";
         try(PreparedStatement pst=con.prepareStatement(sql)) {
             pst.setString(1,nombre);
             pst.setString(2,apellido);
@@ -122,8 +122,8 @@ public class MyDatos {
 
     public static void obtenerEstudiantesPorCasa(Connection con, String nombreCasa) {
         String sql = "SELECT e.nombre, e.apellido " +
-                "FROM Estudiante e " +
-                "JOIN Casa c ON e.id_casa = c.id_casa " +
+                "FROM estudiante e " +
+                "JOIN casa c ON e.id_casa = c.id_casa " +
                 "WHERE c.nombre = ?";
 
         try (PreparedStatement pst = con.prepareStatement(sql)) {
@@ -147,7 +147,7 @@ public class MyDatos {
     public static void obtenerMascotaEstudiante(Connection con, String nombre, String apellido) {
         String sql = "SELECT COALESCE(m.nombre, 'Sin mascota') AS mascota " +
                 "FROM estudiante e " +
-                "LEFT JOIN Mascota m ON e.id_estudiante = m.id_estudiante " +
+                "LEFT JOIN mascota m ON e.id_estudiante = m.id_estudiante " +
                 "WHERE e.nombre = ? AND e.apellido = ?";
 
         try (PreparedStatement pst = con.prepareStatement(sql)) {
@@ -191,7 +191,7 @@ public class MyDatos {
     }
 
     public static void insertarAsignatura(Connection con, String nombre,String aula,boolean obligatoria) {
-        String sql = "INSERT INTO Asignatura (nombre, aula ,obligatoria) VALUES (?,?,?)";
+        String sql = "INSERT INTO asignatura (nombre, aula ,obligatoria) VALUES (?,?,?)";
 
         try (PreparedStatement pst = con.prepareStatement(sql)) {
             pst.setString(1, nombre);
@@ -220,10 +220,27 @@ public class MyDatos {
             if (filasAfectadas > 0) {
                 System.out.println("Aula modificada correctamente para la asignatura con ID: " + idAsignatura);
             } else {
-                System.out.println("No se encontró la asignatura con ID: " + idAsignatura);
+                System.err.println("No se encontro la asignatura con ID: " + idAsignatura);
             }
         } catch (SQLException e) {
             System.err.println("Error al modificar el aula: " + e.getMessage());
+        }
+    }
+
+    public static void eliminarAsignaturaPorNombre(Connection con, String nombreAsignatura) {
+        String sql = "DELETE FROM asignatura WHERE nombre = ?";
+
+        try (PreparedStatement pst = con.prepareStatement(sql)) {
+            pst.setString(1, nombreAsignatura);
+
+            int filasAfectadas = pst.executeUpdate();
+            if (filasAfectadas > 0) {
+                System.out.println("Asignatura " + nombreAsignatura + " eliminada correctamente.");
+            } else {
+                System.err.println("No se encontró la asignatura con nombre: " + nombreAsignatura);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar la asignatura: " + e.getMessage());
         }
     }
 
