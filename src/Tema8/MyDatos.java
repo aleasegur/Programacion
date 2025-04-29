@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.Properties;
+import java.util.Scanner;
 
 public class MyDatos {
     public static final String dirProperties="resources/db.properties";
@@ -24,6 +25,19 @@ public class MyDatos {
 
     public static String getPASSWORD() {
         return PASSWORD;
+    }
+
+    public static String introducirCadena(Scanner sc, String tipo){
+        String res=null;
+        try {
+            System.out.println("Introduce "+tipo);
+            res=sc.next();
+        }catch (StringIndexOutOfBoundsException e){
+            System.err.println(e.getMessage());
+        }catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+        return res;
     }
 
     public static void loadProperties(){
@@ -105,5 +119,55 @@ public class MyDatos {
             System.err.println(e.getMessage());
         }
     }
+
+    public static void obtenerEstudiantesPorCasa(Connection con, String nombreCasa) {
+        String sql = "SELECT e.nombre, e.apellido " +
+                "FROM Estudiante e " +
+                "JOIN Casa c ON e.id_casa = c.id_casa " +
+                "WHERE c.nombre = ?";
+
+        try (PreparedStatement pst = con.prepareStatement(sql)) {
+            pst.setString(1, nombreCasa);
+
+            try (ResultSet rs = pst.executeQuery()) {
+                System.out.println("Estudiantes de la casa " + nombreCasa + ":");
+                while (rs.next()) {
+                    String nombre=rs.getString("nombre");
+                    String apellido=rs.getString("apellido");
+                    System.out.println(nombre+" "+apellido);
+                }
+            }catch (SQLException e){
+                System.err.println(e.getMessage());
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener estudiantes: " + e.getMessage());
+        }
+    }
+
+    public static void obtenerMascotaEstudiante(Connection con, String nombre, String apellido) {
+        String sql = "SELECT COALESCE(m.nombre, 'Sin mascota') AS mascota " +
+                "FROM estudiante e " +
+                "LEFT JOIN Mascota m ON e.id_estudiante = m.id_estudiante " +
+                "WHERE e.nombre = ? AND e.apellido = ?";
+
+        try (PreparedStatement pst = con.prepareStatement(sql)) {
+            pst.setString(1, nombre);
+            pst.setString(2, apellido);
+
+            try (ResultSet rs = pst.executeQuery()) {
+                String mascota=rs.getString("mascota");
+                if (rs.next()) {
+                    System.out.println("Mascota de " + nombre + " " + apellido + ": " +mascota);
+                } else {
+                    System.out.println("No se encontró un estudiante con ese nombre.");
+                }
+            }catch (SQLException e){
+                System.err.println(e.getMessage());
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener la mascota: " + e.getMessage());
+        }
+    }
+
 
 }
