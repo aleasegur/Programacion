@@ -5,17 +5,16 @@ import java.sql.*;
 /*1. Consulta básica con SELECT
 Selecciona los nombres y apellidos de todos los profesores */
 public class Ejercicio1 {
+    // URL de la base de datos, user y contraseña
+    private static final String URL = "jdbc:postgresql://ad-postgres.cpsk8il53gbl.us-east-1.rds.amazonaws.com:5432/hogwarts";
+    private static final String USER = "postgres";
+    private static final String PASS = "12345678";
     public static void main(String[] args) {
-        // URL de la base de datos, user y contraseña
-        String url = "jdbc:postgresql://ad-postgres.cpsk8il53gbl.us-east-1.rds.amazonaws.com:5432/hogwarts";
-        String user = "postgres";
-        String pass = "12345678";
-
         // Consulta SQL
         String consultaSql = "SELECT nombre, apellido FROM profesor";
 
         // Conectar y ejecutar la consulta
-        try (Connection con = DriverManager.getConnection(url, user, pass);
+        try (Connection con = DriverManager.getConnection(URL, USER, PASS);
              PreparedStatement sentencia = con.prepareStatement(consultaSql)){
              ResultSet rs = sentencia.executeQuery();
 
