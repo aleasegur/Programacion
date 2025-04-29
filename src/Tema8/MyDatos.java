@@ -129,11 +129,11 @@ public class MyDatos {
         try (PreparedStatement pst = con.prepareStatement(sql)) {
             pst.setString(1, nombreCasa);
 
-            try (ResultSet rs = pst.executeQuery()) {
+            try (ResultSet res = pst.executeQuery()) {
                 System.out.println("Estudiantes de la casa " + nombreCasa + ":");
-                while (rs.next()) {
-                    String nombre=rs.getString("nombre");
-                    String apellido=rs.getString("apellido");
+                while (res.next()) {
+                    String nombre=res.getString("nombre");
+                    String apellido=res.getString("apellido");
                     System.out.println(nombre+" "+apellido);
                 }
             }catch (SQLException e){
@@ -154,9 +154,9 @@ public class MyDatos {
             pst.setString(1, nombre);
             pst.setString(2, apellido);
 
-            try (ResultSet rs = pst.executeQuery()) {
-                if (rs.next()) {
-                    String mascota=rs.getString("mascota");
+            try (ResultSet res = pst.executeQuery()) {
+                if (res.next()) {
+                    String mascota=res.getString("mascota");
                     System.out.println("Mascota de " + nombre + " " + apellido + ": " +mascota);
                 } else {
                     System.err.println("No se encontró un estudiante con ese nombre.");
@@ -176,12 +176,12 @@ public class MyDatos {
                 "GROUP BY c.nombre";
 
         try (PreparedStatement pst = con.prepareStatement(sql);
-             ResultSet rs = pst.executeQuery()) {
+             ResultSet res = pst.executeQuery()) {
 
             System.out.println("Número de estudiantes por casa:");
-            while (rs.next()) {
-                String nombreCasa=rs.getString("casa");
-                int numEstudiantes=rs.getInt("numero_estudiantes");
+            while (res.next()) {
+                String nombreCasa=res.getString("casa");
+                int numEstudiantes=res.getInt("numero_estudiantes");
                 System.out.println(nombreCasa + ": " + numEstudiantes);
             }
 
