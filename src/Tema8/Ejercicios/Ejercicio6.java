@@ -3,7 +3,9 @@ package Tema8.Ejercicios;
 import Tema8.MyDatos;
 
 import java.sql.*;
-
+/*
+* 6. Eliminar duplicados con DISTINCT
+Muestra todos los años de curso sin duplicados*/
 public class Ejercicio6 {
     public static void main(String[] args) {
         MyDatos.loadProperties();
