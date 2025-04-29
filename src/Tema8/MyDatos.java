@@ -209,5 +209,23 @@ public class MyDatos {
         }
     }
 
+    public static void modificarAulaAsignatura(Connection con, int idAsignatura, String nuevaAula) {
+        String sql = "UPDATE asignatura SET aula = ? WHERE id_asignatura = ?";
+
+        try (PreparedStatement pst = con.prepareStatement(sql)) {
+            pst.setString(1, nuevaAula);
+            pst.setInt(2, idAsignatura);
+
+            int filasAfectadas = pst.executeUpdate();
+            if (filasAfectadas > 0) {
+                System.out.println("Aula modificada correctamente para la asignatura con ID: " + idAsignatura);
+            } else {
+                System.out.println("No se encontró la asignatura con ID: " + idAsignatura);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al modificar el aula: " + e.getMessage());
+        }
+    }
+
 
 }
