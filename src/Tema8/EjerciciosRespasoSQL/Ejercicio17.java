@@ -1,4 +1,4 @@
-package Tema8.Ejercicios;
+package Tema8.EjerciciosRespasoSQL;
 
 import Tema8.MyDatos;
 

@@ -1,9 +1,8 @@
-package Tema8.Ejercicios;
+package Tema8.EjerciciosRespasoSQL;
 
 import Tema8.MyDatos;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 /*11.Uso de operadores de comparación
 Muestra los nombres de los estudiantes cuya calificación en la asignatura de "Vuelo" es mayor

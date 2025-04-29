@@ -1,8 +1,7 @@
-package Tema8.Ejercicios;
+package Tema8.EjerciciosRespasoSQL;
 
 import Tema8.MyDatos;
 
-import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 
