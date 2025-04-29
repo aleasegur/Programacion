@@ -155,11 +155,11 @@ public class MyDatos {
             pst.setString(2, apellido);
 
             try (ResultSet rs = pst.executeQuery()) {
-                String mascota=rs.getString("mascota");
                 if (rs.next()) {
+                    String mascota=rs.getString("mascota");
                     System.out.println("Mascota de " + nombre + " " + apellido + ": " +mascota);
                 } else {
-                    System.out.println("No se encontró un estudiante con ese nombre.");
+                    System.err.println("No se encontró un estudiante con ese nombre.");
                 }
             }catch (SQLException e){
                 System.err.println(e.getMessage());
