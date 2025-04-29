@@ -3,7 +3,9 @@ package Tema8.Ejercicios;
 import Tema8.MyDatos;
 
 import java.sql.*;
-
+/*5. Uso de funciones de agregación
+Calcula la calificación media y la calificación máxima en la asignatura "Pociones".
+*/
 public class Ejercicio5 {
     public static void main(String[] args) {
         MyDatos.loadProperties();
