@@ -169,5 +169,45 @@ public class MyDatos {
         }
     }
 
+    public static void obtenerNumeroEstudiantesPorCasa(Connection con) {
+        String sql = "SELECT c.nombre AS casa, COUNT(e.id_estudiante) AS numero_estudiantes " +
+                "FROM casa c " +
+                "JOIN estudiante e ON c.id_casa = e.id_casa " +
+                "GROUP BY c.nombre";
+
+        try (PreparedStatement pst = con.prepareStatement(sql);
+             ResultSet rs = pst.executeQuery()) {
+
+            System.out.println("Número de estudiantes por casa:");
+            while (rs.next()) {
+                String nombreCasa=rs.getString("casa");
+                int numEstudiantes=rs.getInt("numero_estudiantes");
+                System.out.println(nombreCasa + ": " + numEstudiantes);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al obtener el número de estudiantes por casa: " + e.getMessage());
+        }
+    }
+
+    public static void insertarAsignatura(Connection con, String nombre,String aula,boolean obligatoria) {
+        String sql = "INSERT INTO Asignatura (nombre, aula ,obligatoria) VALUES (?,?,?)";
+
+        try (PreparedStatement pst = con.prepareStatement(sql)) {
+            pst.setString(1, nombre);
+            pst.setString(2, aula);
+            pst.setBoolean(3,obligatoria);
+
+            int filasAfectadas = pst.executeUpdate();
+            if (filasAfectadas > 0) {
+                System.out.println("Asignatura insertada correctamente.");
+            } else {
+                System.err.println("Error al insertar la asignatura.");
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
 
 }
