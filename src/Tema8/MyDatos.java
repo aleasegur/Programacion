@@ -71,4 +71,23 @@ public class MyDatos {
         return idGenerado;
     }
 
+    public static void modJefeCasa(Connection con, String nombre, String apellido, String nombreCasa){
+        String sql="UPDATE Casa " +
+                "SET id_jefe = (SELECT id_profesor FROM Profesor WHERE nombre = ? AND apellido = ?) " +
+                "WHERE nombre = ?";
+        try(PreparedStatement pst=con.prepareStatement(sql)) {
+            pst.setString(1,nombre);
+            pst.setString(2,apellido);
+            pst.setString(3,nombreCasa);
+            int filasAfectadas = pst.executeUpdate();
+            if (filasAfectadas > 0) {
+                System.out.println("Jefe de la casa actualizado correctamente.");
+            } else {
+                System.out.println("No se encontro la casa o el profesor.");
+            }
+        }catch (SQLException e){
+            System.err.println(e.getMessage());
+        }
+    }
+
 }
