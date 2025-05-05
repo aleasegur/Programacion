@@ -11,8 +11,8 @@ en el 7º año, con fecha de nacimiento '1973-11-25'.*/
 public class Ejercicio12 {
     public static void main(String[] args) {
         MyDatos.loadProperties();
-        String nombre = "Nymphadora";
-        String apellido = "Tonks";
+        String nombre = "Nymphadora2";
+        String apellido = "Tonks2";
         int idCasa = 4;
         int curso = 7;
         LocalDate fecha = LocalDate.of(1973, 11, 25);

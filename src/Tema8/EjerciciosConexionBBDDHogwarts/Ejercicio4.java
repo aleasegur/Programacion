@@ -12,7 +12,7 @@ porcionar los valores necesarios, pudiendo utilizar como ejemplo los datos de es
 public class Ejercicio4 {
     public static void main(String[] args) {
         MyDatos.loadProperties();
-        String nombre="Programacion";
+        String nombre="Programacion2";
         String aula="1smx";
         boolean obliga=true;
         try(Connection con= DriverManager.getConnection(MyDatos.getURL(),MyDatos.getUSER(),MyDatos.getPASSWORD())){

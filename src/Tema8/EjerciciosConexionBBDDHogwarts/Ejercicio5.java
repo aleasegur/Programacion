@@ -13,7 +13,7 @@ ponle el nombre que quieras al aula.*/
 public class Ejercicio5 {
     public static void main(String[] args) {
         MyDatos.loadProperties();
-        String newAula="Sotano1SMX";
+        String newAula="Sotano1SMX2";
         int idAula=1;
         try(Connection con= DriverManager.getConnection(MyDatos.getURL(),MyDatos.getUSER(),MyDatos.getPASSWORD())){
             MyDatos.modificarAulaAsignatura(con,idAula,newAula);
