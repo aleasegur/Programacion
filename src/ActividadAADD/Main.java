@@ -4,9 +4,9 @@ import java.sql.*;
 
 public class Main {
     public static void main(String[] args) {
-        MyAadd.loadProperties();
+        PilotsCRUD.loadProperties();
         String cons="SELECT name FROM circuits";
-        try(Connection con= DriverManager.getConnection(MyAadd.getURL(),MyAadd.getUSER(),MyAadd.getPASSWORD());
+        try(Connection con= DriverManager.getConnection(PilotsCRUD.getURL(), PilotsCRUD.getUSER(), PilotsCRUD.getPASSWORD());
             PreparedStatement pst=con.prepareStatement(cons); ResultSet res=pst.executeQuery()) {
             while (res.next()){
                 String nombre=res.getString("name");

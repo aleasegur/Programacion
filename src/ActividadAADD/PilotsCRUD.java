@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Properties;
 
-public class MyAadd {
+public class PilotsCRUD {
     public static final String dir ="resources/db.propers";
     private static String URL;
     private static String USER;
