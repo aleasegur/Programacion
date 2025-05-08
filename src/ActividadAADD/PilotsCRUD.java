@@ -80,14 +80,21 @@ public class PilotsCRUD {
 
     public static void createPilot(Scanner sc, ArrayList<Piloto> lista,Connection con){
         String code,nombre,apellido,nacionalidad;
-        int id;
+        int id= 0;
         LocalDate fecha;
-
+        String sql="INSERT INTO drivers (code,forename,surname,dob,nationality) VALUES (?,?,?,?,?)";
         try {
             code=introducirString(sc," el codigo del piloto: ");
             nombre=introducirString(sc," el nombre del piloto: ");
             apellido=introducirString(sc," el apellido del piloto: ");
             nacionalidad=introducirString(sc," la nacionalidad del piloto: ");
+            fecha=introducirFecha(sc," la fecha del piloto: ");
+            Piloto piloto=new Piloto(code,nombre,nacionalidad,apellido,fecha,id);
+            try(PreparedStatement pst=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)){
+                pst.setString(1,piloto.getNombre());
+            }catch (SQLException e){
+                System.err.println(e.getMessage());
+            }
         }catch (InputMismatchException | ArithmeticException e){
             System.err.println(e.getMessage());
         }catch (Exception e){
