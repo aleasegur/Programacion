@@ -16,13 +16,17 @@ public class Piloto {
         id=0;
     }
 
-    public Piloto(String code, String nombre, String nacionalidad, String apellido, LocalDate fecha, int id) {
-        this.code = code;
-        this.nombre = nombre;
-        this.nacionalidad = nacionalidad;
-        this.apellido = apellido;
-        this.fecha = fecha;
-        this.id = id;
+    public Piloto(String code, String nombre, String nacionalidad, String apellido, LocalDate fecha)throws Exception {
+        if (fecha!=null && code!=null && nacionalidad!=null && nombre!=null && apellido!=null) {
+            this.code = code;
+            this.nombre = nombre;
+            this.nacionalidad = nacionalidad;
+            this.apellido = apellido;
+            this.fecha = fecha;
+        }else{
+            throw new Exception("Error en el objeto");
+        }
+        this.id = 0;
     }
 
     public String getCode() {
