@@ -4,10 +4,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Properties;
+import java.util.Scanner;
+import java.sql.*;
 
 public class PilotsCRUD {
-    public static final String dir ="resources/db.propers";
+    public static final String dir ="resources/con.properties";
     private static String URL;
     private static String USER;
     private static String PASSWORD;
@@ -35,4 +40,60 @@ public class PilotsCRUD {
             System.err.println(e.getMessage());
         }
     }
+
+    public static LocalDate introducirFecha(Scanner sc, String tipo){
+        LocalDate res = null;
+        try {
+            System.out.println("Introduce "+tipo);
+            res=LocalDate.parse(sc.next());
+        }catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+        return res;
+    }
+
+    public static String introducirString(Scanner sc, String tipo){
+        String res="";
+        try{
+            System.out.println("Introduce "+tipo);
+            res=sc.next();
+        }catch (StringIndexOutOfBoundsException e){
+            System.err.println(e.getMessage());
+        }catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+        return res;
+    }
+
+    public static int introducirEntero(Scanner sc, String tipo){
+        int res=0;
+        try {
+            System.out.println("Introduce "+tipo);
+            res=sc.nextInt();
+        }catch (InputMismatchException | ArithmeticException e){
+            System.err.println(e.getMessage());
+        }catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+        return res;
+    }
+
+    public static void createPilot(Scanner sc, ArrayList<Piloto> lista,Connection con){
+        String code,nombre,apellido,nacionalidad;
+        int id;
+        LocalDate fecha;
+
+        try {
+            code=introducirString(sc," el codigo del piloto: ");
+            nombre=introducirString(sc," el nombre del piloto: ");
+            apellido=introducirString(sc," el apellido del piloto: ");
+            nacionalidad=introducirString(sc," la nacionalidad del piloto: ");
+        }catch (InputMismatchException | ArithmeticException e){
+            System.err.println(e.getMessage());
+        }catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+
+    }
+
 }
