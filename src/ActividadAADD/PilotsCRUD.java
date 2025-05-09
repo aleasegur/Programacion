@@ -112,7 +112,7 @@ public class PilotsCRUD {
                 int filas=pst.executeUpdate();
 
                 if (filas>0){
-                    try(ResultSet res=pst.executeQuery()) {
+                    try(ResultSet res=pst.getGeneratedKeys()) {
                         if (res.next()){
                             int idGenerado=res.getInt(1);
                             piloto.setId(idGenerado);
@@ -184,48 +184,112 @@ public class PilotsCRUD {
 
     }
 
-    public static void updatePilot(Connection con,Piloto piloto) {
-        String sql = "UPDATE drivers SET code = ?, forename = ?, surname = ?, dob = ?, nationality = ? WHERE driverid = ?";
+    public static void updatePilot(Scanner sc,Connection con,int idPiloto) {
 
-        try (PreparedStatement pst = con.prepareStatement(sql)) {
-            pst.setString(1, piloto.getCode());
-            pst.setString(2, piloto.getNombre());
-            pst.setString(3, piloto.getApellido());
-            pst.setDate(4, Date.valueOf(piloto.getFecha()));
-            pst.setString(5, piloto.getNacionalidad());
-            pst.setInt(6, piloto.getId());
+        String selectSQL = "SELECT * FROM drivers WHERE driverid = ?";
+        String updatesql = "UPDATE drivers SET code = ?, forename = ?, surname = ?, dob = ?, nationality = ? WHERE driverid = ?";
 
-            int filasActualizadas = pst.executeUpdate();
-            if (filasActualizadas > 0) {
-                System.out.println("Piloto actualizado correctamente.");
-            } else {
-                System.err.println("No se encontro un piloto con ese ID.");
+        try (PreparedStatement selectPst = con.prepareStatement(selectSQL); PreparedStatement updatePst= con.prepareStatement(updatesql)) {
+            selectPst.setInt(1,idPiloto);
+
+            try(ResultSet res = selectPst.executeQuery()) {
+                if (res.next()){
+                    System.out.println("Piloto actual:");
+                    System.out.println("Code: " + res.getString("code"));
+                    System.out.println("Nombre: " + res.getString("forename"));
+                    System.out.println("Apellido: " + res.getString("surname"));
+                    System.out.println("Fecha nacimiento: " + res.getString("dob"));
+                    System.out.println("Nacionalidad: " + res.getString("nationality"));
+
+                    // Crear y rellenar objeto Piloto
+                    Piloto piloto = crearObjetoPiloto(sc);
+
+                    // Ejecutar actualización usando getters
+                    updatePst.setString(1, piloto.getCode());
+                    updatePst.setString(2, piloto.getNombre());
+                    updatePst.setString(3, piloto.getApellido());
+                    updatePst.setDate(4, Date.valueOf(piloto.getFecha()));
+                    updatePst.setString(5, piloto.getNacionalidad());
+                    updatePst.setInt(6, idPiloto);
+
+                    int filasActualizadas = updatePst.executeUpdate();
+                    if (filasActualizadas > 0) {
+                        System.out.println("Piloto actualizado correctamente.");
+                    } else {
+                        System.err.println("No se encontro un piloto con ese ID.");
+                    }
+                }
+            }catch (SQLException e){
+                System.err.println(e.getMessage());
             }
+
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
     }
 
-    public static void deletePilot(Connection con,Piloto piloto){
-        String sql = "DELETE drivers SET code = ?, forename = ?, surname = ?, dob = ?, nationality = ? WHERE driverid = ?";
+    public static void deletePilot(Connection con,int idPiloto){
+        String sql = "DELETE FROM drivers WHERE driverid = ?";  // Solo necesitamos WHERE
 
         try (PreparedStatement pst = con.prepareStatement(sql)) {
-            pst.setString(1, piloto.getCode());
-            pst.setString(2, piloto.getNombre());
-            pst.setString(3, piloto.getApellido());
-            pst.setDate(4, Date.valueOf(piloto.getFecha()));
-            pst.setString(5, piloto.getNacionalidad());
-            pst.setInt(6, piloto.getId());
+            pst.setInt(1, idPiloto);  // Usamos el idPiloto para identificar el registro
 
-            int filasActualizadas = pst.executeUpdate();
-            if (filasActualizadas > 0) {
+            int filasEliminadas = pst.executeUpdate();
+            if (filasEliminadas > 0) {
                 System.out.println("Piloto eliminado correctamente.");
             } else {
-                System.err.println("No se encontro un piloto con ese ID.");
+                System.err.println("No se encontró un piloto con ese ID.");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar el piloto: " + e.getMessage());
+        }
+    }
+
+    public static void showPilotClassification(Connection con) {
+        String sql = "SELECT d.driverid, d.forename, d.surname, SUM(r.points) AS total_points " +
+                "FROM drivers d " +
+                "JOIN results r ON d.driverid = r.driverid " +
+                "GROUP BY d.driverid, d.forename, d.surname " +
+                "ORDER BY total_points DESC";
+
+        try (PreparedStatement pst = con.prepareStatement(sql);
+             ResultSet rs = pst.executeQuery()) {
+
+            System.out.println("---CLASIFICACION DE PILOTOS---");
+            while (rs.next()) {
+                String nombre = rs.getString("forename");
+                String apellido = rs.getString("surname");
+                double puntos = rs.getDouble("total_points");
+
+                System.out.println(nombre+" "+apellido+", Puntos: "+puntos);
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
     }
+
+    public static void showBuildersClassification(Connection con) {
+        String sql = "SELECT c.name, SUM(r.points) AS total_points " +
+                "FROM constructors c " +
+                "JOIN drivers d ON c.constructorid = d.constructorid " +
+                "JOIN results r ON d.driverid = r.driverid " +
+                "GROUP BY c.constructorid, c.name " +
+                "ORDER BY total_points DESC";
+
+        try (PreparedStatement pst = con.prepareStatement(sql);
+             ResultSet rs = pst.executeQuery()) {
+
+            System.out.println("---CLASIFICACION DE EQUIPOS---");
+            while (rs.next()) {
+                String equipo = rs.getString("name");
+                double puntos = rs.getDouble("total_points");
+
+                System.out.println("Equipo: "+equipo+", Puntos: "+puntos);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
 
 }
